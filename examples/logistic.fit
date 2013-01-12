@@ -1,0 +1,14 @@
+# ACE/gr fit description file
+#
+fit title "Logistic fit"
+fit formula "y = 1/(1+exp(-(x-a0)/a1))"
+fit with 2 parameters
+fit prec 0.01
+a0 = 1
+a0 constraints off
+a0min = 1
+a0max = 1
+a1 = 1
+a1 constraints off
+a1min = 1
+a1max = 1

@@ -1,0 +1,74 @@
+<HTML>
+
+<HEAD>
+<TITLE>Xmgr: fonts</TITLE>
+</HEAD>
+
+<BODY>
+
+	<h2> <a NAME="fonts">Fonts</a> </h2>
+<p>
+	<h3> Changing fonts within a string </h3>
+<p>
+To change fonts within a string precede the font number listed below by a
+backslash. To  turn subscripting or superscripting on or off use \s for
+subscripts and \S for superscripting. Font selection is current for the
+remainder of the string or until the next font change.  Subscripts and
+superscripts remain for the remainder of the string or until \N is seen. To 
+print a backslash use \\. To backspace use \b. To begin underlining use \u, to
+stop underlining use \U. \+ increases the size of the characters and \-
+decreases the size of the characters.
+<p>
+xmgr uses the Hershey fonts to draw text on the screen, but PostScript fonts
+for hardcopy. There are discrepancies between the two sets of fonts and of this
+writing, there are  problems with the mapping of Greek and special characters.
+<p>
+Font # 	Font
+<ul>
+	<li>  0 .... Complex Roman on screen, maps to Times-Roman.
+	<li>  1 .... Triplex Roman on screen, maps to Times-Bold.
+	<li>  2 .... Complex Italic on screen, maps to Times-Italic.
+	<li>  3 .... Triplex Italic on screen, maps to Times-BoldItalic.
+	<li>  4 .... Simplex on screen, maps to Helvetica.
+	<li>  5 .... Duplex on screen, maps to Helvetica-Bold
+	<li>  6 .... Complex Italic on screen, maps to Helvetica-Oblique.
+	<li>  7 .... Triplex Italic on screen, maps to Helvetica-BoldOblique.
+	<li>  8 .... Simplex Greek on screen, maps to the lower 128 characters 
+	             of the Symbol font.
+	<li>  9 .... Symbols on screen, maps to the upper 128 characters of the 
+	             Symbol font.
+	<li>  x .... Special symbols 
+</ul>
+<p>
+Summary of other special commands
+<ul>
+	<li>  + .... increase size
+	<li>  - .... decrease size
+	<li>  b .... backspace length of previous character
+	<li>  c .... begin using upper 128 characters of set
+	<li>  C .... stop using upper 128 characters of set
+	<li>  s .... begin subscripting
+	<li>  S .... begin superscripting
+	<li>  u .... begin underline
+	<li>  U .... stop underline
+	<li>  N .... return to normal
+</ul>
+<p>
+Example:
+<p>
+ \0F\sX\N(\8e\0) = sin(\8e\0)*e\S(-X)\N*cos(\8e\0)
+<p>
+ prints roughly FX(e) = sin(e)*e -X*cos(e)
+<p>
+ using font 0 and e prints as epsilon from the Simplex Greek font. 
+<p>
+Use the upper 128 characters for accented characters.
+The upper character set not display on the screen correctly but will
+print. 
+<p>
+NOTE:
+Special characters are mapped to the keyboard, the present mapping is not very
+well  organized and may change. 
+
+</BODY>
+</HTML>

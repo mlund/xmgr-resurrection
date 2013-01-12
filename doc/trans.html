@@ -1,0 +1,628 @@
+<HTML>
+<HEAD>
+<TITLE>Xmgr: transformations</TITLE>
+</HEAD>
+
+<BODY>
+
+	<h2> <a NAME="transformations">Transformations</a> </h2>
+                <ul>
+                <li> <a href="#eval">Evaluate expression</a>
+                <li> <a href="#load">Load values</a>
+                <li> <a href="#leval">Load & evaluate</a>
+                <li> <a href="#histo">Histograms</a>
+                <li> <a href="#fourier">Fourier transforms</a>
+                <li> <a href="#running">Running averages</a>
+                <li> <a href="#regression">Regression</a>
+                <li> <a href="#nlcurve">Non-linear curve fitting</a>
+              	<li> <a href="#diff">Differences</a>
+                <li> <a href="#seasdiff">Seasonal differences</a>
+                <li> <a href="#int">Integration</a>
+                <li> <a href="#xcorr">Cross/auto-correlation</a>
+                <li> <a href="#interp">Interpolation</a>
+                <li> <a href="#spline">Splines</a>
+                <li> <a href="#sample">Sample points</a>
+                <li> <a href="#prune">Prune data</a>
+                <li> <a href="#digitalfilter">Digital filter</a>
+                <li> <a href="#lconv">Linear convolution</a>
+                <li> <a href="#geom">Geometric transformations</a>
+                <li> <a href="#featext">Feature extraction</a>
+                </ul>
+
+<p>
+NOTE:
+Some of these operations generate new sets, if you run out of sets use 
+Edit/Set operations (described below) to kill unneeded sets. Also, the 
+scaling of the world coordinate system may be inappropriate for the results 
+of many of these operations. Use the Status popup to determine the 
+appropriate scaling factors to use in "Define world" (above), or 
+use "Autoscale..." (in View/Autoscale above). Most functions operate on 
+active sets only.
+<p>
+<HR>
+	<h3> <a NAME="eval">Evaluate expressions</a> </h3>
+<p>
+Evaluates a formula defined in infix fashion.
+<p>
+Select the set on which the formula will operate, (set must be active, use 
+File/Status to find the current state of sets). If you desire the result be 
+loaded to a new set rather than overwriting the set used for computations, 
+use the panel cycle denoted `Result to' to inform xmgr you'd like the 
+result placed in a new set (if there is one). A new set is created only 
+if a single set is selected from step 1. If `All sets' are selected 
+then the results will overwrite all active sets.
+<p>
+Enter the formula, the syntax is:
+<p>
+(x,y,a,b,c,d)=&ltexpression&gt
+<p>
+where (x,y,a,b,c,d) are defined as the x and y of the currently selected 
+set and a,b,c,d are scratch arrays that can be used to perform operations 
+between sets. Case is ignored, so X=COS(X) is correct.
+<p>
+Click on <b>Accept</b> when you are satisfied with everything.
+<p>
+Variables:
+<ul>
+	 <li> a == reference to scratch array
+	 <li> b == reference to scratch array
+	 <li> c == reference to scratch array
+	 <li> d == reference to scratch array
+</ul>
+<p>
+Functions:
+<ul>
+	 <li> abs(x) == absolute value
+	 <li> acos(x) == arccosine
+	 <li> acosh(x) == hyperbolic arccosine
+	 <li> ai(x), bi(x) == Airy functions (two independent solutions of the differential equation <code>y"(x) = xy</code>).
+	 <li> asin(x) == arcsine
+	 <li> asinh(x) == hyperbolic arcsine
+	 <li> atan(x) == arctangent
+	 <li> atan2(y,x) == Fortran ATAN2
+	 <li> atanh(x) == hyperbolic arctangent
+	 <li> beta(x) == beta function
+	 <li> ceil(x) == greatest integer function
+	 <li> chdtr(df, x) == chi-square distribution
+	 <li> chdtrc(v, x) == complemented Chi-square distribution
+	 <li> chdtri(df, y) == inverse of complemented Chi-square distribution
+	 <li> chi(x) == hyperbolic cosine integral
+	 <li> ci(x) == cosine integral
+	 <li> cos(x) == cosine
+	 <li> cosh(x) == hyperbolic cosine
+	 <li> dawsn(x) == Dawson's integral
+	 <li> deg == 180.0/PI
+	 <li> dx == span of world coordinate system in x
+	 <li> dy == span of world coordinate system in y
+	 <li> ellie(phi, m) == incomplete elliptic integral of the second kind
+	 <li> ellik(phi, m) == incomplete elliptic integral of the first kind
+	 <li> ellpe(m) == complete elliptic integral of the second kind
+	 <li> ellpk(m) == complete elliptic integral of the first kind
+	 <li> erf(x) == error function
+	 <li> erfc(x) == complement of error function
+	 <li> exp(x) == e^x
+	 <li> expn(x) == exponential integral
+	 <li> fac(n) == factorial function, n!
+	 <li> fdtr(df1, df2, x) == F distribution function
+	 <li> fdtrc(x) == complemented F distribution
+	 <li> fdtri(x) == inverse of complemented F distribution
+	 <li> floor(x) == least integer function
+	 <li> fresnlc(x) == cosine Fresnel integral
+	 <li> fresnls(x) == sine Fresnel integral
+	 <li> gamma(x) == gamma function
+	 <li> gdtr(a, b, x) == gamma distribution function
+	 <li> gdtrc(a, b, x) == complemented gamma distribution function
+	 <li> hyp2f1(a, b, c, x) == Gauss hyper-geometric function
+	 <li> hyperg(a, b, x) == confluent hyper-geometric function
+	 <li> i0e(x) == modified Bessel function of order zero, exponentially  scaled
+	 <li> i1e(x) == modified Bessel function of order one, exponentially   scaled
+	 <li> igam(a, x) == incomplete gamma integral
+	 <li> igamc(a, x) == complemented incomplete gamma integral
+	 <li> igami(a, p) == inverse of complemented incomplete gamma integral
+	 <li> incbet(a, b, x) == incomplete beta integral
+	 <li> incbi(a, b, y) == Inverse of incomplete beta integral
+	 <li> index == the index of the current point in the selected set
+	 <li> irand(n) == random integer less than n
+	 <li> iv(v, x) == modified Bessel function of order v
+	 <li> jv(v, x) == Bessel function of order v
+	 <li> k0e(x) == modified Bessel function, third kind, order zero, exponentially scaled
+	 <li> k1e(x) == modified Bessel function, third kind, order one, exponentially scaled
+	 <li> kn(n, x) == modified Bessel function, third kind, integer order
+	 <li> lbeta(x) == natural log of |beta(x)|
+	 <li> lgamma(x) == log of gamma function
+	 <li> ln(x) == natural log 
+	 <li> log10(x) == log base 10
+	 <li> log2(x) == base 2 logarithm of x
+	 <li> max(x,y) == returns greater of x and y
+	 <li> min(x,y) == returns lesser of x and y
+	 <li> mod(x,y) == mod function (also x % y)
+	 <li> ndtr(x) == Normal distribution function
+	 <li> ndtri(x) == inverse of Normal distribution function
+	 <li> norm(x) == gaussian density function
+	 <li> pdtr(k, m) == Poisson distribution
+	 <li> pdtrc(k, m) == complemented Poisson distribution
+	 <li> pdtri(k, y) == inverse Poisson distribution
+	 <li> pi == constant PI
+	 <li> psi(x) == psi (digamma) function
+	 <li> rad == PI/180.0
+	 <li> rand == pseudo random number distributed uniformly on (0.0,1.0)
+	 <li> rint(x) == round to closest integer
+	 <li> rgamma(x) == reciprocal gamma function
+	 <li> rnorm(xbar,s) == pseudo random number distributed N(xbar,s)
+	 <li> shi(x) == hyperbolic sine integral
+	 <li> si(x) == sine integral
+	 <li> sin(x) == hyperbolic sine
+	 <li> sin(x) == sine function
+	 <li> spence(x) == dilogarithm
+	 <li> sqr(x) == x^2
+	 <li> sqrt(x) == x^0.5
+	 <li> stdtr(k, t) == Student's t distribution
+	 <li> stdtri(k, p) == functional inverse of Student's t distribution
+	 <li> struve(v, x) == Struve function
+	 <li> tan(x) == tangent function
+	 <li> tanh(x) == hyperbolic tangent
+	 <li> x == currently selected set X
+	 <li> y == currently selected set Y
+	 <li> yv(v, x) == Bessel function of order v
+	 <li> zeta(x, q) == Riemann zeta function of two arguments
+	 <li> zetac(x) == Riemann zeta function	 
+</ul>
+<p>
+Note: See pars.yacc for the yacc grammar.
+<p>
+Examples:
+<p>
+      y=-y
+<p>
+      y=x*cos(2*x*PI/100)+sqr(x)
+<p>
+      x=(index&gt10)*(x-5)+(index&lt=10)*x 
+<p>
+If the index of the current point is greater than 10 then x=x-5 else x=x.
+Conditionals evaluate to 0 if false, anything else is true.
+<p>
+	a=y 
+<p>
+Store y of the current set into scratch array "a". You may now select 
+another set and perform the operation y=somefunctionof(a)
+<p>
+Restrictions:
+<p>
+<HR>
+	<h3> <a NAME="load">Load values</a> </h3>
+<p>
+Load a sequence to (x,y) or (a,b,c,d).
+<p>
+<HR>
+	<h3> <a NAME="leval">Load and evaluate</a> </h3>
+<p>
+Evaluate parametric functions.
+<p>
+	Enter the functions to be used to define X and Y.
+<p>
+	Select the independent variable (x,y,a,b,c,d).
+<p>
+	Enter the start, stop and the number of points items.
+<p>
+	Press the button <b>Apply</b> to evaluate the functions and load 
+        the result to a new set.
+
+<p>
+<HR>
+	<h3> <a NAME="histo">Histogram</a> </h3>
+<p>
+Compute a frequency histogram.
+<p>
+	Select the set.
+<p>
+	Enter the width of a bin (all bin widths are the same).
+<p>
+	Enter the minimum and maximum values of the portion of the data you 
+wish histoed (sic). Note that Xmin and Xmax refer to the RANGE (or Y) of 
+the set, not the domain (or X).
+<p>
+Press <b>Accept</b> to compute the histogram.
+<p>
+<HR>
+	<h3> <a NAME="fourier">Fourier</a> </h3>
+<p>
+Compute the Discrete Fourier transform.
+<p>
+	Select the set
+<p>
+	Select the type of data window, the default is the 
+rectangular window, i.e., the data are transformed unmodified. 
+The data windows are defined as follows:
+<dl>
+<dt> None
+<dd>Use the default rectangular window
+<dt> Triangular 	
+<dd> 1.0 - |(i-0.5*(N-1))/(0.5*(N-1))|
+<dt> Hanning 
+<dd> 0.5 * [1-cos(2*pi*i/(N-1))]
+<dt> Welch 
+<dd> 1-((i-0.5*(N-1))/(0.5*(N+1)))^2
+<dt> Hamming 
+<dd> 0.54-0.46*cos(2*pi*i/(N-1))
+<dt> Blackman 
+<dd> 0.42-0.5*cos(2*pi*i/(N-1))+0.08*cos(4*pi*i/(N-1))
+<dt> Parzen 
+<dd> 1.0 - |(i-0.5*(N-1))/(0.5*(N+1))|
+</dl>
+<p>
+	Select the form of the output, magnitude (spectrum), phase, or the 
+coefficients.  The spectrum is computed by sqrt(x*x + y*y) where x, y are 
+the coefficients computed by the DFT or FFT. Only N/2 values (representing 
+frequencies 0 to PI) are loaded to the resulting set.
+<p>
+	If the magnitude or phase is selected, then the next item, `X = `, 
+determines what values should be loaded to X. The index runs from 0 to n/2, 
+the frequency is the cyclical ith Fourier frequency, the period is the 
+reciprocal of the frequency with the period of the 0th Fourier frequency 
+plotted at T+delta, where T is the total length of the data and delta is the 
+sampling interval.
+<p>
+	Select transform or inverse transform.
+<p>
+	Select real or complex data.
+<p>
+If real is selected, then the data to be transformed is assumed to be 
+in Y, X is assumed equally spaced and is ignored. If complex is selected 
+then the real part is assumed to be in X and the imaginary part in Y.
+<p>
+	Press DFT (for small data sets whose length is not a power of 2) - or 
+	FFT (for data sets whose length is a power of 2).
+<p>
+	Click on <b>Window only</b> to generated a windowed version of the 
+data in a new set.
+<p>
+NOTE: Small for the DFT is &lt 1000 points. The DFT is O(N**2) and can be
+quite time consuming to compute for large N.
+<p>
+<HR>
+	<h3> <a NAME="running">Running averages</a> </h3>
+<p>
+Compute a running average, median, minimum, maximum, or standard deviation.
+<p>
+	Select the method.
+<p>
+	Select the set.
+<p>
+	Set the length of the running method in the text item marked 
+<b>Length</b>, it must be less than the set length.
+<p>
+	Click on <b>Accept</b>.
+<p>
+<HR>
+	<h3> <a NAME="regression">Regression</a> </h3>
+<p>
+Perform linear or polynomial regression.
+<p>
+	Select the set.
+<p>
+	Select the degree of fit.
+<p>
+	Select fitted curve or residuals to load.
+<p>
+	Press the button marked "Regress".
+<p>
+A set is loaded (if there is one) with the resulting curve and a summary 
+of the statistical results are written to the <b>Result</b> popup.
+<p>
+Notes:
+
+The fitting techniques used by xmgr are as follows:
+
+For linear fits (y=ax+b) a straightforward least squares procedure is used. For
+exponential and power fits, the function to fit is linearized, it is important to
+note that the statistics generated refer to the parameters of the linearized function 
+and not the original function.
+<p>
+<HR>
+	<h3> <a NAME="nlcurve">Non-linear curve fitting</a> </h3>
+<p>
+<ol>
+<li>Select the set you would like to approximate.
+<li>The unknown parameters to fit are labeled A0 to A9 (case insensitive).
+Type in the function using the parameters, starting with A0.
+<li>Enter the number of parameters.
+<li>Adjust the tolerance.
+<li>Choose initial values (1 by default) and specify bounds (if required) 
+for the parameters.
+<li> Specify what you would like to view from <b>Options/Load</b>
+<dl>
+<dt> Fitted values 
+<dd> Value of approximating function at abscissa of selected set
+<dt> Residuals
+<dd> Error in approximating function at abscissa of selected set
+<dt> Function
+<dd> Approximating function at abscissa defined by <b>Start</b>, <b>Stop</b>
+and <b># of points </b>
+</dl>
+<li>Run the fitting routine by specifying the number of convergence steps you wish to
+perform (5/20/100).
+<li> At any time, you may <b>Load as is</b> the values if 
+ <b>Options/autoload</b> is not selected.
+<li> Look at the results and
+ repeat any of the above steps until satisfied. Results will continue to be loaded to
+the same newly created set.
+<li>  Press <b> Accept</b> to make the new set permanent or <b>Cancel</b> to
+destroy it.
+</ol>
+
+Fit definitions can be saved/loaded from the <b>File</b> pull-down menu of the
+Non-linear fitting popup.
+
+<p>
+
+<HR>
+	<h3> <a NAME="diff">Differences</a> </h3>
+<p>
+Numerical differentiation.
+<p>
+	Select the set.
+<p>
+	Select the method - one of forward, backward, or centered difference. 
+Assumes unevenly spaced data, increasing in X.
+<p>
+	Click on <b>Accept</b>.
+<p>
+A set is loaded (if there is one) with the resulting curve.
+<p>
+<HR>
+	<h3> <a NAME="seasdiff">Seasonal differences</a> </h3>
+<p>
+Difference a set by a given lag.
+<p>
+	Select the set.
+<p>
+	Enter the value for the lag. Assumptions are evenly spaced data, 
+	increasing in X.
+<p>
+	Press the button marked <b>Accept</b>.
+<p>
+	Use <b>Pick</b> to use the mouse to select the set by clicking 
+near a point in the set as displayed in the drawing area.
+<p>
+A set is loaded (if there is one) with the resulting curve.
+<p>
+<HR>
+	<h3> <a NAME="int">Integration</a> </h3>
+<p>
+Numerical integration.
+<p>
+	Select the set.
+<p>
+	Select the form of the results, the item marked <b>cumulative sum</b> 
+will construct a set composed of the current value of the integral at a 
+given X. Sum only reports just the value on the next line. Assumes unevenly 
+spaced data, increasing in X.
+<p>
+	Press the button marked <b>Integrate</b>.
+<p>
+A set is loaded (if there is one) with the resulting curve if 
+<b>cumulative sum</b> is chosen.
+<p>
+<HR>
+	<h3> <a NAME="xcorr">X-corr</a> </h3>
+<p>
+Cross/auto-correlation
+<p>
+	Select both sets (use the same set if autocorrelation is desired).
+<p>
+	Select the lag, N/3 is a reasonable value (your mileage may vary).
+<p>
+	Select bias - generally this will not make any difference for large 
+data sets with lags &lt&lt the length of the set, I was just curious. The 
+difference is division by N (biased) or N-lag (unbiased).
+	A set is loaded (if there is one) with the resulting curve.
+
+<p>
+<HR>
+	<h3> <a NAME="interp">Interpolation</a> </h3>
+<p>
+
+Create a new set by performing interpolation on one set at abscissas from 
+another set. All sets are in the current graph. This will allow pointwise 
+mathematical operations to be performed between the new set and the set 
+providing the abscissas using the <A HREF="data.html#commands">command 
+interpreter</A>.
+
+<p>
+
+Choose the set on which to interpolate which will provide the Y values. Select
+a second set which will provide the X values for the new set.
+
+<p>
+
+The interpolation method can be a cubic or Akima spline or linear.
+
+<p>
+<HR>
+	<h3> <a NAME="spline">Spline</a> </h3>
+<p>
+Compute a spline fit to a set
+<p>
+	Select the set.
+<p>
+	Select the starting value of X for the fitted curve.
+<p>
+	Select the ending value of X.
+<p>
+	Select the number of samples. The spline curve will be evaluated at 
+        X+i*(MaxX - MinX)/Nsteps for each i in (0, Nsteps-1).
+<p>
+        Select the type of the spline. It could be either plain cubic one or 
+        Akima spline. The latter should be preferred when approximating
+        sufficiently non-smooth series.
+<p>
+	Press "Spline"
+<p>
+	A set is loaded (if there is one) with the resulting curve.
+<p>
+Notes: The code to compute the spline is a literal translation of the 
+code in FMM.
+<p>
+<HR>
+	<h3> <a NAME="sample">Sample</a> </h3>
+<p>
+Sample a set pointwise or by a logical expression.
+<p>
+	Select the set.
+<p>
+	Select the type of sample, either Start/step or Logical expression.
+If Start/step is selected then enter the starting index to begin the sample.
+<p>
+	Select the number of points to skip between samples in <b>Step</b>.
+If <b>Logical expression</b> is selected, enter the expression in the text 
+item denoted <b>Expr:</b>. Values of the expression not equal to zero are 
+interpreted as TRUE, and the point is accepted. Any expression evaluating 
+to zero will result in the point being ignored.
+<p>
+<HR>
+	<h3> <a NAME="prune">Prune data</a> </h3>
+<P>
+Prune the data of a set by removing points. This is useful if the
+resolution of your data is higher than the resolution of the graphics
+device (screen or hardcopy). You can reduce the size of project files
+and increase the speed of redraws by removing redundant points.
+<P>
+<OL>
+<LI> Select the set.
+<P>
+<LI> Select the type of data pruning:
+<P>
+<DL>
+<DT> Interpolation: 
+<DD> The interpolation type calculates for each point a linear
+interpolation of that point based on its neighbors and removes the
+point if real y-value and interpolated y-value differ by less than
+Delta-Y. The interpolation type requires that the set is sorted: if
+both x and y are functions of another variable t, i.e. x(t) and y(t),
+the set has to be sorted by t. It is, of course, possible that x(t)=t.
+<P>
+<DT> Circle, Ellipse, Rectangle:
+<DD> These three types remove all points within a circular, elliptical,
+or rectangular surrounding of previous points in the set. No particular
+order of points is required. Those types are useful, e.g., for sets that
+are not quasi-continuous time series but rather discrete maps (just
+an example: depict the current heart period versus the previous heart
+period).
+</DL>
+<P>
+<LI> Select the size of the surrounding (Delta-X and/or Delta-Y).
+<P>
+<LI> Select whether the size of the surrounding is specified as
+viewport or world coordinates.
+<P>
+<DL>
+<DT> Viewport coordinates:
+<DD> Delta-X and Delta-Y are specified as viewport coordinates. This
+is most useful if you just want to make a graph and don't care about
+absolute errors.
+<P>
+<DT> World coordinates:
+<DD> Sometimes (for example, in bifurcation diagrams) points
+(approximately) coincide, and you want to compress the data by
+removing the "doubles" without significantly increasing the
+granularity of the data. In other words, you don't care about any
+specific graphics device but rather about the maximum absolute error
+caused by pruning. This is important, for example, if you want to use
+the pruned set for further calculations. In that case, it is better to
+use world coordinates.
+You need to specify the type of Delta-X and Delta-Y (linear or
+logarithmic). They default to the axes types of the current graph. If
+one of the Deltas is logarithmic, it is considered a factor. For
+example, interpolation type pruning with logarithmic Delta-Y type and
+Delta-Y = 2 means to remove all points for which interpolated and real
+value differ by a factor of less than two.
+</DL>
+</OL>
+<P>
+<HR>
+	<h3> <a NAME="digitalfilter">Digital filter</a> </h3>
+<p>
+Apply a digital filter to a set.
+<p>
+	Select the set to be filtered
+<p>
+	Select the set with the filter weights.
+<p>
+<HR>
+	<h3> <a NAME="lconv">Linear convolution</a> </h3>
+<p>
+Perform convolution of 2 sets.
+
+<p>
+<HR>
+	<h3> <a NAME="geom">Geometric transformations</a> </h3>
+<p>
+Apply rotations, scaling, and translations to a set.
+<p>
+	Select the order in which to apply the transformations.
+<p>
+	Press the button <b>Apply</b> to perform the transformation.
+<p>
+Press the <b>Reset</b> to reset values and return to the identity 
+transformation.
+<p>
+Press the <b>Reset</b> to reset values and return to the identity 
+transformation.
+<p>
+Restrictions: Only the set X and Y are transformed, additional vectors 
+attached to a set, such as error bars, are not transformed.
+<HR>
+<p>
+	<h3> <a NAME="featext">Feature extraction</a> </h3>
+<p>
+Given a set of curves in a graph, extract a feature from each curve and use
+the values of the feature to provide the Y values for a new curve.
+
+<dl>
+<dt> Results to graph:
+<dd> graph to which new curve is to be assigned. It must be an active graph.
+<dt> Feature
+<dd> feature to be extracted. See table below.
+<dt> X values from:
+<dd> source of X values for the new curve to be generated. 
+<ol>
+<li> Index  - use the number of the curve in the graph, i.e., 1,2,3,...
+<li> Legend - use the legend from the curve from which the feature is
+extracted. This must be a number.
+<li> X from set - use the X values from a set specified below
+<li> Y from set - use Y values from set specified below
+</ol>
+<dt> Accept
+<dd> generate the curve
+</dl>
+<table align=middle border="5" width="90%">
+<tr><th> Feature</th><th>Description</th></tr>
+<tr><td>Y minimum</td><td> Minimum Y value of set</td></tr>
+<tr><td>Y maximum</td><td>Maximum Y value of set</td></tr>
+<tr><td>Y average</td><td>Average Y value of set</td></tr>
+<tr><td>Y std. dev.</td><td>Standard deviation of Y values</td></tr>
+<tr><td>Y median</td><td>Median Y value</td></tr>
+<tr><td>X minimum</td><td>Minimum X value of set</td></tr>
+<tr><td>X maximum</td><td>Maximum X value of set</td></tr>
+<tr><td>X average</td><td>Average X value of set</td></tr>
+<tr><td>X std. dev.</td><td>Standard deviation of X values</td></tr>
+<tr><td>X median</td><td>Median X value</td></tr>
+<tr><td>Frequency</td><td>Perform DFT (FFT if set length a power of 2) to find largest frequency component</td></tr>
+<tr><td>Period</td><td>Inverse of above </td></tr>
+<tr><td>Zero crossing</td><td>Time of the first zero crossing, + or - going</td></tr>
+<tr><td>Rise time</td><td>Assume curve starts at the minimum and rises to the maximum, get time
+to go from 10% to 90% of rise. For single exponential curves, this is 2.2*time
+constant</td></tr>
+<tr><td>Fall time</td><td>Assume curve starts at the maximum and drops to the minimum, get time
+to go from 90% to 10% of fall</td></tr>
+<tr><td>Slope</td><td>Perform linear regression to obtain slope</td></tr>
+<tr><td>Y intercept</td><td>Perform linear regression to obtain Y-intercept</td></tr>
+<tr><td>Set length</td><td>Number of data points in set</td></tr>
+<tr><td>Half maximal width</td><td>Assume curve starts from the minimum, rises
+to the maximum and drops to the minimum again. Determine the time for which the curve is
+elevated more than 50% of the maximum rise.</td></tr>
+<tr><td>Barycenter X</td><td>Barycenter along X axis</td></tr>
+<tr><td>Barycenter Y</td><td>Barycenter along Y axis</td></tr>
+</table>
+</BODY>
+</HTML>

@@ -1,0 +1,47 @@
+1. CONFIGURATION
+   a) read README.configure for basic notes on the GNU configure usage
+   b) run `./configure --help' to get list of additional switches specific to
+      ACE/gr
+   c) run `./configure <options>'
+      Just an example:
+      ./configure --enable-acegr-home=/opt/xmgr --enable-editres \
+                  --enable-extra-incpath=/usr/local/include:/opt/include \
+                  --enable-extra-ldpath=/usr/local/lib:/opt/lib --prefix=/usr
+      
+      would (try to) configure ACE/gr with support for editres, use
+      /usr/local/include and /opt/include in addition to the default include
+      path and /usr/local/lib and /opt/lib in addition to the default ld path.
+      As well, all stuff would be put under the /opt/xmgr directory and soft
+      links made to /usr/bin, /usr/lib and /usr/include.
+
+      *** NOTE *** If you change one of the '--enable-extra-incpath' or
+      '--enable-extra-ldpath' options from one run of configure to another,
+      remember to delete the "config.cache" file!!!
+   
+      There is one configure switch which must be paid a special attention to: 
+      `--enable-config'. Some pre-defined configurations exist: look in the
+      `conf' direcory for the list. Some OS/hardware combinations have more than
+      one configuration file - you'll have to use the switch to choose an
+      alternative one.
+   d) check config.h and Make.conf (produced from the respective .in files by
+      "configure")
+
+2. COMPILING
+
+   issue `make'
+
+   If something goes wrong, try to see if the problem has been described
+   already in the ACE/gr FAQ (in the "doc" directory).
+
+3. TESTING
+
+   make tests
+
+4. INSTALLATION
+
+   make install
+   make links
+   
+   The later (optional) step will make soft links from some files under the
+   ACE/gr home directory to the system-wide default locations (can be changed
+   by the `--prefix' option at the 1.a step)

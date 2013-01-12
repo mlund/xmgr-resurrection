@@ -1,0 +1,133 @@
+<HTML>
+
+<HEAD>
+<TITLE>Xmgr: View properties</TITLE>
+</HEAD>
+
+<BODY>
+
+<h2>View</h2> 
+<p>
+Set the display of the status bar, tool bar, locator bar, and 
+properties associated with the display of the pointer position in the Locator 
+bar.
+<p>
+<HR>
+
+   <ul>
+   <li><a NAME="status">Status bar</a>
+<p>
+   Toggle the visibility of the Status bar that appears at the bottom of
+the display.
+<p>
+<HR>
+   <li><a NAME="tool">Tool bar</a>
+<p>
+   Toggle the visibility of the Tool bar at the left of the display.
+<p>
+<HR>
+   <li><a NAME="loc">Locator bar</a>
+<p>
+   Toggle the visibility of the Locator bar, at the top of the display.
+<p>
+<HR>
+   <li><a NAME="setfixed">Set fixed point</a>
+<p>
+Select this item, then click on the drawing area to set the position of
+the fixed point. To set the position more precisely, use the Locator
+props popup described below.
+   When the fixed point is set,
+and the display format is (DX, DY), (DIST), or (R, Theta) then give the 
+location relative to the fixed point.
+<p>
+<HR>
+   <li><a NAME="clearfixed">Clear fixed point</a>
+<p>
+   Set the fixed point to (0.0, 0.0).
+<p>
+<HR>
+   <li><a NAME="locprops">Locator props</a>
+   </ul>
+<p>
+   Set properties associated with the display of the pointer position
+in the locator bar.
+<p>
+The choice item at the top of the popup, <b>Locator: ON/OFF</b> toggles
+the continuous update of the pointer as it moves across the drawing area.
+<b>Locator display type</b> is a choice item the sets the display of the
+position. There are several options:
+   <ul>
+   <li><b>[X,Y]</b> The default, display the position in the coordinate system
+of the current graph.
+   <li><b>[DX, DY]</b> Display the delta in X and Y of the position of the mouse 
+relative to the fixed point, or (0, 0) if no fixed point has been selected. 
+The position is given relative to the scaling of the current graph. 
+DX = (CX - FX) and DY = (CY - FY).
+   <li><b>[Distance]</b> Display the position of the mouse as the distance from the
+fixed point, or (0, 0) if no fixed point has been selected. The distance is 
+computed as SQRT((FX - CX)^2 + (FY - CY)^2) where (FX, FY) are the coordinates
+of the fixed point, and (CX, CY) is the position of the pointer.
+   <li><b>[R, Theta]</b> Display the position of the mouse in polar coordinates 
+(R, Theta) relative to the fixed point, or (0, 0) if no fixed point has 
+been selected. R = SQRT((FX - CX)^2 + (FY - CY)^2)  and Theta = ATAN2(DY, DX).
+   <li><b>[VX, VY]</b> Display the position of the mouse in viewport coordinates.
+This position is independent of the scaling of the current graph.
+   <li><b>[SX, SY]</b> Display the position of the mouse in screen coordinates.
+This position is independent of the scaling of the current graph.
+   </ul>
+
+<p>
+The next two categories in the popup set the format and fixed point
+positions for each coordinate direction and, as they are identical, only setting
+the format and position of X is described here. The description for
+Y is identical save that ordinate is replaced by abscissa.
+<p> 
+<b>Format X:</b> is a choice item selecting the format of the display of
+the X position of the pointer. There are several selections here:
+<ul>
+	<li> Decimal
+	<li> Exponential
+	<li> Power (displayed as Decimal)
+	<li> General
+	<li> DD-MM-YY
+	<li> MM-DD-YY
+	<li> MM-YY
+	<li> MM-DD
+	<li> Month-DD
+	<li> DD-Month
+	<li> Month (abbrev..)
+	<li> Month
+	<li> Day of week (abbrev.)
+	<li> Day of week
+	<li> Day of year
+	<li> HH:MM:SS.s
+	<li> MM-DD HH:MM:SS.s
+	<li> MM-DD-YY HH:MM:SS.s
+	<li> Degrees (lon)
+	<li> DD MM' (lon)
+	<li> DD MM' SS.s (lon)
+	<li> MM' SS.s (lon)
+	<li> Degrees (lat)
+	<li> DD MM' (lat)
+	<li> DD MM' SS.s (lat)
+	<li> MM' SS.s (lat)
+</ul>
+<p>
+The Date format requires that the axis be scaled with respect to
+the long form of the Julian date. The Degrees format is for latitude and 
+longitude. Below the equator latitudes are negative. Longitude is assumed 
+positive east of Greenwich and negative to the west.
+<p>
+<b>Precision X:</b> sets the number of places to display to the right of the 
+decimal point.
+<p>
+<b>Fixed point X:</b> defines the position of the ordinate of the Locator 
+fixed point.
+<p>
+If everything looks OK, click on <b>Accept</b> to register the selections,
+<b>Reset</b> to restore the startup values, and <b>Close</b> to close the 
+popup.
+
+</BODY>
+
+</HTML>

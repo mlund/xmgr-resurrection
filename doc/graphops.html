@@ -1,0 +1,160 @@
+<HTML>
+
+<HEAD>
+<TITLE>Xmgr: graph operations</TITLE>
+</HEAD>
+
+<BODY>
+
+<h2> <a NAME="graphs">Graph operations</a> </h2>
+        <ul>
+	  <li><a href="#activate">Activate</a>
+	  <li><a href="#copy">Copy</a>
+	  <li><a href="#swap">Swap</a>
+	  <li><a href="#kill">Kill</a>
+	  <li><a href="#focus">Focus</a>
+	  <li><a href="#show">Show</a>
+	  <li><a href="#type">Set graph type</a>
+	  <li><a href="#arrange">Arrange</a>
+	  <li><a href="#overlay">Overlay</a>
+	  <li><a href="#invert">Invert/flip axes</a>
+	  <li><a href="#image">Image</a>
+        </ul>
+<p>
+<HR>
+	<h3> <a NAME="activate">Activate</a> </h3>
+<p>
+Make a graph eligible for receiving the graph focus and other operations.
+Select the graph to activate and press <b>Accept</b>.
+<p>
+<HR>
+	<h3> <a NAME="copy">Copy</a> </h3>
+<p>
+Copy a graph to another graph.
+<p>
+Select the graph to copy from and the graph to copy to and press 
+<b>Accept</b>. 
+<p>
+Note: Copying a graph will automatically conceal one of the graphs as 
+they will both have the same viewport settings. Some adjustments in the 
+viewport settings of either or both graphs will be required for each 
+graph to be displayed in a non-overlapping manner.
+<p>
+<HR>
+	<h3> <a NAME="swap">Swap</a> </h3>
+<p>
+Exchange two graphs.
+<p>
+Select the first graph then the second and press <b>Accept</b> to exchange 
+the contents of the two graphs. This can be used to adjust the order in 
+which graphs are drawn, as graphs are drawn in numerical order starting 
+with graph 0.
+<p>
+<HR>
+	<h3> <a NAME="kill">Kill</a> </h3>
+<p>
+Make a graph inactive and free all storage associated with sets.
+Select the graph to kill and press <b>Accept</b>.
+<p>
+<HR>
+	<h3> <a NAME="focus">Focus</a> </h3>
+<p>
+Set the graph focus, the focus policy and toggle the display of focus markers.
+Select the graph to have the focus, the focus policy, and the toggle for 
+the focus markers and press <b>Accept</b>.
+<p>
+Note: Most operations in xmgr act on the current graph. Not noticing which 
+graph has the current focus can be a source of frustration when working with 
+xmgr - if you plan to work extensively with a particular graph, it might 
+be useful to set the focus policy to <b>Set</b> to fix xmgr's notion of 
+the current graph.
+<p>
+<HR>
+	<h3> <a NAME="show">Show</a> </h3>
+<p>
+Toggle the display of a one or more graphs.
+<p>
+Select which graph or graphs to show, then press <b>Accept</b>. The default 
+is to show all active graphs.
+<p>
+This item can relieve some of the drudgery when working with multiple graphs, 
+especially when some of the graphs contain large data sets.
+<p>
+<HR>
+	<h3> <a NAME="type">Set graph type</a> </h3>
+<p>
+Set the current graph type to XY, log-linear, linear-log, log-log, bar or 
+stacked bar.  Select the graph type, and press <b>Accept</b>.
+<p>
+Note: As of this writing, very little is done to ensure that the data are 
+acceptable for log plots.
+<p>
+<HR>
+	<h3> <a NAME="arrange">Arrange graphs</a> </h3>
+<p>
+Place several graphs in a non-overlapping manner.
+<p>
+Select the number of rows and the number of columns, the packing method, 
+the vertical and horizontal spacing between graphs in viewport coordinates, 
+the start of the first graph in viewport coordinates, and how wide and how 
+tall each graph should be. Graphs are laid out in column major order 
+starting from the lower left. So, given 3 columns and 2 rows the graphs 
+will be laid out as follows:
+<pre>
+
+ 1   3   5
+
+ 0   2   4
+
+</pre>
+Given 3 columns and 3 rows:
+<pre>
+
+ 2   5   8
+
+ 1   4   7
+
+ 0   3   6
+
+</pre>
+<p>
+Note that graphs are numbered from 0.
+<p>
+The packing selection packs the graphs vertically, horizontally or both. Use 
+this item when there are several graphs with the same X or Y axis scaling 
+so graphs on the outside of the packing arrangement provide the tick and 
+axis labeling for all graphs in that row or column. In the 3x3 example 
+above,selecting packing `both', graphs 3, 6 will have X-axis tick labels, 
+and graphs 1, 2 will have Y-axis tick labels. Graphs 4, 5, 7, 8 
+will have neither X or Y axis tick labels, while graph 0 will have both.
+<p>
+Note that the graph width is computed using the 
+number of columns, horizontal gap, X starting location and packing
+whenever the number of columns is selected. Likewise, the graph height is 
+recomputed using the number of rows, packing, vertical gap and starting Y value
+whenever the number of rows is selected. New values for the rows and columns
+need not be chosen for the computation to occur.
+<p>
+If the number of graphs chosen is decreased, the higher number graphs will
+still be displayed. They must be <a href="#kill">killed</a> 
+or <a href="#show">not shown</a> to be removed.
+<p>
+<HR>
+	<h3> <a NAME="overlay">Overlay</a> </h3>
+<p>
+Overlay one graph onto another. This can be used to plot sets of 
+different scale in what will appear to be the same graph.
+<p>
+<HR>
+	<h3> <a NAME="invert">Invert/flip axes</a> </h3>
+<p>
+Reverse the direction of the X or Y axes or exchange the X and Y axes.
+<p>
+<HR>
+	<h3> <a NAME="image">Image</a> </h3>
+<p>
+Read and place an X window dump file on the drawing area. At the present time,
+only one image per session is allowed.
+
+</BODY>
+</HTML>

@@ -1,0 +1,862 @@
+<HTML>
+<HEAD>
+<TITLE>Xmgr: usage</TITLE>
+<!-- Changed by: J. Scott Berg, 16-May-1997 -->
+</HEAD>
+
+<BODY>
+
+<h1>Using xmgr</h1>
+<p>
+<h2><a NAME="execution">Execution</a></h2>
+<p>
+The interactive <b>xmgr</b> program is called <b>xmgr</b>, if used in batch 
+mode, <b>grbatch</b>. 
+If <b>grbatch</b> is not found, contact your system administrator, or see the 
+section on installation. For grbatch to work properly it is important that it
+be called <b>grbatch</b> as it is the name that distinguishes <b>xmgr</b> from 
+<b>grbatch</b>. They are the same program, but when executed as 
+<b>grbatch</b>, the X interface is not initialized and <b>grbatch</b> 
+terminates at the end of execution without user intervention. 
+<p>
+Please note
+that <b>grbatch</b> does not read the any X resource files, so that it can
+be run from dumb terminals and over phone lines. Don't expect resource
+settings used for <b>xmgr</b> to work for <b>grbatch</b>. See the section
+on setting defaults using a <a href="#defaults"> <b>.xmgrrc</b> </a> file.
+
+<p>
+
+<HR>
+
+<h2><a NAME="commandline">Command line parameters</a></h2>
+<p>
+<DL>
+<DT> <b>-autoscale</b> <i>x</i> or <i>y</i> or <i>xy</i>
+<DD>
+Autoscale the x axis, y axis, or both axes, overriding the settings for axes 
+scaling and tick mark spacing  given in any parameter file specified by the -p
+option.
+<p>
+Example:
+<pre>
+xmgr -autoscale x -p params.par data.dat
+</pre>
+Reads parameters from params.par and data from data.dat, but overrides
+any settings for the X axis found in the parameter file.
+<DT> -noauto  <i>y</i> or <i>y</i> or <i>xy</i>
+<DD>
+Suppress autoscaling on the given axis (axes). Use this when a data file 
+has embedded commands that provide axes scaling and tick mark spacing.
+<DT> -arrange <i>rows columns</i>
+<DD>
+Arrange graphs in column major order starting from the lower left corner in a 
+grid <i>rows</i> by <i>columns</i>. For example, <i>-arrange 2 2</i> will 
+position the first four graphs (0, 1, 2, 3) in a 2x2 matrix of graphs 
+starting with graph 0 in the lower left corner of the plotting surface. 
+This function is not as complete as the similar function found in 
+<a href = "graphops.html#arrange"> Graph/Graph operations/Arrange </a>
+and gives a sightly different result.
+<p>
+Example:
+<pre>
+xmgr -arrange 2 2
+</pre>
+Creates a 2x2 matrix of graphs.
+<dt> -rows <i>rows</i>
+<dd>Arrange the first <i>rows graphs</i> in <i>rows</i> rows.
+<dt> -cols <i>columns</i>
+<dd>
+Arrange the first <i>columns</i> graphs in <i>columns</i> columns.
+<dt> -results <i>results_file</i>
+<dd>
+Write the results of regression and anything else that gets written to 
+the results popup to file <i>results_file</i>.
+<dt> -device <i>device_number</i>
+<dd>
+Set the hardcopy device to <i>device_number</i>.
+The device numbering follows:
+<ul>
+	<li>	1 .. PostScript landscape
+	<li>	2 .. PostScript portrait
+	<li>	3 .. FrameMaker .mif landscape
+	<li>	4 .. FrameMaker .mif portrait
+	<li>	5 .. HPGL landscape
+	<li>	6 .. HPGL portrait
+	<li>	7 .. InterLeaf landscape
+	<li>	8 .. InterLeaf portrait
+	<li>	9 .. PSTeX include 
+	<li>   10 .. PSTeX landscape
+	<li>   11 .. PSTeX portrait
+</ul>
+<p>
+Example:
+<pre>
+xmgr -device 2
+</pre>
+Sets the hardcopy device to PostScript portrait.
+<dt> -eps
+<dd>
+Tell the PostScript driver to produce EPS.
+<dt> -printfile <i>graphics_output_file</i>
+<dd>
+Write the graphics output to file <i>graphics_output_file</i> rather than 
+spool graphics data to a printer.
+ <dt> -fixed <i>width height</i>
+ <dt> -portrait
+ <dt> -landscape
+ <dt> -free
+<dd>
+Set the dimensions of the drawing area. Presently, there is no connection 
+between the hardcopy drivers and these settings. This means that the printer 
+needs to be set to conform to the dimensions of the drawing area.
+<ul>
+	<li>	-free - allow the drawing area to be resized (no 
+			scrollbars will appear).
+	<li>	-fixed <i>width height</i> - set the drawing area to have 
+			dimensions <i>width and height</i>
+	<li>	-portrait - set the drawing area to be 8.5x11 in portrait.
+	<li>	-landscape - set the drawing area to be 8.5x11 in landscape.
+</ul>
+<dt> -batch <i>batch_file</i>
+<dd>
+Execute the commands in <i>batch_file</i> on startup. This command line 
+switch is not the same as executing xmgr in batch mode as <b>grbatch</b>.
+<p>
+<dt> -noask
+<dd>
+Assume the answer is yes to all requests, This means that files will be 
+overwritten without asking if they exist, and, if Exit is selected in
+the GUI, <b>xmgr</b> will exit abruptly. This option can be used to 
+overwrite existing files in batch mode. Be careful.
+<p>
+<dt> -graph <I>graph_number</i>
+<dd>
+Make <i>graph_number</i> the current graph. <i>Graph_number</i> is an 
+integer between 0 and maxgraph-1 (by default maxgraph, the maximum number
+of graphs, is 10).
+<p>
+For example, to activate four graphs and read data to each graph:
+<p>
+<pre>
+xmgr -arrange 2 2 data0.dat -graph 1 data1.dat -graph 2 data2.dat -graph 3 
+data3.dat
+</pre>
+<p>
+This command creates 4 graphs arranged in a 2x2 matrix, and reads a file
+into each graph. 
+<p>
+<dt> -graphtype <i>graph_type</i>
+<dd>
+Set the current graph type to <i>graph_type</i>. Where <i>graph_type</i> is 
+one of:
+<p>
+<ul>
+	<li> xy           linear scaling along both x and y.
+	<li> logx         linear scaling in y, log scaling in x., 
+	<li> logy         linear scaling in x, log scaling in y.
+	<li> logxy        log scaling in both x and y.
+	<li> bar          vertical bar chart.
+	<li> hbar         horizontal bar chart.
+	<li> stackedbar   vertical stacked bar chart.
+	<li> stackedhbar  horizontal stacked bar chart.
+</ul>
+	<dt> -type <i>data_set_type</i>
+<dd>
+The format of the next data source is <i>data_set_type</i>. Where 
+<i>data_set_type</i> is one of <b>xydx</b> (XY data with error bars along X), 
+<b>xydy</b> (XY data with error bars along Y), <b>xydxdx</b> (XY 
+data with error bars along X of differing values), <b>xydydy</b> (XY data with 
+error bars along Y of differing values), <b>xydxdy</b> (error bars along X 
+and Y), <b>xyr</b> (a circle drawn at XY of radius R) and <b>xyhilo</b> 
+(XY data with high-low open-close data). This setting remains in effect until 
+a new format type is specified.
+	<dt> -ihl <i>IHL_formatted_file</i>
+<dd>
+Assume <i>IHL_formatted_file</i> or the next source of data is in IHL 
+format (a local format).
+<p>
+	<dt> -nxy
+<dd>
+The format of the next data source is X1, Y1, Y2, ..., Yn.
+<p>
+	<dt> -xydx
+<dd>
+The format of the next data source is X Y DX
+<p>
+	<dt> -xydy
+<dd>
+The format of the next data source is X Y DY
+<p>
+	<dt> -xydxdx
+<dd>
+The format of the next data source is X Y DX1 DX2
+<p>
+	<dt> -xydydy
+<dd>
+The format of the next data source is X Y DY1 DY2
+<p>
+	<dt> -xydxdy
+<dd>
+The format of the next data source is X Y DX DY
+<p>
+	<dt> -xyz
+<dd>
+The format of the next data source is X Y Z where Z is a value drawn as 
+text at X, Y.
+<p>
+	<dt> -xyr
+<dd>
+The format of the next data source is X Y R, where a circle of radius R 
+is drawn at X, Y.
+<p>
+	<dt> -xybox
+<dd>
+The format of the next data source is XMIN YMIN XMAX YMAX VALUE, where 
+(XMIN, YMIN) is the lower left-hand corner of a rectangle and (XMAX, YMAX) 
+are the upper right-hand corner of a rectangle. VALUE is an integer used to 
+specify the color to use to fill the rectangle. To set the fill, use 
+Graph/Symbols and set the fill style to anything but None.
+	<dt> -boxplot
+<dd>
+The format of the next data source is X AVG
+<p>
+	<dt> -ihl
+<dd>
+The format of the next data source is in IHL format, this format leads to 
+a data set of type XY.
+<p>
+	<dt> -hilo
+<dd>
+The format of the next data source is X HIGH LOW OPEN CLOSE, where a symbol 
+denoting the open, close, the high and the low values for an observation is
+drawn at X.
+<p>
+	<dt> -netcdf <i>netCDF file</i>
+	<dt> -netcdfxy [<i>xvar</i> or <i>"null"] yvar</i>
+<dd>
+Where <i>xvar</i> and <i>yvar</i> are the names of the variables to read.
+if <i>xvar</i> == "null", then load the index of yvar.
+These command line options may be used to read variables from
+a netCDF file. For example:
+
+<p>
+<pre>
+xmgr -netcdf t.nc -netcdfxy null y
+</pre>
+<p>
+
+Reads y from t.nc and loads to X the index (starting from 1).
+
+<p>
+<pre>
+xmgr -netcdf t.nc -netcdfxy x y -netcdfxy x1 y1
+</pre>
+<p>
+
+Reads x and y from t.nc, then x1 and y1 from the same file.
+2 sets are created, both of type XY, one with (x, y), the
+other composed of (x1, y1).
+
+another example reading data from 2 CDF files:
+
+<p>
+<pre>
+xmgr -netcdf t.nc -netcdfxy x y -netcdf t2.nc -netcdfxy x1 y1
+</pre>
+<p>
+	<dt> -saveall <i>filename</i>
+<dd>
+Write all active sets to <i>filename</i>.
+<p>
+	<dt> -wd
+<dd>
+Set the current working directory. This option can be used to read
+files from several different directories. For example:
+
+<p>
+<pre>
+xmgr -wd examples mlo.dat -wd ../moredat brw.d hilo.dat
+</pre>
+Unfortunately, this option not allow wild cards, as they are expanded in 
+the current directory only.
+<p>
+	<dt> -image <i>X_window_dump_file</i>
+<dd>
+Read the window dump file <i>X_window_dump_file</i>. The format is the same as 
+generated by xwd or Frame's capture utility.
+<p>
+	<dt> -imagexy <i>X Y</i>
+<dd>
+Set the upper left-hand corner position of the image at screen coordinates 
+(X, Y). Note that screen coordinates have as their origin the upper left-hand 
+corner of the drawing area and positive, increasing Y points down.
+<p>
+	<dt> -block
+<dd>
+Assume the format of the next data file is block data. No sets are formed 
+by reading block data, and only one set of block data is allowed in an active 
+session. To create sets from the block data, use Edit/Block data.
+<p>
+	<dt> -bxy <i>col1:col2</i>
+<dd>
+Create sets from a previously read block data. Using -bxy col1:col2,
+will create a set using the current set type (default is XY) and using
+column <i>col1</i> and column <i>col2</i> from the most recently read set 
+of block data. <i>Col1</i> and <i>col2</i> are integers indicating the 
+numbers of the columns - column numbers start from 1. For example:
+
+<pre>
+  xmgr -block block.d -bxy 1:4 -bxy 2:6
+</pre>
+
+  will read block.d and generate 2 sets of type XY using columns
+  1 and 4 for the first set, and 2 and 6 for the second set.
+
+<pre>
+  xmgr -block block.d -type xydy -bxy 1:3:4
+</pre>
+
+  will read  block.d and generate a set of type XYDY (an XY set with
+  error bars) using column 1 and 3 for X and Y, and column 4 for the
+  error bars.
+
+<p>
+	<dt> -log <i>x</i> or <i>y</i> or <i>xy</i>
+<dd>
+Set the current graph type to logarithmic depending the the string <i>x</i> 
+or <i>y</i> or both axes by <i>xy</i>.
+<p>
+	<dt> -parameter <i>parameter_file</i>
+	<dt> -p <i>parameter_file</i>
+<p>
+Read the parameter file parameter_file.
+<p>
+	<dt> -pexec <i>parameter_string</i>
+<dd>
+Interpret <i>parameter_string</i> as a parameter setting.
+<p>
+	<dt> -result <i>result_file</i>
+<dd>
+Write results from regression to result_file 
+<p>
+	<dt> -rvideo
+<dd>
+Exchange the color indices for black and white.
+<p>
+	<dt> -mono
+<dd>
+Limit colors to black and white, affects the display only.
+<p>
+	<dt> -dc
+<dd>
+Allow double click canvas operations, overriding any application default 
+setting.
+<p>
+	<dt> -nodc
+<dd>
+Disallow double click canvas operations.
+<p>
+	<dt> -redraw
+<dd>
+Redraw the entire page if xmgr receives an Expose event.
+<p>
+	<dt> -noredraw
+<dd>
+Do not redraw the entire page when Expose events are received.
+<p>
+	<dt> -statusredraw
+<dd>
+Redraw the entire page after each command in the status window.
+<p>
+	<dt> -nostatusredraw
+<dd>
+Do not redraw the entire page after each command in the status window.
+<p>
+	<dt> -maxcolors <i>number_of_colors</i>
+<dd>
+Set the maximum number of colors allocated. For example:
+<pre>
+xmgr -maxcolors 18 -pexec "cmap 17,255,0,255"
+</pre>
+Sets the maximum number of colors to 18 and sets color 17 to cyan. Colors
+0-15 are set to the defaults, color 16 is undefined (the actual color will
+vary).
+<p>
+	<dt> -freecolors
+<dd>
+Attempt to free colors which are assigned a different colormap entry.
+See <CODE>-nofreecolors</CODE> below.  This is the default behavior.
+<p>
+	<dt> <A NAME="freeColorsSW">-nofreecolors</A>
+<dd>
+Doesn't attempt to free colors which are assigned a different colormap
+entry.  Use this if one of the colors you use is the same as one of the
+button or border colors and you subsequently change that color.  This
+shouldn't be a problem unless you're really unlucky.  Using this switch
+can cause you to eat up all the colors in your colormap if you change colors
+a lot during a session.  This is equivalent to setting the X resource 
+<A HREF="#freeColorsXR"><CODE>XMgr.freeColors</CODE></A> to false.
+<p>
+	<dt> -world <i>xmin ymin xmax ymax</i>
+<dd>
+Set the scaling of the axes for the current graph. The X axis will
+run from <i>(xmin, xmax)</i> the Y axis from <i>(ymin, ymax)</i>
+<p>
+	<dt> -view <i>xmin ymin xmax ymax</i>
+<dd>
+Set the viewport of the current graph to a rectangle described by 
+<i>(xmin, ymin)</i> and <i>(xmax, ymax)</i>.
+<p>
+	<dt> -source <i>data_source</i>
+<dd>
+Set source for the next data file, the argument takes on the following values: 
+<p>
+<ul>
+<li>  <b>disk</b>     - Data file is on disk.
+<li>  <b>pipe</b>     - Read from a pipe.
+<li>  <b>stdin</b>    - xmgr is in a pipe, read from standard input.
+</ul>
+<p>
+The source setting stays in effect until the next -source command is given.
+<p>
+	<dt> -pipe
+<dd>
+Read from standard input and plot each set when the end of the set is seen. 
+Use the -pipe option to monitor the results coming from a model or other 
+data stream.
+<p>
+	<dt> -npipe
+<dd>
+Read data from <A HREF="npipe.html">named pipe</A>. This option can be used to 
+display data in real-time, but in contrast with the simple pipe option, xmgr's
+graphic user interface remains responsive to your actions while displaying the
+data. 
+<p>
+	<dt> -remove
+<dd>
+Erase the most recently read file. Use this option when using xmgr to read 
+a temporarily constructed file that is not needed once read. Note that this 
+option does not request confirmation.
+<p>
+	<dt> -legend load
+<dd>
+For each data set read, make the set legend label the same as the filename 
+the data set originated.
+<p>
+	<dt> -seed <i>seed_value</i>
+<dd>
+Initialize the random number generator using seed <i>seed_value</i>. This 
+value is used in a call to the math library function srand48().
+<p>
+	<dt> -GXinvert
+	<dt> -GXxor
+<dd>
+GXinvert and GXxor set the type of graphics operation used to draw 
+rubberband lines and draw the graph focus markers. In a color-mapped 
+display, the xor of a source and destination pixel may not generate a 
+color visible on the drawing area. The default is to use xor to draw 
+rubberband lines, if the lines don't show, try -GXinvert. This draw mode 
+can be set via X resource settings (see below).
+<p>
+	<dt> -maxsets <i>number_of_sets</i>
+<dd>
+Set the maximum number of data sets per graph. <i>Number_of_sets</i> must 
+be greater than 30. If -maxsets is used in conjunction with -maxgraph, 
+then the -maxsets setting must precede the -maxgraph setting.
+<p>
+	<dt> -maxgraph <i>number_of_graphs</i>
+<dd>
+Set the maximum number of graphs per session. <i>Number_of_graphs</i> must 
+be greater than 10. If -maxgraph is used in conjunction with -maxsets, 
+then -maxsets must precede the use of -maxgraph.
+<p>
+
+	<dt> -maxboxes <i>number_of_boxes</i>
+<dd>
+Set the maximum number of boxes.
+<p>
+	<dt> -maxstr <i>number_of_strings</i>
+<dd>
+Set the maximum number of strings.
+<p>
+	<dt> -maxlines <i>number_of_lines</i>
+<dd>
+Set the maximum number of lines.
+<p>
+	<dt> -nonl
+<dd>
+Activate the Non-linear curve fitting module. WARNING, this module is a 
+prototype and should not be used for analysis.
+<p>
+	<dt> -digit
+<dd>
+Activate the Digitizing module. WARNING, this module is a prototype and 
+should not be used for analysis.
+<p>
+	<dt> -usage
+<dd>
+Display a brief explanation of command line settings
+<p>
+	<dt> <i>data_files</i>
+<dd>
+The files or commands in the case of a pipe from which data are read.
+</dl>
+
+<HR>
+
+<p>
+<h2><a NAME="defaults">Setting xmgr defaults</a></h2>
+<p>
+
+On startup xmgr will look for a <b>.xmgrrc</b> file in 
+the users' home directory allowing changes to the default behavior of 
+xmgr. The construction of the xmgr default file is the same as for a 
+parameter file.
+<p>
+
+<HR>
+
+<p>
+<h2><a NAME="xdefaults">Setting xmgr X defaults</a></h2>
+<p>
+
+The following X resource settings are supported:
+<p>
+<ul>
+	<li> XMgr.invertDraw: False
+<p>
+Use GXinvert to draw rubberband lines and the graph focus markers if this 
+resource is set to True.
+<p>
+	<li> XMgr.reverseVideo: False
+<p>
+A boolean resource used to exchange the color indices for black and white.
+<p>
+	<li> XMgr.maxSets: 30
+<p>
+Set the number of sets per graph.
+<p>
+	<li> XMgr.maxGraphs: 10
+<p>
+Set the number of graphs.
+<p>
+	<li> XMgr.maxColors: 17
+<p>
+Set the number of colors allocated. There is no support in the graphical
+portion of the  user interface for more than 16.
+<p>
+	<li> XMgr.verifyAction: No
+<p>
+Applies to the Pick set operations and allows an opportunity to accept or
+cancel any  operation performed. 
+<p>
+	<li> XMgr.allowDoubleClick: Yes
+<p>
+When Yes, allow double clicks on the canvas to bring up various popups
+depending on  the location of the pointer when the double click occurs. Double
+clicking to the right of  a graph brings up the View/Ticks popup set to the
+Y-axis, below the graph brings up the  View/Ticks popup set to the X-axis,
+inside the graph brings up the files popup if no sets  are active or the
+View/Symbols popup set to the set nearest the pointer. Double clicking  above
+the graph brings up the View/Title-subtitle popup, to the right of the graph,
+the  View/Legend popup.
+<p>
+The command line option to set this resource is -dc or -nodc.
+<p>
+	<li> XMgr.autoscaleOnRead: No
+<p>
+When this resource is Yes or True, allow autoscaling to occur each time a set
+is read  from the File/Read sets popup.
+<p>
+	<li> XMgr.backingstore: No
+<p>
+Have xmgr handle backing store if the server doesn't. 
+<p>
+The command line option for this is -bs or -nobs.
+<p>
+<LI><A NAME="freeColorsXR">XMgr.freeColors: True</A>
+<P>
+See documentation for the command line option
+<A HREF="#freeColorsSW"><CODE>-nofreecolors</CODE></A>.  Using
+that command line switch is equivalent to setting this resource
+to false.
+<p>
+<LI>XMgr.tearOffModel: XmTEAR_OFF_ENABLED
+<P>
+Regulates whether pulldown menus have the tear-off behavior
+<P>
+<LI> XMgr.allowRedraw: Yes
+<P>
+Controls whether or not xmgr redraws its canvas after each operation.
+The corresponding command line options are -redraw and -noredraw.
+<P>
+<LI> XMgr.allowStatusRedraw: Yes
+<P>
+Controls whether or not xmgr redraws its canvas after each set
+operation in the status window. This takes effect only if
+allowStatusRedraw is on. The corresponding command line options are
+-statusredraw and -nostatusredraw.
+<P>
+<LI> XMgr.noAsk: No
+<P>
+Controls whether or not xmgr generates a warning before overwriting
+existing files. The corresponding command line option is -noask.
+<P>
+<LI> XMgr.logWindow: No
+<P>
+Controls whether or not xmgr opens the log window on startup. The
+corresponding command line options are -logwindow and -nologwindow.
+</ul>
+It is also possible to customize menus by assigning key accelerators to any item.
+<br>
+The list below describes the menu labels and related X resources. For example, 
+in order to make xmgr popup the Non-linear curve fitting by pressing Control+F,
+you would add the following two lines
+<P>
+XMgr*transformationsMenu.nonLinearFit.acceleratorText: Ctrl+F<BR>
+XMgr*transformationsMenu.nonLinearFit.accelerator: Ctrl&lt;Key&gt;f<BR>
+<P>
+
+to your .Xresources file (the file which is read when an X session starts; 
+it could be .Xdefaults, .Xsession or some other file - ask your system administrator
+when in doubt). 
+
+<ul>
+<li> XMgr*fileMenu.open  Open...
+<li> XMgr*fileMenu.save  Save
+<li> XMgr*fileMenu.saveAs  Save as...
+<li> XMgr*fileMenu.describe  Describe...
+<ul>
+<li> XMgr*readMenu.sets  Sets...
+<li> XMgr*readMenu.netCDF  NetCDF...
+<li> XMgr*readMenu.parameters  Parameters...
+<li> XMgr*readMenu.blockData  Block data...
+<li> XMgr*readMenu.image  Image...
+</ul>
+<ul>
+<li> XMgr*writeMenu.sets  Sets...
+<li> XMgr*writeMenu.parameters  Parameters...
+</ul>
+<li> XMgr*fileMenu.clearAll  Clear all
+<li> XMgr*fileMenu.print  Print
+<li> XMgr*fileMenu.printerSetup  Printer setup...
+<li> XMgr*fileMenu.exit  Exit
+
+<p>
+
+<li> XMgr*dataMenu.status  Status...
+<li> XMgr*dataMenu.results  Results...
+<li> XMgr*dataMenu.commands  Commands...
+<ul>
+<li> XMgr*transformationsMenu.evaluateExpression  Evaluate expression...
+<li> XMgr*transformationsMenu.loadValues  Load values...
+<li> XMgr*transformationsMenu.loadEvaluate  Load & evaluate...
+<li> XMgr*transformationsMenu.histograms  Histograms...
+<li> XMgr*transformationsMenu.fourierTransforms  Fourier transforms...
+<li> XMgr*transformationsMenu.runningAverages  Running averages...
+<li> XMgr*transformationsMenu.regression  Regression...
+<li> XMgr*transformationsMenu.nonLinearFit  Non-linear curve fitting...
+<li> XMgr*transformationsMenu.differences  Differences...
+<li> XMgr*transformationsMenu.seasonalDifferences  Seasonal differences...
+<li> XMgr*transformationsMenu.integration  Integration...
+<li> XMgr*transformationsMenu.correlation  Cross/auto correlation...
+<li> XMgr*transformationsMenu.interpolation  Interpolation...
+<li> XMgr*transformationsMenu.splines  Splines...
+<li> XMgr*transformationsMenu.samplePoints  Sample points...
+<li> XMgr*transformationsMenu.pruneData  Prune data...
+<li> XMgr*transformationsMenu.digitalFilter  Digital filter...
+<li> XMgr*transformationsMenu.linearConvolution  Linear convolution...
+<li> XMgr*transformationsMenu.geometricTransforms  Geometric transforms...
+<li> XMgr*transformationsMenu.featureExtraction  Feature extraction...
+</ul>
+<li> XMgr*dataMenu.pointOperations  Point operations...
+<ul>
+<li> XMgr*setOperationsMenu.pickOperations  Pick operations...
+<li> XMgr*setOperationsMenu.activate  Activate...
+<li> XMgr*setOperationsMenu.deactivate  De-activate...
+<li> XMgr*setOperationsMenu.reactivate  Re-activate...
+<li> XMgr*setOperationsMenu.setLength  Set length...
+<li> XMgr*setOperationsMenu.changeType  Set type...
+<li> XMgr*setOperationsMenu.copy  Copy...
+<li> XMgr*setOperationsMenu.move  Move...
+<li> XMgr*setOperationsMenu.dropPoints  Drop points...
+<li> XMgr*setOperationsMenu.join  Join...
+<li> XMgr*setOperationsMenu.split  Split...
+<li> XMgr*setOperationsMenu.kill  Kill...
+<li> XMgr*setOperationsMenu.killAll  Kill all
+<li> XMgr*setOperationsMenu.Sort  Sort...
+<li> XMgr*setOperationsMenu.reverse  Reverse...
+<li> XMgr*setOperationsMenu.coalesce  Coalesce...
+<li> XMgr*setOperationsMenu.swap  Swap...
+<li> XMgr*setOperationsMenu.pack  Pack...
+</ul>
+<li> XMgr*transformationsMenu.editCreateSet  Edit/create set...
+<ul>
+<li> XMgr*regionOpearationsMenu.define  Define...
+<li> XMgr*regionOpearationsMenu.evaluate  Evaluate...
+<li> XMgr*regionOpearationsMenu.clear  Clear...
+<li> XMgr*regionOpearationsMenu.extractPoints  Extract points...
+<li> XMgr*regionOpearationsMenu.extractSets  Extract sets...
+<li> XMgr*regionOpearationsMenu.deletePoints  Delete points...
+<li> XMgr*regionOpearationsMenu.killSets  Kill sets...
+<li> XMgr*regionOpearationsMenu.reportOn  Report on...
+<li> XMgr*regionOpearationsMenu.areaPerimeter  Area/perimeter...
+</ul>
+<ul>
+<li> XMgr*graphOperationsMenu.activate  Activate...
+<li> XMgr*graphOperationsMenu.copy  Copy...
+<li> XMgr*graphOperationsMenu.swap  Swap...
+<li> XMgr*graphOperationsMenu.kill  Kill...
+<li> XMgr*graphOperationsMenu.focus  Focus...
+<li> XMgr*graphOperationsMenu.show  Show...
+<li> XMgr*graphOperationsMenu.setType  Set type...
+<li> XMgr*graphOperationsMenu.arrange  Arrange...
+<li> XMgr*graphOperationsMenu.overlay  Overlay...
+<li> XMgr*graphOperationsMenu.invertFlipAxes  Invert/flip axes...
+</ul>
+<li> XMgr*transformationsMenu.blockData  Block data...
+<li> XMgr*transformationsMenu.hotLinks  Hot links...
+
+<p>
+
+<li> XMgr*plotMenu.worldScaling  World scaling...
+<li> XMgr*plotMenu.viewport  Viewport...
+<li> XMgr*plotMenu.autoscale  Autoscale...
+<li> XMgr*plotMenu.titles  Titles...
+<li> XMgr*plotMenu.tickLabelsMarks  Tick labels/tick marks...
+<li> XMgr*plotMenu.frame  Frame...
+<li> XMgr*plotMenu.symbols  Symbols...
+<li> XMgr*plotMenu.errorBars  Error bars...
+<li> XMgr*plotMenu.legends  Legends...
+<li> XMgr*plotMenu.stringsThings  Strings & things...
+<li> XMgr*plotMenu.timeStamp  Time stamp...
+
+<p>
+
+<li> XMgr*optionsMenu.page  Page...
+<ul>
+<li> XMgr*viewMenu.locatorBar  Locator bar
+<li> XMgr*viewMenu.statusBar  Status bar
+<li> XMgr*viewMenu.toolBar  Tool bar
+<li> XMgr*viewMenu.setLocatorFixedPoint  Set locator fixed point
+<li> XMgr*viewMenu.clearLocatorFixedPoint  Clear locator fixed point
+<li> XMgr*viewMenu.locatorProps  Locator props...
+</ul>
+<li> XMgr*optionsMenu.draw  Draw...
+<li> XMgr*optionsMenu.workingDirectory  Working directory...
+<li> XMgr*optionsMenu.misc  Misc...
+
+<p>
+
+<li> XMgr*helpMenu.onContext  On context
+<li> XMgr*helpMenu.userGiude  User Guide
+<li> XMgr*helpMenu.faq  FAQ
+<li> XMgr*helpMenu.changes  Changes
+<li> XMgr*helpMenu.comments  Comments
+<li> XMgr*helpMenu.about  About...
+
+
+</ul>
+<p>
+
+<HR>
+
+<h2><a NAME="environment">Environment variables</a></h2>
+
+<p>
+<ul>
+	 <li> GR_HOME
+<p>
+Set the location of xmgr. This will be where help files, auxiliary programs,
+and examples are located. If you are unable to find the location of this
+directory, contact your system administrator.
+<p>
+	 <li> GR_PS_PRSTR
+<p>
+Set the command string to use for spooling to a PostScript printer. The default 
+(unless changed during the build process) is "lpr -h".
+<p>
+	 <li> GR_MIF_PRSTR
+<p>
+Set the command string to use for printing the FrameMaker .mif format. The 
+default (unless changed during the build process) is "cat &lt acegr.mif &gt ", 
+i.e., output is to a file.
+<p>
+	<li> GR_HPGL_PRSTR
+<p>
+Set the command string to use for spooling to an HPGL capable printer or
+plotter.
+<p>
+	 <li> GR_HDEV
+<p>
+Select the hardcopy device. 
+<p>
+The device numbering is as follows:
+<ul>
+	<li> 1.	 PostScript landscape
+	<li> 2.	 PostScript portrait
+	<li> 3.	 FrameMaker interchange format (.mif) landscape
+	<li> 4.	 FrameMaker interchange format (.mif) portrait.
+	<li> 5.	 HPGL landscape
+	<li> 6.	 HPGL portrait
+	<li> 7.	 Interleaf landscape
+	<li> 8.	 Interleaf portrait
+	<li> 9.  PSTeX include
+	<li> 10. PSTeX landscape
+	<li> 11. PSTeX portrait
+</ul>
+<p>
+	 <li> GR_EDITOR
+<p>
+Set the name of the editor to use in Data/Edit-Create set. If the editor
+must run in a terminal, the terminal must explicitly be provided.
+The default value is "xterm -e vi".
+</ul>
+<HR>
+
+
+<p>
+	<h2><a NAME="batch">Batch printing</a></h2>
+<p>
+Executing xmgr as <b>grbatch</b> suppresses the initialization of the 
+graphical user interface and allows hardcopy plots to be made without 
+intervention. 
+
+<p>
+
+<HR>
+<p>
+	<h2><a NAME="pstex">PSTeX format</a></h2>
+<p>
+PSTeX format is a way to combine Postscript output with LaTeX's superior
+mathematical formatting ability and symbol set.
+PSTeX format produces 2 files, an encapsulated Postscript file
+and a LaTeX file which has the commands to read in the EPS file and 
+superimpose on top of it any text you want formatted by LaTeX. 
+<p>
+Any
+text beginning with the sequence "\L" is assumed to be a LaTeX
+command and will not be present in the EPS file. The EPS file will
+have the suffix ".pstex" while the suffix for a LaTeX included file 
+is ".pstex_t"
+and for a complete LaTeX file is ".tex". An included file is meant to be
+read into a LaTeX document by the "\input" LaTeX command while a
+complete file may be processed by LaTeX as is.
+The PSTeX portrait and landscape devices produce complete files in the
+appropriate orientation.
+The file produced by the include device is always in a portrait orientation 
+and it is a trivial matter to rotate the graph
+if desired by the file which reads in the ".pstex_t" file.
+<p>
+Note: This format may only be written to a file as it must be further processed
+and may not be sent directly to the printer.
+<p>
+If a legend label contains LaTeX code, the legend width must be selected 
+manually through the "Legends" popup as xmgr does not process LaTeX commands
+and cannot determine the width of the output of such.
+<p>
+The LaTeX package "graphics" is required or another one with similar
+functionality.
+</BODY>
+</HTML>

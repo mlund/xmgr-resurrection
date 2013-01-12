@@ -1,0 +1,613 @@
+<HTML>
+<HEAD>
+<TITLE>Xmgr: List of changes</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>Xmgr list of changes</H1>
+
+<PRE>
+
+<H2>From 3.01 to 4.00alpha:</H2>
+
+ * added a new demo, cd to examples and run:
+   xmgr -arrange 2 2 -b test.com
+
+ * No limit on the number of columns of block data. See the -maxblock option.
+
+ * Added formats YYMMDD and YYMMDDHMS For tick labeling.
+
+ * Colors can be changed on the fly.
+
+ * Tick marks and grid lines are now set separately.
+
+ * Added as274 for performing the least squares fits for
+   polynomials, seems to be fairly robust, the default is
+   the original - form the normal equations and use gauss 
+   elimination.
+
+ * Allow logging of strings passed to the scanner, should help in
+   debugging batch files.
+
+ * Tick marks and gridlines are now drawn separately - you can have ticks
+   OUT while having gridlines.
+
+ * Edit points has been rearranged, the popup for the location and the 
+  buttons for actions are now in the same popup.
+
+ * Added a command (LENGTH) that can be used to either truncate or lengthen a 
+   set.
+
+ * Added commands to kill sets, but save the parameter settings 
+  (KILL &lt;SETNUM&gt; SAVEALL)
+
+ * Added ARRANGE command, this does not allow the control over
+  the layout that the popup does, but should be useful.
+
+<B>Paul J Turner (pturner@teleport.com)</B>
+
+
+<H2>From 4.00alpha to 4.00beta.pl5:</H2>
+
+(See below for legend)
+
+<H3>Patch level 0</H3>
+
+ *  [ES] fixed problems with XBAE cell editing
+ *  [ES] fix to make multiple selection and "Select all" work in 
+         `Data/Transformation/Geometric'
+ *  [ES] in the `Geometric' transformation, direction of X & Y translations was
+         wrong
+ *  [ES] F* keys work for Linux
+ *  [ES] no segfaults in 16 bpp mode
+ *  [PN] pen patterns for framemaker (mif) works correctly
+ *  [EV] computation of bounding box for eps
+ *  [EV] use of left and right arrow keys in text edit mode
+ *  [EV] editing of sets with text editor (Edit/Create Set) when XBAE not 
+         present
+ *  [EV] implementation of backspace for Postscript
+ *  [EV] cursor must be close to picked objects, eliminates "must kill" mode
+ *  [EV] implementation of annotative ellipses
+ *  [EV] improved editing of objects
+ *  [EV] proper moving of filled objects
+ *  [EV] postscript now fills with patterns
+ *  [PN] when editing text, the following keys are available:
+         ^a - go to beginning
+         ^e - go to end
+         ^k - delete to end
+         ^u - delete to start
+ *  [ES] fix for the power regression (y = a*x^b)
+ *  [ES] when compiled with XBAE, creating a new set is possible (with
+         $GR_EDITOR, or vi as a default)
+ *  [ES] `examples' directory cleaning
+ *  [ES] extracting OS-specific or otherwise configurable parameters from 
+         Makefile into Make.arch and Make.conf respectively
+ *  [EV] text string editing
+ *  [EV] code to distinguish between postscript level 1 and 2 printers and 
+         alter pattern fill accordingly
+ *  [EV] fix for bounding box for eps files that was sometimes computed
+         incorrectly
+ *  [ES] some minor code & documentation fixes and rearrangements
+ *  [ES] adding a primitive `configure' script
+
+<H3>Patch level 1</H3>
+
+ *  [ES] code fixes and rearrangements (still far from being complete)
+ *  [ES] building a non-GUI version works out of the box now
+ *  [ES] new functions added to the parser: hyperbolic (sinh, cosh, tanh) and
+         inverse hyperbolic (asinh, acosh, atanh). This was suggested by Jens
+         Schneider &lt;jschneid@gluon.physik.uni-kl.de&gt;
+ *  [ES] tick marks & labels didn't show up in the zero X/Y axes if the axes
+         didn't contain 0. (pointed out by James J. Szydlik 
+         &lt;szydlik@cgrer.uiowa.edu&gt;). Fixed
+
+<H3>Patch level 2</H3>
+
+ *  [JK] fix for loop when processing a read command from command interpreter
+ *  [ES] on-line & context-sensitive help facility added, but by now, it is
+         enabled only for a small part of widgets
+ *  [ES] GR_HELPVIEWER is now in the printf(3) format, with %s being replaced by
+         a help URL anchor. The default GR_HELPVIEWER string is now
+         "netscape -raise -remote openURL(%s) &gt;/dev/null 2&gt;&1 || netscape %s".
+         This will try to connect to an already running netscape, and if fails,
+         silently run a new one
+ *  [ES] added support for libhelp (tested with ver. 1.8.1) - a light-weight
+         hypertext help system of Thomas Harrer. If this is enabled, 
+         GR_HELPVIEWER will be ignored. See Make.conf for more details
+ *  [ES] documentation a bit updated
+ *  [ES] in the print setup, option to disable PS Level 2 features. Should
+         eliminate problems some people encountered with old printers
+ *  [EV] Xbae cell editing fixes
+ *  [EV] added interpolation: create a new set by performing interpolation on
+         one set at abscissas from another set. Can be done by linear, cubic
+         spline or Akima spline (see below) approximation
+ *  [EV] in "Edit/Create set", option to define new set by a formula
+ *  [ES] fixes for custom positioning of axis labels: both dx and dy work and
+         are updated under axis flip/invert correctly
+ *  [ES] menus rearranged
+ *  [ES] Akima splines added. Nice when approximating essentially non-smooth
+         series. The code is taken from David Frey's Spline-1.0 package and 
+         modified to suite xmgr
+ *  [EV] option to strip absolute path from legend strings when data is read
+         from a file
+ *  [EV] if reading data from file a, the first column of data is commented a:1 
+         and the next a:2, etc 
+ *  [EV] when printing to a file, default filename is the project name +
+         type-specific extension; file selection widget added
+ *  [ES] new functions in parser: 
+         interpolation: INTERP (SET1, SET2, method), where the method
+            could be either 0 (linear), 1 (cubic spline) or 2 (Akima spline)
+         Akima spline: ASPLINE(SET, START, STOP, NPOINTS)
+ *  [EV] fix for string edit popup - the rotation angle was not updated
+ *  [EV] fix for the U umlaut - \c\\ should work as expected
+
+<H3>Patch level 3</H3>
+
+ *  [ES] non-linear fit rewritten
+ *  [ES] misc bug fixes
+ *  [ES] "File/Open" automatically distinguish between type of project (binary/
+         ascii). "File/Save" has option to choose the type
+ *  [RN] VMS port; some code fixes
+ *  [EV] project description (binary format only)
+ *  [EV] added project name to footer string
+ *  [EV] verify overwrite on "File/Save"
+ *  [EV] "All line styles" and "B/W" options in "Plot/Symbols"
+ *  [SB] reducing size of PostScript files by inserting symbol definitions;
+         some code fixes
+ *  [EV] graph arrange enhancements
+ *  [ES] new symbol types: "Location X", "Location Y", and "Location (X,Y)"; 
+         the former "Loc" renamed to "Index"
+ *  [ES] switch to pulldown/pullright menus
+ *  [ES] Ultrix port 
+ 
+ <H3>Patch level 4</H3>
+
+ *  [RN] some VMS fixes
+ *  [ES] N-tiles removed from Data/Transformations. It didn't work, and since
+         nobody had complained, I decided nobody needs it
+ *  [ES] set sorting bug (todo rep. #24) fixed (annotation was reversed)
+ *  [BA] frequency scale for FFT was not accurate, often off by up to 15%
+ *  [HS] contributed 3 color xpm icons for use with a window manager
+ *  [EV] added "Add", "Delete", and "Update" functions to the set editor (Xbae
+         version)
+ *  [EV] proper cycling of the world view stack
+ *  [EV] multiple select for the symbol widget and autoselect for 1 set
+ *  [ES] "Edit/Create set" window looks same with and without Xbae
+ *  [ES] legend length 0 allowed - shows only one symbol
+ *  [ES] config file for SunOS 4 (reported to work by Pete Phillips 
+         &lt;pete@smtl.co.uk&gt;)
+ *  [ES] "Location *" symbols centered horizontally and shifted a bit
+         vertically
+ *  [ES] added the `-nops2' flag to the command line switches (no PS Level2)
+ *  [ES] `-help' aliased to `-usage'; the help printout fits into 80-char lines
+ *  [ES] format of output in the non-linear fit & integration windows changed
+         from float to general
+ *  [ES] fixed bug in parameters file save routine causing font width of 
+         subtitle to be set to the title's font width
+ *  [ES] checks for dirty state of project are done. xmgr will prompt to save 
+         current project upon exit only if some changes are made 
+ *  [EV] 2 color filling bugs in bar charts fixed
+ *  [EV] gap between label and frame changes with vertical gap
+ *  [EV] autoscaling leaves the precision of the axis (todo rep. #4)
+ *  [EV] `all sets' button added to all pertinent transformations 
+         (todo rep. #6)
+ *  [EV] discrepancy between placed text and move text frame eliminated
+ *  [EV] resize graph by double clicking focus markers
+ *  [EV] problems with being unable to pick objects fixed
+ *  [EV] documentation updates
+ *  [HH/HS] "Write/Sets"  segfaulted if xmgr was compiled w/o NetCDF support
+ *  [HH/HS] XCOR command enabled in batch processing
+ *  [ES] quotes in text strings weren't saved correctly in the ascii save 
+         format & interpreted by the command tool (todo rep. #18) (in fact,
+         there were 2 independent bugs)
+ *  [ES] config file for SCO (reported to work on SCO Open Server 5.0 by
+         Eugene L. Willey &lt;gw51637@navix.net&gt;)
+ *  [SB] patches to get on-the-fly color changing working - the "cmap" command 
+         works after having started xmgr
+ *  [ES] fixed the relict symbol-color bug. Previously (since xmgr-3) all
+         symbols by default were assigned the black color, but drawn using the
+         line color. The fix thus would break any project saved with a post-2
+         version of  xmgr, unless symbol colors were explicitly defined. To
+         overcome this, the new `-symcolorbug' flag should be used to load such
+         a project.  Once saved, it can be open in a usual way. Projects saved
+         with a 2.* version of x[m,v]gr (which didn't have the option to change
+         the symbol color independently) will be converted automatically
+ *  [ES] in "Plot/Symbols", changing a line color causes the symbol color to
+         become the same. I think it's what most of people would expect. If you
+         need the symbols drawn in another color, change it <I>after</I> the
+         line color has been selected
+ *  [ES] signal and WM event handling. xmgr will ask about confirmation if you
+         try to kill it in any way while the current project isn't saved
+ *  [JH] changes to make xmgr compile on VMS with MultiNet
+ *  [ES] menus are now fully configurable - you can assign any hotkey to any
+         item. Refer to the xmgr documentation for the list of available X
+         resources
+ *  [ES] added compiled-in fallback resources. The XMgr.ad isn't installed by
+         default anymore
+ *  [EV] conversion between view and world coordinates when editing objects
+         (todo rep. #2)
+ *  [ES] added "Comments" item to the "Help" menu for on-line bug/wish reports
+ *  [ES] misc tiny fixes (including todo rep. #21)
+
+ <H3>Patch level 5</H3>
+
+ *  [ES] undefined variable "tbuf" in editpwin.c if compiled without Xbae
+         (todo rep. #49)
+ *  [ES] pressing "Help" in error dialogs caused segfault (todo rep. #34)
+ *  [KM] xmgr died on Digital Unix 4.0B as soon as one clicked in the main
+         window (todo rep. #56)
+ *  [HS] added `xmgr.static' and `xmgr.semistatic' targets in Makefiles
+ *  [HS] fixed circle symbols no drawn with radius &lt; 17 (todo rep. #37)
+ *  [HS] fixed error message in "Create set/By formula" (todo rep. #36)
+ *  [HS] fixed handling of mouse events while tracking points (todo rep. #42)
+ *  [HS] fixed segfault if no sets selected in "Data/Point ops/Track"
+         (todo rep. #47)
+ *  [HS] page layout is saved with project (ASCII and binary) (todo rep. #29)
+ *  [HS] added "All but" to "Reactivate sets"
+ *  [HS] added PS line scaling adjustments to the print setup (todo rep. #25)
+ *  [HS] PS line scaling is saved with ASCII projects (todo rep. #25)
+ *  [HS] date and email is saved in PS files (for Linux only)
+ *  [HS] added expressions "y.max", "y.sd" etc.
+ *  [ES] fixed crashes when selecting "apply to all axes" in axis popup
+         (todo rep. #50)
+ *  [ES] "Extract points" from region ignored selected set (todo rep. #23)
+ *  [ES] "Region ops/Evaluate" didn't work (todo rep. #40)
+ *  [ES] made set selection type "SINGLE" in all region operations so to not
+         confuse people (todo rep. #58)
+ *  [JH] symbol `overlay' clashed with a VMS VAX/Multinet define 
+         (todo rep. #57)
+ *  [ES] Ymax or Xmax tick labels and ticks were missing sometimes
+         (todo rep. #19)
+ *  [ES] "Data/Transformation/Sample points" by logical expression didn't work
+         (todo rep. #28)
+ *  [ES] some tiny fixes
+ 
+ <H2>From 4.0 and up</H2>
+
+ <H3>4.0.1</H3>
+
+ *  [HS] batch calculations were performed only for the first element of each
+         set (todo rep. #55); this was announced to be, but mistakenly not
+         included in 4.00beta.pl5
+ *  [HS] made xmgr ignore lines containing only spaces; this was announced to 
+         be, but mistakenly not included in 4.00beta.pl5
+ *  [HS] contributed section for magic(5) so file(1) would recognize xmgr 
+         project files
+ *  [HS] command histo(setnum,start,width,num) segfaulted (todo rep. #66)
+ *  [HS] allow the expressions "g0.s0.length" and "length" in addition to
+         "s0.length"
+ *  [HS] enabled "AUTOTICKS" command
+ *  [HS] placing axis labels did not work for negative coordinates (todo 
+         rep. #70)
+ *  [HS] changed command string for lynx help viewer (todo rep. #71)
+ *  [HS] changed multiple into extended selection in set selection widgets
+ *  [HS] save description with ASCII projects (todo rep. #46). This required
+         the creation of new commands:
+         'DESCRIPTION "Textual description"'
+         'CLEAR DESCRIPTION'
+ *  [HS] new command to select the default save style of projects (todo 
+         rep. #74):
+         'DEFAULT SAVE ASCII'
+         'DEFAULT SAVE BINARY'
+ *  [ES] made `-h' work as `-help' instead of hardcopy print and output to
+         stdout instead of stderr. Plus, there is a line at the end saying 
+         that |more can be used :) (todo rep. #30)
+ *  [ES] replaced all occurrences of cfree() by free() to make xmgr compliant
+         with glibc. xmgr should compile now on Linux/AXP
+ *  [ES] xmgr segfaulted when trying to read data in the XY String format
+         if strings were not quoted (todo rep. #83)
+ *  [JH] the argument list for a number of routines in plotone.c contained
+         the plotarr structure called by value.  This was longer than the 255
+         values allowed by the VAX/VMS calling standard. Changed to calls by
+         reference (todo rep. #79)
+ *  [ES] linear regression worked only with n &gt; 3, not with  n=2,3 
+         (todo rep. #69)
+ *  [RN] the main Makefile split into  Makefile and Make.common.  Now it is
+         possible to use the same definitions under UNIX and VMS 
+         (todo rep. #75)
+ *  [ES] the "eps" radio button in the "Printer setup" window was not
+         activated with the `-eps' command line option (todo rep. #96) 
+ *  [ES] by setting Xresource XMgr*tearOffModel: XmTEAR_OFF_DISABLED one can
+	 disable the tear-off behavior of menus, so to prevent VUE window
+	 manager crashes on HP/UX (todo rep. #43)	
+ *  [ES] the 'Save' function in saved always to the directory where xmgr was
+         started, not to the directory the project was saved to using 'Save
+         as...' (todo rep. #38)
+ *  [ES] clicking on an overlapped by few graphs area now changes the focus
+         in cyclic order (todo rep. #45)
+ *  [ES] selecting another graph than the current one with ReadToGraph in
+         the File/Read/ReadSets popup AutoscaleOnRead did not work when you
+         acted for the first time on the graph (todo rep. #95)
+ *  [ES] reading a binary set saved with the binary option was broken (todo
+         rep. #54)
+ *  [ES] although a comment was saved with every set when writing the current
+         project as ASCII data, this comment was set to the name of the file
+         when it was loaded again (todo rep. #61)
+ *  [ES] the precision of the set editor in non-XBAE  version of xmgr was
+         fixed, so it was impossible to edit set data with many significant
+         digits (todo rep. #102). New command added:
+         'DEFAULT SFORMAT formatstring' ,
+         with formatstring being in the printf(3) format. This affects also 
+         the format used for saving (ASCII) projects and writing sets (XY only)
+ *  [ES] pushing the "pack" button in status menu could overwrite inactive
+         sets (todo rep. #88)
+ *  [EV] after editing in the window "Edit legend labels" called from
+         "Legends" and pressing "Accept" the corresponding legend in the
+         window "Symbols/Legends" was not updated (todo rep. #81)
+ *  [EV] frame stack cycling fixed (todo rep. #103)
+ *  [EV] added "feature extraction" facilities. Given a set of curves in a
+         graph, extract a feature from each curve and use the values of the
+         feature to provide the Y values for a new curve. See docs for more
+         details
+ *  [EV] fixed the problem with the set selector when it has the active,
+	 inactive, etc. buttons.  When you switched graphs, it would ignore
+	 the setting you had selected  and use the original setting
+ *  [EV] when swapping sets, the set selectors show the sets in the graph you
+	 are selecting from, not the current graph as before
+ *  [ES] some buttons that appeared twice in "Legends" and "Edit comment 
+         labels" popups deleted
+ *  [ES] WIN95/NT port (see README.Win32) (todo rep. #17)
+ *  [HS] changed number of sets from 5 to 8 in set selection widgets
+ *  [HS] documentation on `-npipe' option
+ *  [HS] acegr_np library and documentation. The library contains convenient
+         functions that allows to call xmgr from a C program while not loosing
+         the interactiveness of xmgr. See docs for details
+ *  [ES] Fortran wrapper for the acegr_np library 
+ *  [AM] OS/2 port (see README.OS2)
+ *  [ES] signal handling can be disabled by `-nosigcatch' flag
+ *  [ES] xmgr can be compiled with EDITRES support - see Make.conf
+ *  [EV] 2 object filling bugs, introduced in pl5, fixed
+ *  [EV] when objects were defined in viewport  coordinates, the graph
+         number would be -1
+ *  [EV] it is now possible to change the graph an object is associated with.
+	 Edit the object, convert to viewport coords, change the graph focus
+	 and then convert to world coord's
+ *  [ES] when selecting "Draw tick marks on: Both/Opposite axis" and "Axis
+         label location: Specified", the specified  location was ignored
+         (todo rep. #117)
+ *  [ES] one extra mark appeared to the right of the plot if one set an axis
+         to logarithmic scale for some  values of xmax/ymax. The bug was
+         triggered by some changes in pl5
+ *  [ES] some documentation updates
+ 
+ <H3>4.1.0</H3>
+
+ *  [ES] GNU autoconf is now used to configure xmgr
+ *  [ES] dropped support for inflexible and error-prune binary project format;
+         added `grconvert' tool to facilitate automatic conversion of projects
+         in this format to the ASCII one
+ !  [HS] added new commands to parser for FFT options
+ !  [HS] added DEACTIVATE SETNUM and REACTIVATE SETNUM commands to the parser
+ *  [AM] deactivate in the Status popup didn't refresh the graph (todo 
+         rep. #153)
+ *  [DH] changed "Precision" setting in Xbae cell-editor to 6 (todo rep. #135)
+ *  [DH] a PostScript code generation bug fixed (todo rep. #138)
+ *  [DH] changed the tick-label precision defaults to GENERAL and "6" and 
+         a related bug fixed (todo rep. #139)
+ *  [PS] fixed two potential out-of-bounds bugs (todo reps. #141, #143)
+ *  [HS] fixed the layout of the set status window (todo rep. #134)
+ *  [ES] added a bunch of special math functions using the Cephes library by
+         Stephen L. Moshier (todo rep. #13). See trans.html#eval for the whole
+         list of functions
+ *  [AM] more OS/2 fixes
+ *  [AM] added info message that non-local URLs (Help-&gt;Comments) don't work 
+         if xmgr compiled with libhelp (todo rep. #146)
+ *  [ES] changed the order of the plot element drawings: now the frame is drawn
+         after the sets (todo rep. #122)
+ *  [RN/JH] more VMS fixes
+ *  [HS] while killing multiple sets graph redraw is called only once (todo
+         rep. #147)
+ *  [EV] working directory as set from the "Options" menu now acts on all i/o
+         popup dialogs (todo rep. #27)
+ *  [ES] the "Kill" button in the status popup acted as "soft kill" (leaving
+         parameters of a killed set) which confused people (todo rep. #151)
+ *  [ES] removed calls to position routine from few large window creation
+         functions (todo rep. #114)
+ *  [ES] fixed few bugs in dialog popups (todo rep. #129)
+ *  [ES] GRAPHNO parser bug fixed (todo rep. #169)
+ *  [ES] FOCUS command segfaulted if executed before GUI shows up (todo 
+         rep. #170)
+ *  [ES] Save/Load non-linear fitting function definitions (todo rep. #12)
+ *  [HS] added missing checks for no-set-selected in few dialogs (todo 
+         rep. #133)
+ *  [HS] a problem with the denominator of the auto/cross-correlation function
+         fixed. The option "biased/unbiased" has been removed, since it makes 
+         no sense for the correct auto/cross-correlation function (biased and
+         unbiased were just two approximations of the correct function). 
+         Furthermore, the "Lag:" has been renamed to "Maximum Lag:" (todo
+         rep. #150)
+ *  [HS] clicking on the Y-line of a set in the status window does the same
+         as clicking on the X-line
+ *  [EV] added docs on ellipses
+ *  [EV] PSTeX driver implemented (LaTeX `graphics' package strongly
+         recommended) (todo rep. #59)
+ *  [EV] legend bar chart entry for nonfilled sets fixed (todo rep. #178)
+ *  [EV] all colors used for set line colors (dark green, the 15th was 
+         overlooked previously).
+ *  [EV] legend entry form made nicer to use (todo rep. #132)
+ *  [EV] symbol skip fixed for certain symbols (todo rep. #167)
+ *  [EV] fixed the default coloring of sets when increased beyond 30
+         (todo rep. #121)
+ *  [ES] Options/Page reworked
+ *  [EV] background fill performed on postscript and button added under 
+         Options/Page (todo rep. #163)
+ *  [ES] automatic resize of canvas in the "Free" page size mode (todo 
+         rep. #209)
+ *  [EV] two more features for feature extraction: the X value of the peak Y
+         and the Y value of the peak X
+ *  [ES] infix operator handling bug in parser fixed (todo rep. #174)
+ *  [ES] several examples in the examples/dotest sequence gave incorrect
+         information (todo rep. #159)
+ *  [EV] "Strip labels" in "Edit legends" failed with relative paths (todo 
+         rep. #175)
+ *  [ES] floating point constants in lmdif1.c weren't correct for some CPU's 
+         (todo rep. #80)
+ *  [SB] patch to allow setting of colormap entries from a parameter file
+ *  [ES] parameter files read upon startup (`-param' switch) may now contain
+         commands to read in data sets (as using the `-batch' command line
+         switch)
+ *  [YR] script to convert Origin-4 fit description files to ACE/gr's format
+ *  [EV] "SetOps/PickOps/Copy" always copied to set #0 (todo rep. #194)
+ *  [HS] added soft-kill button to the status popup
+ !  [HS] added "Prune data" facility
+ !  [HS] added "Auto redraw" button to the status popup. New command line
+         options:
+               -statusredraw
+               -nostatusredraw
+         New X-resource:
+               AllowStatusRedraw
+         New command:
+               status auto redraw onoff
+ *  [ES] source code rearrangements
+ 
+
+ <H3>4.1.1</H3>
+
+ *  [HS] added docs on "Prune data", REACTIVATE/DEACTIVATE and FFT parser
+         commands, and auto-redraw button in the status popup
+ *  [HS] minor patch for data prune if a set contained neighbored points 
+         with same x
+ *  [ES] xmgr didn't always show the plot upon startup (seems to happen only
+         with some strange X server/WM combinations)
+ *  [ES] xmgr shouldn't need gmake anymore
+ *  [EV] delete, replace etc buttons added to the command widget (todo 
+         rep. #225)
+ *  [HS] mnemonics of "Transformation" submenu rearranged
+ *  [ES] in saved projects, information about actual set numbering was lost,
+         so loading a project with sets not packed resulted in wrong set
+	 attributes (todo rep. #219) (using the TARGET command, see below)
+ *  [ES] new command: TARGET
+            TARGET setnum 
+            TARGET graphno.setnum
+	 Define the named set to be used whenever a new set is about to be
+	 automatically selected and activated. If the set already exists (by
+	 the time a new set is needed), the command is ignored. Once the
+	 command succeeds, the target definition is cleared.
+ *  [ES] fixed multiple definitions of some global variables (todo rep. #228)
+ *  [ES] fixed few potential memory leaks in parser introduced in 4.1.0beta
+ *  [ES] added possibility to run non-linear fits from batch files. The new
+         command is
+            NONLFIT(SETNO, NSTEPS) or
+	    NONLFIT(GRAPHNO.SETNO, NSTEPS)
+         See docs for more details
+ *  [ES] fixed bug in data array assignment by index (todo rep. #231)
+ *  [ES] removed inconsistency in data array assignment by index - F77/C
+         index notations were mixed, currently all indices are assumed to
+	 begin from 0 (todo rep. #232)
+ *  [EV] both editing an existing set and creating a new one can be done with
+	 the Xbae editor and an external editor as well (todo rep. #218)
+ *  [HS] global ispell'ing checks of docs
+ *  [ES] changes to parser, including dealing with functions
+ *  [HS] fixed few glitches caused by the above
+ *  [ES] INVT(), INVN(), NORMP() and their sources removed. Instead, use
+         STDTRI(), NDTRI() and NDTR() from the Cephes library.
+         Former LOG() renamed to LOG10(); the (undocumented) definitions of 
+	 LS and LW removed. Renamed all (undocumented) TIME STRING * commands
+	 to TIMESTAMP. INT() (as alias to INTEGRATE()) removed
+ *  [ES] INT() (casting to integer) removed, RINT() - round to closest integer
+         - added
+ *  [ES] aliases introduced; new commands:
+            ALIAS CHRSTR CHRSTR
+         e.g., ALIAS "s" "sin" defines "s" as an alias to the sin() function.
+            ALIAS FORCE onoff 
+         controls whether existing keywords can be overridden by aliases (off
+         by default)
+ *  [RN] VAX corrections to the Cephes lib
+ *  [YR] an fdf2fit bug fixed
+ *  [ES] support for dynamically loaded modules using dlopen() interface 
+         (Linux/ELF, SunOS-4-5, OSF, IRIX, AIX-4, *BSD, UnixWare and 
+         probably some others) and shl_load() (HP/UX) (todo rep. #256).
+	 Commands:
+            USE CHRSTR TYPE proctype FROM CHRSTR
+            USE CHRSTR TYPE proctype FROM CHRSTR ALIAS CHRSTR
+         See doc/dlmodule.html for description and examples
+ *  [RN] check_float.c (in the cephes dir) that guesses type of FPU arithmetics
+ *  [ES] AS274 is now the only method used for polynomial regression
+ *  [ES] Trying to execute 'getp "parameterfile"' in the 'commands' submenu
+         resulted in program hang. (todo rep. #245)
+ *  [ES] 'statusredraw' and 'nostatusredraw' command-line options misspelled
+         in the 'xmgr -h' output (todo rep. #243)
+ *  [ES] there was no support in the xmgr language for ticklabels location
+         "Between ticks" (todo rep. #236)
+ *  [HS] an npipe fix (based on a patch by Andre Bleau)
+ *  [AM] OS/2 updates
+ *  [ES] the time stamp (if defined) and its attributes are now saved in the
+         project files (todo rep. #9)
+ *  [ES] added possibility for the time stamp rotation (todo rep. #127). See
+         docs for the list of the (time-stamp) related commands
+ *  [ES] time stamp changes only when a project is changed
+ *  [EV] incorrect Postscript output was produced if PS level 2 functions were
+         disabled and pattern filled objects used (todo rep. #247)
+ *  [YR] fdf2fit accepts "-" as std(in/out) definition
+ *  [ES] enclosing line of a pattern-filled polygon got lost in the postscript
+         output if the surrounding line was black (todo rep. #94)
+ *  [RN] VAX fixes
+ *  [ES] Options/Draw/Overlay removed
+ *  [ES] Smith graph added to Data/Graph opts/Type (completely untested!)
+ *  [HS] command window prettifying; short-keys for some operations defined
+ *  [HS] by default, always open a new Netscape window when using help
+ *  [ES] a glibc-2 symbol clash in the parser source eliminated (todo 
+         rep. #262)
+ *  [ES] when iconified, a color xpm icon is displayed (requires the Xpm 
+         library installed)
+ *  [EV] adding a point by "Point ops/add" to the beginning of a set didn't
+         work
+ *  [EV/ES] using grconvert for automatic on-the-fly conversion of the old 
+         binary format project files
+ *  [ES] numerous `configure' fixes and enhancements
+ *  [ES] source code rearrangements
+
+
+ <H3>4.1.2</H3>
+
+ *  [EV] problem with -maxsets fixed (todo rep. #276)
+ *  [ES] a memory leak fixed (todo rep. #279)
+ *  [HS] "READ BLOCK filename" didn't work correctly (todo rep. #280)
+ *  [ES] xmgr crashed on monochrome displays (todo rep. #285). A temporal
+         workaround implemented
+ *  [HS2] SIGSEGV caused by user ticks and 'apply to all axes' (todo rep. #300)
+ *  [ES] configuration/compilation problems on some platforms fixed (todo reps.
+         #321, #322, #330, #331, #343, #365, #380, #390)
+ *  [ES] "LEGEND BOX FILL COLOR number" was broken (todo rep. #377)
+ *  [EV] expression evaluations with result directed to a different graph 
+         didn't work (todo rep. #389)
+ *  [ES] added "ECHO expr" command
+ *  [ES] header file of the acegr_np lib modified to work with C++
+ *  [HS2] heavily updated documentation on the command interpreter language
+         (doc/commands.html)
+ *  [ES] GAMMA() and several other based on it special functions gave wrong
+         results (todo rep. #396)
+ *  [EV] user-specified labels were displayed incorrectly in PS output (todo 
+         rep. #392)
+ *  [AM] OS/2 updates
+ *  [JH/RN] VMS updates
+ *  [ES] some code polishings ("-Wall -pedantic" with gcc should produce no 
+         warnings)
+
+
+ <B>Legend:</B>
+
+    [EV] - Ed Vigmond &lt;vigmonde@IGB.UMontreal.CA&gt;
+    [PN] - Per Nordlund &lt;pern@hallf.kth.se&gt;
+    [JK] - James Kingdon &lt;jbk@pac.soton.ac.uk&gt;
+    [RN] - Rolf Niepraschk &lt;niepraschk@ptb.de&gt;
+    [SB] - Scott Berg &lt;Scott.Berg@cern.ch&gt;
+    [BA] - Bruce Allen &lt;ballen@ligo.caltech.edu&gt;
+    [HH] - Harm van der Heijden &lt;H.W.P.v.d.Heijden@stud.tue.nl&gt;
+    [HS] - Henrik Seidel &lt;seidel@mpimg-berlin-dahlem.mpg.de&gt;
+    [JH] - John Hasstedt &lt;John.Hasstedt@sunysb.edu&gt;
+    [KM] - Kenji Andrew Matsuoka &lt;kenji@panix.com&gt;
+    [AM] - Alexander Mai &lt;st002279@hrzpub.tu-darmstadt.de&gt;
+    [DH] - Dan Hofferth &lt;Dan.Hofferth@AlliedSignal.com&gt;
+    [PS] - Paul Sydney &lt;sydney@ulua.mhpcc.af.mil&gt;
+    [YR] - Yuri Ralchenko &lt;fnralch@plasma-gate.weizmann.ac.il&gt;
+    [HS2] - Heiko R. Selber &lt;selber@fhi-berlin.mpg.de&gt;
+    [ES] - Evgeny Stambulchik &lt;fnevgeny@plasma-gate.weizmann.ac.il&gt;
+
+    "!" means no documentation provided (yet)
+ 
+</PRE>
+
+</BODY>
+</HTML>

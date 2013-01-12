@@ -1,0 +1,615 @@
+<HTML>
+
+<HEAD>
+<TITLE>Xmgr: plot functions</TITLE>
+</HEAD>
+
+<BODY>
+        <h2> <a NAME="graph">Plot functions</a> </h2>
+<p>
+The selections in the Plot pulldown menu allow the modification of 
+plot parameters. There are popups for setting the scaling of the axes, the 
+number of tick marks to display, legends, writing annotative text, and 
+drawing objects such as lines and boxes. 
+<p>
+xmgr uses 3 coordinate systems 
+in drawing a graph. These are the world, viewport, and device coordinate 
+systems (following Foley and Van Dam). The world coordinates system is the 
+one in which the data are defined and constitutes the user's coordinate 
+system. The viewport coordinate system (in xmgr), is a rectangle defined 
+by the points (0.0, 0.0) or the lower left corner of the device and 
+(1.0, 1.0) or the upper right corner of the device. The pipeline for 
+drawing objects on the screen or hardcopy device is a pair of linear 
+transformations that carry points in world coordinates to the viewport 
+and then on to the device coordinate system. The upshot is that an 
+object located in world coordinates can be drawn in various parts of 
+the screen or hardcopy device depending on the scaling while an object 
+located in viewport coordinates remains in the same spot regardless of the 
+world scaling. Strings, lines, boxes, and the graph legend can be located in
+either world or viewport coordinates.
+<p>
+<HR>
+
+        <ul>
+	  <li><a href="#world">World scaling</a>
+	  <li><a href="#view">Viewport</a>
+	  <li><a href="#autoscale">Autoscale</a>
+	  <li><a href="#title">Titles</a>
+	  <li><a href="#ticks">Ticks labels/tick marks</a>
+	  <li><a href="#frame">Frame</a>
+	  <li><a href="#symbols">Symbols</a>
+	  <li><a href="#errorbars">Error bars</a>
+	  <li><a href="#legends">Legends</a>
+	  <li><a href="#strings">Strings & Things</a>
+	  <li><a href="#timestamp">Time stamp</a>
+        </ul>
+<p>
+<HR>
+	<h3> <a NAME="world">World scaling</a> </h3>
+<p>
+Define the world coordinate system by filling in the items Xmin, Xmax, Ymin, 
+and Ymax. The plot is drawn in world coordinates in a rectangle described by 
+the two points (Xmin, Ymin), (Xmax, Ymax). The input is scanned for arithmetic 
+expressions so setting Xmin = -PI and Xmax = PI is legal input (see the 
+section on transformations for a description of the syntax and available 
+functions). The tick spacing can also be set in this popup by filling in 
+the items for the major and minor spacing for each axis. `Update world/ticks' 
+is used, when, occasionally, the state of the items used to define the world 
+scaling get out of sync with what is actually used to draw the graph, 
+clicking on this item synchronizes the internal values with the displayed 
+values. Press the button marked <b>Accept</b> to inform xmgr of the changes.
+<p>
+Note: make sure Xmin &lt Xmax and Ymin &lt Ymax.
+<p>
+<HR>
+	<h3> <a NAME="view">Viewport</a> </h3>
+<p>
+Define the viewport by filling in the items Xmin, Xmax, Ymin, Ymax. 
+Viewport coordinates run from (0.0,0.0), the lower left corner of the 
+screen or hardcopy device, to (1.0,1.0), the upper right corner of the 
+screen or hardcopy device. Press the button marked <b>Accept</b> to make 
+the change to the new viewport. Press the <b>Pick view</b> button to use 
+the mouse to define the viewport. Take the mouse to the lower left corner 
+of the desired viewport and press the left button (there is no need to 
+hold the button down). A rubberband box will show you the current size of 
+the viewport you may select. When you are satisfied with the view, press 
+the left mouse button again to activate the new viewport.
+<p>
+Press the button marked <b>Close</b> to close the <b>Viewport</b> popup.
+<p>
+The viewport can also be changed by double clicking on the focus markers (or
+where they would be placed if not shown). The new location is chosen by clicking
+the first mouse button.
+<HR>
+	<h3> <a NAME="autoscale">Autoscale</a> </h3>
+<p>
+Use the Autoscale popup to set parameters associated with autoscaling. 
+Select the axis to scale, or none. Selecting none allows the autoscale 
+type and the number of ticks to create to be set but no autoscaling is done. 
+Select the particular set to use or All. The Autoscale type sets the method 
+of autoscaling, either Auto or fixed. Auto uses a method based on 
+routines posted to the net by Paul Heckbert and generates nice looking 
+tick spacing, but alters the scaling of the axes. The fixed option uses 
+the minimum and maximum values in the set (or over all sets) to set 
+the scale of the axes. Select the number of tick marks to use for 
+defining the tickmark spacing (in the case of Heckbert scaling, these 
+settings are advisory only). The item labeled <b>Apply to:</b> allows the 
+autoscaling of the current graph, or all active graphs. 
+<p>
+<HR>
+
+	<h3> <a NAME="title">Title/subtitle</a> </h3>
+<p>
+The title and subtitle are strings that appear centered at the top of the plot. 
+Fill in the items indicated and press the button marked <b>Accept</b>. To 
+change the font, color, or character size used for titles use the items 
+from the popup denoted <b>Props...</b>.
+<p>
+<HR>
+	<h3> <a NAME="ticks">Ticks/tick labels</a> </h3>
+<p>
+Set the spacing and type of major and minor tick marks, definition of axes 
+labels, and toggle features associated with the drawing of the graph axes. 
+<p>
+The top item, <b>Edit</b>, selects the axis for which the feature selections 
+will apply. There are two axes defined for each co-ordinate direction, the 
+primary axis and the zero axis. The primary axis will be used the most, the 
+zero axis is, by default, turned off. The button to the right of the 
+<b>Edit</b> item labeled <b>Props...</b> allows the axis to be offset 
+by a specified amount in viewport co-ordinates. The item <b>Axis label</b> 
+accepts the definition of the label to be used when drawing the axis. 
+Various properties of the label may be set in the popup just below 
+labeled <b>Axis label props...</b>.
+<p>
+The two items `Major tick spacing' and `Minor tick spacing' set the spacing 
+of major and minor ticks. Tick labels are drawn based on the setting for 
+the major tick spacing. These items are duplicated in the `Define world' 
+popup described previously. Fill in the appropriate blanks and press 
+<b>Accept</b> to refresh the display. The units are positive deltas 
+starting with the world minimums. Input is run through the scanner 
+so expressions are allowed. The are special symbols <b>dx</b> and <b>dy</b> 
+for setting a prescribed number of tick marks. Dx is the distance along the 
+X-axis and dy is the distance along the Y-axis, as defined in the current 
+window of the world coordinate system. Typing at <b>Major tick spacing</b> 
+"dx/10" will give 10 major tickmarks.
+<p>
+Tick labels, tick marks, the axis bar, may be toggled by the check boxes. 
+Properties for each of these can be set by the <b>Props...</b> popups 
+associated with each item.
+<p>
+Properties for tick labels are:
+<dl>
+	 <dt>Font
+		<dd>Which font to use when drawing the labels.
+	 <dt>Color
+		<dd>Which color to use.
+	 <dt>Line width
+		<dd>Width of line to use when drawing the label.
+	 <dt>Char size
+		<dd>Size of characters to use.
+	 <dt>Format
+		<dd>Decimal, exponential, power, general plus 
+several time and date formats. 
+To use the time and date formats, the data are required to be in Julian 
+Date format, the long version. Two auxiliary programs, jul2greg and 
+greg2jul, are available with the distribution to assist in the conversion 
+from Julian to Gregorian date formats.
+	<dt>Stagger
+		<dd>each tick label may be offset with respect to its 
+neighbor, the levels of staggering ranging from 0 to 3, This is especially 
+useful with some of the time and date formats.
+	<dt>Precision
+		<dd>sets the number of places to display to the right 
+of the decimal point for the labels.
+	 <dt>Skip every
+		<dd>tick labels are drawn at every major tick mark, use 
+the skip factor to circumvent this.
+	 <dt>Start labels at
+		<dd>Graph minimum, or specified. To start the labels 
+at some other point than the graph minimum, fill in the text item to 
+the immediate right with the value where tick labels are to begin. There 
+is a similar item in the property sheet for tick marks that can be used 
+to set where the major tick marks begin. between these two, 
+there should be sufficient flexibility.
+	 <dt>Stop labels at
+		<dd>same as above only works at the other end of the axis.
+	 <dt>Layout
+		<dd>allows the tick labels to be drawn horizontally, 
+vertically, or a specified angle (in degrees).
+	 <dt>Draw tick labels
+		<dd>which side of the graph to draw tick labels, either 
+the normal side (the bottom of the graph in the case of the X-axis, or to 
+the left of the graph in the case of the Y-axis), The opposite side, or 
+both. This can be handy when using multiple axes, or overlaying graphs 
+with differing scales.
+	 <dt>Sign
+		<dd>allows the numerical value of the label to be displayed 
+as is, as its absolute value, or negated. This can be used to effectively 
+reverse the sense of the axis (negate), or reflect the axis about zero 
+(absolute value).
+	 <dt>Apply to
+		<dd>Override the selected axis from the Ticks/tick 
+label popup, causing the settings to be selected for all axes in the 
+current graph, the current axis for all graphs, or all axes in all graphs.
+</dl>
+<p>
+Press the button <b>Accept</b> when everything is OK, or <b>Close</b> to 
+close the popup.
+<p>
+Properties for tick marks are:
+<dl>
+	 <dt>Tick mark direction
+		<dd>in, out, or both. Which direction the ticks point.
+	 <dt>Tick marks on
+		<dd>Which side of the graph to draw ticks. The normal 
+side is the bottom of the graph in the case of the X-axis, or to the 
+left of the graph in the case of the Y-axis, the default is to draw 
+ticks on both sides.
+	 <dt>Major tick length
+		<dd>sets the length of major tick marks
+	 <dt>Minor tick length
+		<dd>sets the length of minor tick marks
+	 <dt>Major grid lines
+		<dd>a check box that when toggled on, grid lines will 
+be drawn at the settings for major tick marks.
+	 <dt>Minor grid lines
+		<dd>a check box that when toggled on, grid lines will be 
+drawn at the settings for minor tick marks.
+	 <dt>Color, line width, and line style
+		<dd>These items set the characteristics of the lines use 
+to draw ticks and grid lines.
+	 <dt>Apply to
+		<dd>allows the axis select in the Ticks/tick label popup 
+to be overridden, causing the settings to be selected for all axes in the 
+current graph, the current axis for all graphs, or all axes in all graphs.
+<p>
+Press the button <b>Accept</b> when everything is OK, or <b>Cancel</b> to 
+close the popup.
+<p>
+Properties for the axis bar are:
+<p>
+	 Color, line width, and line style items set the characteristics of the lines use to draw 
+ticks and grid lines.
+</dl>
+<p>
+Press the button `Accept' when everything is OK, or `Cancel' to close the popup.
+<p>
+<b>IMPORTANT NOTE FOR LOG PLOTS:</b>
+When log scaling is selected for a particular axis or axes, the meaning of 
+major and minor ticks changes slightly. Major ticks should be set to integer 
+values. Use minor ticks to set the number of interdecade tickmarks, these 
+should be set to integer values ranging from 0 (no interdecade tickmarks) to 5. 
+A value of 1 will draw each interdecade position, 2 will skip every other 
+position, etc.
+<p>
+<HR>
+	<h3> <a NAME="frame">Frame</a> </h3>
+<p>
+The frame is the box drawn around the clipping region of the graph, and the region inside. Items in the frame popup are:
+<dl>
+	 <dt>Frame
+		<dd>Turn the frame on or off.
+	 <dt>Style
+		<dd>Either `closed' or `open.
+	 <dt>Color
+		<dd>Set the color of the line drawn around the graph.
+	 <dt>Line width
+		<dd>Set the width of the line around the graph.
+	 <dt>Line style
+		<dd>Set the line style of the line.
+	 <dt>Fill graph background
+		<dd>Toggle the filling of the frame. 
+	 <dt>Background color
+		<dd>The color with which to fill the frame.
+</dl>
+Press <b>Accept</b> to register the settings, <b>Close</b> to close the popup.
+<p>
+<HR>
+	<h3> <a NAME="symbols">Symbols</a> </h3>
+<p>
+The items in the symbols popup allow the selection of symbols, lines, 
+and fill style to be used when drawing a set.
+<p>
+Items in the symbols popup are:
+<dl>
+	 <dt>Select set
+	   <dd>The set or sets to which the following items will apply.
+	   Multiple selections may be activated.
+<p>
+<b>Symbol:</b>
+<p>
+<dt>Symbol
+<dd>Select the symbol to use, or none for no symbol.
+<dt>Fill
+<dd>Select the fill option, none, filled, or opaque. The opaque option 
+allows the symbol to be filled with the background color (white as of 
+this writing) overwriting the line used to connect each point.
+<dt> Size
+<dd>Set the size of the symbol.
+<dt> Char
+<dd>select a character to use instead of a symbol (not active)
+<dt> Skip
+<dd>select the number of points to skip when drawing symbols
+<p>
+ <b>Line:</b>
+<p>
+<dt> Style
+<dd>select the line style for the lines connecting the 
+points in the set.
+<dt> Width
+<dd>select the line width for the lines.
+<dt> Color
+<dd>the color to use when drawing lines.
+<p>
+<b>Fill:</b>
+<p>
+<dt> Fill
+<dd>select the type of fill, none, as polygon, to y=0.0, x=0.0, 
+x=graph Xmin, x=graph Xmax, y=graph Ymin, y=graph Ymax.
+<dt> Fill using
+<dd>either Color or Pattern.
+<dt> Color
+<dd>select the color to use, or none.
+<dt> Pattern
+<dd>select the pattern to use or none
+There are three additional buttons in this popup that can be used to 
+set the colors, symbols, and line widths in an incremental fashion, 
+avoiding the need to specify a each.
+<p>
+<b>Misc:</b>
+<p>
+<dt> Legend
+<dd>A string defining the legend to use for this set
+<dt> Select
+<dd>Allow single or multiple choices in <b>Select set</b>
+<dt> All colors
+<dd> Assign a different color to each set
+<dt> All symbols
+<dd> Assign different symbols to each set
+<dt> All widths
+<dd> Cyclically Assign different line widths to each set
+<dt> All line styles
+<dd> Cyclically assign different line styles to each set
+<dt> B/W
+<dd> Make all line colors black
+<p>
+<b>Misc:</b>
+<p>
+<dt> Legend
+<dd>A string defining the legend to use for this set
+<dt> Select
+<dd>Allow single or multiple choices in <b>Select set</b>
+<dt> All colors
+<dd> Assign a different color to each set
+<dt> All symbols
+<dd> Assign different symbols to each set
+<dt> All widths
+<dd> Cyclically Assign different line widths to each set
+<dt> All line styles
+<dd> Cyclically assign different line styles to each set
+<dt> B/W
+<dd> Make all line colors black
+<p>
+<b>NOTE: There are limits on how large a set can be for the fill to
+operate correctly. The limit for the display is approximately 8000 points,
+for the hardcopy drivers, this limit drops to around 800-1000.</b>
+</dl>
+<p>
+ Symbols descriptions:
+<ul>
+	<li> 1.	No symbol
+	<li> 2.	Dot
+	<li> 3.	Circle
+	<li> 4.	Square
+	<li> 5.	Diamond
+	<li> 6.	Triangle up
+	<li> 7.	Triangle left
+	<li> 8.	Triangle down
+	<li> 9.	Triangle right
+	<li> 10. Plus
+	<li> 11. X
+	<li> 12. Star
+	<li> 13. Impulse at X
+	<li> 14. Impulse at Y
+	<li> 15. Vertical line at X
+	<li> 16. Horizontal line at Y
+	<li> 17. Histogram X
+	<li> 18. Histogram Y
+	<li> 19. Stair step X
+	<li> 20. Stair step Y
+	<li> 21. Bar X
+	<li> 22. Bar Y
+	<li> 23. Range
+	<li> 24. Location
+	<li> 25. Set #
+	<li> 26. Set #, location
+	<li> 27. Bar and whisker (not active as of this writing)
+	<li> 28. Segments
+	<li> 29. Character
+	<li> 30. String (not active as of this writing)
+	<li> 31. Hi low X
+	<li> 32. Hi low Y
+	<li> 33. Open/close X
+	<li> 34. Open/close Y
+</ul>
+<p>
+ NOTE: symbols 16-29 do not appear in the legends
+<p>
+<HR>
+	<h3> <a NAME="errorbars">Error bars</a> </h3>
+<p>
+Error bars are created by reading in the data as a set with error bars (see Files above). 
+Properties of error bars are set by opening the `Error bar props' popup.
+<dl>
+<dt>Size
+<dd>Set the length of the error bar.
+<dt> Line width
+<dd>Set the line width of the error bar.
+<dt> Line style
+<dd>Set the line style of the error bar.
+<dt> Riser
+<dd>Toggle the display of the line connecting the error bar with the data point.
+<dt> Riser line width
+<dd>Set the width of the riser.
+<dt> Riser line style
+<dd>Set the riser line style.
+<dt> Display
+<dd>Toggle the display of the error bar.
+</dl>
+<p>
+<HR>
+	<h3> <a NAME="legends">Legends</a> </h3>
+<p>
+Legend items:
+<p>
+<dl>
+<dt>Legend on/off
+<dd>toggle the display of the graph legend
+<dt>Legend location type
+<dd>Select the coordinate system to use when interpreting the legend x, and legend y items described below. Either the world or viewport coordinates. 
+Legends placed in viewport coordinates make the legends stay put as the plot scale 
+changes. Legends placed in world co-ordinates will float as the graph scaling is 
+changed.
+<dt> Legend gap
+<dd>specify the vertical gap between legend entries
+<dt> Legend length
+<dd>specify how long the line representing the set should be.
+<dt> Legend X
+<dd>X value of legend location
+<dt> Legend Y
+<dd>Y value of legend location
+<dt> Font
+<dd>specify the font for the legend labels
+<dt> Frame
+<dd>toggle a box drawn around the legend. The three items below set the 
+line color, line width, and line style of the box.
+<dt> Fill frame
+<dd>toggle the fill of the box around the legend. The frame fill will 
+obliterate anything beneath, grid lines, sets, etc. Set the type of fill 
+either color or pattern and the corresponding color or pattern.
+</dl>
+<p>
+Clicking <b>Place</b> is a convenient method of placing the legend 
+on the canvas. After pressing this button, move the mouse pointer to the 
+desired location and press again with the left button. The location will 
+be in world or viewport coordinates as selected above.
+<p>
+<dl>
+<dt>
+Press <b>Edit...</b> to edit legend labels.
+<dd>
+<ul>
+<li>To edit a label, click on the desired set or use arrow
+keys and enter the label in the
+<b>Label</b> area. 
+Press return to enter the change in the set list and then press 
+<b>Accept</b> to apply it to the graph.
+<li> <b>Load comments</b> will make the set comments the legend labels.
+<li><b>Strip labels</b> will remove the leading component of a pathname and 
+leave only 
+the basename.
+</ul>
+</dl>
+Press the button marked <b>Accept</b> to register the legend settings.
+<p>
+Press the button marked <b>Close</b> to close the popup.
+<p>
+<HR>
+	<h3> <a NAME="strings">Strings & Things</a> </h3>
+<p>
+The numbers of strings, lines, boxes and ellipses are fixed, open Help/About 
+to see what
+the limits are for your version of xmgr. 
+<dl>
+<dt> To define a text string to be drawn on
+the canvas:
+<p>
+<dd>
+Select font, pen, justification, rotation (in integer degrees [0,360]),  size.
+Press the button marked "Text" to activate the text writing routines.  Move the
+mouse to the canvas and press the left mouse button at the desired  location
+and type away. 
+It is possible to use 
+<a href="fonts.html">control codes </a>
+to change fonts within the string.
+Press &ltreturn&gt to advance to the next line - the right 
+mouse button to stop. 
+Each line of text is a separate object.
+The text cursor does not behave properly for rotated 
+strings. To redefine string parameters you'll need to press the right button 
+to leave text mode - adjust the parameters and press "Text" again to inform 
+xmgr of the changes and resume writing. 
+See below for an explanation  of world/viewport positioning.
+<p>
+To click on a text string, the cursor must be placed near the origin of
+the text string. 
+The origin will be the lower left corner of the string for left justified
+strings, the right side for right justified strings and in the center for center 
+justification. 
+<p>
+NOTE: It is necessary to press &ltreturn&gt to register the string.
+<p>
+<dt> Edit string
+<dd>
+Click on the string you want to edit. A cursor will appear at the end of the
+string which may be moved using the left and right arrow keys. 
+Anything typed will be inserted at the cursor and backspacing will delete the
+character before the cursor. In addition, the following control characters 
+have special meanings:
+<p>
+<dd>
+^a - Move editing cursor to beginning of string
+<p>
+^e - Move editing cursor to end of string
+<p>
+^u - Delete beginning of string to cursor
+<p>
+^k - Delete to end of string
+<p>
+<dt> To define a line, box or ellipse to be drawn on the canvas:
+<p>
+<dd>
+Set the properties of the object you want to draw by selecting
+box/line/ellipse props...
+<p>
+The cycle "Position in: World | viewport coordinates" allows the object 
+position to be defined in the world coordinate system or viewport 
+coordinates. In World coordinates, the object 
+position and aspect ratio 
+on the display change as the plot is re-scaled. Specifying the 
+object in viewport coordinates will force the object to 
+remain in the same place and retain the same aspect ratio
+as the plot scale is changed.
+<p>
+When the cursor turns to cross-hairs, the two points defining the object may
+be specified. A line is defined by its end points while a box is defined by
+its opposing corners.
+An ellipse is defined by the opposing corners of the rectangle enclosing it.
+<p>
+<dt>Selecting an object
+<p>
+<dd>
+	For the following three operations, one must select an object.
+	This is performed by clicking the left mouse button near one of the
+	defining points of an object. Only objects associated with the current 
+	graph will be selected. Objects are associated with the graph that was
+	active at the time of their creation.
+	The defining points of objects are given below<p>
+	<dl compact>
+	<dt> box <dd> corners
+	<dt> ellipses <dd> corners of bounding box
+	<dt> line	<dd> end points
+	<dt> text <dd> origin (justification dependent)
+	</dl>
+	<p>
+<dt> Move object:
+<p>
+<dd>
+	To move a line, box, ellipse or string:
+<p>
+	Press the button marked "Move", this should change the cursor to 
+the "move" cursor.
+<p>
+	Select the object to be moved. The object will now be drawn with
+	the first point used to define the object under the cursor.
+<p>
+	Move the cursor to the new location and press the left mouse button.
+<p>
+<dt> Delete object:
+<p>
+<dd>
+	Press the button marked "Delete", this should change the cursor 
+to a bullseye cursor.
+<p>
+	Select the object to be deleted.
+<p>
+<dt> Edit object:
+<p>
+<dd>
+	Click on edit and then select an object.
+	<p>
+	The attributes of an object may be changed after it has been defined
+	by clicking on the object.
+	Editing may be used to redefine a line, box, ellipse or string.
+	<p>
+	The <b>World&lt-&gtView</b> button is used to interchange between 
+	world and viewport specification of object placement.
+	The object will remain at the same spot when converted from one 
+	coordinate system to the other.
+<p>
+<dt>
+NOTE:
+The right mouse button cancels all operations (true throughout xmgr 
+with respect to mouse operations).
+</dl>
+<HR>
+	<h3> <a NAME="timestamp">Time stamp</a> </h3>
+<p>
+Set the display of a string containing the current time. This string is updated
+each time the graph is redrawn.
+<p>
+<HR>
+
+</BODY>
+
+</HTML>

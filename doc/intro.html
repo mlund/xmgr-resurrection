@@ -1,0 +1,132 @@
+<HTML>
+
+<HEAD>
+<TITLE>Xmgr: Introduction</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>Introduction</H1>
+<p>
+<b>xmgr</b> is an XY plotting tool for workstations or X-terminals using X. A
+few  of its features are:
+<ul>
+	<li> User defined scaling, tick marks, labels, symbols, line styles, 
+	      colors.
+	<li> Batch mode for unattended plotting.
+	<li> Read and write parameters used during a session.
+	<li> Polynomial regression, splines, running averages, DFT/FFT, 
+cross/auto-correlation.
+	<li> Hardcopy support for PostScript, HP-GL, and FrameMaker .mif 
+format.
+</ul>
+<p>
+While xmgr has a convenient point-and-click interface, most parameter 
+settings and operations are available through a command line interface 
+(found in <a HREF="data.html#commands">Data/Commands</a>). 
+<p>
+
+<HR>
+<p>
+<h2><a NAME="terminology">Terminology</a></h2>
+<p>
+<DL>
+<DT><b>Sets</b>
+<dd>
+Sets are collections of points, with optional associated values at these 
+points. The associated values can be used to display error bars, high-low 
+open-close plots and several other features. Sets are connected to a 
+graph, and, by default, there are 30 sets per graph. Each set is 
+numbered from 0 to the maximum number of sets less one. The number of 
+points in a set is limited by the size of virtual memory and are 
+numbered from 1 to N where N is the total number of points in the set. 
+Operations to manipulate sets are found in <a href="sets.html">Data/Set 
+operations</a>, and features such as line styles, symbol types, and
+others can be changed from <a href="plot.html#symbols"> 
+<b>Plot/Symbols</b></a>. 
+
+<p>
+
+<DT><b>Graphs</b>
+<dd>
+Graphs are the collection of data sets, tick marks, titles, etc. drawn to 
+display the data. By default, there are 10 graphs with each graph owning 
+30 sets (both the number of graphs and the number of sets are adjustable 
+via command line parameters). Operations on graphs are found in the 
+<a href="graphops.html"> <b>Graphs/Graph operations</b></a> popup.
+<p>
+There are numerous popups accessible through Graphs pulldown menu that allow 
+the manipulation of graph parameters. 
+Most graph operations work on what is referred to as the `current graph', 
+marked by small filled rectangles at the corners of one graph. The 10 graphs 
+available by default in this version of xmgr are numbered from 0 to 9.
+<p>
+<DT><b>Regions</b>
+<dd>
+Regions are sections of the graph defined by the interior or exterior of 
+a polygon, or a half plane defined by a line. A region defined by a 
+line can be above, below, to the right, or left of the line. Defining 
+regions and operations on points inside regions are found in 
+<a href="regions.html"> Data/Region operations</a>.
+<p>
+<DT><b>Parameters</b>
+<dd>
+Parameters are the settings of symbols, line styles, colors, fonts, etc. 
+used to define graphs and the display of the active sets.
+</dl>
+
+<HR>
+
+<p>
+<h2><a NAME="installation">Installation</a></h2>
+<p>
+To install xmgr, refer to the document INSTALL found in the xmgr 
+distribution. This will describe the details to successfully install xmgr.
+
+<p>
+
+<HR>
+<p>
+	<h2><a NAME="comments">Comments and bug reports</a></h2>
+<p>
+For bug reports, comments, etc., use the "Help/Comments" on-line
+report facility.
+
+<p>
+
+The home of xmgr sources and documentation is <A HREF="http://plasma-gate.weizmann.ac.il/Xmgr/">http://plasma-gate.weizmann.ac.il/Xmgr/</A> 
+<p>
+
+<HR>
+<p>
+<h2><a NAME="copyright">Copyright</a></h2>
+<p>
+<pre>
+
+Copyright (c) 1991-95 Paul J Turner, Portland, OR
+Copyright (c) 1996-98 ACE/gr Development Team
+
+Currently maintained by Evgeny Stambulchik, Rehovot, Israel
+
+                             All Rights Reserved
+
+Permission  to  use, copy, modify, and  distribute  this software  and  its
+documentation  for any purpose and  without fee is hereby granted, provided
+that  the above copyright notice  appear in  all copies and  that both that
+copyright  notice  and   this  permission  notice   appear  in   supporting
+documentation.
+
+PAUL J TURNER AND OTHER CONTRIBUTORS DISCLAIM ALL WARRANTIES WITH REGARD TO
+THIS SOFTWARE, INCLUDING,  BUT  NOT LIMITED  TO, ALL  IMPLIED WARRANTIES OF
+MERCHANTABILITY  AND  FITNESS. IN NO EVENT SHALL PAUL J TURNER  OR  CURRENT
+MAINTAINER  BE LIABLE FOR ANY SPECIAL, INDIRECT OR CONSEQUENTIAL DAMAGES OR
+ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER
+IN AN ACTION OF CONTRACT, NEGLIGENCE OR  OTHER TORTUOUS ACTION, ARISING OUT
+OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+
+</pre>
+
+<HR>
+
+</BODY>
+</HTML>

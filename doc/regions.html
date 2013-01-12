@@ -1,0 +1,105 @@
+<HTML>
+<HEAD>
+<TITLE>Xmgr: region operations</TITLE>
+</HEAD>
+
+<BODY>
+	<h2> <a NAME="regionops">Region operations</a> </h2>
+        	<ul>
+        	<li> <a href="#defregion">Define region</a>
+        	<li> <a href="#evalregion">Evaluate in region</a>
+        	<li> <a href="#clearregion">Clear region</a>
+        	<li> <a href="#extractregion">Extract points</a>
+        	<li> <a href="#deleteregion">Delete points</a>
+        	<li> <a href="#arearegion">Area/perimeter</a>
+        	</ul>
+<p>
+<HR>
+	<h3> <a NAME="defregion"><b>Define region</b></a> </h3>
+<p>
+Define a region of interest on a graph or graphs.
+<p>
+	Select the region, there are 5.
+<p>
+	Select the type of region:
+<p>
+<dl>
+	<dt> Inside polygon
+<dd> Points inside a closed, non-intersecting polygon are considered inside 
+the region.
+<p>
+	<dt> Outside polygon
+<dd> Points outside a closed, non-intersecting polygon are considered 
+inside the region.
+<p>
+	<dt> Above, below, to the left, and to the right
+<dd> Regions defining a half-plane, points inside the half-plane are 
+considered in the region.
+</dl>
+<p>
+Select the type of linkage, either a particular graph or all graphs, the
+default is the  current graph.
+<p>
+Press <b>Accept</b> to make the pointer ready for the region definition.
+In the polygonal region type, define the region by successive clicks with 
+the left mouse button, use the right mouse button to register the polygon. 
+In the line case, define the line by clicking on the beginning point and 
+end point of the line.
+<p>
+<HR>
+	<h3> <a NAME="evalregion"><b>Evaluate in region</b></a> </h3>
+<p>
+Evaluate an expression applied to points within a region.
+<p>
+	Select the region to use.
+<p>
+	Enter the expression, regions are referred to by Rn.x or Rn.y where `n'
+	is the number of the region to use. Functions available are the same as
+	those in `Evaluate expressions' described above.
+<p>
+Examples:
+<p>
+R0.X = R0.X - 1
+<p>
+<HR>
+	<h3> <a NAME="clearregion"><b>Clear region</b></a> </h3>
+<p>
+Remove a defined region.
+<p>
+	Select the region to remove and press `Apply'.
+<p>
+<HR>
+	<h3> <a NAME="extractregion"><b>Extract points</b></a> </h3>
+<p>
+Extract points from a region to a set
+<p>
+	Select the region to use. 
+<p>
+	Select the set to receive the points. 
+<p>
+	Select the graph to put the set. 
+<p>
+	Click on <b>Accept</b> to combine all points within the 
+specified region to the specified set and graph.
+<p>
+<HR>
+	<h3> <a NAME="deleteregion"><b>Delete points</b></a> </h3>
+<p>
+Delete points in a region.
+<p>
+	Select the region to use. 
+<p>
+	Click on <b>Accept</b> to delete all points in all sets within 
+the specified region.
+<p>
+<HR>
+	<h3> <a NAME="arearegion">Area/perimeter</a> </h3>
+<p>
+Compute the area and perimeter of a region. This item doesn't belong here as it
+does not use the region structures.  Click on <b>Area</b> or <b>Perimeter</b>
+and use the mouse to define  the region. The area or perimeter will be
+displayed in the text items  <b>Area = </b> or <b>Perimeter = </b> whichever
+the case may be.  Use the right mouse button to close the region.
+
+</BODY>
+</HTML>

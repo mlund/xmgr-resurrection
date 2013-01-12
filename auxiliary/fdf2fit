@@ -1,0 +1,104 @@
+#!/usr/local/bin/perl
+# fdf2fit - script to convert Origin-4 .fdf fit parameter files to ACE/gr's
+# Version 0.3
+# Author Yu. V. Ralchenko <fnralch@plasma-gate.weizmann.ac.il>
+
+($input_file,$output_file) = @ARGV;
+
+# read from STDIN if input file name is '-'
+$input_file = 'STDIN' if $input_file eq '-';
+
+open (INP,$input_file) or die "Can't open file $input_file: $!\n";
+
+while (<INP>) {
+	/^Function Name=([^;]+)/i && (($function_name = $1) =~ s/\s+$//) && next;
+	/^Brief Description=([^;]+)/i && (($description = $1) =~ s/\s+$//) && next;
+	/^Number Of Parameters=([^;]+)/i && (($numb_of_pars = $1) =~ s/\s+$//) && next;
+	/^Number Of Independent Variables=(\d+)/i && ($1 > 1) && (print STDERR "\nMore than 1 independent variable!\n\n") && exit;
+	if (s/^Names=(.+)/\1/i) {
+		s/\s+//g;
+		@a=split(/,/);
+		foreach $ind (0..$numb_of_pars-1) {
+			my $cin = 'orig2acegr'.$ind;
+			$var_new{$a[$ind]} = $cin;
+		}
+		next;
+	} elsif (s/^Initial Values=(.+)/\1/i) {
+		s/\(.+?\)|\cM//g;
+		chomp;
+		@a=split(/,/);
+		foreach $ind (0..$numb_of_pars-1) {
+			my $cin = 'orig2acegr'.$ind;
+			$ini_new{$cin} = $a[$ind] if $a[$ind] ne '--';
+		}
+		next;
+	} elsif (s/^Meanings=(.+)/\1/i) {
+		s/\(.+?\)|\cM//g;
+		chomp;
+		@a=split(/,/);
+		foreach $ind (0..$numb_of_pars-1) {
+			my $cin = 'orig2acegr'.$ind;
+			$mea_new{$cin} = $a[$ind];
+		}
+		next;
+	} elsif (s/^Lower Bounds=(.+)/\1/i) {
+		s/\(.+?\)|\cM//g;
+		chomp;
+		@a=split(/,/);
+		foreach $ind (0..$numb_of_pars-1) {
+			my $cin = 'orig2acegr'.$ind;
+			$low_new{$cin} = (($a[$ind] =~ /--/) ? '' : $a[$ind]);
+		}
+		next;
+	} elsif (s/^Upper Bounds=(.+)/\1/i) {
+		s/\(.+?\)|\cM//g;
+		chomp;
+		@a=split(/,/);
+		foreach $ind (0..$numb_of_pars-1) {
+			my $cin = 'orig2acegr'.$ind;
+			$upp_new{$cin} = (($a[$ind] =~ /--/) ? '' : $a[$ind]);
+		}
+		next;
+	} elsif (/Formula/i) {
+		while (<INP>) {last unless /^\s*$/};
+		tr/\r//;
+		#chomp;
+		s/^y\s*=\s*//i;
+		foreach $key (sort keys %var_new) {
+			s/\b$key\b/$var_new{$key}/ig;
+		}
+		s/orig2acegr/a/g;
+		s/\s+$//;
+		$formula = 'y = '.$_;
+		last;
+	}
+}
+
+if (!defined $output_file) {
+	($output_file = $input_file) =~ s/\.fdf$/\.fit/i;
+	open (OUT,">$output_file") or die "Can't open file $output_file: $!\n";
+	$OUT='OUT';
+} elsif ($output_file ne '-') {
+	open (OUT,">$output_file") or die "Can't open file $output_file: $!\n";
+	$OUT='OUT';
+} else {
+	$OUT='STDOUT';
+}
+
+print $OUT "#fit name \"$function_name\"\n";
+print $OUT "fit title \"$description\"\n";
+print $OUT "fit with $numb_of_pars parameters\n";
+print $OUT "fit formula \"$formula\"\n";
+
+foreach $ind (0..$numb_of_pars-1) {
+	$var='a'.$ind;
+	$old='orig2acegr'.$ind;
+	print $OUT "#$var description \"",$mea_new{$old},"\"\n";
+	print $OUT ($ini_new{$old}?'':'#'),$var," = $ini_new{$old}\n";
+	print $OUT (($low_new{$old} ? '' : '#'),$var,"min = $low_new{$old}\n");
+	print $OUT (($upp_new{$old} ? '' : '#'),$var,"max = $upp_new{$old}\n");
+	print $OUT $var," constraints ";
+	print $OUT (($low_new{$old}=~/^\s*$/ and $upp_new{$old}=~/^\s*$/) ? "off\n" :	"on\n");
+}
+
+exit 0;

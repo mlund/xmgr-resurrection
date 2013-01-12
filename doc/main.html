@@ -1,0 +1,146 @@
+<HTML>
+
+<HEAD>
+<TITLE>Xmgr: main panel</TITLE>
+</HEAD>
+
+<BODY>
+
+   <h2> <a NAME="mainpanel">Main panel</a> </h2>
+<p>
+There are 5 main areas in the display, the menu bar at the top, the 
+locator bar just below, the toolbar along the left-hand side of the display,
+the status bar at the bottom, and the drawing area where graphics are drawn.
+The following items describe the locator bar, the toolbar, and the status 
+bar.
+<HR>
+<ul>
+<li><a NAME="toolbar"><b>Tool bar</b></a>
+<p>The toolbar runs along the left-hand side of the display, and provides 
+functions to manipulate the axes scaling of active graphs, by scrolling 
+and mouse powered zooms.
+<p>
+          <ul>
+	  <li><a NAME="draw">Draw</a>
+<p>
+Click on <b>Draw</b> to freshen up the drawing area with the 
+current set of graphs, parameters and active sets. Most operations 
+perform an automatic redraw, this may be undesirable in the cases where
+the sets are large or there are several active graphs. By playing with
+the options in <b>Graph/Draw options</b> and using the <b>Draw</b> button, 
+much of the tedium associated with slow redraw rates can be alleviated.
+If you feel something should have happened after performing an operation,
+press this button to force a draw operation to freshen up the display. If 
+the X display being used does not do backing store, then <b>Draw</b> will 
+give a clean picture if the graphics get damaged when overlaid by popups 
+or other applications.
+<p>
+	  <li><a NAME="zoom">Zoom</a>
+<p>
+    Zoom
+<p>
+	  <li><a NAME="as">Autoscale</a>
+<p>
+Click on Autoscale to generate a default scaling for both the X and Y
+axes in the current graph.
+<p>
+	  <li><a NAME="expand">Expand</a>
+<p>
+Click on Expand to incrementally zoom in on the data.
+<p>
+	  <li><a NAME="shrink">Shrink</a>
+<p>
+Click on Shrink to incrementally zoom out from the data.
+<p>
+	  <li><a NAME="left">Page left</a>
+<p>
+Click on Left to incrementally shift the axes to the left.
+<p>
+	  <li><a NAME="right">Page right</a>
+<p>
+Click on Right to incrementally shift the axes to the right.
+<p>
+	  <li><a NAME="down">Page down</a>
+<p>
+Click on Down to incrementally shift the axes down.
+<p>
+	  <li><a NAME="up">Page up</a>
+<p>
+Click on Up to incrementally shift the axes up.
+<p>
+	  <li><a NAME="autoticks">Auto ticks</a>
+<p>
+Using any of the buttons that affect the scale of the axes, it is likely that
+unpleasing tickmarks will result. By clicking on AutoT, the tick spacing will
+be set using the current autoscaling parameters (set in Graph/Autoscale).
+<p>
+	  <li><a NAME="autoon">Auto scale on a picked set</a>
+<p>
+Click on AutoO then click near a point in the set of interest to autoscale
+the current graph with respect to the selected set's bounding box.
+<p>
+	  <li><a NAME="zoomx">Zoom X</a>
+<p>
+Select a Zoom line used to scale the X axis of the current graph.
+<p>
+	  <li><a NAME="zoomy">Zoom Y</a>
+<p>
+Select a Zoom line used to scale the Y axis of the current graph.
+<p>
+	  <li><a NAME="autox">Auto X</a>
+<p>
+Autoscale the X axis only.
+<p>
+	  <li><a NAME="autoy">Auto Y</a>
+<p>
+Autoscale the Y axis only.
+<p>
+	  <li><a NAME="pz">Push 'n zoom</a>
+<p>
+Save the current graph's axes scales and tickmark settings, and prepare
+for a zoom. This function can be used to zoom in on an area of interest,
+then restore the previous graph scale.
+<p>
+	  <li><a NAME="pu">Push</a>
+<p>
+Save the current graph's axes scales and tickmark settings for later
+retrieval. Use Pop to restore.
+<p>
+	  <li><a NAME="po">Pop</a>
+<p>
+Restore the current graph's axes scale saved from the most recent use
+of Push.
+<p>
+	  <li><a NAME="cy">Cycle</a>
+<p>
+Cycle allows the contents of the current graph's world stack to be displayed
+in stack order. The contents of the stack are unaffected.
+<p>
+	  <li><a NAME="sd">Stack depth</a>
+<p>
+Report on the current depth of the stack. Each graph has its own stack.
+<p>
+	  <li><a NAME="cw">Current world</a>
+<p>
+When cycling through the current graph's world stack, display the position
+in the stack.
+<p>
+	  <li><a NAME="exit">Exit</a>
+<p>
+Exit xmgr.
+          </ul>
+<p>
+<HR>
+	<li><a NAME="locbar">Locator bar</a>
+The Locator bar, found directly under the main menu bar, displays the current graph
+and the position of the pointer. To set properties of the locator display
+text, see <b>View/Locator props</b>.
+<HR>
+	<li><a NAME="statbar">Status bar</a>
+The Status bar, at the bottom of the display, reports on items of interest
+and provides a line of help when the mouse is used in any operation.
+    </ul>
+    
+</BODY>
+
+</HTML>

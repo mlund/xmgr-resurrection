@@ -1,0 +1,9 @@
+
+Contents of auxiliary:
+
+jul2greg.c - convert Julian date to Gregorian
+greg2jul.c - convert Gregorian date to Julian
+magic.xmgr - section for magic(5) so file(1) would recognize xmgr project files;
+               add it to /etc/magic: cat magic.xmgr >> /etc/magic
+fdf2fit    - script to convert Origin-4 .fdf fit parameter files to ACE/gr's
+

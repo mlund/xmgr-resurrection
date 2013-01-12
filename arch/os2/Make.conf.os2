@@ -1,0 +1,83 @@
+# No make rules by default
+.SUFFIXES:
+
+# Extension of object files
+O=.o
+
+# Extension of executables
+EXE=.exe
+
+# Extension of batch files
+BAT=.cmd
+
+# Bourn shell
+SHELL=sh
+
+# Path prefix for installation links
+PREFIX=$(X11ROOT)/xfree86
+
+# List of subdirectories
+SUBDIRS=cephes src doc examples auxiliary
+
+# Name of executable
+ACEGR=xmgr.exe
+
+# Location of the ACE/gr home
+GR_HOME=$(X11ROOT)/xfree86/lib/xmgr
+
+# Relocatable that contains alloca()
+ALLOCA=
+
+# Library containing XDR functions
+XDR_LIB=
+
+# Library containing dll-related functions
+DL_LIB=
+
+# Location of yacc (or its substitution)
+YACC=yacc
+
+# C compiler
+CC=gcc
+
+# F77 compiler
+FC=g77
+
+# ranlib
+RANLIB=touch
+
+# ar
+AR=ar
+
+# rm
+RM=rm -f
+
+# soft link
+LN_S=cp
+
+# BSD install
+INSTALL=
+INSTALL_PROGRAM=
+INSTALL_DATA=
+MKINSTALLDIRS=
+
+# C flags
+CFLAGS0= -O2 -g -Wall -I$(X11ROOT)/xfree86/include -D__ST_MT_ERRNO -Zmt -Wall
+
+# LDFLAGS
+LDFLAGS=-s -Zmt -Zcrtdll -Zsysv-signals -Zbin-files
+
+# Libraries (all but GUI)
+NOGUI_LIBS=
+
+# GUI libraries
+GUI_LIBS= -L$(X11ROOT)/xfree86/lib -lhlpclient -lXbae -lXm -lXpm -lSM -lICE -lXt -lXext -lX11 -lsocket
+
+# Commamd used to print
+PRINT_CMD='lp'
+
+# HTML help viewer command
+HELPVIEWER=-DGR_HELPVIEWER=\"xmhelp\"
+
+# netCDF libraries
+NETCDF_LIBS=

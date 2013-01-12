@@ -1,0 +1,365 @@
+<HTML>
+<HEAD>
+ <TITLE>ACE/gr FAQ</TITLE>
+</HEAD>
+
+<BODY>
+
+	
+	
+
+
+
+<CENTER><H1>ACE/gr FAQ</H1></CENTER>
+
+
+
+
+
+
+<CENTER><H2>Contents</H2></CENTER>
+
+<TABLE BORDER="3" WIDTH="95%">
+
+
+
+<TR><TH WIDTH="10%"><A HREF="#0">0.</A></TH><TH ALIGN=LEFT>General information</TH>
+
+<TR><TH><A HREF="#0.0">0.0</A></TH>
+    <TD>Where can I get the most recent version of xmgr?</TD>
+
+<TR><TH><A HREF="#0.1">0.1</A></TH>
+    <TD>How do I subscribe to/unsibscribe from the xmgr mailing list?</TD>
+
+<TR><TH><A HREF="#0.2">0.2</A></TH>
+    <TD>I've found a bug in xmgr, how do I report it?</TD>
+
+
+<TR><TH WIDTH="10%"><A HREF="#1">1.</A></TH><TH ALIGN=LEFT>Compilation problems</TH>
+
+<TR><TH><A HREF="#1.0">1.0</A></TH>
+    <TD>When I try to compile xmgr I get message like:<BR>
+<I>Makefile: Must be a separator on line 55</I></TD>
+
+<TR><TH><A HREF="#1.1">1.1</A></TH>
+    <TD>While compiling xmgr I get error messages about missing 
+include files.
+</TD>
+
+
+<TR><TH WIDTH="10%"><A HREF="#2">2.</A></TH><TH ALIGN=LEFT>Usage troubles & tricks</TH>
+
+<TR><TH><A HREF="#2.0">2.0</A></TH>
+    <TD>I run xmgr and get the following error messages:
+<P>
+Warning: translation table syntax error: Unknown keysym name: osfPageLeft<BR>
+Warning: ... found while parsing '&lt;Key&gt;osfPageLeft:SWLeftPage()'<BR>
+[...]
+</TD>
+
+<TR><TH><A HREF="#2.1">2.1</A></TH>
+    <TD>How do I set the background color of a plot,
+outside of the graph frame?</TD>
+
+<TR><TH><A HREF="#2.2">2.2</A></TH>
+    <TD>I'd like plot data against an axis on the right (top) and another
+data set in a different scale against an axis on the left (bottom)?</TD>
+
+<TR><TH><A HREF="#2.3">2.3</A></TH>
+    <TD>Can I use different fonts, symbols, font size, or
+sub/superscripts in Xmgr?</TD>
+
+<TR><TH><A HREF="#2.4">2.4</A></TH>
+    <TD>How can I input yy-mm-dd hh:mm:ss data?</TD>
+
+<TR><TH><A HREF="#2.5">2.5</A></TH>
+    <TD>Where is grbatch? How does batch printing work?</TD>
+
+<TR><TH><A HREF="#2.6">2.6</A></TH>
+    <TD>I can't anymore print to a PostScript printer.
+Prior to xmgr-4, this worked fine.</TD>
+
+<TR><TH><A HREF="#2.7">2.7</A></TH>
+    <TD>I get all kinds of weirdness with xmgr-4 on Linux.
+I'm using a precompiled binary.</TD>
+
+<TR><TH><A HREF="#2.8">2.8</A></TH>
+    <TD>When I load to the xmgr-4 a project saved with an
+earlier version of xmgr, symbols of all (some)
+sets are drawn in the black color.</TD>
+
+<TR><TH><A HREF="#2.9">2.9</A></TH>
+    <TD>How do I do polar plots with XMGR?</TD>
+
+<TR><TH><A HREF="#2.10">2.10</A></TH>
+    <TD>When I use exponential (or any other non-linear)
+regression, the resulting parameters are wrong,
+though the fitting curve itself is OK.</TD>
+
+<TR><TH><A HREF="#2.11">2.11</A></TH>
+    <TD>With xmgr-4.1.0, I can't open anymore project files
+saved with a prior version of the program</TD>
+
+<TR><TH><A HREF="#2.12">2.12</A></TH>
+    <TD>Xmgr can not find help files</TD>
+
+<TR><TH><A HREF="#2.13">2.13</A></TH>
+    <TD>I run xmgr on a Solaris 2.5.1 box, and when
+I try to open a file, I can't read the names of
+the files (files section of the dialog) because 
+xmgr writes ALL the path of each file in the list
+and there is not horizontal scroll. Can you help
+me?</TD>
+
+</TABLE>
+
+<CENTER><H2>Answers</H2></CENTER>
+
+<TABLE BORDER="3" WIDTH="95%">
+
+
+<TR><TH COLSPAN=3 ALIGN=LEFT><A NAME="0">0. General information</A></TH>
+
+<TR><TH WIDTH="10%" ROWSPAN=2 VALIGN=TOP><A NAME="0.0">0.0</A></TH>
+    <TH VALIGN=TOP WIDTH="5%">Q:</TH><TD>Where can I get the most recent version of xmgr?</TD>
+<TR><TH VALIGN=TOP>A:</TH><TD>The sources of the most recent version of xmgr are 
+located at the URL:
+<P>
+ftp://plasma-gate.weizmann.ac.il/pub/xmgr4/src/xmgr-latest.tar.gz
+<P>
+You can fetch it from a mirror site as well. The list of mirror sites can 
+be found at
+<P>
+ftp://plasma-gate.weizmann.ac.il/pub/xmgr4/MIRRORS
+</TD>
+
+<TR><TH WIDTH="10%" ROWSPAN=2 VALIGN=TOP><A NAME="0.1">0.1</A></TH>
+    <TH VALIGN=TOP WIDTH="5%">Q:</TH><TD>How do I subscribe to/unsibscribe from the xmgr mailing list?</TD>
+<TR><TH VALIGN=TOP>A:</TH><TD>Xmgr has three mailing lists: acegr, acegr-announce and acegr-dev. The first one, unmoderated, serves for general
+discussions of xmgr. You can subscribe to it by sending an email to
+acegr-request@plasma-gate.weizmann.ac.il with no subject line and the only word 'Subscribe' (without
+quotes, of course) in the body of the message. You may instead wish to subscribe to the digest of the list by
+sending same email to acegr-digest-request@plasma-gate.weizmann.ac.il. The digest is sent once in a
+three days or when its size exceeds 32K. 
+<P>
+The moderated acegr-announce list is for new version or serious bug fix announcements only (which are
+automatically relayed to the first mailing list, too). The address to send subscription requests is
+acegr-announce-request@plasma-gate.weizmann.ac.il. 
+<P>
+The acegr-dev mailing list is for developers. The -request address is acegr-dev-request@plasma-gate.weizmann.ac.il.
+<P>
+To unsubscribe from a list, same instructions apply, with "Subscribe" being replaced by "Unsubscribe". </TD>
+
+<TR><TH WIDTH="10%" ROWSPAN=2 VALIGN=TOP><A NAME="0.2">0.2</A></TH>
+    <TH VALIGN=TOP WIDTH="5%">Q:</TH><TD>I've found a bug in xmgr, how do I report it?</TD>
+<TR><TH VALIGN=TOP>A:</TH><TD>Please use the on-line report facility found under
+"Help/Comments" menu.</TD>
+
+
+<TR><TH COLSPAN=3 ALIGN=LEFT><A NAME="1">1. Compilation problems</A></TH>
+
+<TR><TH WIDTH="10%" ROWSPAN=2 VALIGN=TOP><A NAME="1.0">1.0</A></TH>
+    <TH VALIGN=TOP WIDTH="5%">Q:</TH><TD>When I try to compile xmgr I get message like:<BR>
+<I>Makefile: Must be a separator on line 55</I></TD>
+<TR><TH VALIGN=TOP>A:</TH><TD>This message means you have to use a more descent `make' utility,
+like the GNU make, available on many systems as `gmake'. Starting with version 4.1.1, xmgr should compile with any vendor-supplied
+'make' utility.</TD>
+
+<TR><TH WIDTH="10%" ROWSPAN=2 VALIGN=TOP><A NAME="1.1">1.1</A></TH>
+    <TH VALIGN=TOP WIDTH="5%">Q:</TH><TD>While compiling xmgr I get error messages about missing 
+include files.
+</TD>
+<TR><TH VALIGN=TOP>A:</TH><TD>The answer to this question varies:
+<P>
+     a. The include files are there but in a non-standard place. Check with your
+        local sys admin.<BR>
+     b. If the missing files are like Xm/*.h, this means you don't have Motif
+        development kit installed (or again, you have to tell explicitly  to
+        compiler where to look for the header files). This mostly concerns
+        Linux.<BR>
+     c. If compiler complains about missing Xbae/Matrix.h, you need either to 
+        install the Xbae widget library version 4.5 (available from 
+        ftp://ftp.x.org/contrib/widgets/motif/) or disable the use of the widget
+        in Make.conf file. In the later case, however, you won't get the 
+        semi-spreadsheet set editor.</TD>
+
+
+<TR><TH COLSPAN=3 ALIGN=LEFT><A NAME="2">2. Usage troubles & tricks</A></TH>
+
+<TR><TH WIDTH="10%" ROWSPAN=2 VALIGN=TOP><A NAME="2.0">2.0</A></TH>
+    <TH VALIGN=TOP WIDTH="5%">Q:</TH><TD>I run xmgr and get the following error messages:
+<P>
+Warning: translation table syntax error: Unknown keysym name: osfPageLeft<BR>
+Warning: ... found while parsing '&lt;Key&gt;osfPageLeft:SWLeftPage()'<BR>
+[...]
+</TD>
+<TR><TH VALIGN=TOP>A:</TH><TD>Get the XKeySymDB file from the X11R6 distribution.  Put it somewhere
+where you can get at it and 
+<P>
+  setenv XKEYSYMDB /place/where/you/put/XKeysymDB
+<P>
+This will satisfy xmgr.</TD>
+
+<TR><TH WIDTH="10%" ROWSPAN=2 VALIGN=TOP><A NAME="2.1">2.1</A></TH>
+    <TH VALIGN=TOP WIDTH="5%">Q:</TH><TD>How do I set the background color of a plot,
+outside of the graph frame?</TD>
+<TR><TH VALIGN=TOP>A:</TH><TD>Use graph 0 as the background:<BR>
+ 1.  set the viewport for graph 0 such that 0 &lt; x &lt; 1 and 0 &lt; y &lt; 1<BR>
+ 2.  fill the frame of graph 0 with whatever color you want<BR>
+ 3.  graphs 1 and up will plot in front of graph 0, so the desired
+         effect is achieved.
+<P>
+You can also add
+<P>
+<CODE>
+  background color NUMBER
+</CODE>
+<P>
+to your <I>~/.xmgrrc</I>, or use
+<CODE>
+  xmgr -pexec "background color NUMBER"
+</CODE>
+<P>
+This changes the background of the entire canvas, not only the 
+background of graphs.
+<P>
+From version 4.1.0 and up, this can be done using the "Options/Page" popup as well.</TD>
+
+<TR><TH WIDTH="10%" ROWSPAN=2 VALIGN=TOP><A NAME="2.2">2.2</A></TH>
+    <TH VALIGN=TOP WIDTH="5%">Q:</TH><TD>I'd like plot data against an axis on the right (top) and another
+data set in a different scale against an axis on the left (bottom)?</TD>
+<TR><TH VALIGN=TOP>A:</TH><TD>Use overlaying graphs. With this you can achieve 
+the desired effect, but you'll need to pay close
+attention to which graph is the 'current' graph.
+This is also how to plot data sets in different
+scales against an axis on the right an an axis on
+the left.</TD>
+
+<TR><TH WIDTH="10%" ROWSPAN=2 VALIGN=TOP><A NAME="2.3">2.3</A></TH>
+    <TH VALIGN=TOP WIDTH="5%">Q:</TH><TD>Can I use different fonts, symbols, font size, or
+sub/superscripts in Xmgr?</TD>
+<TR><TH VALIGN=TOP>A:</TH><TD>Yes, Xmgr has all these features. Wherever you can
+type a text in xmgr, e.g. Axis labels, graph title,
+text from Strings&Things, etc., you can use all
+those features within the same text.<BR>
+Please refer to the "Help/User Guide", section
+"Fonts, subscripts, superscripts". There are some
+limitations, though, which are also discussed
+there.</TD>
+
+<TR><TH WIDTH="10%" ROWSPAN=2 VALIGN=TOP><A NAME="2.4">2.4</A></TH>
+    <TH VALIGN=TOP WIDTH="5%">Q:</TH><TD>How can I input yy-mm-dd hh:mm:ss data?</TD>
+<TR><TH VALIGN=TOP>A:</TH><TD>Before reading the file, toss in a:
+<P>
+@format YYMMDD<BR>
+# then<BR>
+    YY-MM-DD y<BR>
+<P>
+@format YYMMDDHMS<BR>
+# then<BR>
+    YY-MM-DD HH:MM:SS.S y<BR>
+<P>
+@format MMDDYY<BR>
+# then<BR>
+    MM-DD-YY y<BR>
+<P>
+@format MMDDYYHMS<BR>
+# then<BR>
+    MM-DD-YY HH:MM:SS.S y<BR></TD>
+
+<TR><TH WIDTH="10%" ROWSPAN=2 VALIGN=TOP><A NAME="2.5">2.5</A></TH>
+    <TH VALIGN=TOP WIDTH="5%">Q:</TH><TD>Where is grbatch? How does batch printing work?</TD>
+<TR><TH VALIGN=TOP>A:</TH><TD>Grbatch is simply a copy of xmgr named grbatch or a symbolic link from 
+xmgr to grbatch. In the case of the symbolic link:
+<P>
+ ln -s xmgr grbatch
+<P>
+done wherever the xmgr binary is located will do the trick (rehash
+or logout and login to make sure that grbatch shows up in your path).
+Executing grbatch with no command line parameters or data files will produce 
+a hardcopy on the default printer.</TD>
+
+<TR><TH WIDTH="10%" ROWSPAN=2 VALIGN=TOP><A NAME="2.6">2.6</A></TH>
+    <TH VALIGN=TOP WIDTH="5%">Q:</TH><TD>I can't anymore print to a PostScript printer.
+Prior to xmgr-4, this worked fine.</TD>
+<TR><TH VALIGN=TOP>A:</TH><TD>The changes in the PostScript driver for fills
+using patterns, introduced in 4.00, require use of
+a Level 2 compliant PostScript printer. You can
+disable the PS Level 2 features in the printer
+setup as well as  with the command-line switch 
+`-nops2'.</TD>
+
+<TR><TH WIDTH="10%" ROWSPAN=2 VALIGN=TOP><A NAME="2.7">2.7</A></TH>
+    <TH VALIGN=TOP WIDTH="5%">Q:</TH><TD>I get all kinds of weirdness with xmgr-4 on Linux.
+I'm using a precompiled binary.</TD>
+<TR><TH VALIGN=TOP>A:</TH><TD>The problem is in the libc incompatibility. 
+The README.Linux file, found in the
+same directory you downloaded the binary from, lists the proper library version.
+You'll have to upgrade your system. Starting with version 4.1.1, the static binary is
+not provided anymore, since it is impossible to include support for dynamic modules in a
+static executable.</TD>
+
+<TR><TH WIDTH="10%" ROWSPAN=2 VALIGN=TOP><A NAME="2.8">2.8</A></TH>
+    <TH VALIGN=TOP WIDTH="5%">Q:</TH><TD>When I load to the xmgr-4 a project saved with an
+earlier version of xmgr, symbols of all (some)
+sets are drawn in the black color.</TD>
+<TR><TH VALIGN=TOP>A:</TH><TD>The xmgr-4 fixed the relict symbol-color bug. Previously (since xmgr-3)
+all symbols by default were asigned the black color, but drawn using the line
+color. The fix thus would break any project saved with a post-2 version of
+xmgr, unless  symbol colors were explicitly defined. To overcome this, the new
+`-symcolorbug' flag  should be used to load such a project.  Once saved, it can
+be open in a usual way.  Projects saved with a 2.* version of x[m,v]gr (which
+didn't have the option to change the symbol color independently) will be
+converted automatically.</TD>
+
+<TR><TH WIDTH="10%" ROWSPAN=2 VALIGN=TOP><A NAME="2.9">2.9</A></TH>
+    <TH VALIGN=TOP WIDTH="5%">Q:</TH><TD>How do I do polar plots with XMGR?</TD>
+<TR><TH VALIGN=TOP>A:</TH><TD>The support for polar plots is very limited as of
+now (4.1.0), though the situation may change soon.
+The polar coordinates can be selected from the
+"Data/Graph ops/Type".</TD>
+
+<TR><TH WIDTH="10%" ROWSPAN=2 VALIGN=TOP><A NAME="2.10">2.10</A></TH>
+    <TH VALIGN=TOP WIDTH="5%">Q:</TH><TD>When I use exponential (or any other non-linear)
+regression, the resulting parameters are wrong,
+though the fitting curve itself is OK.</TD>
+<TR><TH VALIGN=TOP>A:</TH><TD>For linear fits (y=ax+b) a straightforward least squares procedure is
+used. For exponential and power fits, the function to fit is linearized,
+it is important to note that the statistics generated refer to the
+parameters of the <I>linearized</I> function and
+not the original one.</TD>
+
+<TR><TH WIDTH="10%" ROWSPAN=2 VALIGN=TOP><A NAME="2.11">2.11</A></TH>
+    <TH VALIGN=TOP WIDTH="5%">Q:</TH><TD>With xmgr-4.1.0, I can't open anymore project files
+saved with a prior version of the program</TD>
+<TR><TH VALIGN=TOP>A:</TH><TD>In xmgr-4.1.0, support for the binary file format
+(the former default one) was dropped. You must use
+the `grconvert' utility supplied with the xmgr 
+distribution in order to convert the files.</TD>
+
+<TR><TH WIDTH="10%" ROWSPAN=2 VALIGN=TOP><A NAME="2.12">2.12</A></TH>
+    <TH VALIGN=TOP WIDTH="5%">Q:</TH><TD>Xmgr can not find help files</TD>
+<TR><TH VALIGN=TOP>A:</TH><TD>Set the <B>GR_HOME</B> environment variable to your xmgr
+directory, i.e. if your documentation is in 
+/user/murryn/xmgr/doc, do:
+<P>
+<CODE>export GR_HOME="/user/murryn/xmgr"</CODE><BR>
+in bash or<BR>
+<CODE>setenv GR_HOME "/user/murryn/xmgr"</CODE><BR>
+in csh.
+</TD>
+
+<TR><TH WIDTH="10%" ROWSPAN=2 VALIGN=TOP><A NAME="2.13">2.13</A></TH>
+    <TH VALIGN=TOP WIDTH="5%">Q:</TH><TD>I run xmgr on a Solaris 2.5.1 box, and when
+I try to open a file, I can't read the names of
+the files (files section of the dialog) because 
+xmgr writes ALL the path of each file in the list
+and there is not horizontal scroll. Can you help
+me?</TD>
+<TR><TH VALIGN=TOP>A:</TH><TD>This is a known bug of Motif implementation on
+Solaris 2.5.1. Ask your vendor for patch.</TD>
+
+</TABLE>        
+
+</BODY>
+</HTML>

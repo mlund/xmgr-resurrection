@@ -1,0 +1,3 @@
+
+# GUI libraries
+GUI_LIBS=,$(VMSDIR)motif1_1.opt/opt

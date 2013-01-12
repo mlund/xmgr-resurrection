@@ -1,0 +1,162 @@
+<!DOCTYPE HTML PUBLIC "-//AdvaSoft//DTD HTML 3.2 extended 961018//EN">
+<HTML>
+<HEAD>
+ <TITLE>ACEgr_np library</TITLE>
+</HEAD>
+
+<BODY>
+
+
+<H1>ACEgr_np library</H1>
+
+<P>
+The library <CODE>libacegr_np.a</CODE> that comes with xmgr provides five
+functions:
+</P>
+
+<PRE>
+    #include &lt;acegr_np.h&gt;
+
+    int ACEgrOpen (const int buffsize)
+    int ACEgrPrintf (const char* fmt, ...)
+    int ACEgrCommand (const char* cmd)
+    int ACEgrClose (void)
+    int ACEgrFlush (void)
+</PRE>
+
+<P>
+<CODE>ACEgrOpen</CODE> creates the global write buffer, launches xmgr, and
+establishes the <A HREF="npipe.html">pipe</A>. It returns <CODE>0</CODE> on success and <CODE>-1</CODE>
+on failure.
+</P>
+
+<P>
+After having invoked <CODE>ACEgrOpen</CODE>, we can send <A
+HREF="commands.html">commands</A> to xmgr using <CODE>ACEgrPrintf</CODE>. The
+usage of <CODE>ACEgrPrintf</CODE> is the same as for <CODE>printf</CODE>,
+except that <CODE>ACEgrPrintf</CODE> automatically appends a line feed
+<CODE>"\n"</CODE>. <CODE>ACEgrPrintf</CODE> returns the number of characters
+successfully appended to the write buffer.
+</P>
+
+<P>
+Alternatively, one can use <CODE>ACEgrCommand</CODE> to send commands to xmgr.
+<CODE>ACEgrCommand</CODE> was introduced to facilitate writing a 
+<A HREF="#fwrapper">Fortran wrapper</A> for the library. For C programs it is
+probably more convenient to use <CODE>ACEgrPrintf</CODE> instead. The argument
+for <CODE>ACEgrCommand</CODE> is a constant string, such as
+<CODE>"autoscale"</CODE>. A newline <CODE>"\n"</CODE> is appended
+automatically. <CODE>ACEgrCommand</CODE> returns <CODE>0</CODE> on success and
+<CODE>-1</CODE> on failure.
+</P>
+
+<P>
+<CODE>ACEgrClose</CODE> should be called before exiting an application to flush
+and free the output buffer and to cleanly terminate xmgr.
+<CODE>ACEgrClose</CODE> returns <CODE>0</CODE> on success and <CODE>-1</CODE>
+on failure.
+</P>
+
+<P>
+<CODE>ACEgrFlush</CODE> forces flushing the output buffer. This involves
+waiting for a time window when xmgr listens to the pipe. That waiting period
+can be up to two seconds. Therefore, you should use <CODE>ACEgrFlush</CODE>
+only when there is really a need for it. <CODE>ACEgrFlush</CODE> returns
+<CODE>0</CODE> on success and <CODE>EOF</CODE> on failure.
+</P>
+
+<P>
+If you write something to xmgr using <CODE>ACEgrPrintf</CODE> and the buffer is
+more than half-filled, <CODE>ACEgrPrintf</CODE> forces an
+<CODE>ACEgrFlush</CODE>. Therefore, the buffer should have a size that is
+larger than twice the maximum amount of data you want to write to xmgr within 2
+seconds. There is no harm if the buffer size is smaller, but this would force
+waiting for xmgr and slow down the
+application.                                              
+</P>
+
+<P>
+To use the library, you should include the corresponding header file:
+</P>
+
+<PRE>
+    #include &lt;acegr_np.h&gt;
+</PRE>
+
+<P>
+Your C compiler needs to be called with the additional argument
+</P>
+
+<PRE>
+    -I/usr/local/xmgr/include
+</PRE>
+
+<P>
+and your linker needs
+</P>
+
+<PRE>
+    -L/usr/local/xmgr/lib -lacegr_np
+</PRE>
+
+<P>
+Here is a simple example:
+</P>
+
+<PRE>
+gcc -I/usr/local/xmgr/include myprogram.c -L/usr/local/xmgr/lib -lacegr_np
+</PRE>
+
+<H1>What Commands Should I Send to Xmgr?</H1>
+
+<P>
+That depends on the amount of data your program generates. If your data files
+are small, you can tell xmgr to kill all sets and reread your entire file in
+regular intervals:
+</P>
+
+<PRE>
+    ACEgrPrintf ("read block \"%s\"", fname);
+    for (i = 0; i &lt; ncurves; i++) {
+        ACEgrPrintf ("kill s%d", i);
+        ACEgrPrintf ("s%d color %d", i, i + 1);
+        ACEgrPrintf ("with s%d", i);
+        ACEgrPrintf ("block xy \"%d:%d\"", 1, i + 2);
+    }
+</PRE>
+
+<P>
+However, if your program generates large data files, it is probably better to
+just add the new points to the corresponding sets:
+</P>
+<PRE>
+        ACEgrPrintf ("g0.s0 point %d, %d", x, y1);
+        ACEgrPrintf ("g0.s1 point %d, %d", x, y2);
+</PRE>
+
+<P>
+Here is a <A HREF="test_np.c">C example program</A>.
+</P>
+
+<H1><A NAME="fwrapper">Fortran Wrapper</A></H1>
+
+You can call the acegr_np library functions from Fortran programs, too.
+<BR>
+The corresponding functions are
+<PRE>
+
+    INTEGER ACEgrOpenf (INTEGER buffsize)
+    INTEGER ACEgrCommandf (CHARACTER*(*) cmd)
+    INTEGER ACEgrClosef ()
+    INTEGER ACEgrFlushf ()
+    
+</PRE>
+
+Each function returns 0 on success and -1 on failure.
+
+<P>
+Here is an <A HREF="testf_np.f">F77 example program</A>.
+</P>
+
+</BODY>
+</HTML>

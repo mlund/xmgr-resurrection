@@ -1,0 +1,87 @@
+# No make rules by default
+#.SUFFIXES:
+
+# Extension of object files
+O=.obj
+
+# Extension of executables
+EXE=.exe
+
+# Extension of batch files
+BAT=.com
+
+# Bourn shell
+# SHELL=/bin/sh
+
+# Path prefix for installation links
+# PREFIX=/usr/local
+
+# List of subdirectories
+SUBDIRS=cephes src acegr_np grconvert doc examples auxiliary
+
+# Name of executable
+ACEGR=xmgr$(EXE)
+
+# Location of the ACE/gr home
+GR_HOME=
+
+# Library containing XDR functions
+XDR_LIB=
+
+# acegr_np tests
+ACEGRNPTESTS=test_np testf_np
+
+# acegr_np object files
+ACEGRNPOBJS=acegr_np.$(O) acegrf_np.$(O)
+
+# Location of yacc (or its substitution)
+YACC=yacc
+
+# C compiler
+CC=cc
+
+# F77 compiler
+FC=fortran
+
+# Whether underscores should be appended to the F77 function names
+#F_UNDERSCORE=-DNEED_F_UNDERSCORE
+
+# ranlib
+#RANLIB=ranlib
+
+# ar
+#AR=ar
+
+# rm
+RM=delete/log
+
+# soft link
+#LN_S=ln -s
+
+# BSD install
+#INSTALL=/var/usr/local/src/xmgr-971107/install-sh -c
+
+# LDFLAGS
+LDFLAGS=
+
+# Libraries (all but GUI)
+NOGUI_LIBS=-lm 
+
+# Type of GUI interface (NONE or MOTIF)
+# GUI=,MOTIF_GUI=1
+
+# Commamd used to print
+PRINT_CMD=print/name=\042from XMGR\042/delete/queue=decw$printer_format_ps
+
+# Whether libhelp should be used
+LIBHELP=
+
+# Support for editres
+EDITRES=
+
+# HTML help viewer command
+HELPVIEWER=mosaic %s
+
+# netCDF libraries
+#NETCDF_LIBS=
+

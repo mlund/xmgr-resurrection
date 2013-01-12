@@ -1,0 +1,233 @@
+<HTML>
+<HEAD>
+<TITLE>Xmgr: data operations</TITLE>
+</HEAD>
+
+<BODY>
+
+<h2><a NAME="data">Data operations</a></h2>
+
+Access the command line interpreter, 
+describe the status of data sets, graphs and regions, display 
+results of computations and other operations, perform transformations, set
+operations, point operations, region operations, block data management.
+
+	<h3> <a NAME="status">Status</a> </h3>
+<p>
+The <b>Status</b> popup displays useful information about the state of 
+sets, regions, and graphs. In addition to this, several useful operations
+are provided to manipulate sets and graphs. 
+<p>
+At the bottom of the popup are the controls for displaying what
+appears in the top portion of the popup. Directly this above is a panel that
+provides operations on the objects displayed in the scrolled region.
+<p>
+Staring with the bottom panel, from left to right, the selections are:
+<p>
+<dl>
+<dd><b>Close</b>
+<dt> Close the <b>Status</b> popup.
+<dd><b>Update</b>
+<dt> Freshen up the status display.
+<dd><b>Write</b>
+<dt> Write the contents of the status display to the <b>Results</b> popup, from
+there, the information provided by <B>Status</b> can be written to disk.
+<dd><b>Page+</b>
+<dt> Page forward through the status display. There is a limit as to how
+many sets can be displayed in the <b>Status</b> popup at one time. By
+default, the maximum is 30. When the number of sets is less than 30, this
+button is not needed, use the scroll bars to view the status of the sets that
+are not shown in the display.
+<dd><b>Page-</b>
+<dt> Page backward through the status display. There is a limit as to how
+many sets can be displayed in the <b>Status</b> display region at one time. By
+default, the maximum is 30. When the number of sets is less than 30, this
+button is not needed, use the scroll bars to view the status of the sets that
+are not shown in the display.
+<dd><b>Home</b>
+<dt> Go to the first page of the status display.
+<dd><b>End</b>
+<dt> Go to the last page of the status display.
+<dd><b>Adjust</b>
+<dt> Adjust the width of the status window to completely show the longest
+comment.
+<dd><b>Display</b>
+<dt> An option menu used to select the object types to view, sets, graphs,
+or regions. The operations panel directly above will change as the object
+type in this item is changed.
+</dl>
+
+<HR>
+Operations in the <b>Status</b> popup are performed by clicking on the
+operation, then clicking on one or more set numbers shown in the display.
+There is a status line provided that will give a bit of help on what
+actions to take to perform a given operation. Generally, the cursor will
+change to reflect the nature of the operation.
+<p>
+When the selection for <b>Display</b> is <b>Sets</b>, the operations provided
+are:
+<dl>
+<dd><b>Kill</b>
+<dt> Clicking on <b>Kill</b> activates the pointer such that clicking on a 
+set number shown in the display of the <b>Status</b> popup kills the set.
+After a set is <b>Kill</b>'ed, the point remains hot, the <b>Kill</b>
+operation can be performed again, until the <b>Cancel</b> button
+is pressed.
+<dd><b>Soft kill</b>
+<dt> This is the same as <b>Kill</b> except that all parameters are
+preserved.
+<dd><b>Deact</b>
+<dt> Clicking on <b>Deact</b> followed by clicking on a set number in the
+scrolled window will deactivate the set (deactivation merely hides the
+set, the data are not released). The function can be useful when there are
+lots of sets being drawn, and the interest is in a subset of the sets
+being display in the drawing area.
+<dd><b>React</b>
+<dt> Clicking on <b>React</b> followed by clicking on a set number in the
+scrolled window will reactivate the set if it has previously be deactivated.
+<dd><b>Copy</b>
+<dt> Clicking on <b>Copy</b> followed by clicking on a set number in the
+scrolled window will select the set to copy from. Click again on another set
+number to perform the copy. One trick that can be performed here is that 
+this operation can be used to copy sets from one graph to another by 
+changing the current graph. The current graph must be changed by either
+clicking on the graph to receive the focus on the drawing area, or using
+<b>Graph/Graph operations</b>.
+<dd><b>Move</b>
+<dt> Clicking on <b>Move</b> followed by clicking on a set number in the
+scrolled window will select the set to move. Click again on another set
+number to perform the move. One trick that can be performed here is that 
+this operation can be used to move sets from one graph to another by 
+changing the current graph. The current graph must be changed by either
+clicking on the graph to receive the focus on the drawing area, or using
+<b>Graph/Graph operations</b>.
+<dd><b>Auto</b>
+<dt> Clicking on <b>Auto</b> followed by clicking on a set number in the
+scrolled window will select autoscale the graph axes such that the set in
+its entirety is displayed in the drawing area.
+<dd><b>Reverse</b>
+<dt> Clicking on <b>Reverse</b> followed by clicking on a set number in the
+scrolled window will select reverse the order of the points in the set.
+<dd><b>Reverse</b>
+<dt> Clicking on <b>Join</b> followed by clicking on a set number in the
+scrolled window will select the set to join to, Click again on another
+set number to complete the join.
+<dd><b>Pack</b>
+<dt> Clicking on <b>Pack</b> renumbers sets such that there are no gaps in the
+set structure. If the active sets are 0, 3, 5, following the pack operation,
+the sets will be numbered 0, 1, 2.
+<dd><b>Cancel</b>
+<dt> Clicking on <b>Cancel</b> cancels any of the operations above that
+require more than a single set to function (Copy, Move, Join). Also,
+most of the operations stay in effect until <b>Cancel</b> is pressed.
+<dd><b>Auto redraw</b>
+<dt> Controls whether or not xmgr redraws its canvas after each set
+operation in the status window. This takes effect only if the global
+auto redraw option is on (in Options-&gt;Draw options).
+</dl>
+
+<HR>
+<p>
+When the selection for <b>Display</b> is <b>Graphs</b>, the operations provided
+are:
+
+<dl>
+<dd><b>Activate</b>
+<dt> Clicking on <b>Activate</b> then clicking on a graph number activates the 
+graph.
+<dd><b>Copy</b>
+<dt> Clicking on <b>Copy</b> then clicking on a graph number selects the
+graph to copy from. Clicking on another graph selects the graph to copy
+to.
+<dd><b>Move</b>
+<dt> Clicking on <b>Move</b> then clicking on a graph number selects the
+graph to move from. Clicking on another graph selects the graph to move 
+to.
+<dd><b>Swap</b>
+<dt> To swap 2 graphs, click on <b>Swap</b> then click on a graph number 
+to select the first graph, then click again on the second graph to perform
+the swap.
+<dd><b>Hide</b>
+<dt> To hide a graph, click on <b>Hide</b> then click on a graph number.
+<dd><b>Show</b>
+<dt> To undo the effect of <b>Hide</b>, click on <b>Show</b> then click on a 
+graph number.
+<dd><b>Focus</b>
+<dt> To set the graph focus (the graph with the focus is referred to as
+the current graph), click on <b>Focus</b> then click on a graph number.
+<dd><b>Kill</b>
+<dt> To kill a graph, click on <b>Kill</b> then click on a graph number.
+<dd><b>Cancel</b>
+<dt> Cancel operations that require 2 selections and take the pointer
+out of whatever operation was previously selected.
+</dl>
+
+<HR>
+<p>
+When the selection for <b>Display</b> is <b>Regions</b>, no operations are
+provided at the present time.
+
+<p>
+<HR>
+
+	<h3> <a NAME="results">Results</a> </h3>
+<p>
+Display the results of the regression routine and the output of the `Write'
+button in File/ Status in the monitor window.
+<p>
+
+<HR>
+
+	<h3> <a NAME="commands">Command interpreter</a> </h3>
+<p>
+Command driven version of the interface to xmgr. Here, commands are typed at
+the  `Command:' text item and executed when &lt return &gt is entered. The
+command will be  parsed and executed, and if no errors are found, the command
+line is placed in the history list. Items in the history list can be recalled
+by simply clicking on them with the left  mouse button.
+The button actions are 
+<p>
+<dl>
+<dt> Save...
+<dd> Save the command history list to a file
+<dt> Read...
+<dd> Insert commands into the history list from a file
+<dt> Clear
+<dd>Clear the history list
+<dt> Replay
+<dd>Replay the commands in the history list
+<dt> Add
+<dd>Add the command text to the history list at the
+selected position without executing the command 
+<dd>Shortcut: Shift-Return
+<dt> Replace
+<dd>Replace the selected history entry with the command line text without
+executing the text
+<dd>Shortcut: Shift-Ctrl-Return
+<dt> Delete
+<dd>Delete the selected history list entry
+<dd>Shortcut: Shift-BackSpace
+<dt> Up
+<dd>Move an entry up in the history list
+<dd>Shortcut: Shift-Up
+<dt> Down
+<dd>Move an entry down in the history list
+<dd>Shortcut: Shift-Down
+<dt> Close
+<dd>Close the window
+<dt> Help
+<dd>Display help on using the Command window
+</dl>
+<hr>
+
+	<h3> <a NAME="blockdata">Block data</a> </h3>
+<p>
+Create sets from block data. Select the type of set and the columns to use for
+each vector  of the new set. Press <b>Accept</b> to create the set. Note that
+reading block data does not  affect the scaling of the graph so when a set is
+created using this popup, the set may not  appear within the graph's scaling
+limits - use AS (Autoscale) to set the scale of the  graph if needed (or use
+View/Define world).
+
+</BODY>
+</HTML>

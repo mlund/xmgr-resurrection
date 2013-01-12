@@ -1,0 +1,202 @@
+<HTML>
+
+<HEAD>
+<TITLE>Xmgr help</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>Xmgr User Guide</H1>
+
+<HR>
+
+<h2><a NAME="contents">Contents</a></h2>
+
+<ul>
+  <li> <a href="intro.html"><b>Introduction</b></a>
+    <ul>
+	<li>	<a href="intro.html#terminology">Terminology</a>
+	<li>	<a href="intro.html#installation">Installation</a>
+	<li>	<a href="intro.html#comments">Comments and bug reports</a>
+	<li>	<a href="intro.html#copyright">Copyright</a>
+    </ul>
+  <li> 	<a href="usage.html"><b>Using xmgr</b></a>
+    <ul>
+	<li>	<a href="usage.html#execution">Execution</a>
+	<li>	<a href="usage.html#commandline">Command line parameters</a>
+	<li>	<a href="usage.html#defaults">Setting xmgr defaults</a>
+	<li>	<a href="usage.html#xdefaults">Setting xmgr X defaults</a>
+	<li>	<a href="usage.html#environment">Environment variables</a>
+	<li>	<a href="usage.html#batch">Batch printing</a>
+	<li>	<a href="usage.html#pstex">PSTeX format</a>
+	
+    </ul>
+  <li><b>Guide to menus and popups</b>
+    <ul>
+	<li><a href="main.html">Main panel items</a>
+	<li><a href="file.html">File</a>
+        <ul>
+	    <li><a href="file.html#open">Open</a>
+	    <li><a href="file.html#save">Save</a>
+	    <li><a href="file.html#saveas">Save as</a>
+	    <li><a href="file.html#describe">Describe</a>
+	    <li>Read
+	    <ul>
+	        <li><a href="file.html#readsets">Read sets</a>
+	        <li><a href="file.html#readnetcdf">Read netCDF</a>
+	        <li><a href="file.html#readparams">Read parameters</a>
+	        <li><a href="file.html#readblock">Read block data</a>
+	    </ul>
+	    <li>Write
+	    <ul>
+	        <li><a href="file.html#writesets">Write sets</a>
+	        <li><a href="file.html#writeparams">Write parameters</a>
+	    </ul>
+	    <li><a href="file.html#clearall">Clear all</a>
+	    <li><a href="file.html#print">Print</a>
+	    <li><a href="file.html#printersetup">Printer setup</a>
+	    <li><a href="file.html#exit">Exit</a>
+        </ul>
+	<li><a href="data.html">Data</a>
+        <ul>
+	   <li><a href="data.html#status">Status</a>
+	   <li><a href="data.html#results">Results</a>
+	   <li><a href="data.html#commands">Commands</a>
+	   <li><a href="trans.html">Transformations</a>
+                <ul>
+                <li> <a href="trans.html#eval">Evaluate expression</a>
+                <li> <a href="trans.html#load">Load values</a>
+                <li> <a href="trans.html#leval">Load & evaluate</a>
+                <li> <a href="trans.html#histo">Histograms</a>
+                <li> <a href="trans.html#fourier">Fourier transforms</a>
+                <li> <a href="trans.html#running">Running averages</a>
+                <li> <a href="trans.html#regression">Regression</a>
+                <li> <a href="trans.html#nlcurve">Non-linear curve fitting</a>
+                <li> <a href="trans.html#diff">Differences</a>
+                <li> <a href="trans.html#seasdiff">Seasonal differences</a>
+                <li> <a href="trans.html#int">Integration</a>
+                <li> <a href="trans.html#xcorr">Cross/auto-corr</a>
+                <li> <a href="trans.html#interp">Interpolation</a>
+                <li> <a href="trans.html#spline">Splines</a>
+                <li> <a href="trans.html#sample">Sample points</a>
+                <li> <a href="trans.html#prune">Prune data</a>
+                <li> <a href="trans.html#digitalfilter">Digital filter</a>
+                <li> <a href="trans.html#lconv">Linear convolution</a>
+                <li> <a href="trans.html#geom">Geometric transformations</a>
+                <li> <a href="trans.html#featext">Feature extraction</a>
+                </ul>
+
+	   <li><a href="points.html">Point operations</a>
+                <ul>
+                <li> <a href="points.html#find">Find points</a>
+                <li> <a href="points.html#tracker">Tracker</a>
+                <li> <a href="points.html#del">Delete</a>
+                <li> <a href="points.html#add">Add</a>
+                <li> <a href="points.html#move">Move</a>
+                <li> <a href="points.html#movex">Move X only</a>
+                <li> <a href="points.html#movey">Move Y only</a>
+                <li> <a href="points.html#distance">Distance, dx, dy, angle</a>
+                <li> <a href="points.html#goto">Goto</a>
+                <li> <a href="nohelp.html">Digitize</a>
+                </ul>
+	   <li><a href="sets.html">Set operations</a>
+        	<ul>
+        	<li> <a href="sets.html#pickops">Pick ops</a> 
+        	<li> <a href="sets.html#activate">Activate</a> 
+        	<li> <a href="sets.html#deactivate">De-activate</a> 
+        	<li> <a href="sets.html#reactivate">Re-activate</a> 
+        	<li> <a href="sets.html#length">Set length</a> 
+        	<li> <a href="sets.html#settype">Change Set type</a> 
+        	<li> <a href="sets.html#copy">Copy</a> 
+        	<li> <a href="sets.html#move">Move</a> 
+        	<li> <a href="sets.html#drop">Drop points</a> 
+        	<li> <a href="sets.html#join">Join</a> 
+        	<li> <a href="sets.html#split">Split</a> 
+        	<li> <a href="sets.html#kill">Kill</a> 
+        	<li> <a href="sets.html#killall">Kill all</a> 
+        	<li> <a href="sets.html#sort">Sort</a> 
+        	<li> <a href="sets.html#writesets">Write set(s)</a> 
+        	<li> <a href="sets.html#reverse">Reverse order</a> 
+        	<li> <a href="sets.html#coalesce">Coalesce sets</a> 
+        	<li> <a href="sets.html#swap">Swap</a> 
+        	<li> <a href="sets.html#pack">Pack</a> 
+        	</ul>
+	   <li><a href="edcrset.html">Edit/Create sets</a>
+	   <li><a href="regions.html">Region operations</a>
+                <ul>
+                <li> <a href="regions.html#defregion">Define region</a>
+                <li> <a href="regions.html#evalregion">Evaluate in region</a>
+                <li> <a href="regions.html#clearregion">Clear region</a>
+                <li> <a href="regions.html#extractregion">Extract points</a>
+                <li> <a href="regions.html#deleteregion">Delete points</a>
+                <li> <a href="regions.html#arearegion">Area/perimeter</a>
+                </ul>
+	   
+	   <li><a href="graphops.html">Graph operations</a>
+                <ul>
+	        <li><a href="graphops.html#activate">Activate</a>
+	        <li><a href="graphops.html#copy">Copy</a>
+	        <li><a href="graphops.html#swap">Swap</a>
+	        <li><a href="graphops.html#kill">Kill</a>
+	        <li><a href="graphops.html#focus">Focus</a>
+	        <li><a href="graphops.html#show">Show</a>
+	        <li><a href="graphops.html#type">Set graph type</a>
+	        <li><a href="graphops.html#arrange">Arrange</a>
+	        <li><a href="graphops.html#overlay">Overlay</a>
+	        <li><a href="graphops.html#invert">Invert/flip axes</a>
+	        <li><a href="graphops.html#image">Image</a>
+                </ul>
+	   <li><a href="data.html#blockdata">Block data</a>
+	   <li><a href="nohelp.html">Hot links</a>
+        </ul>
+	<li><a href="plot.html">Plot</a>
+            <ul>
+            <li><a href="plot.html#world">World scaling</a>
+            <li><a href="plot.html#view">Viewport</a>
+            <li><a href="plot.html#autoscale">Autoscale</a>
+            <li><a href="plot.html#title">Title/subtitle</a>
+            <li><a href="plot.html#ticks">Ticks/tick labels</a>
+            <li><a href="plot.html#frame">Frame</a>
+            <li><a href="plot.html#symbols">Symbols</a>
+            <li><a href="plot.html#errorbars">Error bars</a>
+            <li><a href="plot.html#legends">Legends</a>
+            <li><a href="plot.html#strings">Strings & Things</a>
+            <li><a href="plot.html#timestamp">Time stamp</a>
+	    
+           </ul>
+	
+	<li><a href="options.html">Options</a>
+           <ul>
+	   <li><a href="page.html">Page</a>
+               <ul>
+               <li><a href="page.html#free">Free</a>
+               <li><a href="page.html#landscape">Landscape</a>
+               <li><a href="page.html#portrait">Portrait</a>
+               <li><a href="page.html#fixed">Fixed</a>
+               <li><a href="page.html#size">Size</a>
+               </ul>
+	   <li><a href="view.html">View</a>
+               <ul>
+               <li><a href="view.html#loc">Locator bar</a>
+               <li><a href="view.html#status">Status bar</a>
+               <li><a href="view.html#tool">Tool bar</a>
+               <li><a href="view.html#setfixed">Set fixed point</a>
+               <li><a href="view.html#clearfixed">Clear fixed point</a>
+               <li><a href="view.html#locprops">Locator props</a>
+               </ul>
+           <li><a href="options.html#drawoptions">Draw options</a>
+           <li><a href="options.html#workdir">Working directory</a>
+           <li><a href="options.html#misc">Misc.</a>
+           </ul>
+	  <li><a href="hotkeys.html">Hot keys</a>
+	  <li><a href="fonts.html">Fonts, subscripts, superscripts</a>
+ 	  <li><a href="dblclick.html">Double clicks</a>
+       </ul>
+  <li><a href="commands.html"><b>Command interpreter reference and 
+	         parameter file format</b></a>
+  <li><a href="dlmodule.html"><b>Dynamic loading of external modules</b></a>
+  <li><a href="acegr_np.html"><b>ACEgr_np library</b></a>
+</ul>
+
+</BODY>
+</HTML>

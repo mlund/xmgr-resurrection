@@ -1,0 +1,205 @@
+<HTML>
+
+<HEAD>
+<TITLE>ACE/gr: Dynamic loading of external modules</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#FF0000" VLINK="#FF0000" ALINK="#FF0000">
+
+<H2>Dynamic loading of user defined modules</H2>
+Since version 4.1.1, ACE/gr can access external functions present in either
+system or third-party shared libraries or modules specially compiled for use 
+with ACE/gr.
+<H3> <A NAME="types">Function types</A></H3>
+One must make sure, however, that the external function is of one of supported
+by ACE/gr types:
+<P>
+<TABLE BORDER="3" BGCOLOR="#DDDDDD">
+  <TR> <TH ALIGN="left">f_of_i</TH>    <TD>a function of 1 <CODE>int</CODE> variable</TD>                                         </TR>
+  <TR> <TH ALIGN="left">f_of_d</TH>    <TD>a function of 1 <CODE>double</CODE> variable</TD> 		                          </TR>
+  <TR> <TH ALIGN="left">f_of_nn</TH>   <TD>a function of 2 <CODE>int</CODE> parameters</TD>  		                          </TR>
+  <TR> <TH ALIGN="left">f_of_nd</TH>   <TD>a function of 1 <CODE>int</CODE> parameter and 1 <CODE>double</CODE> variable</TD>     </TR>
+  <TR> <TH ALIGN="left">f_of_dd</TH>   <TD>a function of 2 <CODE>double</CODE> variables</TD>			                  </TR>
+  <TR> <TH ALIGN="left">f_of_nnd</TH>  <TD>a function of 2 <CODE>int</CODE> parameters and 1 <CODE>double</CODE> variable</TD>    </TR>
+  <TR> <TH ALIGN="left">f_of_ppd</TH>  <TD>a function of 2 <CODE>double</CODE> parameters and 1 <CODE>double</CODE> variable</TD> </TR>
+  <TR> <TH ALIGN="left">f_of_pppd</TH> <TD>a function of 3 <CODE>double</CODE> parameters and 1 <CODE>double</CODE> variable</TD> </TR>
+</TABLE>			       
+<P>
+The return values of functions are assumed to be of the <CODE>double</CODE>
+type.
+<P>
+Note, that there is no difference from the point of view of function prototype
+between parameters and variables; the difference is in the way ACE/gr treats
+them - an attempt to use a vector expression as an parameter argument will result
+in a parse error.
+<P>
+Let us consider few examples.
+
+<H3>Examples</H3>
+
+Caution: the examples provided below (paths and compiler flags) are valid for
+Linux/ELF with gcc. On other operating systems, you may need to refer to
+compiler/linker manuals or ask a guru.
+
+<H4>Example 1</H4>
+
+Suppose I want to use function <CODE>pow(x,y)</CODE> from the Un*x math library
+(libm). Of course, you can use the "<B>^</B>" operator defined in the ACE/gr
+language, but here, for the sake of example, we want to access the function
+directly.
+<BR>
+The command to make it accessible by ACE/gr is <BR>
+<DL>
+<DD> USE "pow" TYPE f_of_dd FROM "/usr/lib/libm.so"
+</DL>
+Try to plot y = pow(x,2) and y = x^2 graphs (using, for example, 
+"Data-&gt;Edit/Create set-&gt;Formula") and compare :)
+
+<H4>Example 2</H4>
+
+Now, let us try to write a function ourselves. We will define function 
+<CODE>my_function</CODE> which simply returns its (second) argument multiplied
+by integer parameter transferred as the first argument.
+<P>
+In a text editor, type in the following C code and save it as "my_func.c":
+<BR>
+<TABLE BGCOLOR="#D8D8BF" WIDTH="100%">
+<TR BGCOLOR="#DDDDDD"><TH>my_func.c</TH></TR>
+<TR><TD>
+<PRE>
+double my_function (int n, double x)
+{
+    double retval;
+    retval = (double) n * x;
+    return (retval);
+}
+</PRE>
+</TD></TR>
+</TABLE>
+OK, now compile it:
+<BR>
+<PRE>
+$gcc -c -fPIC my_func.c
+$gcc -shared my_func.o -o /tmp/my_func.so
+</PRE>
+(You may strip it to save some disk space):
+<BR>
+<PRE>
+$strip /tmp/my_func.so
+</PRE>
+That's all! Ready to make it visible to ACE/gr as "myf" - we are too lazy
+to type the very long string "my_function" many times :)
+<BR>
+<DL>
+<DD> USE "my_function" TYPE f_of_nd FROM "/tmp/my_func.so" ALIAS "myf"
+</DL>
+
+<H4>Example 3</H4>
+A more serious example. There is a special third-party library available on
+your system which includes a very important for you yet very 
+difficult-to-program from the scratch function that you want to use with ACE/gr.
+But, the function prototype is NOT one of any predefined <A HREF="#types">types</A>.
+The solution is to write a simple function wrapper. Here is how:
+<BR>
+Suppose, the name of the library is "special_lib" and the function you are
+interested in is called "special_func" and according to the library manual,
+should be accessed as 
+<CODE>void special_func(double *input, double *output, int parameter)</CODE>.
+The wrapper would look like this:
+<BR>
+<TABLE BGCOLOR="#D8D8BF" WIDTH="100%">
+<TR BGCOLOR="#DDDDDD"><TH>my_wrapper.c</TH></TR>
+<TR><TD>
+<PRE>
+double my_wrapper(int n, double x)
+{
+    extern void special_func(double *x, double *y, int n);
+    double retval;
+    (void) special_func(&amp;x, &amp;retval, n);
+    return (retval);
+}
+</PRE>
+</TD></TR>
+</TABLE>
+Compile it:
+<BR>
+<PRE>
+$gcc -c -fPIC my_wrap.c
+$gcc -shared my_wrap.o -o /tmp/my_wrap.so -lspecial_lib -lblas
+$strip /tmp/my_wrap.so
+</PRE>
+Note that I added <CODE>-lblas</CODE> assuming that the special_lib library 
+uses some functions from the BLAS. Generally, you have to add <i>all</i>
+libraries which your module depends on (and all libraries those libraries
+rely upon etc.), as if you wanted to compile a plain executable.
+<BR>
+Fine, make ACE/gr aware of the new function
+<DL>
+<DD> USE "my_wrapper" TYPE f_of_nd FROM "/tmp/my_wrap.so" ALIAS "special_func"
+</DL>
+so we can use it with its original name.
+
+<H4>Example 4</H4>
+An example of using Fortran modules.
+<BR>
+Here we will try to achieve the same functionality as in Example 2, but with the
+help of F77.
+<BR>
+<TABLE BGCOLOR="#D8D8BF" WIDTH="100%">
+<TR BGCOLOR="#DDDDDD"><TH>myfunc.f</TH></TR>
+<TR><TD>
+<PRE>
+      DOUBLE PRECISION FUNCTION MYFUNC (N, X)
+      IMPLICIT NONE
+      INTEGER N
+      DOUBLE PRECISION X
+C
+      MYFUNC = N * X
+C
+      RETURN
+      END
+</PRE>
+</TD></TR>
+</TABLE>
+<P>
+As opposite to C, there is no way to call such a function from ACE/gr directly -
+the problem is that in Fortran all arguments to a function (or subroutine) are
+passed by reference. So, we need a wrapper:
+<BR>
+<TABLE BGCOLOR="#D8D8BF" WIDTH="100%">
+<TR BGCOLOR="#DDDDDD"><TH>myfunc_wrap.c</TH></TR>
+<TR><TD>
+<PRE>
+double myfunc_wrapper(int n, double x)
+{
+    extern double myfunc_(int *, double *);
+    double retval;
+    retval = myfunc_(&amp;n, &amp;x);
+    return (retval);
+}
+</PRE>
+</TD></TR>
+</TABLE>
+<P>
+Note that most of f77 compilers by default add underscore to the function names
+and  convert all names to the lower case, hence I refer to the Fortran function
+<CODE>MYFUNC</CODE> from my C wrapper as <CODE>myfunc_</CODE>, but in your case
+it can be different!
+<BR>
+Let us compile the whole stuff:
+<BR>
+<PRE>
+$g77 -c -fPIC myfunc.f
+$gcc -c -fPIC myfunc_wrap.c
+$gcc -shared myfunc.o myfunc_wrap.o -o /tmp/myfunc.so -lf2c -lm
+$strip /tmp/myfunc.so
+</PRE>
+<P>
+And finally, inform ACE/gr about this new function:
+<DL>
+<DD> USE "myfunc_wrapper" TYPE f_of_nd FROM "/tmp/myfunc.so" ALIAS "myfunc"
+</DL>
+
+</BODY>
+
+</HTML>

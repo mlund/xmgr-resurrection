@@ -1,0 +1,1604 @@
+# xmgr parameter file
+#
+#
+@page 5
+@page inout 5
+@link page off
+@default linestyle 1
+@default linewidth 1
+@default color 1
+@default char size 1.000000
+@default font 4
+@default font source 0
+@default symbol size 1.000000
+@with string
+@    string on
+@    string loctype view
+@    string 0.399749, 0.917609
+@    string linewidth 1
+@    string color 1
+@    string rot 0
+@    string font 4
+@    string just 0
+@    string char size 1.000000
+@string def "Graph legend"
+@with g0
+@g0 on
+@g0 label off
+@g0 hidden false
+@g0 type xy
+@g0 autoscale type AUTO
+@g0 fixedpoint off
+@g0 fixedpoint type 0
+@g0 fixedpoint xy 0.000000, 0.000000
+@g0 fixedpoint format general general
+@g0 fixedpoint prec 6, 6
+@    world xmin 0
+@    world xmax 10
+@    world ymin 0
+@    world ymax 400
+@    stack world 0, 0, 0, 0 tick 0, 0, 0, 0
+@    view xmin 0.117794
+@    view xmax 0.339599
+@    view ymin 0.176090
+@    view ymax 0.865913
+@    title "Symbols"
+@    title font 4
+@    title size 1.000000
+@    title color 1
+@    title linewidth 1
+@    subtitle ""
+@    subtitle font 4
+@    subtitle size 1.000000
+@    subtitle color 1
+@    subtitle linewidth 1
+@    s0 symbol 2
+@    s0 symbol size 1.000000
+@    s0 symbol fill 0
+@    s0 symbol color 1
+@    s0 symbol linewidth 1
+@    s0 symbol linestyle 1
+@    s0 symbol center false
+@    s0 symbol char 0
+@    s0 skip 0
+@    s0 linestyle 1
+@    s0 linewidth 1
+@    s0 color 1
+@    s0 fill 0
+@    s0 fill with color
+@    s0 fill color 0
+@    s0 fill pattern 0
+@    s0 errorbar type BOTH
+@    s0 errorbar length 1.000000
+@    s0 errorbar linewidth 1
+@    s0 errorbar linestyle 1
+@    s0 errorbar riser on
+@    s0 errorbar riser linewidth 1
+@    s0 errorbar riser linestyle 1
+@    s0 xyz 0.000000, 0.000000
+@    s0 comment "symslines.dat"
+@    s1 symbol 3
+@    s1 symbol size 1.000000
+@    s1 symbol fill 0
+@    s1 symbol color 2
+@    s1 symbol linewidth 1
+@    s1 symbol linestyle 1
+@    s1 symbol center false
+@    s1 symbol char 0
+@    s1 skip 0
+@    s1 linestyle 1
+@    s1 linewidth 1
+@    s1 color 2
+@    s1 fill 0
+@    s1 fill with color
+@    s1 fill color 0
+@    s1 fill pattern 0
+@    s1 errorbar type BOTH
+@    s1 errorbar length 1.000000
+@    s1 errorbar linewidth 1
+@    s1 errorbar linestyle 1
+@    s1 errorbar riser on
+@    s1 errorbar riser linewidth 1
+@    s1 errorbar riser linestyle 1
+@    s1 xyz 0.000000, 0.000000
+@    s1 comment "symslines.dat"
+@    s2 symbol 4
+@    s2 symbol size 1.000000
+@    s2 symbol fill 0
+@    s2 symbol color 3
+@    s2 symbol linewidth 1
+@    s2 symbol linestyle 1
+@    s2 symbol center false
+@    s2 symbol char 0
+@    s2 skip 0
+@    s2 linestyle 1
+@    s2 linewidth 1
+@    s2 color 3
+@    s2 fill 0
+@    s2 fill with color
+@    s2 fill color 0
+@    s2 fill pattern 0
+@    s2 errorbar type BOTH
+@    s2 errorbar length 1.000000
+@    s2 errorbar linewidth 1
+@    s2 errorbar linestyle 1
+@    s2 errorbar riser on
+@    s2 errorbar riser linewidth 1
+@    s2 errorbar riser linestyle 1
+@    s2 xyz 0.000000, 0.000000
+@    s2 comment "symslines.dat"
+@    s3 symbol 5
+@    s3 symbol size 1.000000
+@    s3 symbol fill 0
+@    s3 symbol color 4
+@    s3 symbol linewidth 1
+@    s3 symbol linestyle 1
+@    s3 symbol center false
+@    s3 symbol char 0
+@    s3 skip 0
+@    s3 linestyle 1
+@    s3 linewidth 1
+@    s3 color 4
+@    s3 fill 0
+@    s3 fill with color
+@    s3 fill color 0
+@    s3 fill pattern 0
+@    s3 errorbar type BOTH
+@    s3 errorbar length 1.000000
+@    s3 errorbar linewidth 1
+@    s3 errorbar linestyle 1
+@    s3 errorbar riser on
+@    s3 errorbar riser linewidth 1
+@    s3 errorbar riser linestyle 1
+@    s3 xyz 0.000000, 0.000000
+@    s3 comment "symslines.dat"
+@    s4 symbol 6
+@    s4 symbol size 1.000000
+@    s4 symbol fill 0
+@    s4 symbol color 5
+@    s4 symbol linewidth 1
+@    s4 symbol linestyle 1
+@    s4 symbol center false
+@    s4 symbol char 0
+@    s4 skip 0
+@    s4 linestyle 1
+@    s4 linewidth 1
+@    s4 color 5
+@    s4 fill 0
+@    s4 fill with color
+@    s4 fill color 0
+@    s4 fill pattern 0
+@    s4 errorbar type BOTH
+@    s4 errorbar length 1.000000
+@    s4 errorbar linewidth 1
+@    s4 errorbar linestyle 1
+@    s4 errorbar riser on
+@    s4 errorbar riser linewidth 1
+@    s4 errorbar riser linestyle 1
+@    s4 xyz 0.000000, 0.000000
+@    s4 comment "symslines.dat"
+@    s5 symbol 7
+@    s5 symbol size 1.000000
+@    s5 symbol fill 0
+@    s5 symbol color 6
+@    s5 symbol linewidth 1
+@    s5 symbol linestyle 1
+@    s5 symbol center false
+@    s5 symbol char 0
+@    s5 skip 0
+@    s5 linestyle 1
+@    s5 linewidth 1
+@    s5 color 6
+@    s5 fill 0
+@    s5 fill with color
+@    s5 fill color 0
+@    s5 fill pattern 0
+@    s5 errorbar type BOTH
+@    s5 errorbar length 1.000000
+@    s5 errorbar linewidth 1
+@    s5 errorbar linestyle 1
+@    s5 errorbar riser on
+@    s5 errorbar riser linewidth 1
+@    s5 errorbar riser linestyle 1
+@    s5 xyz 0.000000, 0.000000
+@    s5 comment "symslines.dat"
+@    s6 symbol 8
+@    s6 symbol size 1.000000
+@    s6 symbol fill 0
+@    s6 symbol color 7
+@    s6 symbol linewidth 1
+@    s6 symbol linestyle 1
+@    s6 symbol center false
+@    s6 symbol char 0
+@    s6 skip 0
+@    s6 linestyle 1
+@    s6 linewidth 1
+@    s6 color 7
+@    s6 fill 0
+@    s6 fill with color
+@    s6 fill color 0
+@    s6 fill pattern 0
+@    s6 errorbar type BOTH
+@    s6 errorbar length 1.000000
+@    s6 errorbar linewidth 1
+@    s6 errorbar linestyle 1
+@    s6 errorbar riser on
+@    s6 errorbar riser linewidth 1
+@    s6 errorbar riser linestyle 1
+@    s6 xyz 0.000000, 0.000000
+@    s6 comment "symslines.dat"
+@    s7 symbol 9
+@    s7 symbol size 1.000000
+@    s7 symbol fill 0
+@    s7 symbol color 8
+@    s7 symbol linewidth 1
+@    s7 symbol linestyle 1
+@    s7 symbol center false
+@    s7 symbol char 0
+@    s7 skip 0
+@    s7 linestyle 1
+@    s7 linewidth 1
+@    s7 color 8
+@    s7 fill 0
+@    s7 fill with color
+@    s7 fill color 0
+@    s7 fill pattern 0
+@    s7 errorbar type BOTH
+@    s7 errorbar length 1.000000
+@    s7 errorbar linewidth 1
+@    s7 errorbar linestyle 1
+@    s7 errorbar riser on
+@    s7 errorbar riser linewidth 1
+@    s7 errorbar riser linestyle 1
+@    s7 xyz 0.000000, 0.000000
+@    s7 comment "symslines.dat"
+@    s8 symbol 10
+@    s8 symbol size 1.000000
+@    s8 symbol fill 0
+@    s8 symbol color 9
+@    s8 symbol linewidth 1
+@    s8 symbol linestyle 1
+@    s8 symbol center false
+@    s8 symbol char 0
+@    s8 skip 0
+@    s8 linestyle 1
+@    s8 linewidth 1
+@    s8 color 9
+@    s8 fill 0
+@    s8 fill with color
+@    s8 fill color 0
+@    s8 fill pattern 0
+@    s8 errorbar type BOTH
+@    s8 errorbar length 1.000000
+@    s8 errorbar linewidth 1
+@    s8 errorbar linestyle 1
+@    s8 errorbar riser on
+@    s8 errorbar riser linewidth 1
+@    s8 errorbar riser linestyle 1
+@    s8 xyz 0.000000, 0.000000
+@    s8 comment "symslines.dat"
+@    s9 symbol 11
+@    s9 symbol size 1.000000
+@    s9 symbol fill 0
+@    s9 symbol color 10
+@    s9 symbol linewidth 1
+@    s9 symbol linestyle 1
+@    s9 symbol center false
+@    s9 symbol char 0
+@    s9 skip 0
+@    s9 linestyle 1
+@    s9 linewidth 1
+@    s9 color 10
+@    s9 fill 0
+@    s9 fill with color
+@    s9 fill color 0
+@    s9 fill pattern 0
+@    s9 errorbar type BOTH
+@    s9 errorbar length 1.000000
+@    s9 errorbar linewidth 1
+@    s9 errorbar linestyle 1
+@    s9 errorbar riser on
+@    s9 errorbar riser linewidth 1
+@    s9 errorbar riser linestyle 1
+@    s9 xyz 0.000000, 0.000000
+@    s9 comment "symslines.dat"
+@    s10 symbol 2
+@    s10 symbol size 1.000000
+@    s10 symbol fill 1
+@    s10 symbol color 11
+@    s10 symbol linewidth 1
+@    s10 symbol linestyle 1
+@    s10 symbol center false
+@    s10 symbol char 0
+@    s10 skip 0
+@    s10 linestyle 1
+@    s10 linewidth 1
+@    s10 color 11
+@    s10 fill 0
+@    s10 fill with color
+@    s10 fill color 0
+@    s10 fill pattern 0
+@    s10 errorbar type BOTH
+@    s10 errorbar length 1.000000
+@    s10 errorbar linewidth 1
+@    s10 errorbar linestyle 1
+@    s10 errorbar riser on
+@    s10 errorbar riser linewidth 1
+@    s10 errorbar riser linestyle 1
+@    s10 xyz 0.000000, 0.000000
+@    s10 comment "symslines.dat"
+@    s11 symbol 3
+@    s11 symbol size 1.000000
+@    s11 symbol fill 1
+@    s11 symbol color 12
+@    s11 symbol linewidth 1
+@    s11 symbol linestyle 1
+@    s11 symbol center false
+@    s11 symbol char 0
+@    s11 skip 0
+@    s11 linestyle 1
+@    s11 linewidth 1
+@    s11 color 12
+@    s11 fill 0
+@    s11 fill with color
+@    s11 fill color 0
+@    s11 fill pattern 0
+@    s11 errorbar type BOTH
+@    s11 errorbar length 1.000000
+@    s11 errorbar linewidth 1
+@    s11 errorbar linestyle 1
+@    s11 errorbar riser on
+@    s11 errorbar riser linewidth 1
+@    s11 errorbar riser linestyle 1
+@    s11 xyz 0.000000, 0.000000
+@    s11 comment "symslines.dat"
+@    s12 symbol 4
+@    s12 symbol size 1.000000
+@    s12 symbol fill 1
+@    s12 symbol color 13
+@    s12 symbol linewidth 1
+@    s12 symbol linestyle 1
+@    s12 symbol center false
+@    s12 symbol char 0
+@    s12 skip 0
+@    s12 linestyle 1
+@    s12 linewidth 1
+@    s12 color 13
+@    s12 fill 0
+@    s12 fill with color
+@    s12 fill color 0
+@    s12 fill pattern 0
+@    s12 errorbar type BOTH
+@    s12 errorbar length 1.000000
+@    s12 errorbar linewidth 1
+@    s12 errorbar linestyle 1
+@    s12 errorbar riser on
+@    s12 errorbar riser linewidth 1
+@    s12 errorbar riser linestyle 1
+@    s12 xyz 0.000000, 0.000000
+@    s12 comment "symslines.dat"
+@    s13 symbol 5
+@    s13 symbol size 1.000000
+@    s13 symbol fill 1
+@    s13 symbol color 14
+@    s13 symbol linewidth 1
+@    s13 symbol linestyle 1
+@    s13 symbol center false
+@    s13 symbol char 0
+@    s13 skip 0
+@    s13 linestyle 1
+@    s13 linewidth 1
+@    s13 color 14
+@    s13 fill 0
+@    s13 fill with color
+@    s13 fill color 0
+@    s13 fill pattern 0
+@    s13 errorbar type BOTH
+@    s13 errorbar length 1.000000
+@    s13 errorbar linewidth 1
+@    s13 errorbar linestyle 1
+@    s13 errorbar riser on
+@    s13 errorbar riser linewidth 1
+@    s13 errorbar riser linestyle 1
+@    s13 xyz 0.000000, 0.000000
+@    s13 comment "symslines.dat"
+@    s14 symbol 6
+@    s14 symbol size 1.000000
+@    s14 symbol fill 1
+@    s14 symbol color 15
+@    s14 symbol linewidth 1
+@    s14 symbol linestyle 1
+@    s14 symbol center false
+@    s14 symbol char 0
+@    s14 skip 0
+@    s14 linestyle 1
+@    s14 linewidth 1
+@    s14 color 15
+@    s14 fill 0
+@    s14 fill with color
+@    s14 fill color 0
+@    s14 fill pattern 0
+@    s14 errorbar type BOTH
+@    s14 errorbar length 1.000000
+@    s14 errorbar linewidth 1
+@    s14 errorbar linestyle 1
+@    s14 errorbar riser on
+@    s14 errorbar riser linewidth 1
+@    s14 errorbar riser linestyle 1
+@    s14 xyz 0.000000, 0.000000
+@    s14 comment "symslines.dat"
+@    s15 symbol 7
+@    s15 symbol size 1.000000
+@    s15 symbol fill 1
+@    s15 symbol color 1
+@    s15 symbol linewidth 1
+@    s15 symbol linestyle 1
+@    s15 symbol center false
+@    s15 symbol char 0
+@    s15 skip 0
+@    s15 linestyle 2
+@    s15 linewidth 1
+@    s15 color 1
+@    s15 fill 0
+@    s15 fill with color
+@    s15 fill color 0
+@    s15 fill pattern 0
+@    s15 errorbar type BOTH
+@    s15 errorbar length 1.000000
+@    s15 errorbar linewidth 1
+@    s15 errorbar linestyle 1
+@    s15 errorbar riser on
+@    s15 errorbar riser linewidth 1
+@    s15 errorbar riser linestyle 1
+@    s15 xyz 0.000000, 0.000000
+@    s15 comment "symslines.dat"
+@    s16 symbol 8
+@    s16 symbol size 1.000000
+@    s16 symbol fill 1
+@    s16 symbol color 2
+@    s16 symbol linewidth 1
+@    s16 symbol linestyle 1
+@    s16 symbol center false
+@    s16 symbol char 0
+@    s16 skip 0
+@    s16 linestyle 1
+@    s16 linewidth 1
+@    s16 color 2
+@    s16 fill 0
+@    s16 fill with color
+@    s16 fill color 0
+@    s16 fill pattern 0
+@    s16 errorbar type BOTH
+@    s16 errorbar length 1.000000
+@    s16 errorbar linewidth 1
+@    s16 errorbar linestyle 1
+@    s16 errorbar riser on
+@    s16 errorbar riser linewidth 1
+@    s16 errorbar riser linestyle 1
+@    s16 xyz 0.000000, 0.000000
+@    s16 comment "symslines.dat"
+@    s17 symbol 2
+@    s17 symbol size 1.000000
+@    s17 symbol fill 2
+@    s17 symbol color 3
+@    s17 symbol linewidth 1
+@    s17 symbol linestyle 1
+@    s17 symbol center false
+@    s17 symbol char 0
+@    s17 skip 0
+@    s17 linestyle 1
+@    s17 linewidth 1
+@    s17 color 3
+@    s17 fill 0
+@    s17 fill with color
+@    s17 fill color 0
+@    s17 fill pattern 0
+@    s17 errorbar type BOTH
+@    s17 errorbar length 1.000000
+@    s17 errorbar linewidth 1
+@    s17 errorbar linestyle 1
+@    s17 errorbar riser on
+@    s17 errorbar riser linewidth 1
+@    s17 errorbar riser linestyle 1
+@    s17 xyz 0.000000, 0.000000
+@    s17 comment "symslines.dat"
+@    s18 symbol 3
+@    s18 symbol size 1.000000
+@    s18 symbol fill 2
+@    s18 symbol color 4
+@    s18 symbol linewidth 1
+@    s18 symbol linestyle 1
+@    s18 symbol center false
+@    s18 symbol char 0
+@    s18 skip 0
+@    s18 linestyle 1
+@    s18 linewidth 1
+@    s18 color 4
+@    s18 fill 0
+@    s18 fill with color
+@    s18 fill color 0
+@    s18 fill pattern 0
+@    s18 errorbar type BOTH
+@    s18 errorbar length 1.000000
+@    s18 errorbar linewidth 1
+@    s18 errorbar linestyle 1
+@    s18 errorbar riser on
+@    s18 errorbar riser linewidth 1
+@    s18 errorbar riser linestyle 1
+@    s18 xyz 0.000000, 0.000000
+@    s18 comment "symslines.dat"
+@    xaxis  tick on
+@    xaxis  tick major 2
+@    xaxis  tick minor 1
+@    xaxis  tick offsetx 0.000000
+@    xaxis  tick offsety 0.000000
+@    xaxis  label ""
+@    xaxis  label layout para
+@    xaxis  label place auto
+@    xaxis  label char size 1.000000
+@    xaxis  label font 4
+@    xaxis  label color 1
+@    xaxis  label linewidth 1
+@    xaxis  ticklabel on
+@    xaxis  ticklabel type auto
+@    xaxis  ticklabel prec 1
+@    xaxis  ticklabel format decimal
+@    xaxis  ticklabel append ""
+@    xaxis  ticklabel prepend ""
+@    xaxis  ticklabel layout horizontal
+@    xaxis  ticklabel skip 0
+@    xaxis  ticklabel stagger 0
+@    xaxis  ticklabel op bottom
+@    xaxis  ticklabel sign normal
+@    xaxis  ticklabel start type auto
+@    xaxis  ticklabel start 0.000000
+@    xaxis  ticklabel stop type auto
+@    xaxis  ticklabel stop 0.000000
+@    xaxis  ticklabel char size 1.000000
+@    xaxis  ticklabel font 1
+@    xaxis  ticklabel color 1
+@    xaxis  ticklabel linewidth 1
+@    xaxis  tick major on
+@    xaxis  tick minor on
+@    xaxis  tick default 6
+@    xaxis  tick in
+@    xaxis  tick major color 1
+@    xaxis  tick major linewidth 1
+@    xaxis  tick major linestyle 1
+@    xaxis  tick minor color 1
+@    xaxis  tick minor linewidth 1
+@    xaxis  tick minor linestyle 1
+@    xaxis  tick log off
+@    xaxis  tick size 1.000000
+@    xaxis  tick minor size 0.500000
+@    xaxis  bar off
+@    xaxis  bar color 1
+@    xaxis  bar linestyle 1
+@    xaxis  bar linewidth 1
+@    xaxis  tick major grid off
+@    xaxis  tick minor grid off
+@    xaxis  tick op both
+@    xaxis  tick type auto
+@    xaxis  tick spec 0
+@    yaxis  tick on
+@    yaxis  tick major 100
+@    yaxis  tick minor 50
+@    yaxis  tick offsetx 0.000000
+@    yaxis  tick offsety 0.000000
+@    yaxis  label ""
+@    yaxis  label layout para
+@    yaxis  label place auto
+@    yaxis  label char size 1.000000
+@    yaxis  label font 4
+@    yaxis  label color 1
+@    yaxis  label linewidth 1
+@    yaxis  ticklabel on
+@    yaxis  ticklabel type auto
+@    yaxis  ticklabel prec 1
+@    yaxis  ticklabel format decimal
+@    yaxis  ticklabel append ""
+@    yaxis  ticklabel prepend ""
+@    yaxis  ticklabel layout horizontal
+@    yaxis  ticklabel skip 0
+@    yaxis  ticklabel stagger 0
+@    yaxis  ticklabel op left
+@    yaxis  ticklabel sign normal
+@    yaxis  ticklabel start type auto
+@    yaxis  ticklabel start 0.000000
+@    yaxis  ticklabel stop type auto
+@    yaxis  ticklabel stop 0.000000
+@    yaxis  ticklabel char size 1.000000
+@    yaxis  ticklabel font 1
+@    yaxis  ticklabel color 1
+@    yaxis  ticklabel linewidth 1
+@    yaxis  tick major on
+@    yaxis  tick minor on
+@    yaxis  tick default 6
+@    yaxis  tick in
+@    yaxis  tick major color 1
+@    yaxis  tick major linewidth 1
+@    yaxis  tick major linestyle 1
+@    yaxis  tick minor color 1
+@    yaxis  tick minor linewidth 1
+@    yaxis  tick minor linestyle 1
+@    yaxis  tick log off
+@    yaxis  tick size 1.000000
+@    yaxis  tick minor size 0.500000
+@    yaxis  bar off
+@    yaxis  bar color 1
+@    yaxis  bar linestyle 1
+@    yaxis  bar linewidth 1
+@    yaxis  tick major grid off
+@    yaxis  tick minor grid off
+@    yaxis  tick op both
+@    yaxis  tick type auto
+@    yaxis  tick spec 0
+@    zeroxaxis  tick on
+@    zeroxaxis  tick major 2
+@    zeroxaxis  tick minor 1
+@    zeroxaxis  tick offsetx 0.000000
+@    zeroxaxis  tick offsety 0.000000
+@    zeroxaxis  label ""
+@    zeroxaxis  label layout para
+@    zeroxaxis  label place auto
+@    zeroxaxis  label char size 1.000000
+@    zeroxaxis  label font 4
+@    zeroxaxis  label color 1
+@    zeroxaxis  label linewidth 1
+@    zeroxaxis  ticklabel off
+@    zeroxaxis  ticklabel type auto
+@    zeroxaxis  ticklabel prec 1
+@    zeroxaxis  ticklabel format decimal
+@    zeroxaxis  ticklabel append ""
+@    zeroxaxis  ticklabel prepend ""
+@    zeroxaxis  ticklabel layout horizontal
+@    zeroxaxis  ticklabel skip 0
+@    zeroxaxis  ticklabel stagger 0
+@    zeroxaxis  ticklabel op bottom
+@    zeroxaxis  ticklabel sign normal
+@    zeroxaxis  ticklabel start type auto
+@    zeroxaxis  ticklabel start 0.000000
+@    zeroxaxis  ticklabel stop type auto
+@    zeroxaxis  ticklabel stop 0.000000
+@    zeroxaxis  ticklabel char size 1.000000
+@    zeroxaxis  ticklabel font 1
+@    zeroxaxis  ticklabel color 1
+@    zeroxaxis  ticklabel linewidth 1
+@    zeroxaxis  tick major off
+@    zeroxaxis  tick minor on
+@    zeroxaxis  tick default 6
+@    zeroxaxis  tick in
+@    zeroxaxis  tick major color 1
+@    zeroxaxis  tick major linewidth 1
+@    zeroxaxis  tick major linestyle 1
+@    zeroxaxis  tick minor color 1
+@    zeroxaxis  tick minor linewidth 1
+@    zeroxaxis  tick minor linestyle 1
+@    zeroxaxis  tick log off
+@    zeroxaxis  tick size 1.000000
+@    zeroxaxis  tick minor size 0.500000
+@    zeroxaxis  bar off
+@    zeroxaxis  bar color 1
+@    zeroxaxis  bar linestyle 1
+@    zeroxaxis  bar linewidth 1
+@    zeroxaxis  tick major grid off
+@    zeroxaxis  tick minor grid off
+@    zeroxaxis  tick op both
+@    zeroxaxis  tick type auto
+@    zeroxaxis  tick spec 0
+@    zeroyaxis  tick on
+@    zeroyaxis  tick major 100
+@    zeroyaxis  tick minor 50
+@    zeroyaxis  tick offsetx 0.000000
+@    zeroyaxis  tick offsety 0.000000
+@    zeroyaxis  label ""
+@    zeroyaxis  label layout para
+@    zeroyaxis  label place auto
+@    zeroyaxis  label char size 1.000000
+@    zeroyaxis  label font 4
+@    zeroyaxis  label color 1
+@    zeroyaxis  label linewidth 1
+@    zeroyaxis  ticklabel off
+@    zeroyaxis  ticklabel type auto
+@    zeroyaxis  ticklabel prec 1
+@    zeroyaxis  ticklabel format decimal
+@    zeroyaxis  ticklabel append ""
+@    zeroyaxis  ticklabel prepend ""
+@    zeroyaxis  ticklabel layout horizontal
+@    zeroyaxis  ticklabel skip 0
+@    zeroyaxis  ticklabel stagger 0
+@    zeroyaxis  ticklabel op left
+@    zeroyaxis  ticklabel sign normal
+@    zeroyaxis  ticklabel start type auto
+@    zeroyaxis  ticklabel start 0.000000
+@    zeroyaxis  ticklabel stop type auto
+@    zeroyaxis  ticklabel stop 0.000000
+@    zeroyaxis  ticklabel char size 1.000000
+@    zeroyaxis  ticklabel font 1
+@    zeroyaxis  ticklabel color 1
+@    zeroyaxis  ticklabel linewidth 1
+@    zeroyaxis  tick major off
+@    zeroyaxis  tick minor on
+@    zeroyaxis  tick default 6
+@    zeroyaxis  tick in
+@    zeroyaxis  tick major color 1
+@    zeroyaxis  tick major linewidth 1
+@    zeroyaxis  tick major linestyle 1
+@    zeroyaxis  tick minor color 1
+@    zeroyaxis  tick minor linewidth 1
+@    zeroyaxis  tick minor linestyle 1
+@    zeroyaxis  tick log off
+@    zeroyaxis  tick size 1.000000
+@    zeroyaxis  tick minor size 0.500000
+@    zeroyaxis  bar off
+@    zeroyaxis  bar color 1
+@    zeroyaxis  bar linestyle 1
+@    zeroyaxis  bar linewidth 1
+@    zeroyaxis  tick major grid off
+@    zeroyaxis  tick minor grid off
+@    zeroyaxis  tick op both
+@    zeroyaxis  tick type auto
+@    zeroyaxis  tick spec 0
+@    legend on
+@    legend loctype view
+@    legend layout 0
+@    legend vgap 2
+@    legend hgap 1
+@    legend length 4
+@    legend box off
+@    legend box fill off
+@    legend box fill with color
+@    legend box fill color 0
+@    legend box fill pattern 1
+@    legend box color 1
+@    legend box linewidth 1
+@    legend box linestyle 1
+@    legend x1 0.364662
+@    legend y1 0.869144
+@    legend font 1
+@    legend char size 1.000000
+@    legend linestyle 1
+@    legend linewidth 1
+@    legend color 1
+@    legend string 0 "Circle"
+@    legend string 1 "Square"
+@    legend string 2 "Diamond"
+@    legend string 3 "Triangle up"
+@    legend string 4 "Triangle left"
+@    legend string 5 "Triangle down"
+@    legend string 6 "Triangle right"
+@    legend string 7 "Plus"
+@    legend string 8 "X"
+@    legend string 9 "Splat"
+@    legend string 10 "Filled Circle"
+@    legend string 11 "Filled Square"
+@    legend string 12 "Filled Diamond"
+@    legend string 13 "Filled Triangle up"
+@    legend string 14 "Filled Triangle left"
+@    legend string 15 "Filled Triangle down"
+@    legend string 16 "Filled Triangle right"
+@    legend string 17 "Opaque Circle"
+@    legend string 18 "Opaque Square"
+@    frame on
+@    frame type 0
+@    frame linestyle 1
+@    frame linewidth 1
+@    frame color 1
+@    frame fill off
+@    frame background color 0
+@with g1
+@g1 on
+@g1 label off
+@g1 hidden false
+@g1 type xy
+@g1 autoscale type AUTO
+@g1 fixedpoint off
+@g1 fixedpoint type 0
+@g1 fixedpoint xy 0.000000, 0.000000
+@g1 fixedpoint format general general
+@g1 fixedpoint prec 6, 6
+@    world xmin 0
+@    world xmax 10
+@    world ymin 0
+@    world ymax 400
+@    stack world 0, 0, 0, 0 tick 0, 0, 0, 0
+@    view xmin 0.680451
+@    view xmax 0.941103
+@    view ymin 0.151858
+@    view ymax 0.862682
+@    title "Line styles"
+@    title font 4
+@    title size 1.000000
+@    title color 1
+@    title linewidth 1
+@    subtitle ""
+@    subtitle font 4
+@    subtitle size 1.000000
+@    subtitle color 1
+@    subtitle linewidth 1
+@    s0 symbol 0
+@    s0 symbol size 1.000000
+@    s0 symbol fill 0
+@    s0 symbol color 1
+@    s0 symbol linewidth 1
+@    s0 symbol linestyle 1
+@    s0 symbol center false
+@    s0 symbol char 0
+@    s0 skip 0
+@    s0 linestyle 1
+@    s0 linewidth 1
+@    s0 color 1
+@    s0 fill 0
+@    s0 fill with color
+@    s0 fill color 0
+@    s0 fill pattern 0
+@    s0 errorbar type BOTH
+@    s0 errorbar length 1.000000
+@    s0 errorbar linewidth 1
+@    s0 errorbar linestyle 1
+@    s0 errorbar riser on
+@    s0 errorbar riser linewidth 1
+@    s0 errorbar riser linestyle 1
+@    s0 xyz 0.000000, 0.000000
+@    s0 comment "symslines.dat"
+@    s1 symbol 0
+@    s1 symbol size 1.000000
+@    s1 symbol fill 0
+@    s1 symbol color 1
+@    s1 symbol linewidth 1
+@    s1 symbol linestyle 1
+@    s1 symbol center false
+@    s1 symbol char 0
+@    s1 skip 0
+@    s1 linestyle 2
+@    s1 linewidth 1
+@    s1 color 1
+@    s1 fill 0
+@    s1 fill with color
+@    s1 fill color 0
+@    s1 fill pattern 0
+@    s1 errorbar type BOTH
+@    s1 errorbar length 1.000000
+@    s1 errorbar linewidth 1
+@    s1 errorbar linestyle 1
+@    s1 errorbar riser on
+@    s1 errorbar riser linewidth 1
+@    s1 errorbar riser linestyle 1
+@    s1 xyz 0.000000, 0.000000
+@    s1 comment "symslines.dat"
+@    s2 symbol 0
+@    s2 symbol size 1.000000
+@    s2 symbol fill 0
+@    s2 symbol color 1
+@    s2 symbol linewidth 1
+@    s2 symbol linestyle 1
+@    s2 symbol center false
+@    s2 symbol char 0
+@    s2 skip 0
+@    s2 linestyle 3
+@    s2 linewidth 1
+@    s2 color 1
+@    s2 fill 0
+@    s2 fill with color
+@    s2 fill color 0
+@    s2 fill pattern 0
+@    s2 errorbar type BOTH
+@    s2 errorbar length 1.000000
+@    s2 errorbar linewidth 1
+@    s2 errorbar linestyle 1
+@    s2 errorbar riser on
+@    s2 errorbar riser linewidth 1
+@    s2 errorbar riser linestyle 1
+@    s2 xyz 0.000000, 0.000000
+@    s2 comment "symslines.dat"
+@    s3 symbol 0
+@    s3 symbol size 1.000000
+@    s3 symbol fill 0
+@    s3 symbol color 1
+@    s3 symbol linewidth 1
+@    s3 symbol linestyle 1
+@    s3 symbol center false
+@    s3 symbol char 0
+@    s3 skip 0
+@    s3 linestyle 4
+@    s3 linewidth 1
+@    s3 color 1
+@    s3 fill 0
+@    s3 fill with color
+@    s3 fill color 0
+@    s3 fill pattern 0
+@    s3 errorbar type BOTH
+@    s3 errorbar length 1.000000
+@    s3 errorbar linewidth 1
+@    s3 errorbar linestyle 1
+@    s3 errorbar riser on
+@    s3 errorbar riser linewidth 1
+@    s3 errorbar riser linestyle 1
+@    s3 xyz 0.000000, 0.000000
+@    s3 comment "symslines.dat"
+@    s4 symbol 0
+@    s4 symbol size 1.000000
+@    s4 symbol fill 0
+@    s4 symbol color 1
+@    s4 symbol linewidth 1
+@    s4 symbol linestyle 1
+@    s4 symbol center false
+@    s4 symbol char 0
+@    s4 skip 0
+@    s4 linestyle 5
+@    s4 linewidth 1
+@    s4 color 1
+@    s4 fill 0
+@    s4 fill with color
+@    s4 fill color 0
+@    s4 fill pattern 0
+@    s4 errorbar type BOTH
+@    s4 errorbar length 1.000000
+@    s4 errorbar linewidth 1
+@    s4 errorbar linestyle 1
+@    s4 errorbar riser on
+@    s4 errorbar riser linewidth 1
+@    s4 errorbar riser linestyle 1
+@    s4 xyz 0.000000, 0.000000
+@    s4 comment "symslines.dat"
+@    s5 symbol 0
+@    s5 symbol size 1.000000
+@    s5 symbol fill 0
+@    s5 symbol color 1
+@    s5 symbol linewidth 1
+@    s5 symbol linestyle 1
+@    s5 symbol center false
+@    s5 symbol char 0
+@    s5 skip 0
+@    s5 linestyle 1
+@    s5 linewidth 1
+@    s5 color 1
+@    s5 fill 0
+@    s5 fill with color
+@    s5 fill color 0
+@    s5 fill pattern 0
+@    s5 errorbar type BOTH
+@    s5 errorbar length 1.000000
+@    s5 errorbar linewidth 1
+@    s5 errorbar linestyle 1
+@    s5 errorbar riser on
+@    s5 errorbar riser linewidth 1
+@    s5 errorbar riser linestyle 1
+@    s5 xyz 0.000000, 0.000000
+@    s5 comment "symslines.dat"
+@    s6 symbol 0
+@    s6 symbol size 1.000000
+@    s6 symbol fill 0
+@    s6 symbol color 1
+@    s6 symbol linewidth 1
+@    s6 symbol linestyle 1
+@    s6 symbol center false
+@    s6 symbol char 0
+@    s6 skip 0
+@    s6 linestyle 1
+@    s6 linewidth 2
+@    s6 color 1
+@    s6 fill 0
+@    s6 fill with color
+@    s6 fill color 0
+@    s6 fill pattern 0
+@    s6 errorbar type BOTH
+@    s6 errorbar length 1.000000
+@    s6 errorbar linewidth 1
+@    s6 errorbar linestyle 1
+@    s6 errorbar riser on
+@    s6 errorbar riser linewidth 1
+@    s6 errorbar riser linestyle 1
+@    s6 xyz 0.000000, 0.000000
+@    s6 comment "symslines.dat"
+@    s7 symbol 0
+@    s7 symbol size 1.000000
+@    s7 symbol fill 0
+@    s7 symbol color 1
+@    s7 symbol linewidth 1
+@    s7 symbol linestyle 1
+@    s7 symbol center false
+@    s7 symbol char 0
+@    s7 skip 0
+@    s7 linestyle 1
+@    s7 linewidth 4
+@    s7 color 1
+@    s7 fill 0
+@    s7 fill with color
+@    s7 fill color 0
+@    s7 fill pattern 0
+@    s7 errorbar type BOTH
+@    s7 errorbar length 1.000000
+@    s7 errorbar linewidth 1
+@    s7 errorbar linestyle 1
+@    s7 errorbar riser on
+@    s7 errorbar riser linewidth 1
+@    s7 errorbar riser linestyle 1
+@    s7 xyz 0.000000, 0.000000
+@    s7 comment "symslines.dat"
+@    s8 symbol 0
+@    s8 symbol size 1.000000
+@    s8 symbol fill 0
+@    s8 symbol color 1
+@    s8 symbol linewidth 1
+@    s8 symbol linestyle 1
+@    s8 symbol center false
+@    s8 symbol char 0
+@    s8 skip 0
+@    s8 linestyle 1
+@    s8 linewidth 6
+@    s8 color 1
+@    s8 fill 0
+@    s8 fill with color
+@    s8 fill color 0
+@    s8 fill pattern 0
+@    s8 errorbar type BOTH
+@    s8 errorbar length 1.000000
+@    s8 errorbar linewidth 1
+@    s8 errorbar linestyle 1
+@    s8 errorbar riser on
+@    s8 errorbar riser linewidth 1
+@    s8 errorbar riser linestyle 1
+@    s8 xyz 0.000000, 0.000000
+@    s8 comment "symslines.dat"
+@    xaxis  tick on
+@    xaxis  tick major 2
+@    xaxis  tick minor 1
+@    xaxis  tick offsetx 0.000000
+@    xaxis  tick offsety 0.000000
+@    xaxis  label ""
+@    xaxis  label layout para
+@    xaxis  label place auto
+@    xaxis  label char size 1.000000
+@    xaxis  label font 4
+@    xaxis  label color 1
+@    xaxis  label linewidth 1
+@    xaxis  ticklabel on
+@    xaxis  ticklabel type auto
+@    xaxis  ticklabel prec 1
+@    xaxis  ticklabel format decimal
+@    xaxis  ticklabel append ""
+@    xaxis  ticklabel prepend ""
+@    xaxis  ticklabel layout horizontal
+@    xaxis  ticklabel skip 0
+@    xaxis  ticklabel stagger 0
+@    xaxis  ticklabel op bottom
+@    xaxis  ticklabel sign normal
+@    xaxis  ticklabel start type auto
+@    xaxis  ticklabel start 0.000000
+@    xaxis  ticklabel stop type auto
+@    xaxis  ticklabel stop 0.000000
+@    xaxis  ticklabel char size 1.000000
+@    xaxis  ticklabel font 1
+@    xaxis  ticklabel color 1
+@    xaxis  ticklabel linewidth 1
+@    xaxis  tick major on
+@    xaxis  tick minor on
+@    xaxis  tick default 6
+@    xaxis  tick in
+@    xaxis  tick major color 1
+@    xaxis  tick major linewidth 1
+@    xaxis  tick major linestyle 1
+@    xaxis  tick minor color 1
+@    xaxis  tick minor linewidth 1
+@    xaxis  tick minor linestyle 1
+@    xaxis  tick log off
+@    xaxis  tick size 1.000000
+@    xaxis  tick minor size 0.500000
+@    xaxis  bar off
+@    xaxis  bar color 1
+@    xaxis  bar linestyle 1
+@    xaxis  bar linewidth 1
+@    xaxis  tick major grid off
+@    xaxis  tick minor grid off
+@    xaxis  tick op both
+@    xaxis  tick type auto
+@    xaxis  tick spec 0
+@    yaxis  tick on
+@    yaxis  tick major 100
+@    yaxis  tick minor 25
+@    yaxis  tick offsetx 0.000000
+@    yaxis  tick offsety 0.000000
+@    yaxis  label ""
+@    yaxis  label layout para
+@    yaxis  label place auto
+@    yaxis  label char size 1.000000
+@    yaxis  label font 4
+@    yaxis  label color 1
+@    yaxis  label linewidth 1
+@    yaxis  ticklabel on
+@    yaxis  ticklabel type auto
+@    yaxis  ticklabel prec 1
+@    yaxis  ticklabel format decimal
+@    yaxis  ticklabel append ""
+@    yaxis  ticklabel prepend ""
+@    yaxis  ticklabel layout horizontal
+@    yaxis  ticklabel skip 0
+@    yaxis  ticklabel stagger 0
+@    yaxis  ticklabel op left
+@    yaxis  ticklabel sign normal
+@    yaxis  ticklabel start type auto
+@    yaxis  ticklabel start 0.000000
+@    yaxis  ticklabel stop type auto
+@    yaxis  ticklabel stop 0.000000
+@    yaxis  ticklabel char size 1.000000
+@    yaxis  ticklabel font 1
+@    yaxis  ticklabel color 1
+@    yaxis  ticklabel linewidth 1
+@    yaxis  tick major on
+@    yaxis  tick minor on
+@    yaxis  tick default 6
+@    yaxis  tick in
+@    yaxis  tick major color 1
+@    yaxis  tick major linewidth 1
+@    yaxis  tick major linestyle 1
+@    yaxis  tick minor color 1
+@    yaxis  tick minor linewidth 1
+@    yaxis  tick minor linestyle 1
+@    yaxis  tick log off
+@    yaxis  tick size 1.000000
+@    yaxis  tick minor size 0.500000
+@    yaxis  bar off
+@    yaxis  bar color 1
+@    yaxis  bar linestyle 1
+@    yaxis  bar linewidth 1
+@    yaxis  tick major grid off
+@    yaxis  tick minor grid off
+@    yaxis  tick op both
+@    yaxis  tick type auto
+@    yaxis  tick spec 0
+@    zeroxaxis  tick on
+@    zeroxaxis  tick major 2
+@    zeroxaxis  tick minor 1
+@    zeroxaxis  tick offsetx 0.000000
+@    zeroxaxis  tick offsety 0.000000
+@    zeroxaxis  label ""
+@    zeroxaxis  label layout para
+@    zeroxaxis  label place auto
+@    zeroxaxis  label char size 1.000000
+@    zeroxaxis  label font 4
+@    zeroxaxis  label color 1
+@    zeroxaxis  label linewidth 1
+@    zeroxaxis  ticklabel off
+@    zeroxaxis  ticklabel type auto
+@    zeroxaxis  ticklabel prec 1
+@    zeroxaxis  ticklabel format decimal
+@    zeroxaxis  ticklabel append ""
+@    zeroxaxis  ticklabel prepend ""
+@    zeroxaxis  ticklabel layout horizontal
+@    zeroxaxis  ticklabel skip 0
+@    zeroxaxis  ticklabel stagger 0
+@    zeroxaxis  ticklabel op bottom
+@    zeroxaxis  ticklabel sign normal
+@    zeroxaxis  ticklabel start type auto
+@    zeroxaxis  ticklabel start 0.000000
+@    zeroxaxis  ticklabel stop type auto
+@    zeroxaxis  ticklabel stop 0.000000
+@    zeroxaxis  ticklabel char size 1.000000
+@    zeroxaxis  ticklabel font 1
+@    zeroxaxis  ticklabel color 1
+@    zeroxaxis  ticklabel linewidth 1
+@    zeroxaxis  tick major off
+@    zeroxaxis  tick minor on
+@    zeroxaxis  tick default 6
+@    zeroxaxis  tick in
+@    zeroxaxis  tick major color 1
+@    zeroxaxis  tick major linewidth 1
+@    zeroxaxis  tick major linestyle 1
+@    zeroxaxis  tick minor color 1
+@    zeroxaxis  tick minor linewidth 1
+@    zeroxaxis  tick minor linestyle 1
+@    zeroxaxis  tick log off
+@    zeroxaxis  tick size 1.000000
+@    zeroxaxis  tick minor size 0.500000
+@    zeroxaxis  bar off
+@    zeroxaxis  bar color 1
+@    zeroxaxis  bar linestyle 1
+@    zeroxaxis  bar linewidth 1
+@    zeroxaxis  tick major grid off
+@    zeroxaxis  tick minor grid off
+@    zeroxaxis  tick op both
+@    zeroxaxis  tick type auto
+@    zeroxaxis  tick spec 0
+@    zeroyaxis  tick on
+@    zeroyaxis  tick major 50
+@    zeroyaxis  tick minor 25
+@    zeroyaxis  tick offsetx 0.000000
+@    zeroyaxis  tick offsety 0.000000
+@    zeroyaxis  label ""
+@    zeroyaxis  label layout para
+@    zeroyaxis  label place auto
+@    zeroyaxis  label char size 1.000000
+@    zeroyaxis  label font 4
+@    zeroyaxis  label color 1
+@    zeroyaxis  label linewidth 1
+@    zeroyaxis  ticklabel off
+@    zeroyaxis  ticklabel type auto
+@    zeroyaxis  ticklabel prec 1
+@    zeroyaxis  ticklabel format decimal
+@    zeroyaxis  ticklabel append ""
+@    zeroyaxis  ticklabel prepend ""
+@    zeroyaxis  ticklabel layout horizontal
+@    zeroyaxis  ticklabel skip 0
+@    zeroyaxis  ticklabel stagger 0
+@    zeroyaxis  ticklabel op left
+@    zeroyaxis  ticklabel sign normal
+@    zeroyaxis  ticklabel start type auto
+@    zeroyaxis  ticklabel start 0.000000
+@    zeroyaxis  ticklabel stop type auto
+@    zeroyaxis  ticklabel stop 0.000000
+@    zeroyaxis  ticklabel char size 1.000000
+@    zeroyaxis  ticklabel font 1
+@    zeroyaxis  ticklabel color 1
+@    zeroyaxis  ticklabel linewidth 1
+@    zeroyaxis  tick major off
+@    zeroyaxis  tick minor on
+@    zeroyaxis  tick default 6
+@    zeroyaxis  tick in
+@    zeroyaxis  tick major color 1
+@    zeroyaxis  tick major linewidth 1
+@    zeroyaxis  tick major linestyle 1
+@    zeroyaxis  tick minor color 1
+@    zeroyaxis  tick minor linewidth 1
+@    zeroyaxis  tick minor linestyle 1
+@    zeroyaxis  tick log off
+@    zeroyaxis  tick size 1.000000
+@    zeroyaxis  tick minor size 0.500000
+@    zeroyaxis  bar off
+@    zeroyaxis  bar color 1
+@    zeroyaxis  bar linestyle 1
+@    zeroyaxis  bar linewidth 1
+@    zeroyaxis  tick major grid off
+@    zeroyaxis  tick minor grid off
+@    zeroyaxis  tick op both
+@    zeroyaxis  tick type auto
+@    zeroyaxis  tick spec 0
+@    legend on
+@    legend loctype view
+@    legend layout 0
+@    legend vgap 2
+@    legend hgap 1
+@    legend length 4
+@    legend box off
+@    legend box fill off
+@    legend box fill with color
+@    legend box fill color 0
+@    legend box fill pattern 1
+@    legend box color 1
+@    legend box linewidth 1
+@    legend box linestyle 1
+@    legend x1 0.700501
+@    legend y1 0.825525
+@    legend font 1
+@    legend char size 1.000000
+@    legend linestyle 1
+@    legend linewidth 1
+@    legend color 1
+@    legend string 0 "Solid"
+@    legend string 1 "Dotted"
+@    legend string 2 "Dashed"
+@    legend string 3 "Long dashed"
+@    legend string 4 "Dot-dashed"
+@    legend string 5 "Width 1"
+@    legend string 6 "Width 2"
+@    legend string 7 "Width 4"
+@    legend string 8 "Width 6"
+@    frame on
+@    frame type 0
+@    frame linestyle 1
+@    frame linewidth 1
+@    frame color 1
+@    frame fill off
+@    frame background color 0
+@WITH G0
+@G0 ON
+@TYPE xy
+               1          3.61803
+               2          4.61803
+               3          5.38197
+               4          6.38197
+               5                8
+               6           10.382
+               7           13.382
+               8           16.618
+               9           19.618
+&
+@TYPE xy
+               1           23.618
+               2           24.618
+               3           25.382
+               4           26.382
+               5               28
+               6           30.382
+               7           33.382
+               8           36.618
+               9           39.618
+&
+@TYPE xy
+               1           43.618
+               2           44.618
+               3           45.382
+               4           46.382
+               5               48
+               6           50.382
+               7           53.382
+               8           56.618
+               9           59.618
+&
+@TYPE xy
+               1           63.618
+               2           64.618
+               3           65.382
+               4           66.382
+               5               68
+               6           70.382
+               7           73.382
+               8           76.618
+               9           79.618
+&
+@TYPE xy
+               1           83.618
+               2           84.618
+               3           85.382
+               4           86.382
+               5               88
+               6           90.382
+               7           93.382
+               8           96.618
+               9           99.618
+&
+@TYPE xy
+               1          103.618
+               2          104.618
+               3          105.382
+               4          106.382
+               5              108
+               6          110.382
+               7          113.382
+               8          116.618
+               9          119.618
+&
+@TYPE xy
+               1          123.618
+               2          124.618
+               3          125.382
+               4          126.382
+               5              128
+               6          130.382
+               7          133.382
+               8          136.618
+               9          139.618
+&
+@TYPE xy
+               1          143.618
+               2          144.618
+               3          145.382
+               4          146.382
+               5              148
+               6          150.382
+               7          153.382
+               8          156.618
+               9          159.618
+&
+@TYPE xy
+               1          163.618
+               2          164.618
+               3          165.382
+               4          166.382
+               5              168
+               6          170.382
+               7          173.382
+               8          176.618
+               9          179.618
+&
+@TYPE xy
+               1          183.618
+               2          184.618
+               3          185.382
+               4          186.382
+               5              188
+               6          190.382
+               7          193.382
+               8          196.618
+               9          199.618
+&
+@TYPE xy
+               1          203.618
+               2          204.618
+               3          205.382
+               4          206.382
+               5              208
+               6          210.382
+               7          213.382
+               8          216.618
+               9          219.618
+&
+@TYPE xy
+               1          223.618
+               2          224.618
+               3          225.382
+               4          226.382
+               5              228
+               6          230.382
+               7          233.382
+               8          236.618
+               9          239.618
+&
+@TYPE xy
+               1          243.618
+               2          244.618
+               3          245.382
+               4          246.382
+               5              248
+               6          250.382
+               7          253.382
+               8          256.618
+               9          259.618
+&
+@TYPE xy
+               1          263.618
+               2          264.618
+               3          265.382
+               4          266.382
+               5              268
+               6          270.382
+               7          273.382
+               8          276.618
+               9          279.618
+&
+@TYPE xy
+               1          283.618
+               2          284.618
+               3          285.382
+               4          286.382
+               5              288
+               6          290.382
+               7          293.382
+               8          296.618
+               9          299.618
+&
+@TYPE xy
+               1          303.618
+               2          304.618
+               3          305.382
+               4          306.382
+               5              308
+               6          310.382
+               7          313.382
+               8          316.618
+               9          319.618
+&
+@TYPE xy
+               1          323.618
+               2          324.618
+               3          325.382
+               4          326.382
+               5              328
+               6          330.382
+               7          333.382
+               8          336.618
+               9          339.618
+&
+@TYPE xy
+               1          343.618
+               2          344.618
+               3          345.382
+               4          346.382
+               5              348
+               6          350.382
+               7          353.382
+               8          356.618
+               9          359.618
+&
+@TYPE xy
+               1          363.618
+               2          364.618
+               3          365.382
+               4          366.382
+               5              368
+               6          370.382
+               7          373.382
+               8          376.618
+               9          379.618
+&
+@WITH G1
+@G1 ON
+@TYPE xy
+               1          3.61803
+               2          4.61803
+               3          5.38197
+               4          6.38197
+               5                8
+               6           10.382
+               7           13.382
+               8           16.618
+               9           19.618
+&
+@TYPE xy
+               1           23.618
+               2           24.618
+               3           25.382
+               4           26.382
+               5               28
+               6           30.382
+               7           33.382
+               8           36.618
+               9           39.618
+&
+@TYPE xy
+               1           43.618
+               2           44.618
+               3           45.382
+               4           46.382
+               5               48
+               6           50.382
+               7           53.382
+               8           56.618
+               9           59.618
+&
+@TYPE xy
+               1           63.618
+               2           64.618
+               3           65.382
+               4           66.382
+               5               68
+               6           70.382
+               7           73.382
+               8           76.618
+               9           79.618
+&
+@TYPE xy
+               1           83.618
+               2           84.618
+               3           85.382
+               4           86.382
+               5               88
+               6           90.382
+               7           93.382
+               8           96.618
+               9           99.618
+&
+@TYPE xy
+               1          103.618
+               2          104.618
+               3          105.382
+               4          106.382
+               5              108
+               6          110.382
+               7          113.382
+               8          116.618
+               9          119.618
+&
+@TYPE xy
+               1          123.618
+               2          124.618
+               3          125.382
+               4          126.382
+               5              128
+               6          130.382
+               7          133.382
+               8          136.618
+               9          139.618
+&
+@TYPE xy
+               1          143.618
+               2          144.618
+               3          145.382
+               4          146.382
+               5              148
+               6          150.382
+               7          153.382
+               8          156.618
+               9          159.618
+&
+@TYPE xy
+               1          163.618
+               2          164.618
+               3          165.382
+               4          166.382
+               5              168
+               6          170.382
+               7          173.382
+               8          176.618
+               9          179.618
+&

@@ -1,0 +1,76 @@
+README.VMS for xmgr -- 13-May-1998
+
+Rolf Niepraschk (niepraschk@ptb.de)
+John Hasstedt (John.Hasstedt@sunysb.edu)
+
+1. Introduction
+
+ Rolf has ported xmgr to VMS with assistance from John.
+
+  We have compiled it with the following combinations:
+     VMS VAX V5.5      DECC V5.2                   (Rolf)
+     VMS Alpha V6.2    DECC V5.0                   (Rolf)
+     VMS Alpha V7.1    DECC V5.7                   (Rolf)
+     VMS VAX V6.2      DECC V5.6     Motif 1.2-4   (John)
+     VMS Alpha V6.2    DECC V5.6     Motif 1.2-4   (John)
+  We have also received a report that it compiled with
+     VMS Alpha V6.1    DECC V5.7     Motif 1.2-3
+
+ You need mms or mmk to compile it.  You can get mmk from
+
+     ftp://ftp.madgoat.com/madgoat/mmk.zip
+
+2. Compilation
+
+ In the top directory, do
+
+    @[.arch.vms]configure
+    mms               (or mmk)
+
+ If you wish to compile XMGR with support for HDF (or CDF)
+ file format, edit [.SRC]DESCRIP.MMS after running configure.com,
+ and change it as shown below:
+
+    NETCDF = ,HAVE_MFHDF=1
+    NETCDF_INC = ,USR_INC:[HDF]    # the c header files
+    NETCDF_LIBS = ,USR_LIB:MFHDF.OLB,DF.OLB/LIB,LIBZ.OLB/LIB # the libraries
+
+ Note the comma as the first character!
+
+ You can find the NETCDF package at ftp://ftp.ncsa.uiuc.edu/HDF/,
+ including precompiled binaries for VAX and Alpha.
+
+3. Installation
+
+ Define a symbol for the executable like
+
+  $ xmgr :== $disk:[path]xmgr
+
+ Define the following logicals
+
+  $ define GR_HOME "/disk/dir1/dir2/xmgr/"
+  ! the path of the directotry [.doc] (unix-like)
+
+ optional:
+
+  $ define GR_HELPVIEWER "www-browser %s"
+  ! for netscape look at the original make.conf
+
+  $ define GR_PS_PRSTR  " "print/name=""from XMGR""/delete/queue=your_queue"
+  ! the /delete qualifier is recommended
+
+ x-resources:
+
+  The file [.SRC]XMGR.AD contains the x resources.  You may want to
+  copy this file to XMGR.DAT in either DECW$SYSTEM_DEFAULTS and/or
+  DECW$USER_DEFAULTS to customize the program.
+
+4. Test
+
+  $ set default [.examples]
+  $ @dotest
+
+5. Bugs
+
+ Please send bug reports to the xmgr mailing list.
+

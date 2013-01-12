@@ -1,0 +1,50 @@
+
+# The following are for a version that does not link to
+# the X libraries.
+#
+# non-X version sources
+#
+
+PARS_Y = pars.yacc
+PARS_C = pars.c
+PARS_O = pars$(O)
+
+GRSRCS =  main.c misc.c plotone.c files.c utils.c drawticks.c \
+	nonlfit.c lmdif.c as274c.c fit.c fourier.c \
+	graphu1.c graphu2.c setutils.c \
+	regionutils.c objutils.c computils.c defaults.c checkon.c \
+	params.c compute.c \
+	draw.c ps.c mif.c leaf.c \
+	hp.c chersh.c \
+	symfunc.c dlmodule.c alloca.c
+
+GROBJS =  main$(O) misc$(O) plotone$(O) files$(O) utils$(O) drawticks$(O) \
+	nonlfit$(O) lmdif$(O) as274c$(O) fit$(O) fourier$(O) \
+	graphu1$(O) graphu2$(O) setutils$(O) regionutils$(O) \
+	objutils$(O) computils$(O) defaults$(O) checkon$(O) params$(O) \
+	compute$(O) draw$(O) ps$(O) mif$(O) leaf$(O) \
+	hp$(O) chersh$(O) symfunc$(O) dlmodule$(O) $(PARS_O) $(ALLOCA)
+
+GRINCS = as274c.h defines.h draw.h externs.h globals.h hersh.h \
+    	 pars.h noxprotos.h pars.h patchlevel.h patterns.h \
+    	 protos.h ps.h symdefs.h symfunc.h
+
+# The following are for a GUI
+#
+# X/MOTIF sources
+#
+GUISRCS = compwin.c comwin.c drawwin.c eblockwin.c editpwin.c \
+	events.c featext.c fileswin.c framewin.c graphwin.c helpwin.c hotwin.c \
+	image_f_io.c labelwin.c locatewin.c miscwin.c monwin.c \
+	motifutils.c nonlwin.c pagewin.c printwin.c ptswin.c regionwin.c \
+	rotated.c setwin.c statuswin.c strwin.c symwin.c tickwin.c worldwin.c \
+	xmgr.c xvlib.c
+
+GUIOBJS =  compwin$(O) comwin$(O) drawwin$(O) eblockwin$(O) \
+           editpwin$(O) events$(O) featext$(O) fileswin$(O) framewin$(O) \
+           graphwin$(O) helpwin$(O) hotwin$(O) image_f_io$(O) labelwin$(O) \
+           locatewin$(O) miscwin$(O) monwin$(O) motifutils$(O) \
+           nonlwin$(O) pagewin$(O) printwin$(O) ptswin$(O) regionwin$(O) \
+           rotated$(O) setwin$(O) statuswin$(O) strwin$(O) symwin$(O) \
+           tickwin$(O) worldwin$(O) xmgr$(O) xvlib$(O)
+

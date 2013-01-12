@@ -1,0 +1,332 @@
+<HTML>
+<HEAD>
+<TITLE>Xmgr: set operations</TITLE>
+</HEAD>
+
+<BODY>
+
+	<h2> <a NAME="setops">Set operations</a> </h2>
+<p>
+Set operations allow sets to be created, destroyed, written to disk, sorted.
+<HR>
+<p>
+        	<ul>
+        	<li> <a href="#pickops">Pick ops</a> 
+        	<ul>
+        	    <li> <a href="#pkill">Kill nearest set</a> 
+        	    <li> <a href="#pcopy">Copy nearest set</a> 
+        	    <li> <a href="#pmove">Move nearest set</a> 
+        	    <li> <a href="#preverse">Reverse nearest set</a> 
+        	    <li> <a href="#pdeact">De-activate nearest set</a> 
+        	    <li> <a href="#pjoin">Join nearest sets</a> 
+        	    <li> <a href="#pdel">Delete range in nearest set</a> 
+        	    <li> <a href="#pcancel">Cancel operation</a> 
+        	</ul>
+        	<li> <a href="#activate">Activate</a> 
+        	<li> <a href="#deactivate">De-activate</a> 
+        	<li> <a href="#reactivate">Re-activate</a> 
+        	<li> <a href="#length">Set length</a> 
+        	<li> <a href="#settype">Change Set type</a> 
+        	<li> <a href="#copy">Copy</a> 
+        	<li> <a href="#move">Move</a> 
+        	<li> <a href="#drop">Drop points</a> 
+        	<li> <a href="#join">Join</a> 
+        	<li> <a href="#split">Split</a> 
+        	<li> <a href="#kill">Kill</a> 
+        	<li> <a href="#killall">Kill all</a> 
+        	<li> <a href="#sort">Sort</a> 
+        	<li> <a href="#writesets">Write set(s)</a> 
+        	<li> <a href="#reverse">Reverse order</a> 
+        	<li> <a href="#coalesce">Coalesce sets</a> 
+        	<li> <a href="#swap">Swap</a> 
+        	<li> <a href="#pack">Pack</a> 
+        	</ul>
+<HR>
+	<h3> <a NAME="pickops">Pick ops</a> </h3>
+<p>
+Pick ops use the point in a set nearest to the location of the pointer 
+when clicked to select the set for the chosen operation. The nearest
+point is determined by the Euclidean distance which can be very different
+from the point that is visually closer. As long as there are sets with points,
+the operation will always be performed, which means that a bit of care should
+be exercised using these operations.
+<p>
+        	<ul>
+        	<li> <a NAME="pkill">Kill nearest set</a> 
+<p>
+Kill the set nearest the pointer.
+<p>
+        	<li> <a NAME="pcopy">Copy nearest set</a> 
+<p>
+Select a set to copy with one click, and the destination, which may be
+in another graph, with another click.
+<p>
+        	<li> <a NAME="pmove">Move nearest set</a> 
+<p>
+Select a set to move with one click, and the destination, which may be
+in another graph, with another click.
+<p>
+        	<li> <a NAME="preverse">Reverse nearest set</a> 
+<p>
+Select a set to reverse by clicking near a point in a set. The result
+is that the order of the points is reversed (point N becomes point 1, and point
+1 becomes point number N, etc.).
+<p>
+        	<li> <a NAME="pdeact">De-activate nearest set</a> 
+<p>
+Select a set to deactivate by clicking near a point in a set. The result
+is that the set will act as if undefined for most operations, and will not
+be drawn even if the line or symbol selections would cause it to be
+drawn. The data are not destroyed, and the set can be reactivated using the
+functions in File/Status or Data/Set ops.
+<p>
+        	<li> <a NAME="pjoin">Join nearest sets</a> 
+<p>
+Click near a point in one set to use for the join, then click again
+near a point in another set to select the second set. The second set will
+be appended to the end of the first set.
+<p>
+        	<li> <a NAME="pdel">Delete range in nearest set</a> 
+<p>
+Click near a point in one set to use for the start of the range to delete,
+then again near the point at the end of the range to delete. The result
+is that all points between the 2 selected points will be removed from the
+set, including the 2 points selected.
+<p>
+        	<li> <a NAME="pcancel">Cancel operation</a> 
+<p>
+Cancel any operation in progress.
+        	</ul>
+<p>
+The remaining items in the Set ops toolbox allow sets to be created, 
+destroyed, written to disk, moved, sorted, deactivated, reactivated.
+<p>
+<HR>
+	<h3> <a NAME="activate">Activate</a> </h3>
+<p>
+Make a set active and able to participate in operations.
+<p>
+To activate a set, select the set number, specify the number of points
+in the set and click on "Accept."
+<p>
+<HR>
+	<h3> <a NAME="deactivate">Deactivate</a> </h3>
+<p>
+Make a set inactive and unable to participate in operations. The data 
+associated with a deactivated set are still available and all plot 
+parameters associated with the set are unchanged. Use the Re-activate set 
+item below to make the set known to xmgr again. This item is include for 
+those situations where a set is to be ignored temporarily, but 
+needed later in the session.
+<p>
+	Select the set to Deactivate.
+<p>
+	Press the button marked <b>Accept</b>.
+<p>
+<HR>
+	<h3> <a NAME="reactivate">Re-activate</a> </h3>
+<p>
+Undo the effect of Deactivate. 
+<p>
+	Select the set to Reactivate, it is a no-op to Reactivate an unused set.
+<p>
+	Press the button marked <b>Accept</b>.
+<p>
+<HR>
+	<h3> <a NAME="length">Set length</a> </h3>
+<p>
+Set the length of a set.
+<p>
+	Select the set.
+<p>
+	Fill in the item marked Length.
+<p>
+	Press the button marked <b>Accept</b>.
+<p>
+<HR>
+	<h3> <a NAME="settype">Change Set type</a> </h3>
+<p>
+Set the type of a set.
+<p>
+	Select the set
+<p>
+	Select the type to set
+<p>
+	Press the button marked "Accept"
+<p>
+<HR>
+	<h3> <a NAME="copy">Copy</a> </h3>
+<p>
+Copy one set to another in a possibly different graph.
+<p>
+	Select the set to copy from.
+<p>
+	Select the set to copy to.
+<p>
+	Select the graph to receive the copy.
+<p>
+	Press the button marked <b>Accept</b>.
+<p>
+<HR>
+	<h3> <a NAME="move">Move</a> </h3>
+<p>
+Move one set to another in a possibly different graph.
+<p>
+	Select the set to move from.
+<p>
+	Select the set to move to.
+<p>
+	Select the graph to receive the set.
+<p>
+	Press the button marked <b>Accept</b>
+<p>
+<HR>
+	<h3> <a NAME="swap">Swap</a> </h3>
+<p>
+Exchange one set with another.
+<p>
+	Select the sets and the graphs these sets reside.
+<p>
+	Click on <b>Accept</b>.
+<p>
+The contents of the sets plus all parameters associated with the display 
+of the sets are exchanged.
+<p>
+<HR>
+	<h3> <a NAME="drop">Drop points</a> </h3>
+<p>
+Drop points from a set.
+<p>
+	Select the set.
+<p>
+	Fill in the items "Start drop" and "End drop".
+<p>
+	Press the button marked <b>Accept</b>.
+<p>
+NOTE: Points in a set are numbered from 1 to N, where N is the number of 
+points in the set (as opposed to sets which are numbered from 0).
+<p>
+<HR>
+	<h3> <a NAME="join">Join</a> </h3>
+<p>
+Merge 2 sets together.
+<p>
+	Select the set that will be appended.
+<p>
+	Select the set accepting the previous set.
+<p>
+	Press the button marked <b>Accept</b> to append the first set 
+to the second.
+<p>
+<HR>
+	<h3> <a NAME="split">Split</a> </h3>
+<p>
+Divide a set into other sets.
+<p>
+	Select the set to split.
+<p>
+	Enter the length of the resulting sets (say N).
+<p>
+	Press the button marked <b>Accept</b> to divide the selected set into 
+(length of selected set) / N sets with the remainder to the last set. 
+<p>
+	The first set will be the set selected to split and will contain the 
+first N points.
+<p>
+<HR>
+	<h3> <a NAME="kill">Kill</a> </h3>
+<p>
+Eliminate a set.
+<p>
+	Select the set to kill or All to kill every active set.
+<p>
+	To save the parameter settings, toggle `Preserve parameters.' 
+<p>
+	Press the button <b>Accept</b>.
+<p>
+NOTE: 
+This operation is final.
+<p>
+<HR>
+	<h3> <a NAME="killall">Kill all</a> </h3>
+<p>
+Kill all active sets.
+<p>
+	This is an action item, you'll be asked if it is OK to kill all 
+active sets.
+<p>
+<HR>
+	<h3> <a NAME="sort">Sort</a> </h3>
+<p>
+sort x or y of a set.
+<p>
+	Select set to sort.
+<p>
+	Select which component (x or y) as a key.
+<p>
+	Select the order of the sort.
+<p>
+	Press the button marked <b>Accept</b> to sort the set in place.
+<p>
+<HR>
+	<h3> <a NAME="writesets">Write set(s)</a> </h3>
+<p>
+Write a set(s) to disk.
+<p>
+	Select the set to write or "All" for all sets.
+<p>
+	Fill in the format to use to write, syntax is C, default is "%lf %lf".
+<p>
+	Fill in the item marked "Write to file" with the filename to write.
+<p>
+	Press the button marked <b>Accept</b>.
+<p>
+Note: A complete dump of xmgr may be accomplished by selecting All sets, 
+All active graphs and toggling Embed parameters. The generated file may 
+be read as a normal data file and will contain the necessary information to 
+completely reconstruct all graphs in the current session.
+<p>
+<HR>
+	<h3> <a NAME="reverse">Reverse order</a> </h3>
+<p>
+Exchange points in a set.
+<p>
+	Select set to reverse.
+<p>
+	Press the button marked <b>Accept</b> to reverse the order of a set.
+<p>
+<HR>
+	<h3> <a NAME="coalesce">Coalesce sets</a> </h3>
+<p>
+Merge active sets to an inactive set.
+<p>
+	Select set to receive points from all active sets. This selected 
+set should not be an active set.
+<p>
+	Press the button marked <b>Accept</b> to merge all sets 
+to the selected set.
+<p>
+<HR>
+	<h3> <a NAME="pack">Pack sets</a> </h3>
+<p>
+Move sets so that the set structure in the current graph has no gaps.
+<p>
+	During the course of several operations on sets, gaps can form in the 
+set structure. This can result cause problems when doing a Save all, as
+the actual location, i.e. set number,  of the set is not retained in the 
+Save file. For example after several operations that create and delete
+sets, the active sets are numbered:
+
+0, 3, 4, 5, 9
+
+Following a Pack, the active sets will be numbered:
+
+0, 1, 2, 3, 4.
+
+<p>
+	Press the button marked <b>Accept</b> to pack all sets in the current graph.
+
+</BODY>
+
+</HTML>
+

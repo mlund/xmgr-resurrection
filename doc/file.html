@@ -1,0 +1,332 @@
+<HTML>
+<HEAD>
+<TITLE>Xmgr: file operations</TITLE>
+</HEAD>
+
+<BODY>
+	<h2><a NAME="file">File</a></h2>
+Read data from disk or pipes, read variables from netCDF or HDF files, 
+read and write plot parameters, read block data, write one 
+or more xmgr datasets, set the current working directory, set the printer 
+options, print (hardcopy), and exit.
+<p>
+<HR>
+<p>
+<h3><a NAME="open">Open</a></h3>
+<p>
+Open an existing binary or ASCII xmgr file, abandoning the current
+plot.
+<p>
+<h3><a NAME="save">Save</a></h3>
+<p>
+Save the current plot using the last specified name and save format.
+<h3><a NAME="saveas">Save as</a></h3>
+Select the name and format for saving the current plot.
+<h3><a NAME="describe">Describe</a></h3>
+Add a text description to a plot. This will only be saved if 
+binary format is used.
+<P>
+<HR>
+
+	<h3> <a NAME="readsets">Read sets</a> </h3>
+<p>
+Read one or more data sets. The list item at the top of the popup displays 
+the contents of the current directory. Select a file or directory by clicking 
+on the item with the right mouse button. The selection is placed in the text 
+item labeled `File:' and checked to see if it is a directory or a file. 
+Selecting a directory causes xmgr to change to the new directory and 
+reload the file list with the contents of the new directory. Selecting a 
+file does nothing until the `Accept' button is pressed or &lt return &gt is 
+entered. Before `Accept'ing the file, the items describing the file type, file 
+source, and the graph in which to read the data need to be properly set.
+The type of data file can be one of several formats:
+<p>
+<ul>
+	<li> A 2 column multi-data set file. Sets are separated by a line 
+containing non-numeric characters, that are neither comment lines (lines 
+with a `#' in column 1) nor parameter lines (lines beginning with an `@'). 
+The sets generated from this file type are all of type XY.
+<p>
+	<li> A multi column data file. X is assumed to be in the first 
+column, and Y1, Y2, ..., up to Y30 in the remaining columns. The sets 
+generated with this data file format are all of type XY.
+<p>
+	<li> IHL format. A 3 column data file with the first line 
+an integer value with the number of points to follow.
+<p>
+	<li> Binary format. - not defined as of this writing.
+<p>
+	<li> X Y DX format. A 3 column data file consisting of X, Y and a 
+quantity used to form an error bar parallel to the X-axis, i.e., the point 
+will be plotted with an error bar at (X+-DX, Y).
+<p>
+	<li> X Y DY format. A 3 column data file consisting of X, Y and a 
+quantity used to form an error bar parallel to the Y-axis, i.e., the point 
+will be plotted with an error bar at (X, Y+-DY).
+<p>
+	<li> X Y DX1 DX2 format. A 4 column data file consisting of X, Y, 
+and the errors in X. The error bar riser is drawn from (X+DX1,Y) to (X-DX2,Y). 
+If both DX1 and DX2 are &gt 0 then the error bar will bracket the datum. 
+If DX2 is &lt 0 and DX1 &gt 0 the error bars are drawn to the right of the 
+datum. Likewise, if DX1 &lt  0 and DX2 &gt  0 the error bar is drawn to the 
+left of the datum.
+<p>
+There are 4 cases for the error bars' position with respect to the datum:
+<p>
+<ul>
+	<li> 1.	DX1 &gt  0 and DX2 &gt  0 ... Error bars bracket the datum.
+	<li> 2.	DX1 &gt  0 and DX2 &lt  0 ... Error bars are drawn to the right
+	        of the datum.
+	<li> 3.	DX1 &lt  0 and DX2 &gt  0 ... Error bars are drawn to the left 
+	        of the datum.
+	<li> 4.	DX1 &lt  0 and DX2 &lt  0 ... Error bars bracket the datum, but 
+	        reversed from case 1.
+</ul>
+<p>
+	<li> X Y DY1 DY2 format. A 4 column data file consisting of X, Y, 
+and the errors in Y. The error bar riser is drawn from (X, Y+DY1) to 
+(X, Y-DY2). If both DY1 and DY2 are &gt 0 then the error bar will bracket the 
+datum. If DY2 is &lt 0 and DY1 &gt  0 the error bars are drawn to the right of 
+the datum. Likewise, if DY1 &lt  0 and DY2 &gt  0 the error bar is drawn to the 
+left of the datum. There are 4 cases for the error bars' position with 
+respect to the datum:
+<ul>
+	<li> 1.	DY1 &gt  0 and DY2 &gt  0 ... Error bars bracket the datum.
+	<li> 2.	DY1 &gt  0 and DY2 &lt  0 ... Error bars are drawn above the 
+	        datum.
+	<li> 3.	DY1 &lt  0 and DY2 &gt  0 ... Error bars are drawn below the 
+	        datum.
+	<li> 4.	DY1 &lt  0 and DY2 &lt  0 ... Error bars bracket the datum, but 
+	        reversed from case 1.
+</ul>
+	<li> X Y DX DY format.  A 4 column data file consisting of X, Y, 
+and the errors in X and Y. The error bar risers are drawn from (X+DX, Y) to 
+(X-DX, Y) and (X, Y+DY) to (X, Y-DY). 
+<p>
+	<li> X Y Z format. A 3 column data file consisting of X, Y, Z. 
+Sets with this type are drawn with the Z value in text at (X, Y).
+<p>
+	<li> X Y R format. A 3 column data file consisting of X, Y, R. Sets 
+with this type are drawn with a circle of radius R at (X, Y).
+<p>
+	<li> X HI LO OPEN CLOSE format. A 5 column data file consisting of 
+the high, low, open and close values for an observation at X. A data set of 
+this type uses the line style, line width and line color for a normal set 
+when the symbol is drawn. 
+</ul>
+<p>
+<b>Read from:</b> sets the source of the data, either a disk file or a pipe. 
+In the case of a pipe, the information provided by the file filter item is 
+not used, as the `file' in this case will be a command as typed at the 
+UNIX prompt.
+<p>
+<b>Read to graph:</b> selects a particular graph to serve as the repository 
+for the incoming data. The `Current' graph is the graph that has the focus, 
+and can be any of the available graphs. If you aren't sure which graph is 
+current, the locator item on the main panel displays the current graph number.
+<p>
+Selecting <b>Autoscale on read:</b> forces an autoscale of the target graph 
+each time a set is read. 
+<p>
+<b>Note</b>: Data are read into the next available set. All data are assumed 
+to be delimited by tabs or blanks.
+<p>
+For the xy, xydx, xydy, xydxdx, xydydy, xydxdy, xyz, xyr data file formats, 
+sets are separated by a line containing non-numeric characters, that are 
+neither comment lines (lines with a '#' in column 1) nor parameter lines 
+(lines beginning with an `@'). Data files can have embedded comments by 
+placing a `#' in the first column of the comment line. Plot parameters can 
+be set by placing a `@' in the first column of the line followed immediately 
+by the parameter name and setting. See the command line reference for a 
+description of plot parameters and other commands that may be placed in a 
+data file using the `@' character. Comment lines and parameter lines can 
+occur at any place in the data file, and are not used to indicate data set 
+separators. I recommend a single `&' on a line to use as a data set separator.
+<p>
+Press <b>Accept</b> to read the data. If the read was successful, the graph 
+of the data is drawn using the current plot scaling parameters. If the data 
+lies outside the current plotting limits, the new set(s) will not be visible 
+until the plotting limits are changed by autoscaling or manually through 
+the <a href="plot.html#world"> Plot/World scaling</a>. 
+<p>
+Press <b>Cancel</b> to close the popup.
+<p>
+Open the <a href="#status">Status popup</a> to get information on the state of
+sets. If reading  the file generates more than 10 errors you'll be prompted by
+an alert requesting whether or not  you'd like to continue. These errors
+generally arise when an attempt is made to read a  text file - xmgr relies on
+the interpretive capabilities of sscanf() to parse the data.  xmgr will read
+data sets until there are no more sets available, after the maximum  number of
+sets have been used, you'll need to free some sets using the [Kill] or [Kill
+all]  items in the Edit/Set operations pullright.
+<p>
+
+<HR>
+
+	<h3> <a NAME="readnetcdf">Read netCDF</a> </h3>
+
+<p>
+   File/Read netCDF
+<p>
+
+   Select X:    Select Y:
+<p>
+
+   netCDF file:
+<p>
+   Load to set:
+<p>
+   Autoscale on read
+<p>
+
+   Accept   Files...   Update   Query   Done
+<p>
+---------------------------------------
+<p>
+
+Enter the name of the netCDF file in the text item labeled
+<b>netCDF file:</b> then click on "Update" (note that if -netcdf
+[filename] was used on the command line, this step is not
+needed, as the lists will be loaded automatically). This will 
+read the names of all one dimensional variables into the 
+two scrolled lists.  The leftmost list is for X and the 
+rightmost for Y. There is an additional item in the X 
+list called INDEX (I'm hoping here that no one names a 
+variable INDEX, maybe I need to change this) that indicates 
+that for X, use the index of the Y variable (numbering 
+starts from 1).
+
+<p>
+Select on a variable from the X list to use for X and select
+a variable from the Y list (only single selections for now). 
+
+<p>
+If information about the selected variables is desired, click on 
+Query.
+
+<p>
+Select a set using "Load to set:" - the default is to load
+to the next available set.
+
+<p>
+If things look OK, click on Accept to read the data and load 
+the set. Use "Autoscale on read" to set/unset autoscaling
+after a successful read.
+
+<p>
+To read data from a new CDF file, enter the filename, or use
+File... to scan the directory. Click on Update to freshen up
+the X and Y selection lists.
+<p>
+Note: Presently, only sets of type XY are created.
+<p>
+Note: xmgr scans and replaces commas with blanks and the `D' in Fortran double 
+precision exponential formats with `e'.
+<p>
+
+<HR>
+
+	<h3> <a NAME="readparams">Read parameters</a> </h3>
+<p>
+Enter the parameter file name on the line labeled "File:", press "Accept" to
+read a saved  state of adjustable parameters, legends, strings, etc, to the
+graph selected by the `Read to  graph' cycle. As the graph number is saved in
+the parameter file this isn't used at the  present time.
+<p>
+
+<HR>
+
+	<h3> <a NAME="readblock">Read block data</a> </h3>
+<p>
+Select the data source, either Disk or Pipe and enter the block data file name
+in the text  item labeled "File:" to read a data set in block data file format.
+The  block data file format consists of columns of data. For example,  the
+following is a block data file consisting of 4 columns:
+<pre>
+    1   2   3   4   5
+    6   7   8   9  10
+    11 12  13  14  15
+</pre>
+<p>
+After reading the file of block data, the popup will close if no errors were
+found, and the  Edit/Block data popup will take its place. Use the functions in
+the Edit/Block data  popup to create sets from the block data.
+<p>
+NOTE: All items are assumed delimited by spaces or tabs. There is presently a
+30 column limit. Only one set of block data per session, i.e., reading another
+set of block data  will obliterate the previous set of block data.
+<p>
+
+<HR>
+
+	<h3> <a NAME="writesets">Write sets</a> </h3>
+<p>
+Write one or all sets to disk. Select the set to write using the cycle
+displaying the set  numbers (there is an item for selecting all active sets).
+The item denoted "Format" is the  C language format string that will be used to
+format the data for output - the default  should work well for most cases.
+Enter the file name on the line labeled "File:" and  press the button marked
+[Accept], to write the data. The item, `Embed parameters,'  causes xmgr to
+write not only the data, but the parameters describing the graph or  graphs as
+well.
+<p>
+A complete dump of the contents of xmgr may be accomplished by selecting all
+sets,  embed parameters, and all active graphs. The file generated this way can
+then be read as  a normal data file, and should recreate the originating
+environment.
+<p>
+
+<HR>
+
+	<h3> <a NAME="writeparams">Write parameters</a> </h3>
+<p>
+Select the graph from which to save the parameters. This can be the current
+graph, any  particular graph, or all active graphs. Enter the parameter file
+name on the line labeled  "Write parameters to", press "Accept" to write the
+current state of adjustable parameters, legends, strings, etc. A prompt will
+appear if the action would overwrite an existing  file. allowing the operation
+to be canceled.
+<p>
+
+<HR>
+
+	<h3> <a NAME="clearall">Clear all</a> </h3>
+<p>
+Kill all sets, graphs, and annotative text, lines, and boxes. After performing
+this action,  it will be necessary to activate a graph using
+View/Graphs/Activate graphs.
+<p>
+
+<HR>
+
+	<h3> <a NAME="print">Print</a> </h3>
+<p>
+Generate a hardcopy of the current plot on the device specified in the
+File/Printer setup  popup.
+<p>
+
+<HR>
+
+	<h3> <a NAME="printersetup">Printer setup</a> </h3>
+<p>
+Set the hardcopy device parameters. Select the device, where to print (either
+the printer  or a file), and the string to use as a spooling command for the
+print job, or file name if  output is directed to disk. Click on the `Accept'
+button to make the selections above current, or `Done' to close the popup and
+cancel the operation. If the selection is accepted,  the next time File/Print
+is selected, hardcopy output will be to the selected device. Click  on the
+`Print' button to accept the settings and print a hardcopy.
+<p>
+
+<HR>
+
+	<h3> <a NAME="exit">Exit</a> </h3>
+<p>
+Click on the Exit button to terminate the session with xmgr.
+<p>
+
+<HR>
+
+</BODY>
+
+</HTML>

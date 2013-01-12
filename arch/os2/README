@@ -1,0 +1,120 @@
+
+
+                             XMGR for OS/2
+
+                (current supported version is 4.1.2)
+
+
+
+      Contents of this document:
+
+        1) Introduction
+        2) How to re-build
+        3) How to install
+
+
+
+1) Introduction
+   ------------
+
+  Note that this (incomplete) port of XMGR for OS/2 is work in progress
+  and therefore most likely includes some bugs. Some of them are just
+  related to the general problems un*x based applications have on non-un*x
+  filesystems. So read the documentation and FAQs of XFree86
+  carefully to get some hints how to avoid running into these bugs or
+  better 'limitations' (a good idea is installing TVFS, the Toronto
+  Virtual File System).
+
+  Also it's likely that some patches are still missing from the
+  source distribution. This will be fixed in the next releases.
+
+  A pre-compiled version should always be available from
+
+    http://www.tu-darmstadt.de/~st002279/os2.html
+  and/or
+    http://crunch.ikp.physik.tu-darmstadt.de/~mai/os2.html
+
+
+  This document describes only the OS/2 specific topics. If you're going
+  to use XMGR you should read the general documentation files as well !
+
+
+2) How to re-build                 
+   ---------------
+   
+  Here I try to give a (complete?) list what you'll need to build xmgr:
+
+  The first listed packages have be installed anyway:
+
+  - EMX 09c (full development package to re-compile)
+    available from  
+      http://hobbes.nmsu.edu  and/or
+      http://www.leo.org/cgi-bin/leo-dls/pub/comp/os/os2/leo/00-index.html
+
+  - XFree86 for OS/2 ("XFree/2")
+    available from  
+      http://borneo.gmd.de/~veit/os2/xf86os2.html
+    including it's development package
+
+  - Lesstif >= 0.82 for XFree/2
+    available from  
+      http://borneo.gmd.de/~veit/os2/xf86os2.html
+
+  Additional useful utilities:
+
+  - The "usual" GNU utilities (text, shell, file).
+  - An un*x shell is necessary.
+
+  To actually build XMGR I used additional libraries which may or
+  may not be public available in binary form (XMGR _can_ be build
+  without these packages). Well, at least they could be found in
+  binary distributions from the URL given above.
+
+    - Xbae
+      It's sources can be found at:
+         ftp://ftp.x.org/contrib/widgets/motif/
+    - libhelp and it's little application xmhelp
+      (used to display the online help written in HTML)
+      It's sources can be found at:
+         ftp://ftp.uni-stuttgart.de/pub/libhelp/
+
+  So far the supplied configure (shell-) script doesn't work under OS/2
+  and even the Autoconf port still fails. Therefore I offer a small
+  REXX-script 'configos2.cmd' which will
+  - copy the standard OS/2 configuration files (config.h and Make.conf)
+    from .\arch\os2 to the toplevel source directory
+  - build dlfcn.a in \arch\os2 (support for user-supplied mathemtical
+    functions in dynamic load libraries)
+
+  configos2.cmd is located in .\arch\os2 and has to be copied
+  to the toplevel source directory before executing it.
+  Future versions of configos2 might adapt these files slightly to
+  reflect the small possible differences of the specific system.
+  For now please check .\arch\os2\config.h.os2 and .\arch\os2\Make.conf.os2
+  whether they suit your system.
+
+  Finally 'x11make.exe' will be called. Note that calling the 'make'
+  script from XFree/2 won't work!
+
+
+3) How to install
+   ---------------
+
+  At this moment the OS/2 Makefiles don't support installing in the
+  standard directory structure under \XFree86 or $(X11ROOT)\XFree86.
+
+  The binary distribution's archive can just be unpacked in
+  $(X11ROOT)\ and is automatically installed! I also supply a small
+  REXX-script 'xmgr1.cmd' which will set the necessary environment
+  variables.
+  
+  I also plan to include some instructions how to access your installed
+  printers without manual processing the Postscript files. But this is
+  of course not only a problem of xmgr but of every non-PM application
+  on OS/2.
+  
+---------------------------------------------------------------------------
+
+Alexander Mai
+st002279@hrzpub.tu-darmstadt.de
+Alexander.Mai@physik.tu-darmstadt.de

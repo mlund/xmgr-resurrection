@@ -1,0 +1,38 @@
+!
+! defaults for xmgr
+!
+XMgr*fontList:  -adobe-helvetica-bold-r-normal-*-14-*-*-*-*-*-*-*
+XMgr*background: #e5e5e5e5e5e5
+XMgr*XmPushButton*background: #b0b0c4c4dede
+XMgr*XmArrowButton*background: #b0b0c4c4dede
+XMgr*XmBulletinBoard*PushButton*background: #b0b0c4c4dede
+XMgr*XmText*background: #ceb8e75be75b
+XMgr*XmMenuShell*background: #cccccccccccc
+XMgr*XmToggleButton.selectColor:        Red
+XMgr*XmToggleButton.fillOnSelect:       true
+XMgr*XmSeparator.margin:        0
+! Disable tear-off menus
+!XMgr*tearOffModel: XmTEAR_OFF_DISABLED
+! Use GXinvert rather than GXxor for rubberband lines
+! if the rubberbanding for zooms and lines, etc. doesn't
+! appear on the canvas, set the following resource to yes.
+!XMgr.invertDraw: no
+! do backing store if the server doesn't
+!XMgr.backingstore: no
+! reverse the color indices for black and white
+!XMgr.reverseVideo: no
+! Set the number of sets for each graph
+!XMgr.maxSets: 30
+! Set the number of graphs for each session
+!XMgr.maxGraphs: 10
+! Set the number of colors to allocate
+!XMgr.maxColors: 17
+! Verify Edit/Set ops/Pick sets operations
+!XMgr.verifyAction: no
+! Autoscale after reading a file from Files/Read sets
+!XMgr.autoscaleOnRead: no
+! Allow double clicks on canvas
+!XMgr.allowDoubleClick: No
+! Always answer yes - warning, existing files can be overwritten
+! without prompting.
+!XMgr.noAsk: No

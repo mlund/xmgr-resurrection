@@ -1,0 +1,34 @@
+#
+# Dependencies (should be generated automatically):
+#
+ 
+$(GROBJS) : $(TOP)/config.h defines.h globals.h
+$(GUIOBJS) : $(TOP)/config.h defines.h globals.h motifinc.h
+
+$(PARS_O) : ps.h dlmodule.h $(TOP)/cephes/protos.h
+as274c$(O) : as274c.h
+chersh$(O) : hersh.h
+computils$(O) : symdefs.h
+draw$(O) : symdefs.h draw.h externs.h symfunc.h
+drawticks$(O) : draw.h externs.h
+events$(O) : draw.h
+graphu1$(O) : draw.h
+hp$(O) : externs.h 
+leaf$(O) : externs.h 
+lmdif1$(O) : f2c.h
+main$(O) : patchlevel.h
+mif$(O) : externs.h
+params$(O) : draw.h
+plotone$(O) : symdefs.h draw.h
+ptswin$(O) : draw.h
+ps$(O) : externs.h patterns.h symfunc.h ps.h
+regionutils$(O) : draw.h
+rotated$(O) : rotated.h
+statuswin$(O) : patchlevel.h
+strwin$(O) : draw.h
+symfunc$(O) : draw.h symfunc.h
+symwin$(O) : draw.h
+xmgr$(O) : bitmaps.h
+xvlib$(O) : externs.h patterns.h rotated.h
+dlmodule$(O) : dlmodule.h
+

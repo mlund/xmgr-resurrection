@@ -1,0 +1,8 @@
+
+/* config.h-VMS6 -- VMS -- */
+
+/* Define if you have the strdup function.  */
+#undef HAVE_STRDUP
+
+/* Define if you have the drand48 function.  */
+#undef HAVE_DRAND48 

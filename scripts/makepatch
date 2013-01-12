@@ -1,0 +1,6 @@
+#!/bin/sh
+echo -n "" > patch
+for i in *.orig
+do
+	diff -u $i `basename $i .orig` >> patch
+done

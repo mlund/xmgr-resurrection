@@ -1,0 +1,1931 @@
+<HTML>
+
+<HEAD>
+<TITLE>Xmgr: Command interpreter reference and parameter file format</TITLE>
+</HEAD>
+
+<BODY>
+
+<h2>Command interpreter reference and parameter file format</h2>
+
+        <ul>
+	    <li><a href="#intro"><b>Introduction</b></a>
+	    <li><a href="#ref"><b>Reference</b></a>
+	    <li><a href="#devices"><b>Printing</b></a>
+	    <li><a href="#display"><b>Display</b></a>
+	    <ul>
+	    <li><a href="#timestamp">Time stamp</a>
+	    </ul>
+	    <li><a href="#sets"><b>Sets</b></a>
+	    <ul>
+	    <li><a href="#setops">Set operations</a>
+	    <li><a href="#block">Block data</a>
+	    </ul>
+	    <li><a href="#graphs"><b>Graphs</b></a>
+	    <ul>
+	    <li><a href="#graph">Graph operations</a>
+	    <li><a href="#graphfocus">Graph focus</a>
+	    <li><a href="#frame">Graph frame</a>
+	    <li><a href="#auto">Autoscaling</a>
+	    <li><a href="#title">Title and subtitle</a>
+	    <li><a href="#legend">Legend</a>
+	    </ul>
+	    <li><a href="#axes"><b>Axes</b></a>
+	    <ul>
+	    <li><a href="#axislabels">Axes labels</a>
+	    <li><a href="#ticks">Tick marks</a>
+	    <li><a href="#ticklabels">Tick labels</a>
+	    </ul>
+	    <li><a href="#regions"><b>Regions</b></a>
+	    <li><a href="#box"><b>Objects</b></a>
+	    <ul>
+	    <li><a href="#box">Boxes/Ellipses</a>
+	    <li><a href="#line">Lines</a>
+	    <li><a href="#string">Strings</a>
+	    </ul>
+	    <li><a href="#world"><b>World scaling</b></a>
+	    <ul>
+	    <li><a href="#stack">World stack</a>
+	    <li><a href="#view">Viewport</a>
+	    </ul>
+	    <li><a href="#trans"><b>Math</b></a>
+	    <ul>
+	    <li><a href="#trans">Transformations</a>
+	    <li><a href="#nonlfit">Non-linear fit settings</a>
+	    </ul>
+	    <li><a href="#aliases"><b>Keyword aliases</b></a>
+	    <li><a href="#io"><b>IO</b></a>
+	    <li><a href="#defaults"><b>Defaults</b></a>
+	    <li><a href="#misc"><b>Miscellaneous Commands</b></a>
+        </ul>
+
+<HR>
+	<h2> <a NAME="intro">Introduction</a> </h2>
+<p>
+xmgr provides a command line interface and the ability to save plot
+parameters in a file for later retrieval. The syntax for the command
+line interpreter and parameter files is the same. It is instructive to
+read a parameter file into the command line interpreter and press the
+`Replay' button to verify this feature.
+<p>
+
+<HR>
+	<h2> <a NAME="ref">Reference</a> </h2>
+<p>
+Case is ignored by the command line interpreter.
+<p>
+For the sake of clarity, however, CAPITALS are generally to be taken
+literally in the following examples while lower case words represent
+parameters:
+<p>
+<dl>
+<dt> <i>color</i>
+<dd>integer value from 0 to 29.
+<dt> <i>string</i>
+<dd>double quote enclosed character string.
+<dt> <i>integer</i>
+<dd>any integer &gt= 0
+<dt> <i>number</i>
+<dd>any floating point value &gt= 0.0
+<dt> <i>fitparm</i>
+<dd>Parameter used for non-linear fit in the form An where n is the number
+    of the parameter.
+<dt> <i>fitpmin</i>
+<dd>Low bound for a parameter used for non-linear fit in the form AnMIN where 
+    n is the number of the parameter.
+<dt> <i>fitpmax</i>
+<dd>Upper bound for a parameter used for non-linear fit in the form AnMAX where 
+    n is the number of the parameter.
+<dt> <i>expr</i>
+<dd>any expression (includes negative floating point values)
+<dt> <i>onoff</i>
+<dd>ON or OFF
+<dt> <i>torf</i>
+<dd>TRUE or FALSE
+<dt> <i>setnum</i>
+<dd>Set descriptor in the form Sn where n is the number of the set.
+<dt> <i>graphno</i>
+<dd>Graph descriptor in the form Gn where n is the number of the graph.
+<dt> <i>regnum</i>
+<dd>Region descriptor in the form Rn where n is the number of the region.
+<dt> <i>axis</i>
+<dd>One of XAXIS, YAXIS, ZEROXAXIS, ZEROYAXIS, XAXES, YAXES.
+<dt> <i>direction</i>
+<dd>One of UP, DOWN, LEFT, RIGHT, IN, OUT.
+<dt> <i>opchoice</i>
+<dd>One of TOP, BOTTOM, LEFT, or RIGHT.
+<dt> <i>xytype</i>
+<dd> one of (number of values per point in parentheses):
+<ul>
+<li> <b>XY</b> (2) normal x-y set with two coordinates
+<li> <b>XYDX</b> (3)  XY with errorbars for x
+<li> <b>XYDY</b> (3)  XY with errorbars for y
+<li> <b>XYDXDX</b> (4) XY with lower and upper errorbars for x
+<li> <b>XYDYDY</b> (4) XY with lower and upper errorbars for y
+<li> <b>XYDXDY</b> (4) XY with errorbars for x and y
+<li> <b>XYZ</b> (3) print the value of z at x,y
+<li> <b>XYRT</b> (4) circle with radius r at x,y
+<li> <b>XYHILO</b> (5) draw a line at x from y0 to y1 and put markers
+at y2 and y4
+<li> <b>XYBOX</b> (5) box at x,y0, y1,y2 filled with color y4
+<li> <b>XYBOXPLOT</b> (6) x, median, lower inner value, upper inner
+value, lower whisker, upper whisker
+<li> <b>XYSTRING</b> (3) <i>string</i> at x,y
+<li> <b>XYXX</b> (4) ???
+<li> <b>XYYY</b> (4) ???
+<li> <b>XYZW</b> (4) ???
+<li> <b>XYUV</b> (4) vector u,v at x,y
+<li> <b>NXY</b> (...) read from file: x y1 y2 ... y30
+<li> <b>BIN</b> (...)  read from a binary file
+<li> <b>POLY</b> (?)
+<li> <b>RAWSPICE</b> (?) raw file format produced by SPICE
+</ul>
+
+<dt> <i>formatchoice</i>
+<dd>One of:
+<ul>
+<li> DECIMAL - 0.0
+<li> EXPONENTIAL - 0e+-0
+<li>  POWER - 10<sup>10</sup>
+<li>  GENERAL - varies between 0.0 and 0e+0
+<li>  DDMMYY - requires data in Julian date format
+<li>  MMDDYY - requires data in Julian date format
+<li>  YYMMDD - requires data in Julian date format
+<li>  YYMMDDHMS - requires data in Julian date format
+<li>  MMYY - requires data in Julian date format
+<li>  MMDD - requires data in Julian date format
+<li>  MONTHDAY - requires data in Julian date format
+<li>  DAYMONTH - requires data in Julian date format
+<li>  MONTHS - requires data in Julian date format
+<li>  MONTHSY - requires data in Julian date format
+<li>  MONTHL - requires data in Julian date format
+<li>  DAYOFWEEKS - requires data in Julian date format
+<li>  DAYOFWEEKL - requires data in Julian date format
+<li>  DAYOFYEAR - requires data in Julian date format
+<li>  HMS - requires data in Degrees format
+<li>  MMDDHMS - requires data in Degrees format
+<li>  MMDDYYHMS - requires data in Degrees format
+<li>  DEGREESLON - requires data in Degrees format
+<li>  DEGREESMMLON - requires data in Degrees format
+<li>  DEGREESMMSSLON  - requires data in Degrees format
+<li>  MMSSLON - requires data in Degrees format
+<li>  DEGREESLAT - requires data in Degrees format
+<li>  DEGREESMMLAT - requires data in Degrees format
+<li>  DEGREESMMSSLAT - requires data in Degrees format
+<li>  MMSSLAT - requires data in Degrees format
+</ul>
+<p>
+The <b>Julian date format</b> is the long form. There are 2 programs
+in the subdirectory aux/ that can be used to convert data from
+Gregorian to Julian and vice versa.  The <b>Degrees format</b> is for
+latitude and longitude. Below the equator latitudes are
+negative. Longitude is assumed positive east of Greenwich and negative
+to the west.
+
+</dl>
+<ul>
+<p>
+
+<HR>
+	<h2> <a NAME="devices">Printing</a> </h2>
+<p>
+In the discussion to follow, printer refers to one of:
+<ul>
+	<li> PSMONOP - PostScript portrait.
+	<li> PSMONOL - PostScript landscape
+	<li> MIFP - Maker Interchange Format portrait.
+	<li> MIFL - Maker Interchange Format landscape.
+	<li> HPGLP - HPGL portrait.
+	<li> HPGLL - HPGL landscape.
+	<li> FILE - print to a file rather than to the device.
+	<li> HARDCOPY - the current hardcopy device.
+</ul>
+<p>
+	<li> PRINT <i>printer string</i>
+<p>
+Set the printer command string to string.
+<p>
+Example:
+<p>
+print psmonop "lpr -Pps"
+<p>
+	<li> PRINT TO HARDCOPY
+<p>
+Spool hardcopy output to the printer. This command sets the output destination, but 
+does not generate a hardcopy, see the HARDCOPY command.
+<p>
+	<li> PRINT TO FILE
+<p>
+Spool hardcopy output to a file, using the current value of the printer file string (see 
+PRINT TO string above). This command sets the output destination, but does not generate a hardcopy, see the HARDCOPY command.
+<p>
+	<li> PRINT TO FILE string
+<p>
+Spool hardcopy output to a file named string. This command sets the output destination, 
+but does not generate a file, see the HARDCOPY command.
+<p>
+Example:
+<p>
+print to file "hardcopy.out"
+<p>
+	<li> PRINT TO printer
+<p>
+Set the hardcopy device to printer.
+<p>
+	<li> PS LINEWIDTH BEGIN number
+<p>
+Set the starting linewidth for the translation of internal lines to
+postscript lines.
+<p>
+	<li> PS LINEWIDTH INCREMENT number
+<p>
+Set the linewidth increment for the translation of internal lines to
+postscript lines.
+<p>
+	<li> HARDCOPY
+<p>
+Print to the current hardcopy device or file.
+<p>
+	<li> DEVICE integer
+<p>
+Set the screen device to integer. At the present time 0 (the X server) is the only value.
+<p>
+
+<HR>
+	<h2> <a NAME="display">Display</a> </h2>
+<p>
+	<li> PAGE LAYOUT pagelayout
+<p>
+Define the page layout (FREE, LANDSCAPE, PORTRAIT, FIXED).
+<p>
+	<li> REDRAW
+<p>
+Refresh the display.
+<p>
+	<li> AUTO REDRAW onoff
+<p>
+Toggle the automatic redrawing of the display.
+<p>
+	<li> STATUS AUTO REDRAW onoff
+<p>
+Toggle the automatic redrawing of the display after set operations in
+the status window.
+<p>
+	<li> STATUS
+<p>
+Update the status window.
+<p>
+	<li> TOOLBAR onoff
+	<li> STATUSBAR onoff
+	<li> LOCATORBAR onoff
+<p>
+Turn the respective bar on or off <!-- TODO: these don't seem to work -->.
+<p>
+	<li> LOCATOR onoff
+<p>
+ Turn the locator reading on the front panel on or off.
+<p>
+	<li> BACKGROUND COLOR color
+<p>
+Set the background color of the drawing area.
+<p>
+	<li> CMAP color, integer, integer, integer
+<p>
+ Set the RGB values of a colormap entry. The value of color ranges from 2 to 29, The 
+three integer values following the color number are values from 0 to 255 and represent 
+red, green, and blue resp. Colors 0 and 1 are black and white (reversed if the -rvideo 
+command line option was selected), and cannot be changed.  See the
+<A HREF="usage.html#freeColorsSW"><CODE>-nofreecolors</CODE></A>
+command line switch if you have problems with button or background
+colors changing.
+<p>
+Example:
+<p>
+To set colormap entry 5, use
+<p>
+cmap 5, 0, 0, 255
+<p>
+This sets color 5 to solid blue.
+<p>
+	<li> PAGE direction
+<p>
+ Page left, right, up, down, in. out.
+<p>
+	<li> PAGE integer
+<p>
+ Set the amount of scrolling, and integer value giving the amount of scroll in percent of 
+the graph scaling. For example:
+<p>
+PAGE 100
+<p>
+would set the amount to scroll left, right, up, down to 100 percent of the graph axis scaling.
+<p>
+	<li> PAGE INOUT integer
+<p>
+Set the amount to increase or decrease the graph scaling when using the In/Out buttons 
+on the main panel. An integer value expressing the percent to expand or shrink.
+<p>
+	<li> LINK PAGE onoff
+<p>
+Toggle linked scrolling. Linked scrolling affects the scroll buttons on the main panel, 
+when linked scrolling is on, all graphs are scrolled simultaneously. Linked scrolling 
+OFF makes scrolling affect the current graph only.
+<p>
+	<li> READ IMAGE string
+<p>
+Read an Image from file named <i>string</i> (currently not available).
+<p>
+	<li> IMAGE XY number, number
+<p>
+Set the location of the Image.
+<p>
+
+<HR>
+	<h2> <a NAME="timestamp">Time stamp</a> </h2>
+The following commands control time stamp appearance:
+<p>
+	<li> TIMESTAMP onoff 
+	<li> TIMESTAMP FONT number 
+	<li> TIMESTAMP CHAR SIZE number 
+	<li> TIMESTAMP ROT number 
+	<li> TIMESTAMP COLOR number 
+	<li> TIMESTAMP LINEWIDTH number 
+	<li> TIMESTAMP number , number
+	<li> TIMESTAMP DEF string
+<p>
+Their meaning is exactly as for the <A HREF="#string">string</A>-related commands.
+
+<HR>
+	<h2> <a NAME="sets">Sets</a> </h2>
+<p>
+Setnum, in the following descriptions, refer to the symbolic name of each set, i.e., the 
+letter `s' followed by the integer number of the set. S0 would refer to set 0, s1 to set 1, 
+etc. The following commands for setting set parameters have two prefixes, GRAPHS 
+and SETS, that allow the setting to be made for all graphs, all sets, or a given set in all 
+graphs. So, to set the line width for set 0 to be 3 in all graphs that have a set 0 active, the 
+command would be:
+<p>
+graphs s0 linewidth 3
+<p>
+ Likewise, to set the line width for all sets in the current graph, give the command: 
+<p>
+sets linewidth 3
+<p>
+To set the line width for all sets in all graphs to 3, execute:
+<p>
+graphs sets linewidth 3
+<p>
+	<li> setnum ON
+	<li> setnum IGNORE
+<p>
+Toggle the active/inactive status of sets. This can be used to force xmgr to ignore a 
+set(s), even though data are still attached to the set. For example, assuming S0 is an 
+active set:
+<p>
+S0 ignore
+<p>
+will allow xmgr to ignore S0 for all purposes, except any operation that kills a set. 
+Autoscaling will ignore this set, etc - in effect, S0 is dead. To bring it back to life:
+<p>
+S0 on
+<p>
+will reintroduce the set with its data intact. This operation may be performed in either 
+Edit/Set operations/De-activate or in the File/Status popup.
+<p>
+	<li> setnum TYPE xytype
+<p>
+Set the type of set setnum to <i>xytype</i>.
+<p>
+	<li> setnum FONT integer
+<p>
+Set the font to use when the set type is xyz.
+<p>
+	<li> setnum PREC integer 
+<p>
+Set the precision when the set type is xyz.
+<p>
+	<li> setnum FORMAT formatchoice 
+<p>
+Set the format to use when the set type is xyz.
+<p>
+	<li> setnum SYMBOL integer
+<p>
+Set the symbol for the set.
+<p>
+	<li> setnum SYMBOL SIZE number
+<p>
+Set the size of the symbol.
+<p>
+	<li> setnum SYMBOL CENTER torf
+<p>
+Draw or don't draw a dot in the center of symbol.
+<p>
+	<li> setnum SYMBOL CHAR integer
+<p>
+Set the character to use when using the symbol type character. The value is the decimal 
+representation of the character using the ASCII collating sequence.
+<p>
+	<li> setnum SYMBOL COLOR color
+<p>
+Set the symbol color.
+<p>
+	<li> setnum SYMBOL FILL number
+<p>
+Set the fill type of the symbol (0: transparent, 1: filled with
+symbol foreground color, 2: filled with background color).
+<p>
+	<li> setnum SYMBOL SKIP integer
+	<li> setnum SKIP integer
+<p>
+Set the number of points to skip before placing a symbol.
+<p>
+	<li> setnum SYMBOL LINESTYLE integer
+<p>
+Set the symbol line style for the set.
+<p>
+	<li> setnum SYMBOL LINEWIDTH integer
+<p>
+Set the symbol line width for the set.
+<p>
+	<li> setnum LINESTYLE integer
+<p>
+Set the line style for the set.
+<p>
+	<li> setnum LINEWIDTH integer
+<p>
+Set the line width for the set.
+<p>
+	<li> setnum COLOR integer
+<p>
+Set the color to use to draw the lines and symbol.
+<p>
+	<li> setnum FILL integer
+<p>
+Set the type of fill for the set.
+<p>
+	<li> setnum FILL WITH COLOR
+<p>
+Set the type of fill for the set.
+<p>
+	<li> setnum FILL WITH PATTERN
+<p>
+Set the type of fill for the set.
+<p>
+	<li> setnum FILL COLOR integer
+<p>
+Set the color for the fill if the fill selected is color.
+<p>
+	<li> setnum FILL PATTERN integer
+<p>
+Set the color for the fill if the fill selected is color.
+<p>
+	<li> setnum ERRORBAR TYPE opchoice
+<p>
+Set the the error bar display type. Opchoice is one of RIGHT, LEFT, or
+BOTH if the error bar type is xydx or xydxdx, or TOP, BOTTOM, or BOTH
+if the type is xydy or xydydy. The default in either case is BOTH,
+i.e. display both error bars.
+<p>
+	<li> setnum ERRORBAR LENGTH number
+<p>
+Set the length of the error bar.
+<p>
+	<li> setnum ERRORBAR LINEWIDTH integer
+<p>
+Set the line width for the error bar.
+<p>
+	<li> setnum ERRORBAR LINESTYLE integer
+<p>
+Set the linestyle for the error bar.
+<p>
+	<li> setnum ERRORBAR RISER onoff
+<p>
+Toggle the display of the error bar riser.
+<p>
+	<li> setnum ERRORBAR RISER LINESTYLE integer
+<p>
+Set the line style for the error bar riser.
+<p>
+	<li> setnum ERRORBAR RISER LINEWIDTH integer
+<p>
+Set the line width for the error bar riser.
+<p>
+	<li> setnum COMMENT string
+<p>
+Set the comment string for the set.
+<p>
+
+<HR>
+	<h2> <a NAME="setops">Set operations</a> </h2>
+<p>
+	<li> ACTIVATE setnum number
+<p>
+ Activate a set in the current graph and set the length
+<p>
+	<li> DEACTIVATE setnum
+<p>
+ Deactivate a set in the current graph.
+<p>
+	<li> DEACTIVATE graphno.setnum
+<p>
+ Deactivate a set in the specified graph.
+<p>
+	<li> REACTIVATE setnum
+<p>
+ Reactivate a deactivated set in the current graph.
+<p>
+	<li> REACTIVATE graphno.setnum
+<p>
+ Reactivate a deactivated set in the specified graph.
+<p>
+	<li> COPY setnum TO setnum
+<p>
+ Copy a set to another set
+<p>
+	<li> COPY graphno.setnum TO graphno.setnum
+<p>
+ Copy a set from a particular graph to a set in another graph
+<p>
+Example
+<p>
+copy g0.s0 to g1.s5
+<p>
+	<li> MOVE <i>setnum</i> TO <i>setnum</i>
+<p>
+ Move a set to another set.
+<p>
+Example
+<p>
+move s0 to s1
+<p>
+	<li> MOVE <i>graphno.setnum</i>TO <i>graphno.setnum</i>
+<p>
+Move a set from a particular graph to a set in another graph
+<p>
+Example
+<p>
+move g0.s0 to g1.s5
+<p>
+	<li> KILL setnum
+	<li> KILL setnum SAVEALL
+<p>
+Kill a set. Plot parameters are set to their default values, unless
+SAVEALL is given.
+<p>
+	<li> KILL SETS
+	<li> KILL SETS SAVEALL
+<p>
+Kill all sets of the current graph. Plot parameters are set to their
+default values, unless SAVEALL is given.
+<p>
+	<li> setnum POINT expr, expr
+	<li> graphno.setnum POINT expr, expr
+<p>
+Add a point to a set, create the set if the set is inactive. The first version adds a point to 
+set setnum in the current graph, the second adds a point to setnum in the graph graphno.
+<p>
+	<li> setnum DROP expr, expr
+	<li> graphno.setnum DROP expr, expr
+<p>
+Drop points in setnum (or graphno.setnum). The parameters give the
+index of the first and last points to drop, respectively.
+<p>
+	<li> SORT setnum sorton sortdir
+<p>
+Sort <i>setnum</i> on X or Y.  <i>sortdir</i> is ASCENDING or
+DESCENDING.
+<p>
+	<li> TARGET setnum
+	<li> TARGET graphno.setnum
+<p>
+Define the named set to be used whenever a new set is about to be automatically
+selected and activated. If the set already exists (by the time a new set is 
+needed), the command is ignored. Once the command succeeds, the target
+definition is cleared.
+<p>
+
+<HR>
+	<h2> <a NAME="block">Block data</a> </h2>
+<p>
+The two block data commands allow block data to be read and sets
+formed from the active set of block data.
+<p>
+	<li> READ BLOCK string
+<p>
+Read a file of block data from file string.
+<p>
+	<li> BLOCK xytype string
+<p>
+Create a set of type xytype using columns coded in string. String describes columns as:
+"c1:c2:..."
+<p>
+Where c1, c2, ... are the numbers of the columns to use in the construction of the set 
+from the block data.
+<p>
+Examples:
+<p>
+Create a set with error bars using x from column 1, y from column 2 and the errors in 
+column 5:.
+<p>
+read block "block2.dat"
+<p>
+block xydy "1:2:5"
+<p>
+Create an XY type data set from columns 7 and 2.
+<p>
+block xy "7:2"
+<p>
+
+<HR>
+	<h2> <a NAME="graphs">Graphs</a> </h2>
+<p>
+	<li> WITH graphno
+<p>
+Set the current graph to graphno.
+<p>
+	<li> graphno onoff 
+<p>
+Set graphno on or off.
+<p>
+
+<!--TODO graphno LABEL onoff -->
+
+	<li> graphno AUTOSCALE TYPE AUTO
+<p>
+Set the method of autoscaling to a type developed by Paul Heckbert. This method makes 
+nice tick spacing, but fiddles with scales of the axes.
+<p>
+	<li> graphno AUTOSCALE TYPE SPEC 
+<p>
+Set the method of autoscaling to use the minimum and maximum values of the data.
+<p>
+	<li> graphno HIDDEN torf 
+<p>
+Toggle the display of graphno.
+<p>
+	<li> graphno TYPE graphtype
+<p>
+Set the type of graphno to graphtype, where graphtype is one of:
+<p>
+<ul>
+	<li> XY - Linear scaling on both X and Y axes (the default).
+	<li> BAR - bar chart.
+	<li> HBAR - horizontal bar chart.
+	<li> STACKEDBAR - stacked bar chart.
+	<li> STACKEDHBAR - horizontal stacked bar chart.
+	<li> LOGX - logarithmic X axis, linear Y axis.
+	<li> LOGY - linear X axis, logarithmic Y axis.
+	<li> LOGXY - Log-log graph.
+	<li> POLAR - polar graph.
+	<li> SMITH - Smith graph.
+</ul>
+<p>
+	<li> graphno BAR SIZE number
+	<li> graphno STACKEDBAR SIZE number
+<p>
+Set the thickness of the bars in a bar chart.
+<p>
+	<li> graphno FIXEDPOINT onoff 
+<p>
+Toggle the use of the graph fixed point, i.e., the point used as a reference for the locator 
+display.
+<p>
+	<li> graphno FIXEDPOINT XY number, number
+<p>
+Set the value of the graph fixed point.
+<p>
+	<li> graphno FIXEDPOINT TYPE number
+<p>
+Set the type of display for the locator on the main panel.
+<p>
+	<li> graphno FIXEDPOINT FORMAT formatchoice formatchoice
+<p>
+Select the format to use for both X and Y in the locator display.
+<p>
+	<li> graphno FIXEDPOINT PREC integer, integer
+<p>
+Set the number of places to display to the right of the decimal point
+in the locator display for both X and Y.
+
+<HR>
+	<h2> <a NAME="graph">Graph operations</a> </h2>
+<p>
+	<li> KILL graphno
+<p>
+Kill graph graphno.
+<p>
+	<li> KILL GRAPHS
+<p>
+Kill all graphs and sets, but not annotative text, lines, and boxes.
+<p>
+	<li> FLUSH
+<p>
+Kill all graphs, sets, and annotation.
+<p>
+	<li> ARRANGE rows, columns
+<p>
+Arrange graphs in the given number of <i>rows</i> and <i>columns</i>.
+<p>
+	<li> GRAPHS MAX SETS number
+	<li> graphno MAX SETS number
+<p>
+Set the maximum number of sets per graph for all graphs (first
+version) or a specified graph (second version).
+<p>
+
+<HR>
+	<h2> <a NAME="graphfocus">Graph focus</a> </h2>
+<p>
+	<li> FOCUS graphno
+<p>
+Set the current graph to graphno.
+<p>
+	<li> FOCUS SET
+<p>
+Focus fixed on the current graph.
+<p>
+	<li> FOCUS FOLLOWS
+<p>
+Focus follows the pointer.
+<p>
+	<li> FOCUS CLICK
+<p>
+Set the focus by clicking on a graph.
+<p>
+	<li> FOCUS onoff 
+<p>
+Turn the drawing of the focus indicators on or off.
+<p>
+
+<HR>
+	<h2> <a NAME="frame">Graph frame</a> </h2>
+<p>
+	<li> FRAME onoff
+<p>
+Toggle the display of the current graph's frame.
+<p>
+	<li> FRAME TYPE number
+<p>
+Set the type of frame for the current graph:
+<p>
+<ul>
+	<li> 0 = rectangle
+	<li> 1 = Lines along the left and bottom of the graph.
+</ul>
+<p>
+	<li> FRAME LINESTYLE number
+<p>
+Set the line style of the current graph's frame.
+<p>
+	<li> FRAME LINEWIDTH number
+<p>
+Set the width of the line for the current graph's frame.
+<p>
+	<li> FRAME COLOR number
+<p>
+Set the color of the current graph's frame.
+<p>
+	<li> FRAME FILL onoff
+<p>
+Toggle the fill of the graph frame.
+<p>
+	<li> FRAME BACKGROUND COLOR number 
+<p>
+Set the color to use for filling the current graph's frame.
+<p>
+
+<HR>
+	<h2> <a NAME="auto">Autoscaling</a> </h2>
+<p>
+	<li> AUTOSCALE
+<p>
+Autoscale the current graph
+<p>
+	<li> AUTOSCALE setnum
+<p>
+Autoscale the current graph on a particular set
+<p>
+	<li> AUTOSCALE XAXES
+<p>
+Autoscale the X-axis and the axis at Y = 0 in the current graph.
+<p>
+	<li> AUTOSCALE YAXES
+<p>
+Autoscale the Y-axis and the axis at X = 0 in the current graph.
+<p>
+	<li> AUTOSCALE torf
+<p>
+Suppress autoscaling on startup. Use this command in a data file that uses embedded 
+parameter settings to set the axes scaling. 
+<p>
+	<li> AUTOTICKS
+<p>
+Set sensible values for all tick marks of the current graph.
+<p>
+
+<HR>
+	<h2> <a NAME="title">Title and subtitle</a> </h2>
+<p>
+	<li> TITLE string 
+<p>
+Set the graph title.
+<p>
+	<li> TITLE FONT integer
+<p>
+Set the font for the graph title.
+<p>
+	<li> TITLE SIZE number 
+<p>
+Set the character size for the graph title.
+<p>
+	<li> TITLE COLOR integer 
+<p>
+Set the color for the graph title.
+<p>
+	<li> SUBTITLE string 
+<p>
+Set the graph subtitle.
+<p>
+	<li> SUBTITLE FONT integer
+<p>
+Set the font for the graph subtitle.
+<p>
+	<li> SUBTITLE SIZE number
+<p>
+Set the character size for the graph subtitle.
+<p>
+	<li> SUBTITLE COLOR integer
+<p>
+Set the color for the graph subtitle.
+<p>
+
+<HR>
+	<h2> <a NAME="legend">Legend</a> </h2>
+<p>
+	<li> LEGEND onoff 
+<p>
+Toggle display of the legend.
+<p>
+	<li> LEGEND LOCTYPE worldview 
+<p>
+Position the legend in either world or viewport coordinates.
+<p>
+
+<!-- TODO LEGEND LAYOUT number	-->
+
+	<li> LEGEND VGAP integer 
+<p>
+Set the vertical gap between legend entries in characters.
+<p>
+	<li> LEGEND HGAP integer 
+<p>
+Specify the gap between the display of the symbol and the legend label in units of characters.
+<p>
+	<li> LEGEND LENGTH integer
+<p>
+Set the length of the legend in units of characters.
+<p>
+	<li> LEGEND expr, expr
+<p>
+Set the location of the legend.
+<p>
+	<li> LEGEND X1 expr
+<p>
+Set the X value of the location.
+<p>
+	<li> LEGEND Y1 expr 
+<p>
+Set the Y value of the legend.
+<p>
+	<li> LEGEND FONT integer
+<p>
+Set the font to use for the legend labels.
+<p>
+	<li> LEGEND CHAR SIZE number 
+<p>
+Set the size of the characters in the legend label.
+<p>
+	<li> LEGEND LINEWIDTH integer 
+<p>
+Set the line width to use to draw the legend labels.
+<p>
+	<li> LEGEND COLOR integer 
+<p>
+Set the color of the legend labels.
+<p>
+	<li> LEGEND BOX onoff 
+<p>
+Toggle the display of the bounding box for the legend.
+<p>
+	<li> LEGEND BOX FILL onoff 
+<p>
+Toggle the filling of the bounding box for the legend.
+<p>
+	<li> LEGEND BOX LINEWIDTH integer 
+<p>
+Set the line width to use to draw the bound box for the legend.
+<p>
+	<li> LEGEND BOX LINESTYLE integer 
+<p>
+Set the line style to use to draw the bound box for the legend.
+<p>
+	<li> LEGEND BOX COLOR integer 
+<p>
+Set the color of the legend bounding box.
+<p>
+	<li> LEGEND BOX FILL COLOR integer 
+<p>
+Set the color to use for the filled legend bounding box.
+<p>
+	<li> LEGEND BOX FILL PATTERN integer 
+<p>
+Set the pattern to use for the filled legend bounding box.
+<p>
+	<li> LEGEND BOX FILL WITH colpat 
+<p>
+Set the type of fill for the bounding box, either COLOR or PATTERN.
+<p>
+	<li> LEGEND STRING integer string
+<p>
+Set the legend label for setnum integer.
+<p>
+
+<HR>
+	<h2> <a NAME="axes">Axes</a> </h2>
+<p>
+The are two axes in each coordinate direction. In the case of the X
+coordinate direction, there is one that follows the world scaling, one
+at Y = 0 and another that may be used to display an alternate
+scale. The names used by xmgr to refer to these axes are, XAXIS,
+ZEROXAXIS, respectively. Likewise along Y there is the YAXIS,
+ZEROYAXIS. There are names that can be used to refer to all the axes
+along a coordinate direction or to both directions or to all graphs,
+these being AXES (both coordinate directions, current graph), XAXES
+(along X in the current graph), YAXES (along Y in the current graph),
+and preceding these with the key word GRAPHS, will cause the setting
+to be made throughout all the active graphs.  In the following
+descriptions, axis refers to the choices described above.
+<!-- What about AXIS, ALTXAXIS and ALTYAXIS? -->
+<p>
+	<li> axis onoff
+<p>
+Toggle the display of the axis or axes referred to by axis.
+<p>
+	<li> axis COLOR integer
+<p>
+Set the color for the axis or axes specified by axis.
+<p>
+	<li> axis LINEWIDTH integer
+<p>
+Set the line width for the axis or axes specified by axis.
+<p>
+	<li> axis LINESTYLE integer
+<p>
+Set the line style for the axis or axes specified by axis.
+<p>
+	<li> axis FONT integer
+<p>
+Set the font to use for text for the axis or axes specified by axis.
+<p>
+	<li> axis CHAR SIZE number
+<p>
+Set the character size for text for the axis or axes specified by axis.
+<p>
+
+<HR>
+	<h2> <a NAME="axislabels">Axes labels</a> </h2>
+<p>
+	<li> axis LABEL string
+<p>
+Set the text string to use for the axis label.
+<p>
+	<li> axis LABEL LAYOUT PERP
+<p>
+Set the layout of the axis label to be perpendicular to the axis.
+<p>
+	<li> axis LABEL LAYOUT PARA
+<p>
+Set the layout of the axis label to be parallel to the axis.
+<p>
+	<li> axis LABEL CHAR SIZE number
+<p>
+Set the character size of the text used for the axis label.
+<p>
+	<li> axis LABEL FONT integer
+<p>
+Set the font to use for the axis label.
+<p>
+	<li> axis LABEL COLOR integer
+<p>
+Set the color to use for the axis label.
+<p>
+	<li> axis LABEL LINEWIDTH integer
+<p>
+Set the line width to use for drawing the axis label.
+Axes bar
+<p>
+	<li> axis BAR onoff
+<p>
+Toggle the display of the axis bar. The default is OFF.
+<p>
+	<li> axis BAR COLOR integer
+<p>
+Set the color to use for the axis bar.
+<p>
+	<li> axis BAR LINEWIDTH integer
+<p>
+Set the line width to use when drawing the axis bar.
+<p>
+	<li> axis BAR LINESTYLE integer
+<p>
+Set the line style to use for drawing the axis bar.
+<p>
+
+<HR>
+	<h2> <a NAME="ticks">Tick marks</a> </h2>
+<p>
+	<li> axis TICK MAJOR onoff
+	<li> axis TICK MINOR onoff
+<p>
+Turn on or off respective tick marks. Minor ticks are displayed only
+if also major ticks are on.
+<p>
+	<li> axis TICK MAJOR expr
+<p>
+Set the tick spacing for major tick marks.
+<p>
+	<li> axis TICK MINOR expr
+<p>
+Set the spacing for minor tick marks.
+<p>
+	<li> AUTOTICKS
+<p>
+Set sensible values for all tick marks of the current graph.
+<p>
+	<li> axis TICK OFFSETX number
+<p>
+Set the amount to offset the axis, in viewport coordinates in the X direction. 
+<p>
+	<li> axis TICK OFFSETY number
+<p>
+Set the amount to offset the axis in viewport coordinates in the Y direction.
+<p>
+	<li> axis TICK ALT onoff
+<p>
+Toggle the use of the alternate map for the axis scaling.
+<p>
+	<li> axis TICK MIN number
+<p>
+Specific the minimum value to use for the alternate map.
+<p>
+	<li> axis TICK MAX number
+<p>
+Specify the maximum value to use for the alternate map.
+<p>
+	<li> axis TICK DEFAULT number
+<p>
+Set the default number of ticks to use when autoscaling.
+<p>
+	<li> axis TICK inout
+<p>
+Set the display of tick marks to IN, OUT, or BOTH.
+<p>
+	<li> axis TICK LOG onoff
+<p>
+Currently has no effect.
+<!-- TODO I don't know what this command is supposed to do... -->
+<p>
+	<li> axis TICK SIZE number
+<p>
+Set the size of tick marks.
+<p>
+	<li> axis TICK MAJOR SIZE number
+<p>
+Set the size of major tick marks.
+<p>
+	<li> axis TICK MINOR SIZE number
+<p>
+Set the size of minor tick marks.
+<p>
+	<li> axis TICK COLOR number
+<p>
+Set the color to use for tick marks.
+<p>
+	<li> axis TICK MAJOR COLOR number
+<p>
+Set the color to use for major tick marks.
+<p>
+	<li> axis TICK MINOR COLOR number
+<p>
+Set the color to use for minor tick marks.
+<p>
+	<li> axis TICK MAJOR LINEWIDTH number
+<p>
+Set the line width to use for grid lines at major tick marks.
+<p>
+	<li> axis TICK MAJOR LINESTYLE number
+<p>
+Set the line style to use for grid lines at major tick marks.
+<p>
+	<li> axis TICK MINOR LINEWIDTH number
+<p>
+Set the line width to use for grid lines at minor tick marks.
+<p>
+	<li> axis TICK MINOR LINESTYLE number
+<p>
+Set the line width to use for grid lines at minor tick marks.
+<p>
+	<li> axis TICK MAJOR GRID onoff
+<p>
+Toggle the display of grid lines at major tick marks.
+<p>
+	<li> axis TICK MINOR GRID onoff
+<p>
+Toggle the display of grid lines at minor tick marks.
+<p>
+	<li> axis TICK OP opchoice
+<p>
+Set the display of tick marks on the axis to TOP, BOTTOM, or BOTH if the
+axis is in the X direction, or LEFT, RIGHT, or BOTH if the axis is in
+the Y direction. The default is BOTH in either case.
+<p>
+	<li> axis TICK TYPE AUTO
+<p>
+Use the values for major and minor spacing for draw the tick marks. See the next it for 
+tick marks at specified locations.
+<p>
+	<li> axis TICK TYPE SPEC
+<p>
+Use specified values for drawing tick marks. These values are for
+major tick marks only.
+<p>
+	<li> axis TICK SPEC integer
+<p>
+Give the number of specified tick marks.
+<p>
+	<li> axis TICK number, expr
+<p>
+Set the value of specified tick mark number integer to value, expr.
+<p>
+
+<HR>
+	<h2> <a NAME="ticklabels">Tick labels</a> </h2>
+<p>
+	<li> axis TICKLABEL PREC integer
+<p>
+Set the number of places to the right of the decimal point when
+drawing tick labels.
+<p>
+	<li> axis TICKLABEL FORMAT formatchoice
+<p>
+Set the format to use for drawing tick labels.
+<p>
+	<li> axis TICKLABEL APPEND string
+<p>
+Append <i>string</i> to the tick labels.
+<p>
+	<li> axis TICKLABEL PREPEND string
+<p>
+Prepend <i>string</i> to the tick labels.
+<p>
+	<li> axis TICKLABEL LAYOUT HORIZONTAL
+<p>
+Set the angle of the axis tick labels to be horizontal.
+<p>
+	<li> axis TICKLABEL LAYOUT VERTICAL
+<p>
+Set the angle of the axis tick labels to be vertical.
+<p>
+	<li> axis TICKLABEL LAYOUT SPEC
+<p>
+Specify the use of the specified tick label angle.
+<p>
+	<li> axis TICKLABEL ANGLE number
+<p>
+Specify the angle to use for drawing the tick labels in degrees from 0
+to 360 (0=horizontal, 90=vertical).
+<p>
+	<li> axis TICKLABEL PLACE ON TICKS
+<p>
+Put the ticklabels on the ticks.
+<p>
+	<li> axis TICKLABEL PLACE BETWEEN TICKS
+<p>
+Put the ticklabels between the ticks.
+<p>
+	<li> axis TICKLABEL JUST justify
+<p>
+Specify the type of justification to use when drawing the tick label.
+<p>
+	<li> axis TICKLABEL SKIP integer
+<p>
+Set the number of major tick marks to skip before drawing a tick label.
+<p>
+	<li> axis TICKLABEL STAGGER integer
+<p>
+Set the number of characters to use to offset the tick labels.
+<p>
+	<li> axis TICKLABEL OP opchoice
+<p>
+Set the side(s) to draw tick labels, LEFT, RIGHT, or BOTH for tick labels in the Y 
+direction and TOP, BOTTOM, or BOTH for tick labels in the X direction. The default is 
+LEFT for the Y axis tick labels and BOTTOM for the X axis tick labels.
+<p>
+	<li> axis TICKLABEL SIGN signchoice
+<p>
+Set the function to use on the numeric value used to create the tick
+mark label. One of NORMAL, ABSOLUTE, or NEGATE. The default is NORMAL,
+i.e., no transformation is applied. ABSOLUTE indicates that the
+absolute value of the tick label location is used, NEGATE is the
+negative of the tick mark location. The latter two can be used to
+achieve a reversal of axis or a reflection effect of the axes. Of
+course, the data will need to be transformed also.
+<p>
+	<li> axis TICKLABEL START expr
+<p>
+Set the value to use to begin drawing tick labels.
+<p>
+	<li> axis TICKLABEL STOP expr
+<p>
+Set the value to stop drawing tick labels.
+<p>
+	<li> axis TICKLABEL START TYPE SPEC
+<p>
+Use the specified starting value for drawing tick mark labels.
+<p>
+	<li> axis TICKLABEL STOP TYPE SPEC
+<p>
+Use the specified stopping value for drawing tick mark labels.
+<p>
+	<li> axis TICKLABEL START TYPE AUTO
+<p>
+Use the graph minimum to use as the starting point for drawing tick labels, this is the 
+default.
+<p>
+	<li> axis TICKLABEL STOP TYPE AUTO
+<p>
+Use the graph maximum as the stopping point for drawing tick mark labels. This is the 
+default.
+<p>
+	<li> axis TICKLABEL VGAP number
+<p>
+	<li> axis TICKLABEL HGAP number
+<p>
+	<li> axis TICKLABEL CHAR SIZE number
+<p>
+Set the size of characters to use when drawing the tick mark labels.
+<p>
+	<li> axis TICKLABEL FONT integer
+<p>
+Set the font to use when drawing tick mark labels.
+<p>
+	<li> axis TICKLABEL COLOR integer
+<p>
+Set the color to use for drawing tick mark labels.
+<p>
+	<li> axis TICKLABEL LINEWIDTH integer
+<p>
+Set the line width to use for drawing tick mark labels.
+<p>
+	<li> axis TICKLABEL TYPE AUTO
+<p>
+Use the values of major tick marks for position the tick mark labels.
+<p>
+	<li> axis TICKLABEL TYPE SPEC
+<p>
+Specify the tick mark label to use at each major tick mark.
+<p>
+	<li> axis TICKLABEL integer, string
+Set the value for the integer'th tick mark label.
+<p>
+
+<HR>
+	<h2> <a NAME="regions">Regions</a> </h2>
+<p>
+
+See also the page about <a href="regions.html">region operations</a>.
+<p>
+
+	<li> regnum onoff
+<p>
+Activate region <i>regnum</i>.
+<p>
+
+	<li> regnum TYPE regiontype
+<p>
+Set the type of region <i>regnum</i> to one of ABOVE, BELOW, LEFT,
+RIGHT, POLYI, POLYO.
+<p>
+
+	<li> regnum COLOR color
+<p>
+Set the boundary color of region <i>regnum</i> to <i>color</i>.
+<p>
+
+	<li> regnum LINESTYLE number
+<p>
+Set the boundary linestyle of region <i>regnum</i> to <i>number</i>.
+<p>
+
+	<li> regnum LINEWIDTH number
+<p>
+Set the boundary linewidth of region <i>regnum</i> to <i>number</i>.
+<p>
+
+	<li> regnum LINE x1, y1, x2, y2
+<p>
+Set the coordinates for region <i>regnum</i>, which has to be of type
+ABOVE, BELOW, LEFT or RIGHT.
+<p>
+
+	<li> regnum XY x, y
+<p>
+Add a point to the boundary of region <i>regnum</i>, which has to be
+of type POLYI or POLYO.
+<p>
+
+	<li> LINK regnum TO graphno
+<p>
+Link region <i>regnum</i> to graph <i>graphno</i>.
+<p>
+
+<HR>
+	<h2> <a NAME="box">Boxes/Ellipses</a> </h2>
+<p>
+The commands for boxes and ellipses are the exact same. Simply substitute
+ELLIPSE for BOX in the following commands.
+<p>
+NOTE: Boxes, used or not, are numbered from 0 to the maximum number of boxes. 
+This is also true of ellipses, lines and strings.
+<p>
+	<li> WITH BOX
+<p>
+Get the next available box and make it current. A box needs to be current before any of 
+the following commands will apply.
+<p>
+	<li> WITH BOX integer
+<p>
+Get the box numbered integer and make it the current box
+<p>
+	<li> BOX onoff 
+<p>
+Toggle the display of the current box.
+<p>
+	<li> BOX expr, expr, expr, expr
+<p>
+Set the location of the box in world or viewport coordinates depending on the value of 
+BOX LOCTYPE. The 4 values represent xmin, ymin, xmax, ymax respectively.
+<p>
+	<li> BOX LOCTYPE worldview 
+<p>
+Set the location type of the next box created. World or viewport coordinates.
+<p>
+	<li> BOX graphno
+<p>
+If the LOCTYPE is WORLD, set the graph to use. 
+<p>
+	<li> BOX LINESTYLE integer
+<p>
+Set the line style to use for the next box created.
+<p>
+	<li> BOX LINEWIDTH integer
+<p>
+Set the line width of the next box created.
+<p>
+	<li> BOX COLOR integer
+<p>
+Set the color to use for the box lines.
+<p>
+	<li> BOX FILL filltype 
+<p>
+Set the type of fill to either COLOR or PATTERN.
+<p>
+	<li> BOX FILL COLOR integer 
+<p>
+Set the color to use to fill the next box created.
+<p>
+	<li> BOX FILL PATTERN integer 
+<p>
+Set the pattern to use for the next box created.
+<p>
+	<li> BOX DEF
+<p>
+Define the current box using the values set above.
+<p>
+	<li> CLEAR BOX
+<p>
+Remove all boxes
+<p>
+
+<HR>
+	<h2> <a NAME="line">Lines</a> </h2>
+<p>
+xmgr uses an array of a data type called lines internally to hold the definition of lines. 
+The actual construction of this data type is not important, but it is important to note that 
+lines, used or not, are numbered from 0 to the maximum number of lines.
+<p>
+	<li> WITH LINE
+<p>
+Make the next available line the current line.
+<p>
+	<li> WITH LINE integer
+<p>
+Make line integer the current line.
+<p>
+	<li> LINE onoff 
+<p>
+Toggle the display of the current line.
+<p>
+	<li> LINE expr, expr, expr, expr
+<p>
+Set the location of the current line created. The four expressions represent (X1, Y1), 
+(X2, Y2) respectively.
+<p>
+	<li> LINE LOCTYPE worldview
+<p>
+ Set the location type of the current line created. World or viewport coordinates.
+<p>
+	<li> LINE graphno
+<p>
+If the line LOCTYPE is WORLD, set the graph to use for scaling.
+<p>
+	<li> LINE LINEWIDTH integer
+<p>
+Set the line width of the current line created.
+<p>
+	<li> LINE LINESTYLE integer 
+<p>
+Set the line style of the current line created.
+<p>
+	<li> LINE COLOR integer 
+<p>
+Set the color of the current line created.
+<p>
+	<li> LINE ARROW integer
+<p>
+Define a line with or without arrow(s) and where they are located.
+<p>
+<ul>
+	<li> 0 - no arrow
+	<li> 1 - arrow at start of line
+	<li> 2 - arrow at end of line
+	<li> 3 - arrow at both ends.
+</ul>
+<p>
+	<li> LINE ARROW SIZE number
+<p>
+Set the size of the current line's arrowhead.
+<p>
+	<li> LINE ARROW TYPE number
+<p>
+Set the type of the current line's arrowhead.
+<p>
+<ul>
+	<li> 0 - line
+	<li> 1 - filled
+	<li> 2 - hollow
+</ul>
+<p>
+	<li> LINE DEF
+<p>
+Define a line using the current set of line settings.
+<p>
+	<li> CLEAR LINE
+<p>
+Remove all lines.
+<p>
+
+<HR>
+	<h2> <a NAME="string">Strings</a> </h2>
+<p>
+xmgr uses an array of a data type called plotstr internally to hold the definition of 
+strings. The actual construction of this data type is not important, but it is important to 
+note that strings, used or not, are numbered from 0 to the maximum number of strings.
+<p>
+	<li> WITH STRING
+<p>
+Get the next available string
+<p>
+	<li> WITH STRING integer
+<p>
+Get the particular string numbered integer.
+<p>
+	<li> STRING onoff
+<p>
+Toggle the display of the current string.
+<p>
+	<li> STRING expr, expr
+<p>
+Location of the string, in world or viewport coordinates depending on the value of LOCTYPE.
+<p>
+	<li> STRING LOCTYPE worldview 
+<p>
+Set the location type of the string, either world or viewport coordinates. If the setting is 
+WORLD, then the strings position is affected by changes in the axes scaling, if VIEW, 
+then the string is fixed to that spot in viewport coordinates.
+<p>
+	<li> STRING graphno
+<p>
+Set the graph to uses for scaling when the LOCTYPE is WORLD.
+<p>
+	<li> STRING LINEWIDTH integer 
+<p>
+Set the line width of the current string.
+<p>
+	<li> STRING COLOR integer 
+<p>
+Set the color of the current string.
+<p>
+	<li> STRING ROT integer 
+<p>
+Set the rotation of the current string from-360 to 360 in degrees
+<p>
+	<li> STRING FONT integer 
+<p>
+Set the font of the current string.
+<p>
+	<li> STRING JUST integer 
+<p>
+Set the justification for the current string. 0 is left justified, 1 is right justified, and 2 is 
+centered.
+<p>
+	<li> STRING CHAR SIZE number
+<p>
+Set the character size of the current string.
+<p>
+	<li> STRING DEF string
+<p>
+Define the current string using the values set above.
+<p>
+	<li> CLEAR STRING
+<p>
+Remove all strings
+<p>
+
+<HR>
+	<h2> <a NAME="world">World scaling</a> </h2>
+<p>
+	<li> WORLD xmin, ymin, xmax, ymax
+	<li> WORLD XMIN xmin
+	<li> WORLD XMAX xmax
+	<li> WORLD YMIN ymin
+	<li> WORLD YMAX ymax
+<p>
+Set the scaling limits for the current graph.
+<p>
+	<li> POLAR WORLD expr, expr
+<p>
+Set the scaling limits for a polar graph.
+<p>
+
+<HR>
+	<h2> <a NAME="stack">World stack</a> </h2>
+<p>
+	<li> PUSH 
+<p>
+Push the current graph scaling limits and tick spacing onto the graph's world stack.
+<p>
+	<li> POP
+<p>
+Pop the current graph's world stack and set the new scaling limits and tick spacing from 
+the new stack top.
+<p>
+	<li>  CYCLE
+<p>
+Cycle through the current graph's world stack.
+<p>
+	<li>  STACK integer
+<p>
+Set the current graph's scaling limits and tick spacing to the value at position integer of 
+the current graph's world stack.
+<p>
+	<li>  STACK WORLD expr, expr, expr, expr TICK expr, expr, expr, expr
+<p>
+Push specific values onto the current graph's world stack - primarily for use in parameter 
+files generated by xmgr.
+<p>
+	<li>  CLEAR STACK
+<p>
+Clear the current graph's world stack.
+<p>
+
+<HR>
+	<h2> <a NAME="view">Viewport</a> </h2>
+<p>
+	<li> VIEW xmin, ymin, xmax, ymax
+<p>
+Set the current graph's viewport (where on the device the graph is displayed).
+<p>
+	<li> VIEW XMIN expr 
+	<li> VIEW XMAX expr 
+	<li> VIEW YMIN expr 
+	<li> VIEW YMAX expr
+<p>
+
+<HR>
+	<h2> <a NAME="trans">Transformations</a> </h2>
+<p>
+	<li> LOAD VAR setnum, expr, expr
+<p>
+ Load a set sequentially
+<p>
+	<li> REGRESS (setnum, number)
+<p>
+Regress a set where number is the degree of the fit in the range 1-5.
+<p>
+	<li> DIFFERENCE (setnum, number)
+	<li> DIFF (setnum, number)
+<p>
+Difference a set using the method specified by number.
+<ul>
+	<li> 0 - forward difference.
+	<li> 1 - backward difference
+	<li> 2 - centered difference
+</ul>
+<p>
+	<li> NONLFIT (setnum, number)
+	<li> NONLFIT (graphno.setnum, number)
+<p>
+Run non-linear fit on set setnum from the current graph or graphno for number
+steps or until the required tolerance achived. The latter, alongside with other
+fit parameters are discussed in <A HREF="#nonlfit">Non-linear fit settings</A>
+<p>
+	<li> INTEGRATE (setnum)
+<p>
+Integrate a set using a trapezoid rule.
+<p>
+	<li> XCOR (setno1, setno2, lag)
+<p>
+Creates a new set in the first available spot with the
+cross/auto-correlation data of sets setno1 and setno2 (for
+auto-correlation, enter the same setnumber twice).  The <i>lag</i>
+must be an integer, 0 &lt; lag &lt; length_of_set1&2 that specifies
+the maximum shift to use. The number of data points in the resulting
+set will therefore be equal to <i>lag</i>+1. See also <a
+href="trans.html#xcorr">this</a>.
+<p>
+	<li> splinetype(setnum, start, stop, integer)
+<p>
+
+Draw a spline. splinetype is one of:
+<p>
+<ul>
+	<li> SPLINE - plain cubic spline
+	<li> ASPLINE - Akima spline
+</ul>
+<p>
+	<li> INTERP(setnum1, setnum2, method)
+<p>
+Interpolate <i>setnum1</i> at the x values of <i>setnum2</i>; method
+is 0 (linear), 1 (cubic spline) or 2 (Akima spline)
+<p>
+	<li> ffttype(setnum, integer)
+        <li> ffttype(setnum, datatype, windowtype, loadx, loady)
+<p>
+Compute a DFT either forward or inverse, using the DFT or FFT.
+<p>
+ffttype is one of:
+<p>
+<ul>
+	<li> DFT - compute the DFT using the definition.
+	<li> FFT - compute the DFT using an FFT. 
+	<li> INVDFT - compute the inverse DFT.
+	<li> INVFFT - compute the inverse using the FFT.
+</ul>
+<p>
+datatype is one of:
+<p>
+<ul>
+	<li> REAL - data are real numbers.
+	<li> COMPLEX - data are complex numbers.
+</ul>
+<p>
+windowtype is one of:
+<!-- TODO: describe type (OTOH they might be well known) -->
+<p>
+<ul>
+	<li> NONE
+	<li> TRIANGULAR
+	<li> HANNING
+	<li> WELCH
+	<li> HAMMING
+	<li> BLACKMAN
+	<li> PARZEN
+</ul>
+<p>
+loadx is one of:
+<p>
+<ul>
+	<li> INDEX
+	<li> FREQUENCY
+	<li> PERIOD
+</ul>
+<p>
+loady is one of:
+<p>
+<ul>
+	<li> MAGNITUDE
+	<li> PHASE
+	<li> COEFFICIENTS
+</ul>
+<p>
+The command
+<BLOCKQUOTE>
+ffttype(setnum, integer)
+</BLOCKQUOTE>
+is the old syntax of the FFT command and remains valid for backward
+compatibility. It corresponds to the command
+<BLOCKQUOTE>
+ffttype(setnum, REAL, NONE, loadx(integer), MAGNITUDE)
+</BLOCKQUOTE>
+where loadx(0)=INDEX, loadx(1)=FREQUENCY, loadx(2)=PERIOD.
+<p>
+	<li> runtype(setnum, number)
+<p>
+Compute a running average, standard deviation, median, maximum, or minimum.
+runtype is one of the following:
+<p>
+<ul>
+	<li> RUNAVG - running average.
+	<li> RUNSTD - running standard deviation.
+	<li> RUNMED - running median.
+	<li> RUNMAX - running maximum.
+	<li> RUNMIN - running minimum.
+</ul>
+<p>
+	<li> HISTO(setnum, xmin, binw, integer)
+<p>
+Compute a histogram using set setnum. Xmin is the minimum value, binw the
+bin width, and the integer is how many bins to create.
+<p>
+
+<HR>
+	<h2> <a NAME="nonlfit">Non-linear fit settings</a> </h2>
+<p>
+	<li> FIT TITLE string
+<p>
+Define the title of the fit.
+<p>
+	<li> FIT FORMULA string
+<p>
+Define the fit function.
+<p>
+	<li> FIT WITH number PARAMETERS
+<p>
+Set the number of the fit parameters.
+<p>
+	<li> FIT PREC number
+<p>
+Define the desired tolerance of the fit.
+<p>
+	<li> fitparm CONSTRAINTS onoff
+<p>
+Whether upper/lower bounds should be used to constrain parameter
+<i>fitparm</i>. The parameters themselves as well as their bounds
+<i>fitpmin</i> and <i>fitpmax</i> can be treated as a part of any
+valid expression.
+
+<HR>
+	<h2> <a NAME="aliases">Keyword aliases</a> </h2>
+<p>
+	<li> ALIAS string1 string2
+<p>
+Define string1 to be treated as an alias to a <i>single</i> keyword string2
+<p>
+	<li> ALIAS FORCE onoff
+<p>
+controls whether existing keywords can be overriden by aliases (off by default)
+
+<HR>
+	<h2> <a NAME="io">IO</a> </h2>
+<p>
+	<li> SOURCE sourcetype
+<p>
+Set the source (DISK or PIPE) for reading XY data sets.
+<p>
+	<li> TYPE xytype
+<p>
+Set the type of the next set to be read.
+<p>
+	<li> FORMAT formatchoice
+<p>
+Set the format of a file from which a set will be read.
+<p>
+	<li> READ string
+<p>
+Read an XY data set.
+<p>
+	<li> READ BATCH string
+<p>
+Read a batch file.
+<p>
+	<li> READ xytype string
+<p>
+Read a data set of a particular type.
+<p>
+	<li> READ xytype sourcetype string 
+<p>
+Read a data set of type xytype from source sourcetype.
+<p>
+	<li> GETP string
+<p>
+Read a parameter file.
+<p>
+	<li> PUTP string
+<p>
+Write a parameter file.
+<p>
+	<li> CD string
+<p>
+Change working directory to <i>string</i>.
+<p>
+	<li> WRITE setnum
+<p>
+Write setnum to the standard output.
+<p>
+	<li> WRITE setnum FORMAT string
+<p>
+Write setnum to the standard output using <i>string</i> as format like
+printf, e.g. "%7.2f %7.2f".
+<p>
+	<li> WRITE setnum FILEP filename
+<p>
+Write setnum to <i>filename</i>.
+<p>
+	<li> WRITE setnum FILEP filename FORMAT string
+<p>
+Write setnum to <i>filename</i> using <i>string</i> as format like
+printf, e.g. "%7.2f %7.2f".
+<p>
+	<li> SAVEALL filename
+<p>
+Write all sets of all graphs to <i>filename</i>.
+<p>
+
+<HR>
+	<h2> <a NAME="defaults">Defaults</a> </h2>
+
+	<li> DEFAULT LINESTYLE number
+	<li> DEFAULT LINEWIDTH number
+	<li> DEFAULT COLOR number
+	<li> DEFAULT CHAR SIZE number
+	<li> DEFAULT FONT number
+	<li> DEFAULT SYMBOL SIZE number
+	<li> DEFAULT SFORMAT number
+
+<!-- TODO: DEFAULT FONT SOURCE number -->
+
+<p>
+Set default value for the respective property. SFORMAT is the format
+for saving (ascii) projects.
+<p>
+
+<HR>
+	<h2> <a NAME="misc">Miscellaneous Commands</a> </h2>
+
+	<li> EXIT
+<p>
+Abruptly leave xmgr.
+<p>
+
+	<li> SLEEP number
+<p>
+Sleep for <i>number</i> seconds (not you, of course).
+<p>
+
+	<li> ECHO string
+<p>
+Print <i>string</i> to the status bar.
+<p>
+
+	<li> ECHO expr
+<p>
+Evaluate <i>expr</i> and print result to the status bar.
+<p>
+
+	<li> DESCRIPTION string
+<p>
+Add  <i>string</i> to the description of the current project.
+<p>
+
+	<li> CLEAR DESCRIPTION
+<p>
+Clear the description of the current project.
+<p>
+
+	<li> USE "my_wrapper" TYPE f_of_nd FROM "/tmp/my_wrap.so"
+	<li> USE "my_wrapper" TYPE f_of_nd FROM "/tmp/my_wrap.so" ALIAS "special_func" 
+<p>
+Load the user-defined external function "my_wrapper" from the file
+"/tmp/my_wrap.so".  It can be given an ALIAS using the second
+version. Refer to the <a href="dlmodule.html">External Modules
+Page</a> on how to write external functions.
+</ul>
+
+<HR>
+Back to the <a href="commands.html">top of this page</a>.
+<p>
+Back to the <a href="xmgr.html">main help page</a>.
+
+</BODY>
+</HTML>

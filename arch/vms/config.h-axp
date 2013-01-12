@@ -1,0 +1,10 @@
+
+/* config.h-AXP -- VMS -- */
+
+/* Define if your FPU arithmetics is of the little endian IEEE type.  */
+#define HAVE_LIEEE_FPU 1 
+
+
+
+
+

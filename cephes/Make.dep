@@ -1,0 +1,6 @@
+#
+# Dependencies (should be generated automatically):
+#
+
+$(OBJS) : $(TOP)/config.h $(TOP)/cmath.h mconf.h
+

@@ -1,0 +1,70 @@
+<HTML>
+<HEAD>
+<TITLE>Xmgr: Edit/Create set operations</TITLE>
+</HEAD>
+
+<BODY>
+
+	<h2> <a NAME="setops">Edit/Create set operations</a> </h2>
+<p>
+Edit/Create set operations allow sets to be created using a formula or  editor
+or edited in a spreadsheet-like fashion.
+<HR>
+<p>
+        	<ul>
+        	<li> <a href="#Edit">Edit</a> 
+        	<ul>
+        	    <li> <a href="#eadd">Add</a> 
+        	    <li> <a href="#edelete">Delete</a> 
+        	    <li> <a href="#eprop">Props...</a> 
+        	    <li> <a href="#eupdate">Update</a> 
+        	</ul>
+        	<li> <a href="#formula">Formula</a> 
+        	</ul>
+<HR>
+	<h3> <a NAME="edit">Edit</a> </h3>
+<p>
+Edit allows altering an existing  set or creating a new one.
+The editor invoked is either the Xbae edit widget (if installed) 
+or an external
+editor defined by the <a href="usage.html#environment">GR_EDITOR</a>
+variable.
+If the choice of the two is available,
+a radio button will be present to select the desired editor.
+
+<p>
+<h4> Xbae Editor </h4>
+For the internal Xbae editor, the following applies:
+Values are updated by pressing return or when leaving a cell. 
+Several buttons appear on the widget:
+<p>
+        	<ul>
+        	<li> <a NAME="eadd">Add</a>
+        	<p> Add a point to a set by copying the currently
+        		edited cell and appending it directly afterwards
+
+<p>
+        	<li> <a NAME="edelete">Delete</a> 
+<p>
+Delete the current point.
+<p>
+        	<li> <a NAME="eprop">Props...</a> 
+<p>
+Change the format, precision and column widths of the table.
+<p>
+        	<li> <a NAME="eupdate">Update</a> 
+<p>
+Refresh the display. This is useful if the set type changes or the number of
+points changes.
+		</ul>
+<HR>
+	<h3> <a NAME="formula">Formula</a> </h3>
+<p>
+This may only be used to create new sets.
+See <a href="trans.html#leval"> Load & evaluate </a>
+<p>
+<HR>
+
+</BODY>
+
+</HTML>

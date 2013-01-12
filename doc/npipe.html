@@ -1,0 +1,192 @@
+<!DOCTYPE HTML PUBLIC "-//AdvaSoft//DTD HTML 3.2 extended 961018//EN">
+<HTML>
+<HEAD>
+ <TITLE>Xmgr and the Named Pipe Feature</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>What is the Named Pipe Option?</H1>
+
+<P>
+The named pipe option can be used to display data in real-time. That is, with
+the named pipe option you can use xmgr to display data immediately as you
+generate them by your number-crunching program. In contrast with the simple
+pipe option, xmgr's graphic user interface remains responsive to your actions
+while displaying the data.
+</P>
+
+<H1>What is a Named Pipe Anyway?</H1>
+
+<P>
+A simple pipe is used, for example, by the command
+</P>
+
+<PRE>
+    grep searchfor file | more
+</PRE>
+
+<P>
+The "<CODE>|</CODE>" symbol is the pipe, i.e. the output of <CODE>grep</CODE>
+is mounted to one end of the pipe, and the input of <CODE>more</CODE> is
+mounted to the other end of the pipe. Everything that <CODE>grep</CODE> writes
+to its standard output goes through the pipe, and <CODE>more</CODE> sees this
+on its standard input. Another name for a pipe is FIFO (First In First Out).
+That means that things arrive at the end of the pipe in the same order as you
+put them in (in contrast with a stack, where you'll see first what you put in
+last).
+</P>
+
+<P>
+A named pipe is essentially the same, except that (you guessed it) the pipe
+gets a file name. Before we can use a named pipe, we have to create it. That
+can be done using
+</P>
+
+<PRE>
+    mkfifo /tmp/mynamedpipe
+</PRE>
+
+<P>
+from the shell prompt, or using the C function
+</P>
+
+<PRE>
+    #include &lt;sys/stat.h&gt;
+    .
+    .
+    mkfifo ("/tmp/mypipename", 0600);
+</PRE>
+
+<P>
+where <CODE>0600</CODE> sets the access permissions for the named pipe.
+</P>
+
+<P>
+After having created the named pipe, one program can open that file name for
+writing (as you would open any ordinary file), and another program can open the
+file for reading. Here is a simple example:
+</P>
+
+<PRE>
+    mkfifo /tmp/testpipe
+    echo "This is a test" &gt; /tmp/testpipe &amp;
+    cat /tmp/testpipe
+    rm /tmp/testpipe
+</PRE>
+
+<P>
+You can use the the C functions "<CODE>open</CODE>" or "<CODE>fopen</CODE>" to
+mount a process to the pipe.
+</P>
+
+<P>
+The named pipe behaves very much like an ordinary file, except that
+</P>
+
+<OL>
+<LI>only one process can open the named pipe for writing, and only one process
+can open the pipe for reading (at the same time),</LI>
+<LI>nothing is written to the disk but rather into some memory buffer,</LI>
+<LI>if the listening end closes the pipe while the talking end has the pipe
+still open for writing, the talking end gets a signal <CODE>SIGPIPE</CODE>. If
+we did not install a signal handler for <CODE>SIGPIPE</CODE>, the talking end
+exits.</LI>
+</OL>
+
+<H1>How Can I Use the Named Pipe Option with Xmgr?</H1>
+
+<H2>How Does Xmgr Handle a Named Pipe?</H2>
+
+<P>
+If xmgr is used with the named pipe option, it starts a timer that ticks in
+intervals of 1000 milliseconds. You can change that interval using the "-timer"
+command line option. When the first tick occurs, xmgr opens and reads the named
+pipe and executes the corresponding commands. At the second tick, xmgr closes
+the pipe. At the third tick, xmgr reopens the pipe, and so forth. In other
+words, every two seconds we give xmgr a one-second break to respond to commands
+from the graphic user interface if the commands at the named pipe arrive faster
+than xmgr can execute them.
+</P>
+
+<H2>How Do I Implement My "Talking End"?</H2>
+
+<P>
+There are at least two different ways how to implement the talking end (your
+number-cruncher).
+</P>
+
+<H3>First way</H3>
+
+<OL>
+<LI>Create a fifo using the "mkfifo" command from the shell prompt.</LI>
+<LI>Start your number-cruncher and let it open the named fifo's filename for
+writing. You should send <A HREF="commands.html">xmgr commands</A> to the
+pipe.</LI>
+<LI>Start xmgr with the named pipe option from the shell prompt ("<CODE>xmgr
+-npipe /tmp/mypipe</CODE>")</LI>
+</OL>
+
+<H3>Second way</H3>
+
+<OL>
+<LI>Start your program. Your program creates the named pipe using the "mkfifo"
+library call.</LI>
+<LI>Your program forks (see "<CODE>man fork</CODE>").</LI>
+<LI>The child process executes xmgr with the named pipe option.</LI>
+<LI>The parent process opens the named pipe for writing, generates data, and
+sends <A HREF="commands.html">commands</A> to the pipe.</LI>
+</OL>
+
+<P>
+As described above, xmgr will close the named pipe every two seconds.
+Therefore, your talking end will receive the signal <CODE>SIGPIPE</CODE> every
+two seconds as long as the named pipe is open for writing. The default action
+of a program is to exit on <CODE>SIGPIPE</CODE>. Hence, you need to tell your
+program to ignore <CODE>SIGPIPE</CODE>'s:
+</P>
+
+<PRE>
+    #include &lt;signal.h&gt;
+    .
+    .
+    /* Don't exit on SIGPIPE */
+    signal (SIGPIPE, SIG_IGN);
+</PRE>
+
+<P>
+If you try to write to the pipe while xmgr has closed its listening end, the
+thus written commands are lost - xmgr will never see them. Therefore, after
+each <CODE>write</CODE> to the pipe you should test whether the write was
+successful. If it was not, the write operation needs to be repeated later.
+</P>
+
+<P>
+One way to handle this problem is to append new commands to a global buffer
+instead of sending them directly. Each time we append some new commands to that
+buffer, we subsequently try to write the buffer to the pipe. If the write
+operation succeeds, we clear the buffer. If it fails, we try to resend the
+contents of the buffer next time we append a new command.
+</P>
+
+<P>
+There is still a problem we need to take care of: it might happen that we
+always try to write to the pipe when xmgr is not listening. For example, if we
+send new data to xmgr approximately every two seconds, there is a good chance
+that we find xmgr not listening for quite a long time. This can lead to an
+overflow of the buffer. Therefore, each time we append some new commands to the
+buffer we should check whether the buffer filling exceeds some threshold. If it
+does, we should wait for xmgr's next sensitive time window and send the entire
+buffer before continuing our calculations.
+</P>
+
+Isn't there a simpler solution?
+
+<P>
+Yes, there is. You can use the 
+<A HREF="acegr_np.html"><CODE>acegr_np</CODE></A> library that comes with xmgr
+and implements the solutions suggested in the above. 
+</P>
+
+</BODY>
+</HTML>

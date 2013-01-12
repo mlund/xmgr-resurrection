@@ -1,0 +1,23 @@
+#####################################################
+#     System-independent Make.common file for       #
+#            Cephes mathematical library            #
+#####################################################
+
+SRCS =	airy.c beta.c chbevl.c chdtr.c const.c dawsn.c ellie.c ellik.c \
+	ellpe.c ellpk.c expn.c fac.c fdtr.c fresnl.c gamma.c gdtr.c hyp2f1.c \
+	hyperg.c i0.c i1.c igam.c igami.c incbet.c incbi.c iv.c j0.c j1.c \
+	jn.c jv.c k0.c k1.c kn.c log2.c mtherr.c ndtri.c pdtr.c polevl.c \
+	polyn.c psi.c revers.c rgamma.c round.c shichi.c sici.c \
+	spence.c stdtr.c struve.c unity.c yn.c zeta.c zetac.c \
+	acosh.c asinh.c atanh.c ndtr.c isfinite.c cbrt.c
+
+OBJS =	airy$(O) beta$(O) chbevl$(O) chdtr$(O) const$(O) dawsn$(O) ellie$(O) \
+        ellik$(O) ellpe$(O) ellpk$(O) expn$(O) fac$(O) fdtr$(O) fresnl$(O) \
+	gamma$(O) gdtr$(O) hyp2f1$(O) hyperg$(O) i0$(O) i1$(O) igam$(O) \
+	igami$(O) incbet$(O) incbi$(O) iv$(O) j0$(O) j1$(O) jn$(O) jv$(O) \
+	k0$(O) k1$(O) kn$(O) log2$(O) mtherr$(O) ndtri$(O) pdtr$(O) \
+	polevl$(O) polyn$(O) psi$(O) revers$(O) rgamma$(O) round$(O) \
+	shichi$(O) sici$(O) spence$(O) stdtr$(O) struve$(O) \
+	unity$(O) yn$(O) zeta$(O) zetac$(O) \
+	acosh$(O) asinh$(O) atanh$(O) ndtr$(O) isfinite$(O) cbrt$(O)
+
