@@ -1,4 +1,4 @@
-Xmgr 4.1.2 - resurrection
+Xmgr 4.1.2 - Resurrection
 =========================
 
 This is a patched version of the ancient xmgr 4.1.2
