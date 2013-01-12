@@ -164,7 +164,7 @@ int main(int argc, char *argv[])
 	strcpy(xmgrdir, s);
     }
 #ifndef GR_HELPVIEWER
-    strcpy(help_viewer, "netscape -noraise -remote openURL\\(%s,newwindow\\) >>/dev/null 2>&1 || netscape %s");
+    strcpy(help_viewer, "open\\(%s,newwindow\\) >>/dev/null 2>&1 || open %s");
 #else
     strcpy(help_viewer, GR_HELPVIEWER);
 #endif

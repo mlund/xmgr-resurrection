@@ -611,6 +611,16 @@ From 4.0 and up
          warnings)
 
 
+
+
+  4.1.2p1
+
+
+ *  [MUL] Patched src/motifutils.c to work on 64bit machines
+ *  [MUL] Updated autotools and configure scripts to correctly recognize macos x 
+
+
+
  _Legend:_
 
     [EV] - Ed Vigmond <ed@gut.rose.utoronto.ca>
@@ -629,5 +639,6 @@ From 4.0 and up
     [YR] - Yuri Ralchenko <fnralch@plasma-gate.weizmann.ac.il>
     [HS2] - Heiko R. Selber <selber@fhi-berlin.mpg.de>
     [ES] - Evgeny Stambulchik <fnevgeny@plasma-gate.weizmann.ac.il>
+    [MUL]- Mikael Lund and Magnus Ullner <mikael.lund@teokem.lu.se>
 
     "!" means no documentation provided (yet)

@@ -121,7 +121,7 @@ Widget *CreatePanelChoice(Widget parent, char *labelstr, int nchoices,...)
 
     i = 0;
     va_start(var, nchoices);
-    while ((s = va_arg(var, char *)) != NULL) {
+    while ((s = va_arg(var, char *)) != NULL && i<nchoices) {
 	retval[i + 2] = XmCreatePushButton(retval[1], s, NULL, 0);
 	i++;
     }
@@ -169,7 +169,7 @@ Widget *CreatePanelChoice0(Widget parent, char *labelstr, int ncols, int nchoice
     i = 0;
 
     va_start(var, nchoices);
-    while ((s = va_arg(var, char *)) != NULL) {
+    while ((s = va_arg(var, char *)) != NULL && i<nchoices) {
 	retval[i + 2] = XmCreatePushButton(retval[1], s, NULL, 0);
 	i++;
     }
@@ -1294,7 +1294,7 @@ Widget CreateMenu(Widget parent, char *name, char *label, char mnemonic,
     	XmNlabelString, str, 
     	XmNmnemonic, mnemonic,
     	XmNsubMenuId, menu, 
-    	0);
+    	(char *)NULL);
     XmStringFree(str);
     if (help_anchor) {
      	XtAddCallback(menu, XmNhelpCallback, (XtCallbackProc) HelpCB,

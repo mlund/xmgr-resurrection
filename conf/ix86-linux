@@ -11,7 +11,7 @@ CC="gcc"
 ###############################
 # C flags
 #
-CFLAGS="-Wall -pedantic -m486 -malign-double"
+CFLAGS="-Wall -pedantic -malign-double"
 ###############################
 
 ###############################
