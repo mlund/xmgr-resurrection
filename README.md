@@ -16,12 +16,12 @@ frozen in 1998).
 
 / m.ullner & m.lund, 2012
 
-Recommended reading
--------------------
+Recommended reading (Original README)
+-------------------------------------
 
-COPYRIGHT               - legal stuff
-CHANGES                 - chronological list of changes
-INSTALL                 - directions on installation
-doc/FAQ.html            - frequently asked questions (in HTML format)
-arch/<os_name>/README   - system-specific (non-unix) important notes
+- COPYRIGHT               - legal stuff
+- CHANGES                 - chronological list of changes
+- INSTALL                 - directions on installation
+- doc/FAQ.html            - frequently asked questions (in HTML format)
+- arch/os_name/README   - system-specific (non-unix) important notes
 
