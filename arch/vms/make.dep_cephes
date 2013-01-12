@@ -1,3 +1,0 @@
-
-$(OBJS) : $(TOP)config.h $(TOP)cmath.h mconf.h
-

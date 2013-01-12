@@ -1,6 +1,0 @@
-
-/* config.h-VAX -- VMS -- */
-
-/* Define if your FPU arithmetics is of the DEC type.  */
-#define HAVE_DEC_FPU 1
-
