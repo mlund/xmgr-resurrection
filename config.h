@@ -214,13 +214,4 @@
 #  define NONE_GUI
 #endif
 
-/* Define if you want to compile in (a basic) support for debugging  */
-/* #undef WITH_DEBUG */
-
-#if defined(WITH_DEBUG)
-#  define DEBUG
-#else
-#  define NDEBUG
-#endif
-
 #endif /* __CONFIG_H */
