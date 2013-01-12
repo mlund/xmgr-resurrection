@@ -14,6 +14,16 @@ Because some people cannot come to terms with the updated
 interface and would rather stick to the old xmgr (development
 frozen in 1998).
 
+Building
+--------
+
+In addition to the `configure.sh` script already supplied
+with the original version of xmgr, we have added support
+for [CMake](http://www.cmake.org):
+
+    $ cmake .
+    $ make
+
 / m.ullner & m.lund, 2012
 
 Recommended reading (Original README)
