@@ -33,11 +33,11 @@ if (X11_FOUND)
             include_directories(${X11_Xt_INCLUDE_DIR})
 
             set(LINKLIBS ${X11_LIBRARIES})
-            set(LINKLIBS ${LINKLIBS} ${MOTIF_LIBRARIES})
             set(LINKLIBS ${LINKLIBS} ${X11_LIBRARIES})
-            set(LINKLIBS ${LINKLIBS} ${X11_Xmu_LIB})
             set(LINKLIBS ${LINKLIBS} ${X11_Xpm_LIB})
             set(LINKLIBS ${LINKLIBS} ${X11_Xt_LIB})
+            set(LINKLIBS ${LINKLIBS} ${X11_Xmu_LIB})
+            set(LINKLIBS ${LINKLIBS} ${MOTIF_LIBRARIES})
 
             add_executable(xmgr ${PARS_C} ${GRSRCS} ${GUISRCS})
             target_link_libraries(xmgr ${LINKLIBS} cephes)
