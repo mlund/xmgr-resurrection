@@ -36,6 +36,5 @@ add_executable(xmgr ${PARS_C} ${GRSRCS} ${GUISRCS})
 if (UNIX)
   target_link_libraries(xmgr m)
 endif()
-
 target_link_libraries(xmgr ${LINKLIBS} cephes)
 install_targets(/xmgr/bin xmgr)

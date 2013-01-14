@@ -9,7 +9,7 @@ the build system to [CMake](http://www.cmake.org).
 Building and installation
 -------------------------
 
-    $ cmake .
+    $ cmake . -DCMAKE_INSTALL_PREFIX=/usr/local
     $ make
     $ make install
 
