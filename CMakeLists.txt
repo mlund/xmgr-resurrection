@@ -11,6 +11,8 @@ include(FindX11)
 include(CheckIncludeFiles)
 include(CheckFunctionExists)
 
+set(CMAKE_REQUIRED_LIBRARIES m)
+
 if (NOT X11_FOUND)
   message(FATAL_ERROR "X11 not found")
 endif()
@@ -29,6 +31,8 @@ endif()
 if (NOT X11_Xt_FOUND)
   message(FATAL_ERROR "X11 Xt not found")
 endif()
+
+include_directories(${CMAKE_SOURCE_DIR})
 
 check_include_files(unistd.h HAVE_UNISTD_H)
 check_include_files(alloca.h HAVE_ALLOCA_H)
@@ -75,7 +79,6 @@ configure_file(config.h.in config.h)
 add_definitions(-DGR_HOME=\"${CMAKE_INSTALL_PREFIX}/xmgr\")
 add_definitions(-DPRINT_CMD=\"lpr\")
 
-include_directories(${CMAKE_SOURCE_DIR})
 
 add_subdirectory(cephes)
 add_subdirectory(grconvert)
