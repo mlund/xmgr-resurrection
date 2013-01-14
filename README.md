@@ -6,11 +6,12 @@ plotting program that fixes a bug that would cause a
 crash on newer 64-bit machines. We have also changed
 the build system to [CMake](http://www.cmake.org).
 
-Building
---------
+Building and installation
+-------------------------
 
     $ cmake .
     $ make
+    $ make install
 
 Why?
 ----
