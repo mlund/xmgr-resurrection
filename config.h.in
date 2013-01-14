@@ -52,7 +52,7 @@
 /* #undef TM_IN_SYS_TIME */
 
 /* Define if you have <vfork.h>.  */
-/* #undef HAVE_VFORK_H */
+#cmakedefine HAVE_VFORK_H 1
 
 /* Define vfork as fork if vfork does not work.  */
 /* #undef vfork */
@@ -94,7 +94,7 @@
 #cmakedefine HAVE_DLOPEN 1
 
 /* Define if you have the shl_load function.  */
-/* #undef HAVE_SHL_LOAD */
+#cmakedefine HAVE_SHL_LOAD 1
 
 /* Define if your FPU arithmetics is of the DEC type.  */
 /* #undef HAVE_DEC_FPU */
@@ -106,7 +106,7 @@
 /* #undef HAVE_BIEEE_FPU */
 
 /* Define if you have the m library (-lm).  */
-#define HAVE_LIBM 1
+#cmakedefine HAVE_LIBM 1
 
 /* Define if you have <ieeefp.h>.  */
 #cmakedefine HAVE_IEEEFP_H 1
@@ -115,58 +115,58 @@
 #cmakedefine HAVE_HYPOT 1
 
 /* Define if you have the cbrt function.  */
-#define HAVE_CBRT 1
+#cmakedefine HAVE_CBRT 1
 
 /* Define if you have the log2 function.  */
-#define HAVE_LOG2 1
+#cmakedefine HAVE_LOG2 1
 
 /* Define if you have the rint function.  */
-#define HAVE_RINT 1
+#cmakedefine HAVE_RINT 1
 
 /* Define if you have the lgamma function.  */
-#define HAVE_LGAMMA 1
+#cmakedefine HAVE_LGAMMA 1
 
 /* Define if math.h defines the lgamma function.  */
 #define HAVE_LGAMMA_IN_MATH_H 1
 
 /* Define if you have the asinh function.  */
-#define HAVE_ASINH 1
+#cmakedefine HAVE_ASINH 1
 
 /* Define if you have the acosh function.  */
-#define HAVE_ACOSH 1
+#cmakedefine HAVE_ACOSH 1
 
 /* Define if you have the atanh function.  */
-#define HAVE_ATANH 1
+#cmakedefine HAVE_ATANH 1
 
 /* Define if you have the erf function.  */
-#define HAVE_ERF 1
+#cmakedefine HAVE_ERF 1
 
 /* Define if you have the erfc function.  */
-#define HAVE_ERFC 1
+#cmakedefine HAVE_ERFC 1
 
 /* Define if you have the finite function.  */
-#define HAVE_FINITE 1
+#cmakedefine HAVE_FINITE 1
 
 /* Define if you have the isfinite function.  */
-/* #undef HAVE_ISFINITE */
+#cmakedefine HAVE_ISFINITE 1
 
 /* Define if you have the Bessel j0 function.  */
-#define HAVE_J0 1
+#cmakedefine HAVE_J0 1
 
 /* Define if you have the Bessel j1 function.  */
-#define HAVE_J1 1
+#cmakedefine HAVE_J1 1
 
 /* Define if you have the Bessel jn function.  */
-#define HAVE_JN 1
+#cmakedefine HAVE_JN 1
 
 /* Define if you have the Bessel y0 function.  */
-#define HAVE_Y0 1
+#cmakedefine HAVE_Y0 1
 
 /* Define if you have the Bessel y1 function.  */
-#define HAVE_Y1 1
+#cmakedefine HAVE_Y1 1
 
 /* Define if you have the Bessel yn function.  */
-#define HAVE_YN 1
+#cmakedefine HAVE_YN 1
 
 /* Define if you have the netcdf library (-lnetcdf).  */
 /* #undef HAVE_NETCDF */

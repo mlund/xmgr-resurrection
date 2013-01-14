@@ -1,6 +1,3 @@
-include_directories(${CMAKE_SOURCE_DIR}/)
-include_directories(${CMAKE_SOURCE_DIR}/cephes)
-
 set (CEPHESSRCS
   airy beta chbevl chdtr const dawsn ellie ellik 
   ellpe ellpk expn fac fdtr fresnl gamma gdtr hyp2f1 
@@ -9,6 +6,5 @@ set (CEPHESSRCS
   polyn psi revers rgamma round shichi sici 
   spence stdtr struve unity yn zeta zetac 
   acosh asinh atanh ndtr isfinite cbrt )
-
 add_library(cephes STATIC ${CEPHESSRCS})
 
