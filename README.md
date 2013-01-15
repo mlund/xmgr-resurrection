@@ -1,22 +1,23 @@
 Xmgr 4.1.2 - Resurrection
 =========================
 
-This is a patched version of the ancient xmgr 4.1.2
-plotting program that fixes a bug that would cause a
-crash on newer 64-bit machines. We have also changed
-the build system to [CMake](http://www.cmake.org).
+This is a patched version of the abandoned xmgr 4.1.2
+plotting program that fixes 64-bit related bugs.
+We have also changed the build system to
+[CMake](http://www.cmake.org), allowing compilation on
+32-bit and 64-bit unix systems such as linux and macos x.
 
 Building and installation
 -------------------------
 
-    $ cmake . -DCMAKE_INSTALL_PREFIX=/usr/local
-    $ make
-    $ make install
+    cmake . -DCMAKE_INSTALL_PREFIX=/usr/local
+    make
+    make install
 
 Why?
 ----
 
-Because some people cannot come to terms with the updated
+Because some cannot come to terms with the updated
 [Grace](http://plasma-gate.weizmann.ac.il/Grace) user
 interface and would rather stick to xmgr (development
 frozen in 1998).
