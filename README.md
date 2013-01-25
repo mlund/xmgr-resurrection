@@ -1,7 +1,8 @@
 Xmgr 4.1.2 - Resurrection
 =========================
 
-This is a patched version of the abandoned xmgr 4.1.2
+This is a patched version of the abandoned
+[xmgr 4.1.2](http://plasma-gate.weizmann.ac.il/Xmgr)
 plotting program that fixes 64-bit related bugs.
 We have also changed the build system to
 [CMake](http://www.cmake.org), allowing compilation on
