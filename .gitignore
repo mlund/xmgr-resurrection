@@ -21,3 +21,8 @@ install_manifest.txt
 
 # VIM backup
 *~
+
+# XMGR specific
+config.h
+grconvert/grconvert
+src/xmgr
