@@ -15,6 +15,11 @@ Building and installation
     make
     make install
 
+Typically the following packages are required:
+
+    libice-dev libx11-dev lesstif2-dev libxmu-dev libxpm-dev
+
+
 Why?
 ----
 
