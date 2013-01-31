@@ -8,6 +8,11 @@ We have also changed the build system to
 [CMake](http://www.cmake.org), allowing compilation on
 32-bit and 64-bit unix systems such as linux and macos x.
 
+Related information:
+
+- <http://randombio.com/linuxsetup131.html>
+- <http://disbauxes.upc.es/?p=3699>
+
 Building and installation
 -------------------------
 
