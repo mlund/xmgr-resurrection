@@ -6,6 +6,8 @@ if(NOT CMAKE_BUILD_TYPE)
     CACHE STRING "Build type: None Debug Release RelWithDebInfo MinSizeRel." FORCE)
 endif()
 
+include_directories(${CMAKE_CURRENT_BINARY_DIR})
+
 include(FindMotif)
 include(FindX11)
 include(CheckIncludeFiles)
