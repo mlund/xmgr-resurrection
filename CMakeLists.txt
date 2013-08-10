@@ -80,7 +80,7 @@ configure_file(config.h.in config.h)
 
 add_definitions(-DGR_HOME=\"${CMAKE_INSTALL_PREFIX}/xmgr\")
 add_definitions(-DPRINT_CMD=\"lpr\")
-find_program(HAVE_XDGOPEN "xdg-open")
+find_program(XDGOPEN "xdg-open")
 if(XDGOPEN)
   add_definitions(-DGR_HELPVIEWER="${XDGOPEN} %s")
 endif()
