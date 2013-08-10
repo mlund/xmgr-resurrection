@@ -218,6 +218,7 @@ void refresh(Widget w, XtPointer client_data, XmDrawingAreaCallbackStruct * cbs)
 	}
     } else {
 	int w, h;
+        if (cbs->event->xexpose.count != 0) return;
         if (page_layout == PAGE_FREE) {
             get_default_canvas_size(&w, &h);
             set_canvas_size(w, h, 0);
