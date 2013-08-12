@@ -52,7 +52,7 @@ void HelpCB(Widget w, XtPointer client_data, XtPointer call_data)
     if (strstr(ha, "http:")) {
         strcpy(URL, ha);
     } else {
-        sprintf(URL, "file://localhost%s/doc/%s", xmgrdir, ha);
+        sprintf(URL, "file://%s/doc/%s", xmgrdir, ha);
     }
     
     len = strlen(help_viewer);
