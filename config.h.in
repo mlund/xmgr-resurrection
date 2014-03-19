@@ -169,7 +169,7 @@
 #cmakedefine HAVE_YN 1
 
 /* Define if you have the netcdf library (-lnetcdf).  */
-/* #undef HAVE_NETCDF */
+#cmakedefine HAVE_NETCDF 1
 
 /* Define if you have the mfhdf library (-lmfhdf).  */
 /* #undef HAVE_MFHDF */
