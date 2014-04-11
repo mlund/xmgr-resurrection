@@ -15,6 +15,17 @@ include(CheckFunctionExists)
 
 set(CMAKE_REQUIRED_LIBRARIES m)
 
+option(ENABLE_NETCDF "Enable netcdf support" off)
+if (ENABLE_NETCDF)
+  set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR})
+  include(FindNETCDF)
+  if (NETCDF_FOUND)
+    set(HAVE_NETCDF 1)
+    set(LINKLIBS ${LINKLIBS} ${NETCDF_LIBRARY})
+    include_directories(${NETCDF_INCLUDE_DIRS})
+  endif()
+endif()
+
 if (NOT X11_FOUND)
   message(FATAL_ERROR "X11 not found")
 endif()

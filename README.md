@@ -24,6 +24,9 @@ Typically the following packages are required:
 
     libice-dev libx11-dev lesstif2-dev libxmu-dev libxpm-dev
 
+Enable NetCDF support (off by default):
+
+    cmake . -DENABLE_NETCDF=on
 
 Why?
 ----
@@ -33,7 +36,7 @@ Because some cannot come to terms with the updated
 interface and would rather stick to xmgr (development
 frozen in 1998).
 
-/ m.ullner & m.lund, 2012
+/ M. Ullner and M. Lund, 2012-2014
 
 Copyright notice
 ----------------
