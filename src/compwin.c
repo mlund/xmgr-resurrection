@@ -2119,11 +2119,11 @@ void create_geom_frame(Widget w, XtPointer client_data, XtPointer call_data)
 
 	XtVaCreateManagedWidget("sep", xmSeparatorWidgetClass, dialog, NULL);
 
-	CreateCommandButtons(dialog, 3, but1, label1);
-	XtAddCallback(but1[0], XmNactivateCallback, (XtCallbackProc) do_geom_proc, (XtPointer) & gui);
-	XtAddCallback(but1[1], XmNactivateCallback, (XtCallbackProc) reset_geom_proc, (XtPointer)
+	CreateCommandButtons(dialog, 3, but2, label1);
+	XtAddCallback(but2[0], XmNactivateCallback, (XtCallbackProc) do_geom_proc, (XtPointer) & gui);
+	XtAddCallback(but2[1], XmNactivateCallback, (XtCallbackProc) reset_geom_proc, (XtPointer)
 	& gui.top);
-	XtAddCallback(but1[2], XmNactivateCallback, (XtCallbackProc) destroy_dialog, (XtPointer) gui.top);
+	XtAddCallback(but2[2], XmNactivateCallback, (XtCallbackProc) destroy_dialog, (XtPointer) gui.top);
 
 	XtManageChild(dialog);
 	xv_setstr(gui.degrees_item, "0.0");

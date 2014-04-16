@@ -216,7 +216,7 @@ void create_file_popup(Widget wid, XtPointer client_data, XtPointer call_data)
 	w[0] = XmCreateToggleButton(rb, "Disk", NULL, 0);
 	w[1] = XmCreateToggleButton(rb, "Pipe", NULL, 0);
 	for (i = 0; i < 2; i++) {
-	    XtAddCallback(w[i], XmNvalueChangedCallback, set_src_proc, (XtPointer) i);
+	    XtAddCallback(w[i], XmNvalueChangedCallback, set_src_proc, (XtPointer) (intptr_t) i);
 	}
 	XtManageChild(lab);
 	XtManageChild(rb);
@@ -1308,7 +1308,7 @@ void create_block_popup(Widget w, XtPointer client_data, XtPointer call_data)
 	rw[0] = XmCreateToggleButton(rb, "Disk", NULL, 0);
 	rw[1] = XmCreateToggleButton(rb, "Pipe", NULL, 0);
 	for (i = 0; i < 2; i++) {
-	    XtAddCallback(rw[i], XmNvalueChangedCallback, (XtCallbackProc) set_src_proc, (XtPointer) i);
+	    XtAddCallback(rw[i], XmNvalueChangedCallback, (XtCallbackProc) set_src_proc, (XtPointer) (intptr_t) i);
 	}
 
 	XtManageChildren(rw, 2);

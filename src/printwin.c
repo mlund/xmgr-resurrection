@@ -83,7 +83,7 @@ void create_printer_setup(Widget w, XtPointer client_data, XtPointer call_data)
 					 0, 0);
 	for (i = 0; i < 11; i++) {
 	    XtAddCallback(devices_item[2 + i], XmNactivateCallback,
-			(XtCallbackProc) do_prstr_toggle, (XtPointer) i);
+			(XtCallbackProc) do_prstr_toggle, (XtPointer) (intptr_t) i);
 	}
 	printto_item = CreatePanelChoice(pdev_rc, "Print to: ",
 					 3,
@@ -91,7 +91,7 @@ void create_printer_setup(Widget w, XtPointer client_data, XtPointer call_data)
 					 "File", 0, 0);
 	for (i = 0; i < 2; i++) {
 	    XtAddCallback(printto_item[2 + i], XmNactivateCallback,
-			  (XtCallbackProc) do_pr_toggle, (XtPointer) i);
+			  (XtCallbackProc) do_pr_toggle, (XtPointer) (intptr_t) i);
 	}
 	printstring_item = CreateTextItem2(psetup_rc, 30, 
                                            "Print control string:");
@@ -150,7 +150,7 @@ void create_printer_setup(Widget w, XtPointer client_data, XtPointer call_data)
 
 	if( hdevice >=9 && hdevice <=11 ) {
 		SetChoice( printto_item, ptofile );
-		do_pr_toggle( NULL, NULL, (XtPointer)ptofile );
+		do_pr_toggle( NULL, NULL, (XtPointer) (intptr_t) ptofile );
 		update_printer_setup();
     	XtSetSensitive( printto_item[1], False );
     }		
@@ -158,7 +158,7 @@ void create_printer_setup(Widget w, XtPointer client_data, XtPointer call_data)
     SetChoice (pslwbegin_item, pslwbegin - 1);
     SetChoice (pslwincr_item, pslwincr - 1);
     XtRaise(psetup_frame);
-    do_pr_toggle(NULL, (XtPointer)ptofile, NULL );
+    do_pr_toggle(NULL, (XtPointer) (intptr_t) ptofile, NULL );
     update_printer_setup();
     unset_wait_cursor();
 }
@@ -244,7 +244,7 @@ void do_prstr_toggle(Widget w, XtPointer client_data, XtPointer call_data)
     set_printer(value + 1, NULL);
     if( hdevice ==9 || hdevice == 10 || hdevice == 11 ) {
     	SetChoice(printto_item, ptofile=1);
-    	do_pr_toggle( NULL, (XtPointer)ptofile, NULL );
+    	do_pr_toggle( NULL, (XtPointer) (intptr_t) ptofile, NULL );
     	XtSetSensitive( printto_item[1], False );
     }else {
     	XtSetSensitive( printto_item[1], True );

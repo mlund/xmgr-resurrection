@@ -80,7 +80,7 @@ void do_pagelayout_toggle(Widget w, XtPointer client_data, XtPointer call_data)
 static void define_page_proc(Widget w, XtPointer client_data, XtPointer call_data)
 {
     char buf[256];
-    set_page(NULL, (XtPointer) get_pagelayout(), NULL);
+    set_page(NULL, (XtPointer) (intptr_t) get_pagelayout(), NULL);
     switch (GetChoice(page_layout_item)) {
         case 1:
         page_layout = PAGE_LANDSCAPE;
@@ -104,7 +104,7 @@ static void define_page_proc(Widget w, XtPointer client_data, XtPointer call_dat
         canvash = atoi(buf);
     }
     bgcolor = (int) GetChoice(page_color_item);
-    set_page(NULL, (XtPointer) page_layout, NULL);
+    set_page(NULL, (XtPointer) (intptr_t) page_layout, NULL);
     XtUnmanageChild(page_frame);
     drawgraph();
 }

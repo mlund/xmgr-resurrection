@@ -845,7 +845,7 @@ int set_pagelayout(int layout)
 {
     page_layout = layout;
     if (inwin) {
-	set_page(NULL, (XtPointer) page_layout, NULL);
+	set_page(NULL, (XtPointer) (intptr_t) page_layout, NULL);
     }
     return page_layout;
 }
@@ -1653,7 +1653,7 @@ void do_main_winloop(void)
     sw.backing_store = Always;
     XChangeWindowAttributes(disp, xwin, CWBackingStore, &sw);
 
-    set_page(NULL, (XtPointer) page_layout, NULL);
+    set_page(NULL, (XtPointer) (intptr_t) page_layout, NULL);
 
 /*
  * A named pipe

@@ -604,7 +604,7 @@ void create_arrange_frame(Widget w, XtPointer client_data, XtPointer call_data)
 					      NULL, NULL);
 	for( i=2; i<12; i++ )
 	XtAddCallback(arrange_rows_item[i], XmNactivateCallback, 
-			(XtCallbackProc) row_arrange_cb, (XtPointer) (i-1));
+			(XtCallbackProc) row_arrange_cb, (XtPointer) (intptr_t) (i-1));
 			
 	XtVaCreateManagedWidget("Columns: ", xmLabelWidgetClass, rc, NULL);
 	arrange_cols_item = CreatePanelChoice(rc, " ",
@@ -613,7 +613,7 @@ void create_arrange_frame(Widget w, XtPointer client_data, XtPointer call_data)
 					      NULL, NULL);
 	for( i=2; i<12; i++ )
 	XtAddCallback(arrange_cols_item[i], XmNactivateCallback, 
-			(XtCallbackProc) col_arrange_cb, (XtPointer) (i-1));
+			(XtCallbackProc) col_arrange_cb, (XtPointer) (intptr_t) (i-1));
 
 	XtVaCreateManagedWidget("Packing: ", xmLabelWidgetClass, rc, NULL);
 	arrange_packed_item = CreatePanelChoice(rc, " ",

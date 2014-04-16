@@ -809,7 +809,7 @@ void select_set(Widget w, XtPointer calld, XEvent * e)
 	    set_status_action(STATUS_GRAPH_ACTIVATE);
 	    break;
 	case STATUS_GRAPH_TYPE:
-	    create_gtype_frame(NULL, (XtPointer) cd, (XtPointer) NULL);
+	    create_gtype_frame(NULL, (XtPointer) (intptr_t) cd, (XtPointer) NULL);
 /*
 	    update_all(cg);
 	    drawgraph();
@@ -999,9 +999,9 @@ void define_status_popup(Widget w, XtPointer client_data, XtPointer call_data)
 					      XmNrecomputeSize, True,
 					      NULL);
 	    XtAddEventHandler(labx[i], ButtonPressMask, False,
-			      (XtEventHandler) select_set, (XtPointer) i);
+			      (XtEventHandler) select_set, (XtPointer) (intptr_t) i);
 	    XtAddEventHandler(laby[i], ButtonPressMask, False,
-			      (XtEventHandler) select_set, (XtPointer) i);
+			      (XtEventHandler) select_set, (XtPointer) (intptr_t) i);
 	}
 	XtManageChild(rc3);
 	XtVaSetValues(status_sw,

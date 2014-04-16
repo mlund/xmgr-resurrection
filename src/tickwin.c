@@ -216,7 +216,7 @@ void create_ticks_frame(Widget w, XtPointer client_data, XtPointer call_data)
 						NULL,
 						NULL);
 	for (i = 0; i < 4; i++) {
-	    XtAddCallback(editaxis[2 + i], XmNactivateCallback, (XtCallbackProc) set_axis_proc, (XtPointer) i);
+	    XtAddCallback(editaxis[2 + i], XmNactivateCallback, (XtCallbackProc) set_axis_proc, (XtPointer) (intptr_t) i);
 	}
 
 	XtVaCreateManagedWidget("sep", xmSeparatorWidgetClass, ticks_panel, NULL);

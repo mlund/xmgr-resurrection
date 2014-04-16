@@ -108,7 +108,7 @@ void create_eblock_frame(Widget w, XtPointer client_data, XtPointer call_data)
 						    NULL, 0);
 	for (i = 0; i < 12; i++) {
 	    XtAddCallback(eblock_type_choice_item[2 + i],
-			  XmNactivateCallback, (XtCallbackProc) eblock_type_notify_proc, (XtPointer) i);
+			  XmNactivateCallback, (XtCallbackProc) eblock_type_notify_proc, (XtPointer) (intptr_t) i);
 	}
 
 	XtVaCreateManagedWidget("X from column:", xmLabelWidgetClass, rc, NULL);

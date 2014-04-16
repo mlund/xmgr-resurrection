@@ -192,7 +192,7 @@ void create_nonl_frame(Widget w, XtPointer client_data, XtPointer call_data)
 
 	for (i = 0; i < MAXPARM + 1; i++) {
 	    XtAddCallback(nonl_nparm_item[2 + i], XmNactivateCallback,
-			(XtCallbackProc) do_nparm_toggle, (XtPointer) i);
+			(XtCallbackProc) do_nparm_toggle, (XtPointer) (intptr_t) i);
 	}
 	
 	nonl_tol_item = CreateTextItem2(rc1, 10, "Tolerance:");
@@ -216,7 +216,7 @@ void create_nonl_frame(Widget w, XtPointer client_data, XtPointer call_data)
 
 	    nonl_constr_item[i] = XmCreateToggleButton(nonl_parm_item[i], "Bounds:", NULL, 0);
 	    XtAddCallback(nonl_constr_item[i], XmNvalueChangedCallback, 
-	    	    	    (XtCallbackProc) do_constr_toggle, (XtPointer) i);
+	    	    	    (XtCallbackProc) do_constr_toggle, (XtPointer) (intptr_t) i);
 	    XtManageChild(nonl_constr_item[i]);
 
 	    nonl_lowb_item[i] = CreateTextItem2(nonl_parm_item[i], 6, "");

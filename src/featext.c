@@ -110,7 +110,7 @@ void create_featext_frame(Widget w, XtPointer client_data, XtPointer call_data)
 	
 	for (i = 0; i < 4; i++) {
 	    XtAddCallback(feui.xval_item[2 + i], XmNactivateCallback,
-			(XtCallbackProc) do_fext_toggle, (XtPointer) i);
+			(XtCallbackProc) do_fext_toggle, (XtPointer) (intptr_t) i);
 	}
 	
 	XtVaCreateManagedWidget("sep", xmSeparatorWidgetClass, dialog, NULL);
@@ -121,7 +121,7 @@ void create_featext_frame(Widget w, XtPointer client_data, XtPointer call_data)
 								"Abscissa from graph: ",maxgraph,0);
 	for(i=0; i<maxgraph; i++ )
 	    XtAddCallback(feui.absic_graph[2 + i], XmNactivateCallback,
-			(XtCallbackProc) do_gto_setsel_update, (XtPointer) i);
+			(XtCallbackProc) do_gto_setsel_update, (XtPointer) (intptr_t) i);
 	
 	feui.absic_set = CreateSetSelector(feui.legload_rc, "set:",
 					SET_SELECT_ACTIVE,
