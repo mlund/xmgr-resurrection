@@ -7,6 +7,7 @@
 #define __DEFINES_H_
 
 #include <config.h>
+#include <stdint.h>
 
 /*
  * Have a report of a system that doesn't have this
