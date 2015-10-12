@@ -475,7 +475,7 @@ static int allocate_colors_and_assign_em(Display * disp, Window win_id, XImage *
 	printf("WARNING: This is a monster deep display image, dude.  This ");
 	printf("image\n");
 	printf("         will take %d kilo-bytes of free memory to process.\n",
-	   (num_cells_in_colormap * sizeof(unsigned long)) / 1024);
+	   (num_cells_in_colormap * (int)sizeof(unsigned long)) / 1024);
     }
     /*
      * set up temporary storage for the old and new pixel values

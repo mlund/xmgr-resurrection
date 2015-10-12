@@ -117,7 +117,7 @@ int fitcurve(double *x, double *y, int n, int ideg, double *fitted)
 	dofitcurve(n, x, y, ideg, result);
 	for (i = 0; i < n; i++) {
 	    fitted[i] = leasev(result, ideg, x[i]);
-	    if (!finite(fitted[i])) {
+	    if (!isfinite(fitted[i])) {
 	        errmsg("Linear_regression - all values of x or y are the same");
 		ifail = 3;
 		return ifail;
