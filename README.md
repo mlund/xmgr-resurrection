@@ -22,7 +22,9 @@ Building and installation
 
 Typically the following packages are required:
 
-    libice-dev libx11-dev lesstif2-dev libxmu-dev libxpm-dev
+    libice-dev libx11-dev libmotif-dev libxmu-dev libxpm-dev
+
+(tested with Ubuntu 16.04)
 
 Enable NetCDF support (off by default):
 
@@ -36,7 +38,7 @@ Because some cannot come to terms with the updated
 interface and would rather stick to xmgr (development
 frozen in 1998).
 
-/ M. Ullner and M. Lund, 2012-2014
+/ M. Ullner and M. Lund, 2012-2016
 
 Copyright notice
 ----------------
