@@ -145,10 +145,10 @@ void stufftextwin(char *s, int sp)
 	    savepos = pos;
 	}
     } else {
-	printf(s);
+	printf("%s",s);
     }
     if (resfp != NULL) {	/* results file opened in main.c */
-	fprintf(resfp, s);
+	fprintf(resfp, "%s", s);
     }
 }
 

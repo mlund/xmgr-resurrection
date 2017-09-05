@@ -75,7 +75,7 @@ static FILE *hpout;
 
 void putstrhp(char *s)
 {
-    fprintf(hpout, s);
+    fprintf(hpout, "%s", s);
 }
 
 static char *hp_fname;

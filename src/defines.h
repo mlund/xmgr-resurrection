@@ -41,7 +41,7 @@
 #define MAXSYM 47		/* max number of symbols */
 #define MAX_LINESTYLE 5		/* max number of linestyles */
 #define MAX_LINEWIDTH 10	/* max number of line widths */
-#define MAXCOLORS 16		/* max number of colors */
+#define MAXCOLORS 256		/* max number of colors */
 #define MAXAXES 4		/* max number of axes per graph */
 
 #define MAXPARM 10		/* max number of parameters for non-lin fit */

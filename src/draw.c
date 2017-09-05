@@ -2402,4 +2402,62 @@ void initialize_cms_data(void)
 	green[i] = (i - 16) * 3 * ((i - 16) < 2 * del);
 	blue[i] = (i - 16) * 2 * ((i - 16) <= maxcolors);
     }
+  
+    del = (maxcolors - 16) / 3;
+    for (i = 16; i < maxcolors-96; i++) {
+        red[i] = (i - 16) * 4 * ((i - 16) < del);
+        green[i] = (i - 16) * 3 * ((i - 16) < 2 * del);
+        blue[i] = (i - 16) * 2 * ((i - 16) <= maxcolors);
+    }
+
+    for (i = 144; i<152; i++) {
+        red[i] =   20*(i+3-144);
+        green[i] = 20*(i+3-144);
+        blue[i]  = 14*(i+3-144);
+    }
+    for (i = 152; i<160; i++) {
+        red[i] =   20*(i+3-152);
+        green[i] =  4*(i+3-152);
+        blue[i]  =  3*(i+3-152);
+    }
+
+
+    for (i = 160; i<168; i++) {
+        red[i] =   0;
+        green[i] = 20*(i+2-160);
+        blue[i]  = 0;
+    }
+    for (i = 168; i<176; i++) {
+        red[i] =   0;
+        green[i] = 16*(i+2-168);
+        blue[i]  = 16*(i+2-168);
+    }
+
+    for (i = 176; i<184; i++) {
+        red[i] =   12*(i+3-176);
+        green[i] = 14*(i+3-176);
+        blue[i]  = 24*(i+3-176);
+    }
+    for (i = 184; i<192; i++) {
+        red[i] =   16*(i+3-184);
+        green[i] = 14*(i+3-184);
+        blue[i]  = 12*(i+3-184);
+    }
+    for (i = 192; i<208; i++) {
+        red[i] =    4*(i+6-192);
+        green[i] =  8*(i+6-192);
+        blue[i]  = 14*(i+2-192);
+    }
+
+    for (i = 208; i<256; i++) {
+        red[i] =   64;
+        green[i] = 16*(i-maxcolors+96);
+        blue[i]  = 128;
+    }
+    for (i = maxcolors-32; i<maxcolors; i++) {
+        red[i]   = 8*(i+maxcolors-32);
+        green[i] = 8*(i+maxcolors-32);
+        blue[i]  = 8*(i+maxcolors-32);
+    }
+
 }
