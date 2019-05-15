@@ -26,7 +26,7 @@ Typically the following packages are required:
 
 (tested with Ubuntu 16.04)
 
-Enable NetCDF support (off by default):
+Enable NetCDF support (on by default):
 
     cmake . -DENABLE_NETCDF=on
 
