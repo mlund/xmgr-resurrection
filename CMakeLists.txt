@@ -1,15 +1,29 @@
 cmake_minimum_required(VERSION 3.0.2)
 project("xmgr")
+cmake_policy(SET CMP0115 OLD)
+cmake_policy(SET CMP0075 OLD)
 
 if(NOT CMAKE_BUILD_TYPE)
   set(CMAKE_BUILD_TYPE RelWithDebInfo
     CACHE STRING "Build type: None Debug Release RelWithDebInfo MinSizeRel." FORCE)
 endif()
 
+set(CMAKE_MODULE_PATH cmake)
+
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
 
 find_package(Motif REQUIRED)
 find_package(X11 REQUIRED)
+
+if (${CMAKE_HOST_SYSTEM_NAME} MATCHES "Linux")
+  # On ubuntu 22.04, rpc/rpc.h is provided by libtirpc
+  if (NOT EXISTS "/usr/include/rpc/rpc.h")
+    find_package(TIRPC MODULE REQUIRED)
+    include_directories(${TIRPC_INCLUDE_DIRS})
+    link_libraries(${TIRPC_LIBRARIES})
+  endif()
+endif()
+
 include(CheckIncludeFiles)
 include(CheckFunctionExists)
 
@@ -17,8 +31,7 @@ set(CMAKE_REQUIRED_LIBRARIES m)
 
 option(ENABLE_NETCDF "Enable netcdf support" on)
 if (ENABLE_NETCDF)
-  set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR})
-  include(FindNETCDF)
+  find_package(NETCDF)
   if (NETCDF_FOUND)
     set(HAVE_NETCDF 1)
     set(LINKLIBS ${LINKLIBS} ${NETCDF_LIBRARY})

@@ -20,15 +20,10 @@ Building and installation
     make
     make install
 
-Typically the following packages are required:
+Required depenencies can typically be satisfied with:
 
-    libice-dev libx11-dev libmotif-dev libxmu-dev libxpm-dev
-
-(tested with Ubuntu 16.04)
-
-Enable NetCDF support (on by default):
-
-    cmake . -DENABLE_NETCDF=on
+- Debian/Linux: `apt install build-essential libice-dev libx11-dev libmotif-dev libxmu-dev libxpm-dev libtirpc-dev`
+- Homebrew/Mac: `brew install libice libx11 openmotif libmotif-dev libxmu libxpm`
 
 Why?
 ----
@@ -38,7 +33,7 @@ Because some cannot come to terms with the updated
 interface and would rather stick to xmgr (development
 frozen in 1998).
 
-/ M. Ullner and M. Lund, 2012-2016
+/ M. Ullner and M. Lund, 2012-2022
 
 Copyright notice
 ----------------
