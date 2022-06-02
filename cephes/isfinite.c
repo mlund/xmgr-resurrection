@@ -17,6 +17,10 @@ Cephes Math Library Release 2.3:  March, 1995
 Copyright 1984, 1995 by Stephen L. Moshier
 */
 
+#if defined(__APPLE__) && defined(__aarch64__)
+#define HAVE_ISFINITE
+#endif
+
 
 #include "mconf.h"
 

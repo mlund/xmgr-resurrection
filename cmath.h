@@ -105,7 +105,9 @@ extern double jn ( int n, double x );
 #ifndef HAVE_FINITE
 #  define finite isfinite
 #  ifndef HAVE_ISFINITE
+#    if !(defined(__APPLE__) && defined(__aarch64__))
 extern int isfinite ( double x );
+#    endif
 #  endif
 #endif
 
