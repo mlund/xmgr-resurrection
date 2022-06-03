@@ -22,8 +22,13 @@ Building and installation
 
 Required depenencies can typically be satisfied with:
 
-- Debian/Linux: `apt install build-essential libice-dev libx11-dev libmotif-dev libxmu-dev libxpm-dev libtirpc-dev`
-- Homebrew/Mac: `brew install libice libx11 openmotif libmotif-dev libxmu libxpm`
+- Debian based linux distributions:
+
+  `apt install build-essential libice-dev libx11-dev libmotif-dev libxmu-dev libxpm-dev libtirpc-dev`
+  
+- Homebrew/Mac:
+
+  `brew install libice libx11 openmotif libmotif-dev libxmu libxpm`
 
 Why?
 ----
