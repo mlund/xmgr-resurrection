@@ -22,8 +22,14 @@ Building and installation
 
 Required depenencies can typically be satisfied with:
 
-- Debian/Linux: `apt install build-essential libice-dev libx11-dev libmotif-dev libxmu-dev libxpm-dev libtirpc-dev`
-- Homebrew/Mac: `brew install libice libx11 openmotif libmotif-dev libxmu libxpm`
+- Debian based linux distributions:
+  ~~~
+  apt install build-essential libice-dev libx11-dev libmotif-dev libxmu-dev libxpm-dev libtirpc-dev
+  ~~~
+- Homebrew/Mac:
+  ~~~
+  brew install libice libx11 openmotif libmotif-dev libxmu libxpm
+  ~~~
 
 Why?
 ----
@@ -33,7 +39,7 @@ Because some cannot come to terms with the updated
 interface and would rather stick to xmgr (development
 frozen in 1998).
 
-/ M. Ullner and M. Lund, 2012-2022
+M. Ullner and M. Lund, 2012-2022
 
 Copyright notice
 ----------------
