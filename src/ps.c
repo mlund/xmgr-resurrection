@@ -176,7 +176,7 @@ int pssetmode(int mode)
 #else
 	    sprintf(tbuf, "%s", "SYS$SCRATCH:XMgrXXXXXX.tmp");
 #endif	    
-	    filname = mktemp(tbuf);
+	    filname = mkstemp(tbuf);
 	} else {
 	    filname = printstr;
 	}
