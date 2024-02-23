@@ -11,45 +11,44 @@
 #include "globals.h"
 #include "protos.h"
 
-void loadset(int gno, int selset, int toval, double startno, double stepno)
-{
+void loadset(int gno, int selset, int toval, double startno, double stepno) {
     int i, lenset;
-    double *ltmp;
+    double* ltmp;
     double *xtmp, *ytmp;
 
     if ((lenset = getsetlength(gno, selset)) <= 0) {
-	char stmp[60];
+        char stmp[60];
 
-	sprintf(stmp, "Length of set %d <= 0", selset);
-	errmsg(stmp);
-	return;
+        sprintf(stmp, "Length of set %d <= 0", selset);
+        errmsg(stmp);
+        return;
     }
     xtmp = getx(gno, selset);
     ytmp = gety(gno, selset);
     switch (toval) {
     case 1:
-	ltmp = xtmp;
-	break;
+        ltmp = xtmp;
+        break;
     case 2:
-	ltmp = ytmp;
-	break;
+        ltmp = ytmp;
+        break;
     case 3:
-	ltmp = ax;
-	break;
+        ltmp = ax;
+        break;
     case 4:
-	ltmp = bx;
-	break;
+        ltmp = bx;
+        break;
     case 5:
-	ltmp = cx;
-	break;
+        ltmp = cx;
+        break;
     case 6:
-	ltmp = dx;
-	break;
+        ltmp = dx;
+        break;
     default:
-	return;
+        return;
     }
     for (i = 0; i < lenset; i++) {
-	*ltmp++ = startno + i * stepno;
+        *ltmp++ = startno + i * stepno;
     }
     updatesetminmax(gno, selset);
     set_dirtystate();
@@ -61,31 +60,30 @@ void loadset(int gno, int selset, int toval, double startno, double stepno)
 /*
  * evaluate the expression in sscanstr and place the result in selset
  */
-int formula(int gno, int selset, char *sscanstr)
-{
+int formula(int gno, int selset, char* sscanstr) {
     char stmp[64];
     int i = 0, errpos, lenset, oldcg;
     double *xtmp, *ytmp;
 
     if ((lenset = getsetlength(gno, selset)) <= 0) {
-	sprintf(stmp, "Length of set %d = 0", selset);
-	errmsg(stmp);
-	return 0;
+        sprintf(stmp, "Length of set %d = 0", selset);
+        errmsg(stmp);
+        return 0;
     }
     xtmp = getx(gno, selset);
     ytmp = gety(gno, selset);
-	
-	oldcg = cg;	  /* kludge to get around not being able to set result graph */ 
-	cg = gno;
+
+    oldcg = cg; /* kludge to get around not being able to set result graph */
+    cg = gno;
     scanner(sscanstr, xtmp, ytmp, lenset, ax, bx, cx, dx, MAXARR, i, selset, &errpos);
-	cg = oldcg;
+    cg = oldcg;
 
     if (!errpos) {
-    	updatesetminmax(gno, selset);
+        updatesetminmax(gno, selset);
 #ifndef NONE_GUI
-    	update_set_status(gno, selset);
+        update_set_status(gno, selset);
 #endif
-    	set_dirtystate();
+        set_dirtystate();
     }
     return (errpos);
 }

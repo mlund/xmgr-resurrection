@@ -41,10 +41,9 @@
  * See also hyperg.c.
  *
  */
-/*							iv.c	*/
+/*							iv.c	*/
 /*	Modified Bessel function of noninteger order		*/
 /* If x < 0, then v must be an integer. */
-
 
 /*
 Cephes Math Library Release 2.1:  November, 1988
@@ -52,56 +51,48 @@ Copyright 1984, 1987, 1988 by Stephen L. Moshier
 Direct inquiries to 30 Frost Street, Cambridge, MA 02140
 */
 
-
 #include "mconf.h"
 extern double MACHEP, MAXNUM;
 
-double iv( v, x )
+double iv(v, x)
 double v, x;
 {
-int sign;
-double t, ax;
+    int sign;
+    double t, ax;
 
-/* If v is a negative integer, invoke symmetry */
-t = floor(v);
-if( v < 0.0 )
-	{
-	if( t == v )
-		{
-		v = -v;	/* symmetry */
-		t = -t;
-		}
-	}
-/* If x is negative, require v to be an integer */
-sign = 1;
-if( x < 0.0 )
-	{
-	if( t != v )
-		{
-		mtherr( "iv", DOMAIN );
-		return( 0.0 );
-		}
-	if( v != 2.0 * floor(v/2.0) )
-		sign = -1;
-	}
+    /* If v is a negative integer, invoke symmetry */
+    t = floor(v);
+    if (v < 0.0) {
+        if (t == v) {
+            v = -v; /* symmetry */
+            t = -t;
+        }
+    }
+    /* If x is negative, require v to be an integer */
+    sign = 1;
+    if (x < 0.0) {
+        if (t != v) {
+            mtherr("iv", DOMAIN);
+            return (0.0);
+        }
+        if (v != 2.0 * floor(v / 2.0))
+            sign = -1;
+    }
 
-/* Avoid logarithm singularity */
-if( x == 0.0 )
-	{
-	if( v == 0.0 )
-		return( 1.0 );
-	if( v < 0.0 )
-		{
-		mtherr( "iv", OVERFLOW );
-		return( MAXNUM );
-		}
-	else
-		return( 0.0 );
-	}
+    /* Avoid logarithm singularity */
+    if (x == 0.0) {
+        if (v == 0.0)
+            return (1.0);
+        if (v < 0.0) {
+            mtherr("iv", OVERFLOW);
+            return (MAXNUM);
+        } else
+            return (0.0);
+    }
 
-ax = fabs(x);
-t = v * log( 0.5 * ax )  -  x;
-t = sign * exp(t) / true_gamma( v + 1.0 );
-ax = v + 0.5;
-return( t * hyperg( ax,  2.0 * ax,  2.0 * x ) );
+    ax = fabs(x);
+    t = v * log(0.5 * ax) - x;
+    t = sign * exp(t) / true_gamma(v + 1.0);
+    ax = v + 0.5;
+    return (t * hyperg(ax, 2.0 * ax, 2.0 * x));
 }

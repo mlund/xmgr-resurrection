@@ -42,7 +42,7 @@
  * gdtr domain         x < 0            0.0
  *
  */
-/*							gdtrc.c
+/*							gdtrc.c
  *
  *	Complemented gamma distribution function
  *
@@ -86,9 +86,8 @@
  * gdtrc domain         x < 0            0.0
  *
  */
-
-/*							gdtr()  */
 
+/*							gdtr()  */
 
 /*
 Cephes Math Library Release 2.3:  March,1995
@@ -100,28 +99,24 @@ Copyright 1984, 1987, 1995 by Stephen L. Moshier
 double igam(), igamc();
 #endif
 
-double gdtr( a, b, x )
+double gdtr(a, b, x)
 double a, b, x;
 {
 
-if( x < 0.0 )
-	{
-	mtherr( "gdtr", DOMAIN );
-	return( 0.0 );
-	}
-return(  igam( b, a * x )  );
+    if (x < 0.0) {
+        mtherr("gdtr", DOMAIN);
+        return (0.0);
+    }
+    return (igam(b, a * x));
 }
 
-
-
-double gdtrc( a, b, x )
+double gdtrc(a, b, x)
 double a, b, x;
 {
 
-if( x < 0.0 )
-	{
-	mtherr( "gdtrc", DOMAIN );
-	return( 0.0 );
-	}
-return(  igamc( b, a * x )  );
+    if (x < 0.0) {
+        mtherr("gdtrc", DOMAIN);
+        return (0.0);
+    }
+    return (igamc(b, a * x));
 }

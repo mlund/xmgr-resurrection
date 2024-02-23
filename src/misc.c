@@ -1,4 +1,4 @@
-/* 
+/*
  *
  * Misc. utilities and support routines
  *
@@ -19,91 +19,88 @@
 /*
  * Change suffix on printer output filename to newsuf
  */
-void change_suffix( char *s, char *newsuf )
-{
-	int i;
-	
-	/* get suffix */
-	i = strlen( s );
-	do{}
-	while( --i>=0 && s[i] !='.' );
-	
-	if( i<0 || !strcmp(s+i, newsuf) )		/* don't do a thing */
-		return;
-	
-	/* check if known suffix before changing it */
-	if( !strcmp( s+i, hp_suffix )  || !strcmp( s+i, ps_suffix )  || 
-	    !strcmp( s+i, leaf_suffix) || !strcmp( s+i, mif_suffix ) ||
-		!strcmp( s+i, eps_suffix ) || !strcmp( s+i, pstex_suffix ) )
-		strcpy( s+i, newsuf );
+void change_suffix(char* s, char* newsuf) {
+    int i;
+
+    /* get suffix */
+    i = strlen(s);
+    do {
+    } while (--i >= 0 && s[i] != '.');
+
+    if (i < 0 || !strcmp(s + i, newsuf)) /* don't do a thing */
+        return;
+
+    /* check if known suffix before changing it */
+    if (!strcmp(s + i, hp_suffix) || !strcmp(s + i, ps_suffix) || !strcmp(s + i, leaf_suffix) ||
+        !strcmp(s + i, mif_suffix) || !strcmp(s + i, eps_suffix) || !strcmp(s + i, pstex_suffix))
+        strcpy(s + i, newsuf);
 }
- 
+
 /*
  * set the current print options
  */
-void set_printer(int device, char *prstr)
-{
+void set_printer(int device, char* prstr) {
     if (device == GR_FILE) {
-	if (prstr != NULL) {
-	    strcpy(printstr, prstr);
-	}
-	ptofile = TRUE;
+        if (prstr != NULL) {
+            strcpy(printstr, prstr);
+        }
+        ptofile = TRUE;
     } else {
-	switch (device) {
-	case GR_PS_L:
-	case GR_PS_P:
-	    if (prstr != NULL) {
-		strcpy(ps_prstr, prstr);
-	    }
-  	  	curprint = ps_prstr;
-  	  	if( !epsflag )
-	    	cursuffix = ps_suffix;
-	    else
-	    	cursuffix = eps_suffix;
-	    break;
-	case GR_MIF_L:
-	case GR_MIF_P:
-	    if (prstr != NULL) {
-		strcpy(mif_prstr, prstr);
-	    }
-  	  	curprint = mif_prstr;
-	    cursuffix = mif_suffix;
-	    break;
-	case GR_HPGL_L:
-	case GR_HPGL_P:
-	    if (prstr != NULL) {
-		strcpy(hp_prstr, prstr);
-	    }
-  	  	curprint = hp_prstr;
-	    cursuffix = hp_suffix;
-	    break;
-	case GR_LEAF_L:
-	case GR_LEAF_P:
-	    if (prstr != NULL) {
-		strcpy(leaf_prstr, prstr);
-	    }
-  	  	curprint = leaf_prstr;
-	 	cursuffix = leaf_suffix;
-   		break;
-   	case GR_PSTEX_INC:
-   	case GR_PSTEX_L:
-   	case GR_PSTEX_P:
-	   	ptofile = TRUE;
-	 	cursuffix = pstex_suffix;
-   		break;
-	case 15:
-	case 16:
-	    break;
-	default:
-	    sprintf(buf, "Unknown printer device %d, printer unchanged", device);
-	    errmsg(buf);
-	    return;
-	    break;
-	}
-	hdevice = device;
-/*
- * 	ptofile = FALSE;
- */
+        switch (device) {
+        case GR_PS_L:
+        case GR_PS_P:
+            if (prstr != NULL) {
+                strcpy(ps_prstr, prstr);
+            }
+            curprint = ps_prstr;
+            if (!epsflag)
+                cursuffix = ps_suffix;
+            else
+                cursuffix = eps_suffix;
+            break;
+        case GR_MIF_L:
+        case GR_MIF_P:
+            if (prstr != NULL) {
+                strcpy(mif_prstr, prstr);
+            }
+            curprint = mif_prstr;
+            cursuffix = mif_suffix;
+            break;
+        case GR_HPGL_L:
+        case GR_HPGL_P:
+            if (prstr != NULL) {
+                strcpy(hp_prstr, prstr);
+            }
+            curprint = hp_prstr;
+            cursuffix = hp_suffix;
+            break;
+        case GR_LEAF_L:
+        case GR_LEAF_P:
+            if (prstr != NULL) {
+                strcpy(leaf_prstr, prstr);
+            }
+            curprint = leaf_prstr;
+            cursuffix = leaf_suffix;
+            break;
+        case GR_PSTEX_INC:
+        case GR_PSTEX_L:
+        case GR_PSTEX_P:
+            ptofile = TRUE;
+            cursuffix = pstex_suffix;
+            break;
+        case 15:
+        case 16:
+            break;
+        default:
+            sprintf(buf, "Unknown printer device %d, printer unchanged", device);
+            errmsg(buf);
+            return;
+            break;
+        }
+        hdevice = device;
+        /*
+         * 	ptofile = FALSE;
+         */
     }
 #ifndef NONE_GUI
     update_printer_setup();
@@ -111,8 +108,7 @@ void set_printer(int device, char *prstr)
 }
 
 /* scrunch a pair of integer arrays */
-void scrunch_points(int *x, int *y, int *n)
-{
+void scrunch_points(int* x, int* y, int* n) {
     int i, cnt = 0;
     cnt = 0;
     for (i = 0; i < *n - 1; i++) {
@@ -135,8 +131,7 @@ void scrunch_points(int *x, int *y, int *n)
 /*
  * stuff results, etc. into a text window
  */
-void log_results(char *buf)
-{
+void log_results(char* buf) {
     char tmpbuf[512];
     if (logwindow) {
         strcpy(tmpbuf, buf);
@@ -147,9 +142,7 @@ void log_results(char *buf)
     }
 }
 
-
-void errmsg(char *buf)
-{
+void errmsg(char* buf) {
 #ifdef NONE_GUI
     printf("%s\n", buf);
 #else
@@ -161,15 +154,11 @@ void errmsg(char *buf)
 #endif
 }
 
-int yesnoterm(char *msg)
-{
-    return 1;
-}
+int yesnoterm(char* msg) { return 1; }
 
-int yesno(char *msg, char *s1, char *s2, char *help_anchor)
-{
+int yesno(char* msg, char* s1, char* s2, char* help_anchor) {
     if (noask) {
-	return 1;
+        return 1;
     }
 #ifdef NONE_GUI
     return (yesnoterm(msg));
@@ -181,25 +170,22 @@ int yesno(char *msg, char *s1, char *s2, char *help_anchor)
     }
 #endif
 }
- 
 
-int fexists(char *to)
-{
+int fexists(char* to) {
     struct stat stto;
     char tbuf[256];
 
     if (stat(to, &stto) == 0) {
-	sprintf(tbuf, "Overwrite %s?", to);
-	if (!yesno(tbuf, NULL, NULL, NULL)) {
-	    return (1);
-	}
-	return (0);
+        sprintf(tbuf, "Overwrite %s?", to);
+        if (!yesno(tbuf, NULL, NULL, NULL)) {
+            return (1);
+        }
+        return (0);
     }
     return (0);
 }
 
-void stufftext(char *s, int sp)
-{
+void stufftext(char* s, int sp) {
 #ifdef NONE_GUI
     printf("%s", buf);
 #else
@@ -207,42 +193,38 @@ void stufftext(char *s, int sp)
 #endif
 }
 
+char* mybasename(char* s) {
+    int start, end;
+    static char basename[256];
 
-char *mybasename(char *s)
-{
-	int start, end;
-	static char basename[256];
-	
-	end = strlen( s )-1;
-	if( end==0 && *s=='/' ){	/* root is a special case */
-		basename[0] = '/';
-		return basename;
-	}
-	
-	/* strip trailing white space and slashes */
-	while( s[end]=='/' || s[end]==' ' || s[end]=='\t' )
-		end--;
-	/* find start of basename */
-	start = end;
-	do{
-		start--;
-	} while( start>=0 && s[start]!='/' );
-	
-	strncpy( basename, s+(start+1), end-start );
-	basename[end-start] = '\0';
-	return basename;
+    end = strlen(s) - 1;
+    if (end == 0 && *s == '/') { /* root is a special case */
+        basename[0] = '/';
+        return basename;
+    }
+
+    /* strip trailing white space and slashes */
+    while (s[end] == '/' || s[end] == ' ' || s[end] == '\t')
+        end--;
+    /* find start of basename */
+    start = end;
+    do {
+        start--;
+    } while (start >= 0 && s[start] != '/');
+
+    strncpy(basename, s + (start + 1), end - start);
+    basename[end - start] = '\0';
+    return basename;
 }
 
-int isdir(char *f)
-{
+int isdir(char* f) {
     struct stat st;
 
     stat(f, &st);
     return (S_ISDIR(st.st_mode));
 }
 
-int set_workingdir(char *wd)
-{
+int set_workingdir(char* wd) {
     char buf2[MAXPATHLEN];
     strcpy(buf2, wd);
     if (buf2[0] == '~') {
@@ -250,59 +232,57 @@ int set_workingdir(char *wd)
     }
     if (chdir(buf2) >= 0) {
         strcpy(workingdir, buf2);
-	return 0;
+        return 0;
     } else {
         return -1;
     }
 }
 
 /* TODO this needs some work */
-void expand_tilde(char *buf)
-{
+void expand_tilde(char* buf) {
     char buf2[MAXPATHLEN];
-    char *home;
+    char* home;
     if (buf[0] == '~') {
-	if (strlen(buf) == 1) {
-	    home = getenv("HOME");
-	    if (home == NULL) {
-		errmsg("Couldn't find $HOME!");
-		return;
-	    } else {
-		strcpy(buf, home);
-		strcat(buf, "/");
-	    }
-	} else if (buf[1] == '/') {
-	    home = getenv("HOME");
-	    if (home == NULL) {
-		errmsg("Couldn't find $HOME!");
-		return;
-	    }
-	    strcpy(buf2, home);
-	    strcat(buf2, "/");
-	    strcat(buf2, buf + 1);
-	    strcpy(buf, buf2);
-	} else {
-	    char tmp[128], *pp = tmp, *q = buf + 1;
-	    struct passwd *pent;
+        if (strlen(buf) == 1) {
+            home = getenv("HOME");
+            if (home == NULL) {
+                errmsg("Couldn't find $HOME!");
+                return;
+            } else {
+                strcpy(buf, home);
+                strcat(buf, "/");
+            }
+        } else if (buf[1] == '/') {
+            home = getenv("HOME");
+            if (home == NULL) {
+                errmsg("Couldn't find $HOME!");
+                return;
+            }
+            strcpy(buf2, home);
+            strcat(buf2, "/");
+            strcat(buf2, buf + 1);
+            strcpy(buf, buf2);
+        } else {
+            char tmp[128], *pp = tmp, *q = buf + 1;
+            struct passwd* pent;
 
-	    while (*q && (*q != '/')) {
-		*pp++ = *q++;
-	    }
-	    *pp = 0;
-	    if ((pent = getpwnam(tmp)) != NULL) {
-		strcpy(buf2, pent->pw_dir);
-		strcat(buf2, "/");
-		strcat(buf2, q);
-		strcpy(buf, buf2);
-	    } else {
-		errmsg("No user by that name");
-	    }
-	}
+            while (*q && (*q != '/')) {
+                *pp++ = *q++;
+            }
+            *pp = 0;
+            if ((pent = getpwnam(tmp)) != NULL) {
+                strcpy(buf2, pent->pw_dir);
+                strcat(buf2, "/");
+                strcat(buf2, q);
+                strcpy(buf, buf2);
+            } else {
+                errmsg("No user by that name");
+            }
+        }
     }
 }
 
-void echomsg(char *msg)
-{
+void echomsg(char* msg) {
     if (inwin) {
 #ifndef NONE_GUI
         set_left_footer(msg);
@@ -320,15 +300,14 @@ void echomsg(char *msg)
 /* Routine to mimic `strdup()' (some machines don't have it)              */
 /**************************************************************************/
 
-char *strdup(char *str)
-{
-    char *s;
+char* strdup(char* str) {
+    char* s;
 
-    if(str==NULL)
+    if (str == NULL)
         return NULL;
 
-    s=(char *)malloc((unsigned)(strlen(str)+1));
-    if(s!=NULL)
+    s = (char*)malloc((unsigned)(strlen(str) + 1));
+    if (s != NULL)
         strcpy(s, str);
 
     return s;
@@ -336,17 +315,16 @@ char *strdup(char *str)
 
 #endif
 
-static void update_timestamp(void)
-{
+static void update_timestamp(void) {
     struct tm tm;
     time_t time_value;
-    char *str;
+    char* str;
 
-    (void) time(&time_value);
+    (void)time(&time_value);
     tm = *localtime(&time_value);
     str = asctime(&tm);
     if (str[strlen(str) - 1] == '\n') {
-        str[strlen(str) - 1]= '\0';
+        str[strlen(str) - 1] = '\0';
     }
     set_plotstr_string(&timestamp, str);
 }
@@ -357,32 +335,22 @@ static void update_timestamp(void)
 
 static int dirtystate = 0;
 
-void set_dirtystate(void)
-{
+void set_dirtystate(void) {
     if (dirtystate >= 0) {
         dirtystate++;
         update_timestamp();
-/*
- * TODO:
- * 	if ( (dirtystate > SOME_LIMIT) || 
- *           (current_time - autosave_time > ANOTHER_LIMIT) ) {
- * 	    autosave();
- * 	}
- */
+        /*
+         * TODO:
+         * 	if ( (dirtystate > SOME_LIMIT) ||
+         *           (current_time - autosave_time > ANOTHER_LIMIT) ) {
+         * 	    autosave();
+         * 	}
+         */
     }
 }
 
-void clear_dirtystate(void)
-{
-    dirtystate = 0;
-}
+void clear_dirtystate(void) { dirtystate = 0; }
 
-void lock_dirtystate(void)
-{
-    dirtystate = -1;
-}
+void lock_dirtystate(void) { dirtystate = -1; }
 
-int is_dirtystate(void)
-{
-    return (dirtystate);
-}
+int is_dirtystate(void) { return (dirtystate); }

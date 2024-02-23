@@ -56,16 +56,16 @@
 
 extern double pscharsize;
 
-extern  int psxmin;
-extern  int psxmax;
-extern  int psymin;
-extern  int psymax;
-extern  int psdx;
-extern  int psdy;
-extern  int psfontsize;
-extern  char pscurfont[];
-extern  int pslwincr;
-extern  int pslwbegin;
+extern int psxmin;
+extern int psxmax;
+extern int psymin;
+extern int psymax;
+extern int psdx;
+extern int psdy;
+extern int psfontsize;
+extern char pscurfont[];
+extern int pslwincr;
+extern int pslwbegin;
 
 #define CHARS 1.8
 
@@ -76,7 +76,7 @@ extern  int pslwbegin;
 #define MAXLINEWIDTH 9
 #define MAXLINESTYLE 14
 
-double xconvps_inv( int ), yconvps_inv( int );
-void get_bounding_box( int *x1, int *x2, int *y1, int *y2, int mode );
+double xconvps_inv(int), yconvps_inv(int);
+void get_bounding_box(int* x1, int* x2, int* y1, int* y2, int mode);
 
 #endif /* __PS_H_ */

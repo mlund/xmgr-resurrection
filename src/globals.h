@@ -14,9 +14,9 @@
 #include "draw.h"
 
 #ifndef PARS
-#  ifdef GRCONVERT
-#    include "oldpars.h"
-#  endif
+#ifdef GRCONVERT
+#include "oldpars.h"
+#endif
 #endif
 
 /*
@@ -33,7 +33,7 @@ char description[2048];
 char workingdir[MAXPATHLEN];
 
 int debuglevel = 0;
-int sigcatch = 1;		/* we handle signals ourselves */
+int sigcatch = 1; /* we handle signals ourselves */
 
 int maxplot = MAXPLOT;
 int maxarr = MAXARR;
@@ -45,129 +45,129 @@ int maxlines = MAXLINES;
 int maxstr = MAXSTR;
 int maxellipses = MAXELLIPSES;
 
-int ptofile = 0;                /* flag to indicate destination of hardcopy
-                                 * output, ptofile = 0 means print to printer
-                                 * non-zero print to file */
-char printstr[128] = "pout.dat";/* hardcopy to this file */
+int ptofile = 0;                 /* flag to indicate destination of hardcopy
+                                  * output, ptofile = 0 means print to printer
+                                  * non-zero print to file */
+char printstr[128] = "pout.dat"; /* hardcopy to this file */
 
 char sformat[128] = "%16lg %16lg"; /* format for saving (ascii) projects */
 
-double *ax, *bx, *cx, *dx;	/* scratch arrays used in scanner */
+double *ax, *bx, *cx, *dx; /* scratch arrays used in scanner */
 
-int hardcopyflag = FALSE;	/* TRUE if printing out a hardcopy */
+int hardcopyflag = FALSE; /* TRUE if printing out a hardcopy */
 
-int inplotter = FALSE;		/* TRUE if plotting the current graph */
-int logwindow = FALSE;		/* TRUE if results are displayed in the log window */
+int inplotter = FALSE; /* TRUE if plotting the current graph */
+int logwindow = FALSE; /* TRUE if results are displayed in the log window */
 
-int showdefault = TRUE;		/* display the default graph */
-int labeldefault = FALSE;	/* label the default graph */
+int showdefault = TRUE;   /* display the default graph */
+int labeldefault = FALSE; /* label the default graph */
 
-char currentdir[1024];		/* current directory */
-char xmgrdir[1024];		/* location of xmgr home directory */
-char help_viewer[256];		/* HTML helper command*/
+char currentdir[1024]; /* current directory */
+char xmgrdir[1024];    /* location of xmgr home directory */
+char help_viewer[256]; /* HTML helper command*/
 
-int domodal;                    /* Make dialogs close on accept */
-int canvasw = 800;		/* drawing area width & height */
+int domodal;       /* Make dialogs close on accept */
+int canvasw = 800; /* drawing area width & height */
 int canvash = 700;
 
 /*
  * named pipes
  */
-int timer_delay = 1000;         /* timer */
-int named_pipe;			/* true if named pipe is active */
-char pipe_name[512];		/* path to named pipe */
+int timer_delay = 1000; /* timer */
+int named_pipe;         /* true if named pipe is active */
+char pipe_name[512];    /* path to named pipe */
 
 /*
  * scroll amount
  */
-int scrolling_islinked = 0;	/* linked scroll */
-double scrollper = 0.05;	/* scroll fraction */
-double shexper = 0.05;		/* expand/shrink fraction */
+int scrolling_islinked = 0; /* linked scroll */
+double scrollper = 0.05;    /* scroll fraction */
+double shexper = 0.05;      /* expand/shrink fraction */
 
-int linked_zoom = 0;		/* when zooming, apply to all graphs */
+int linked_zoom = 0; /* when zooming, apply to all graphs */
 
-char plfile[MAXPATHLEN];	/* load parameters file name */
-char fname[MAXPATHLEN];		/* last data file read */
+char plfile[MAXPATHLEN]; /* load parameters file name */
+char fname[MAXPATHLEN];  /* last data file read */
 
-int device;			/* graphics device */
-int tdevice = TDEV;		/* default devices */
+int device;         /* graphics device */
+int tdevice = TDEV; /* default devices */
 int hdevice = HDEV;
 
-int use_colors;			/* number of bitplanes */
-int monomode = 0;		/* set mono mode */
-int invert = 0;			/* use GXxor or GXinvert for xor'ing */
-int backingstore = 0;		/* do backing store if requested */
-int redraw_now = 0;		/* hack for no refresh on startup */
-int autoscale_onread = 0;	/* autoscale after reading data from fileswin.c */
-int allow_refresh = 1;		/* if no backing store, then redraw to refresh */
-int free_colors=1;              /* Attempt to free unneeded colors when 
-                                   changing colors.  I suspect 
-				   that this will free Motif button colors
-				   and the such if you happen to make a
-				   bad choice of colors.  Thus, you can
-				   turn it off.  See xvlib.c.  There's
-				   also a resource for this.  */
-int use_xvertext = 0;		/* Use xvertext routines to draw text in xvlib.c */
+int use_colors;           /* number of bitplanes */
+int monomode = 0;         /* set mono mode */
+int invert = 0;           /* use GXxor or GXinvert for xor'ing */
+int backingstore = 0;     /* do backing store if requested */
+int redraw_now = 0;       /* hack for no refresh on startup */
+int autoscale_onread = 0; /* autoscale after reading data from fileswin.c */
+int allow_refresh = 1;    /* if no backing store, then redraw to refresh */
+int free_colors = 1;      /* Attempt to free unneeded colors when
+                             changing colors.  I suspect
+             that this will free Motif button colors
+             and the such if you happen to make a
+             bad choice of colors.  Thus, you can
+             turn it off.  See xvlib.c.  There's
+             also a resource for this.  */
+int use_xvertext = 0;     /* Use xvertext routines to draw text in xvlib.c */
 
-int erronread = FALSE;		/* in startup code was there an error on
-				 * reading a data file, assume not  */
+int erronread = FALSE; /* in startup code was there an error on
+                        * reading a data file, assume not  */
 
-int noask = FALSE;              /* if TRUE, assume yes for everything (dangerous) */
+int noask = FALSE; /* if TRUE, assume yes for everything (dangerous) */
 
-int readimage = FALSE;          /* If true read an image */
-int imagex;              	/* x in pixels of the location of the image */
-int imagey;              	/* y in pixels of the location of the image */
-char image_filename[MAXPATHLEN];   	/* image file name */
+int readimage = FALSE;           /* If true read an image */
+int imagex;                      /* x in pixels of the location of the image */
+int imagey;                      /* y in pixels of the location of the image */
+char image_filename[MAXPATHLEN]; /* image file name */
 
-char progname[MAX_STRING_LENGTH];	/* our name */
+char progname[MAX_STRING_LENGTH]; /* our name */
 
-int gflag = FALSE;		/* hacks for generic graphics drivers */
-char gfile[MAXPATHLEN];		/* used if gflag set to true on command line */
-char resfile[MAXPATHLEN];	/* results to file resfile */
-FILE *resfp;			/* file for results */
+int gflag = FALSE;        /* hacks for generic graphics drivers */
+char gfile[MAXPATHLEN];   /* used if gflag set to true on command line */
+char resfile[MAXPATHLEN]; /* results to file resfile */
+FILE* resfp;              /* file for results */
 
-int inwin = FALSE;		/* true if running X */
+int inwin = FALSE; /* true if running X */
 
-int auto_redraw = TRUE;		/* if true, redraw graph each time action is
-				 * performed */
-int status_auto_redraw = TRUE;	/* if true, redraw graph each time action is
-				 * performed in the status window */
-int force_redraw = 0;		/* if no auto draw and re-draw pressed */
+int auto_redraw = TRUE;        /* if true, redraw graph each time action is
+                                * performed */
+int status_auto_redraw = TRUE; /* if true, redraw graph each time action is
+                                * performed in the status window */
+int force_redraw = 0;          /* if no auto draw and re-draw pressed */
 
-char buf[1024];			/* a string used here and there */
+char buf[1024]; /* a string used here and there */
 
-char *curprint;			/* the default printer */
-int epsflag = 0;		/* force eps to be written */
-int ps2flag = 1;		/* allow use of Level 2 PS (for patterns) */
-char *cursuffix;		/* the default printer file suffix*/
+char* curprint;  /* the default printer */
+int epsflag = 0; /* force eps to be written */
+int ps2flag = 1; /* allow use of Level 2 PS (for patterns) */
+char* cursuffix; /* the default printer file suffix*/
 
-int verify_action = 0;		/* request verification of actions if TRUE */
-int allow_dc = 1;		/* allow double click ops */
+int verify_action = 0; /* request verification of actions if TRUE */
+int allow_dc = 1;      /* allow double click ops */
 
-defaults grdefaults;		/* default properties */
+defaults grdefaults; /* default properties */
 
 /* graph definition */
-graph *g;
-int cg = 0;			/* the current graph */
+graph* g;
+int cg = 0; /* the current graph */
 
 /* region definition */
 region rg[MAXREGION];
-int nr = 0;			/* the current region */
+int nr = 0; /* the current region */
 
-plotstr *pstr;       /* strings */
-boxtype *boxes;    /* boxes */
-linetype *lines;   /* lines */
-arctype *arcs;   /* arcs */
-circletype *circs;   /* circles */
-ellipsetype *ellip;   /* ellipses */
-polytype *polys;   /* polylines */
+plotstr* pstr;      /* strings */
+boxtype* boxes;     /* boxes */
+linetype* lines;    /* lines */
+arctype* arcs;      /* arcs */
+circletype* circs;  /* circles */
+ellipsetype* ellip; /* ellipses */
+polytype* polys;    /* polylines */
 
 plotstr defpstr;
 linetype defline;
 boxtype defbox;
 arctype defarc;
 circletype defcirc;
-ellipsetype defellip={TRUE,COORD_WORLD,0,0,0,0,0,1,1,1,UNFILLED,1,0};
+ellipsetype defellip = {TRUE, COORD_WORLD, 0, 0, 0, 0, 0, 1, 1, 1, UNFILLED, 1, 0};
 
 /* lines and ellipses and boxes flags */
 int box_color = 1;
@@ -226,7 +226,7 @@ int slice_first = TRUE;
 
 int page_layout = PAGE_FREE;
 
-plotstr timestamp;       /* timestamp */
+plotstr timestamp; /* timestamp */
 
 /*
  * for the status popup
@@ -238,16 +238,17 @@ int cur_statusitem = STATUS_SETS;
  */
 int cursource = SOURCE_DISK, curtype = SET_XY;
 
-int format_types[] = { FORMAT_DECIMAL, FORMAT_EXPONENTIAL, FORMAT_POWER, FORMAT_GENERAL,
-			FORMAT_DDMMYY, FORMAT_MMDDYY, FORMAT_YYMMDD, FORMAT_MMYY, FORMAT_MMDD,
-        		FORMAT_MONTHDAY, FORMAT_DAYMONTH, FORMAT_MONTHS, FORMAT_MONTHSY, FORMAT_MONTHL, FORMAT_DAYOFWEEKS,
-        		FORMAT_DAYOFWEEKL, FORMAT_DAYOFYEAR, FORMAT_HMS, FORMAT_MMDDHMS, FORMAT_MMDDYYHMS, FORMAT_YYMMDDHMS,
-        		FORMAT_DEGREESLON, FORMAT_DEGREESMMLON, FORMAT_DEGREESMMSSLON, FORMAT_MMSSLON,
-        		FORMAT_DEGREESLAT, FORMAT_DEGREESMMLAT, FORMAT_DEGREESMMSSLAT, FORMAT_MMSSLAT, FORMAT_INVALID};
-
+int format_types[] = {FORMAT_DECIMAL,   FORMAT_EXPONENTIAL, FORMAT_POWER,        FORMAT_GENERAL,
+                      FORMAT_DDMMYY,    FORMAT_MMDDYY,      FORMAT_YYMMDD,       FORMAT_MMYY,
+                      FORMAT_MMDD,      FORMAT_MONTHDAY,    FORMAT_DAYMONTH,     FORMAT_MONTHS,
+                      FORMAT_MONTHSY,   FORMAT_MONTHL,      FORMAT_DAYOFWEEKS,   FORMAT_DAYOFWEEKL,
+                      FORMAT_DAYOFYEAR, FORMAT_HMS,         FORMAT_MMDDHMS,      FORMAT_MMDDYYHMS,
+                      FORMAT_YYMMDDHMS, FORMAT_DEGREESLON,  FORMAT_DEGREESMMLON, FORMAT_DEGREESMMSSLON,
+                      FORMAT_MMSSLON,   FORMAT_DEGREESLAT,  FORMAT_DEGREESMMLAT, FORMAT_DEGREESMMSSLAT,
+                      FORMAT_MMSSLAT,   FORMAT_INVALID};
 
 /* block data globals */
-double **blockdata;
+double** blockdata;
 int maxblock = MAXPLOT;
 int blocklen;
 int blockncols;
@@ -273,7 +274,7 @@ int dl_load_fast = TRUE; /* controls type of DL module load */
 
 #ifndef MAIN
 
-extern char *open_err_msg;
+extern char* open_err_msg;
 
 extern char version[];
 extern char docname[];
@@ -281,10 +282,10 @@ extern char description[];
 extern char workingdir[];
 
 extern int debuglevel;
-extern int sigcatch;		/* true if we handle signals ourselves */
+extern int sigcatch; /* true if we handle signals ourselves */
 
-extern int inwin;		/* true if running X */
-extern int ispipe;		/* true if reading from stdin */
+extern int inwin;  /* true if running X */
+extern int ispipe; /* true if reading from stdin */
 
 extern int maxarr, maxplot, maxgraph, maxcolors;
 
@@ -293,66 +294,66 @@ extern int maxlines;
 extern int maxstr;
 extern int maxellipses;
 
-extern int ptofile;		/* flag to indicate destination of hardcopy
-                                 * output, ptofile = 0 means print to printer
-                                 * non-zero print to file */
+extern int ptofile; /* flag to indicate destination of hardcopy
+                     * output, ptofile = 0 means print to printer
+                     * non-zero print to file */
 
-extern char printstr[];         /* print to this file */
+extern char printstr[]; /* print to this file */
 
 extern char sformat[];
 
-extern int logwindow;		/* TRUE if results are displayed in the log window */
+extern int logwindow; /* TRUE if results are displayed in the log window */
 
 extern char plfile[], psfile[];
 extern char resfile[];
-extern FILE *resfp;
+extern FILE* resfp;
 
 extern int device, tdevice, hdevice;
 extern int hardcopyflag;
 
-extern int use_colors;		/* number of bitplanes */
-extern int monomode;		/* set mono mode */
-extern int invert;		/* use GXxor or GXinvert for xor'ing */
-extern int backingstore;	/* do backing store if requested */
-extern int redraw_now;		/* hack for no refresh on startup */
-extern int autoscale_onread;	/* autoscale after reading data from fileswin.c */
-extern int allow_refresh;	/* if no backingstore, then redraw to refresh */
-extern int free_colors;         /* Attempt to free unneeded colors when 
-                                   changing colors.  I suspect 
-				   that this will free Motif button colors
-				   and the such if you happen to make a
-				   bad choice of colors.  Thus, you can
-				   turn it off.  See xvlib.c.  There's
-				   also a resource for this.  */
-extern int use_xvertext;	/* Use xvertext routines to draw text in xvlib.c */
-extern int noask;		/* if TRUE, assume yes for everything (dangerous) */
-extern int readimage;		/* If true read an image */
-extern int readimage;		/* If true read an image */
-extern int imagex;		/* x in pixels of the location of the image */
-extern int imagey;		/* y in pixels of the location of the image */
-extern char image_filename[];	/* image file name */
+extern int use_colors;        /* number of bitplanes */
+extern int monomode;          /* set mono mode */
+extern int invert;            /* use GXxor or GXinvert for xor'ing */
+extern int backingstore;      /* do backing store if requested */
+extern int redraw_now;        /* hack for no refresh on startup */
+extern int autoscale_onread;  /* autoscale after reading data from fileswin.c */
+extern int allow_refresh;     /* if no backingstore, then redraw to refresh */
+extern int free_colors;       /* Attempt to free unneeded colors when
+                                 changing colors.  I suspect
+                 that this will free Motif button colors
+                 and the such if you happen to make a
+                 bad choice of colors.  Thus, you can
+                 turn it off.  See xvlib.c.  There's
+                 also a resource for this.  */
+extern int use_xvertext;      /* Use xvertext routines to draw text in xvlib.c */
+extern int noask;             /* if TRUE, assume yes for everything (dangerous) */
+extern int readimage;         /* If true read an image */
+extern int readimage;         /* If true read an image */
+extern int imagex;            /* x in pixels of the location of the image */
+extern int imagey;            /* y in pixels of the location of the image */
+extern char image_filename[]; /* image file name */
 
 extern int inplotter;
 
 extern int showdefault;
 extern int labeldefault;
 
-extern char currentdir[];	/* current directory */
-extern char xmgrdir[];		/* location of ACE/gr home directory */
-extern char help_viewer[];	/* help viewer command*/
+extern char currentdir[];  /* current directory */
+extern char xmgrdir[];     /* location of ACE/gr home directory */
+extern char help_viewer[]; /* help viewer command*/
 
-extern int domodal;             /* Make dialogs close on accept */
-extern int canvasw;		/* canvas dimensions */
+extern int domodal; /* Make dialogs close on accept */
+extern int canvasw; /* canvas dimensions */
 extern int canvash;
 
-extern int timer_delay;		/* timer */
-extern int named_pipe;		/* true if named pipe is active */
-extern char pipe_name[];	/* path to named pipe */
+extern int timer_delay;  /* timer */
+extern int named_pipe;   /* true if named pipe is active */
+extern char pipe_name[]; /* path to named pipe */
 
-extern int scrolling_islinked;	/* linked scroll */
-extern double scrollper;	/* scroll fraction */
-extern double shexper;		/* expand/shrink fraction */
-extern int linked_zoom;		/* when zooming, apply to all graphs */
+extern int scrolling_islinked; /* linked scroll */
+extern double scrollper;       /* scroll fraction */
+extern double shexper;         /* expand/shrink fraction */
+extern int linked_zoom;        /* when zooming, apply to all graphs */
 
 extern double errbarper;
 
@@ -360,32 +361,32 @@ extern char fname[];
 extern int nsets;
 extern char buf[];
 
-extern char *curprint;
-extern int epsflag;		/* force eps to be written */
-extern int ps2flag ;		/* allow use of Level 2 PS (for patterns) */
-extern char *cursuffix;		/* the default printer file suffix*/
+extern char* curprint;
+extern int epsflag;     /* force eps to be written */
+extern int ps2flag;     /* allow use of Level 2 PS (for patterns) */
+extern char* cursuffix; /* the default printer file suffix*/
 
-extern int verify_action;	/* request verification of actions if TRUE */
-extern int allow_dc;		/* allow double click ops */
+extern int verify_action; /* request verification of actions if TRUE */
+extern int allow_dc;      /* allow double click ops */
 
 extern double *ax, *bx, *cx, *dx;
 
-extern defaults grdefaults;	/* default properties */
+extern defaults grdefaults; /* default properties */
 
 /* graph definition */
-extern graph *g;
+extern graph* g;
 extern int cg;
 
 /* region definition */
 extern region rg[];
 extern int nr;
 
-extern plotstr *pstr;       /* strings */
-extern boxtype *boxes;    /* boxes */
-extern linetype *lines;   /* lines */
-extern arctype *arcs;   /* arcs */
-extern circletype *circs;   /* circles */
-extern ellipsetype *ellip;   /* ellipses */
+extern plotstr* pstr;      /* strings */
+extern boxtype* boxes;     /* boxes */
+extern linetype* lines;    /* lines */
+extern arctype* arcs;      /* arcs */
+extern circletype* circs;  /* circles */
+extern ellipsetype* ellip; /* ellipses */
 
 extern plotstr defpstr;
 extern linetype defline;
@@ -433,7 +434,7 @@ extern int auto_redraw;
 extern int status_auto_redraw;
 extern int force_redraw;
 
-extern double charsize, xlibcharsize;	/* declared in draw.c and xlib.c resp. */
+extern double charsize, xlibcharsize; /* declared in draw.c and xlib.c resp. */
 
 extern int curset, curaxis;
 extern int focus_policy;
@@ -442,7 +443,7 @@ extern int graph_focus;
 extern int use_defaultcmap;
 extern int revflag;
 
-extern plotstr timestamp;       /* timestamp */
+extern plotstr timestamp; /* timestamp */
 extern int page_layout;
 
 extern int slice_grid;
@@ -458,7 +459,7 @@ extern int cur_statusitem;
 extern int cursource, curtype;
 extern int format_types[];
 
-extern double **blockdata;
+extern double** blockdata;
 extern int maxblock;
 extern int blocklen;
 extern int blockncols;

@@ -40,7 +40,7 @@
 #define SYM_OPENCLOSEY 36
 #define SYM_BOXPLOTX 37
 #define SYM_BOXPLOTY 38
-#define SYM_AVGY 39 
+#define SYM_AVGY 39
 #define SYM_AVGSTDY1 40
 #define SYM_AVGSTDY2 41
 #define SYM_AVGSTDY3 42

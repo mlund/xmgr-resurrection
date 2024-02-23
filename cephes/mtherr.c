@@ -18,7 +18,7 @@
  *
  * This routine may be called to report one of the following
  * error conditions (in the include file mconf.h).
- *  
+ *
  *   Mnemonic        Value          Significance
  *
  *    DOMAIN            1       argument domain error
@@ -57,7 +57,7 @@ Direct inquiries to 30 Frost Street, Cambridge, MA 02140
 #include <stdio.h>
 #include "mconf.h"
 
-void errmsg(char *buf);
+void errmsg(char* buf);
 
 int merror = 0;
 
@@ -65,38 +65,32 @@ int merror = 0;
  * messages is bound to the error codes defined
  * in mconf.h.
  */
-static char *ermsg[7] = {
-"unknown",      /* error code 0 */
-"domain",       /* error code 1 */
-"singularity",  /* et seq.      */
-"overflow",
-"underflow",
-"total loss of precision",
-"partial loss of precision"
-};
+static char* ermsg[7] = {"unknown",     /* error code 0 */
+                         "domain",      /* error code 1 */
+                         "singularity", /* et seq.      */
+                         "overflow",    "underflow", "total loss of precision", "partial loss of precision"};
 
-
-int mtherr( name, code )
-char *name;
+int mtherr(name, code)
+char* name;
 int code;
 {
-  char buf[256];
+    char buf[256];
 
-/* Set global error message word */
-merror = code;
-if( (code <= 0) || (code >= 7) )
-	code = 0;
+    /* Set global error message word */
+    merror = code;
+    if ((code <= 0) || (code >= 7))
+        code = 0;
 
-/* Display string passed by calling program,
- * which is supposed to be the name of the
- * function in which the error occurred and
- * error message defined by the code argument:
- */
-  sprintf(buf, "%s %s error", name, ermsg[code]);
-  errmsg(buf);
+    /* Display string passed by calling program,
+     * which is supposed to be the name of the
+     * function in which the error occurred and
+     * error message defined by the code argument:
+     */
+    sprintf(buf, "%s %s error", name, ermsg[code]);
+    errmsg(buf);
 
-/* Return to calling
- * program
- */
-return( 0 );
+    /* Return to calling
+     * program
+     */
+    return (0);
 }

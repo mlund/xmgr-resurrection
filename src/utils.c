@@ -30,18 +30,16 @@
 /*
  * free and check for NULL pointer
  */
-void cxfree(void *ptr)
-{
+void cxfree(void* ptr) {
     if (ptr != NULL) {
-	free(ptr);
+        free(ptr);
     }
 }
 
 /*
  * swap doubles and ints
  */
-void fswap(double *x, double *y)
-{
+void fswap(double* x, double* y) {
     double tmp;
 
     tmp = *x;
@@ -49,8 +47,7 @@ void fswap(double *x, double *y)
     *y = tmp;
 }
 
-void iswap(int *x, int *y)
-{
+void iswap(int* x, int* y) {
     int tmp;
 
     tmp = *x;
@@ -58,28 +55,26 @@ void iswap(int *x, int *y)
     *y = tmp;
 }
 
-int isoneof(int c, char *s)
-{
+int isoneof(int c, char* s) {
     while (*s) {
-	if (c == *s) {
-	    return 1;
-	} else {
-	    s++;
-	}
+        if (c == *s) {
+            return 1;
+        } else {
+            s++;
+        }
     }
     return 0;
 }
 
-int argmatch(char *s1, char *s2, int atleast)
-{
+int argmatch(char* s1, char* s2, int atleast) {
     int l1 = strlen(s1);
     int l2 = strlen(s2);
 
     if (l1 < atleast) {
-	return 0;
+        return 0;
     }
     if (l1 > l2) {
-	return 0;
+        return 0;
     }
     return (strncmp(s1, s2, l1) == 0);
 }
@@ -88,63 +83,59 @@ int argmatch(char *s1, char *s2, int atleast)
  * convert a string from lower to upper case
  * leaving quoted strings alone
  */
-void lowtoupper(char *s)
-{
+void lowtoupper(char* s) {
     int i, quoteon = 0;
 
     for (i = 0; i < strlen(s); i++) {
-	if (s[i] == '"') {
-	    if (!quoteon) {
-		quoteon = 1;
-	    } else if ((i > 0) && (s[i-1] != '\\')) {
-		quoteon = 0;
-	    }
-	}
-	if (s[i] >= 'a' && s[i] <= 'z' && !quoteon) {
-	    s[i] -= ' ';
-	}
+        if (s[i] == '"') {
+            if (!quoteon) {
+                quoteon = 1;
+            } else if ((i > 0) && (s[i - 1] != '\\')) {
+                quoteon = 0;
+            }
+        }
+        if (s[i] >= 'a' && s[i] <= 'z' && !quoteon) {
+            s[i] -= ' ';
+        }
     }
 }
 
 /*
  * remove all that fortran nastiness
  */
-void convertchar(char *s)
-{
+void convertchar(char* s) {
     while (*s++) {
-	if (*s == ',')
-	    *s = ' ';
-	if (*s == 'D' || *s == 'd')
-	    *s = 'e';
+        if (*s == ',')
+            *s = ' ';
+        if (*s == 'D' || *s == 'd')
+            *s = 'e';
     }
 }
 
 /*
  * log base 2
  */
-int ilog2(int n)
-{
+int ilog2(int n) {
     int i = 0;
     int n1 = n;
 
     while (n1 >>= 1)
-	i++;
+        i++;
     if (1 << i != n)
-	return -1;
+        return -1;
     else
-	return i;
+        return i;
 }
 
 /*
  * compute the area bounded by the polygon (xi,yi)
  */
-double comp_area(int n, double *x, double *y)
-{
+double comp_area(int n, double* x, double* y) {
     int i;
     double sum = 0.0;
 
     for (i = 0; i < n; i++) {
-	sum = sum + x[i] * y[(i + 1) % n] - y[i] * x[(i + 1) % n];
+        sum = sum + x[i] * y[(i + 1) % n] - y[i] * x[(i + 1) % n];
     }
     return sum * 0.5;
 }
@@ -152,37 +143,30 @@ double comp_area(int n, double *x, double *y)
 /*
  * compute the perimeter bounded by the polygon (xi,yi)
  */
-double comp_perimeter(int n, double *x, double *y)
-{
+double comp_perimeter(int n, double* x, double* y) {
     int i;
     double sum = 0.0;
 
     for (i = 0; i < n - 1; i++) {
-	sum = sum + hypot(x[i] - x[(i + 1) % n], y[i] - y[(i + 1) % n]);
+        sum = sum + hypot(x[i] - x[(i + 1) % n], y[i] - y[(i + 1) % n]);
     }
     return sum;
 }
 
 /* should be macros */
-double fmin(double x, double y)
-{
-    return (x < y ? x : y);
-}
+double fmin(double x, double y) { return (x < y ? x : y); }
 
-double fmax(double x, double y)
-{
-    return (x > y ? x : y);
-}
+double fmax(double x, double y) { return (x > y ? x : y); }
 
 /*
  * Time and date routines
  */
 
-char *dayofweekstrs[] = {"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"};
-char *dayofweekstrl[] = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
-char *months[] = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
-char *monthl[] = {"January", "February", "March", "April", "May", "June",
-"July", "August", "September", "October", "November", "December"};
+char* dayofweekstrs[] = {"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"};
+char* dayofweekstrl[] = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
+char* months[] = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
+char* monthl[] = {"January", "February", "March",     "April",   "May",      "June",
+                  "July",    "August",   "September", "October", "November", "December"};
 
 static int days1[] = {0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334, 365};
 static int days2[] = {0, 31, 60, 91, 121, 152, 182, 213, 244, 274, 305, 335, 366};
@@ -200,26 +184,25 @@ static int days2[] = {0, 31, 60, 91, 121, 152, 182, 213, 244, 274, 305, 335, 366
 ** Translated from the algol original in Collected Algorithms of CACM
 ** (This and jdate are algorithm 199).
 */
-double julday(int mon, int day, int year, int h, int mi, double se)
-{
+double julday(int mon, int day, int year, int h, int mi, double se) {
     long m = mon, d = day, y = year;
     long c, ya, j;
     double seconds = h * 3600.0 + mi * 60 + se;
 
     if (m > 2)
-	m -= 3;
+        m -= 3;
     else {
-	m += 9;
-	--y;
+        m += 9;
+        --y;
     }
     c = y / 100L;
     ya = y - (100L * c);
     j = (146097L * c) / 4L + (1461L * ya) / 4L + (153L * m + 2L) / 5L + d + 1721119L;
     if (seconds < 12 * 3600.0) {
-	j--;
-	seconds += 12.0 * 3600.0;
+        j--;
+        seconds += 12.0 * 3600.0;
     } else {
-	seconds = seconds - 12.0 * 3600.0;
+        seconds = seconds - 12.0 * 3600.0;
     }
     return (j + (seconds / 3600.0) / 24.0);
 }
@@ -234,18 +217,17 @@ double julday(int mon, int day, int year, int h, int mi, double se)
 ** Copied from Algorithm 199 in Collected algorithms of the CACM
 ** Author: Robert G. Tantzen, Translator: Nat Howard
 */
-void calcdate(double jd, int *m, int *d, int *y, int *h, int *mi, double *sec)
-{
+void calcdate(double jd, int* m, int* d, int* y, int* h, int* mi, double* sec) {
     static int ret[4];
 
     long j = jd;
     double tmp, frac = jd - j;
 
     if (frac >= 0.5) {
-	frac = frac - 0.5;
-	j++;
+        frac = frac - 0.5;
+        j++;
     } else {
-	frac = frac + 0.5;
+        frac = frac + 0.5;
     }
 
     ret[3] = (j + 1L) % 7L;
@@ -261,30 +243,28 @@ void calcdate(double jd, int *m, int *d, int *y, int *h, int *mi, double *sec)
     *d = (*d + 5L) / 5L;
     *y = 100L * *y + j;
     if (*m < 10)
-	*m += 3;
+        *m += 3;
     else {
-	*m -= 9;
-	*y += 1;
+        *m -= 9;
+        *y += 1;
     }
     tmp = 3600.0 * (frac * 24.0);
-    *h = (int) (tmp / 3600.0);
+    *h = (int)(tmp / 3600.0);
     tmp = tmp - *h * 3600.0;
-    *mi = (int) (tmp / 60.0);
+    *mi = (int)(tmp / 60.0);
     *sec = tmp - *mi * 60.0;
 }
 
-int dayofweek(double j)
-{
+int dayofweek(double j) {
     j += 0.5;
-    return (int) (j + 1) % 7;
+    return (int)(j + 1) % 7;
 }
 
-int leapyear(int year)
-{
+int leapyear(int year) {
     if (year % 4 == 0) {
-	return (1);
+        return (1);
     } else {
-	return (0);
+        return (0);
     }
 }
 
@@ -292,26 +272,25 @@ int leapyear(int year)
    get the month and day given the number of days
    from the beginning of the year 'yr'
 */
-void getmoday(int days, int yr, int *mo, int *da)
-{
+void getmoday(int days, int yr, int* mo, int* da) {
     int i;
 
     if (leapyear(yr)) {
-	for (i = 0; i < 13; i++) {
-	    if (days <= days2[i]) {
-		*mo = i;
-		*da = (days - days2[i - 1]);
-		goto out1;
-	    }
-	}
+        for (i = 0; i < 13; i++) {
+            if (days <= days2[i]) {
+                *mo = i;
+                *da = (days - days2[i - 1]);
+                goto out1;
+            }
+        }
     } else {
-	for (i = 0; i < 13; i++) {
-	    if (days <= days1[i]) {
-		*mo = i;
-		*da = (days - days1[i - 1]);
-		goto out1;
-	    }
-	}
+        for (i = 0; i < 13; i++) {
+            if (days <= days1[i]) {
+                *mo = i;
+                *da = (days - days1[i - 1]);
+                goto out1;
+            }
+        }
     }
 out1:;
 }
@@ -319,36 +298,34 @@ out1:;
 /*
    return the number of days from the beginning of the year 'yr'
 */
-int getndays(double j)
-{
+int getndays(double j) {
     int m, d, y, hh, mm;
     double ss;
 
     calcdate(j, &m, &d, &y, &hh, &mm, &ss);
     if (leapyear(y)) {
-	return days2[m - 1] + d;
+        return days2[m - 1] + d;
     } else {
-	return days1[m - 1] + d;
+        return days1[m - 1] + d;
     }
 }
 
 /*
  * strip special chars from a string
  */
-void stripspecial(char *s, char *cs)
-{
+void stripspecial(char* s, char* cs) {
     int i, slen = strlen(s), curcnt = 0;
 
     for (i = 0; i < slen; i++) {
-	if (s[i] == '\\' && isdigit(s[i + 1])) {
-	    i++;
-	} else if (s[i] == '\\' && isoneof(s[i + 1], "cCbxsSNuU+-")) {
-	    i++;
-	} else if (s[i] == '\\' && s[i + 1] == '\\') {
-	    i++;
-	} else {
-	    cs[curcnt++] = s[i];
-	}
+        if (s[i] == '\\' && isdigit(s[i + 1])) {
+            i++;
+        } else if (s[i] == '\\' && isoneof(s[i + 1], "cCbxsSNuU+-")) {
+            i++;
+        } else if (s[i] == '\\' && s[i + 1] == '\\') {
+            i++;
+        } else {
+            cs[curcnt++] = s[i];
+        }
     }
     cs[curcnt] = 0;
 }
@@ -356,26 +333,25 @@ void stripspecial(char *s, char *cs)
 /*
  * escape quotes
  */
-char *escapequotes (char *s)
-{
-    static char *es = NULL;
+char* escapequotes(char* s) {
+    static char* es = NULL;
     int i, k, n, len, elen;
-    
+
     if (s == NULL)
         return NULL;
-    
+
     len = strlen(s);
-    es = (char *) realloc (es, (len + 1)*sizeof(char));
+    es = (char*)realloc(es, (len + 1) * sizeof(char));
     strcpy(es, s);
     n = 0;
     while ((es = strchr(es, '\"'))) {
         es++;
         n++;
     }
-    
+
     elen = len + n + 1;
-    es = (char *) realloc (es, elen*sizeof(char));
-    
+    es = (char*)realloc(es, elen * sizeof(char));
+
     i = k = 0;
     while (i < len) {
         if (s[i] == '\"') {
@@ -383,9 +359,9 @@ char *escapequotes (char *s)
             k++;
         }
         es[k] = s[i];
-        i++; k++;
+        i++;
+        k++;
     }
-    es[elen-1] = '\0';
+    es[elen - 1] = '\0';
     return es;
 }
-
