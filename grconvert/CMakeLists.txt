@@ -1,5 +1,5 @@
 add_executable(grconvert defaults.c grconvert.c readbin.c util.c writeasc.c)
 if (UNIX)
-  target_link_libraries(grconvert m)
+  target_link_libraries(grconvert m project_warnings)
 endif()
 INSTALL_TARGETS(/xmgr/bin grconvert)

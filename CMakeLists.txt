@@ -13,6 +13,11 @@ set(CMAKE_MODULE_PATH cmake)
 
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
 
+# Interface library for all targets
+add_library(project_warnings INTERFACE)
+include(cmake/CompilerWarnings.cmake)
+set_project_warnings(project_warnings)
+
 find_package(Motif REQUIRED)
 find_package(X11 REQUIRED)
 

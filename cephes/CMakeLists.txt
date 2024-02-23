@@ -7,4 +7,6 @@ set (CEPHESSRCS
   spence stdtr struve unity yn zeta zetac 
   acosh asinh atanh ndtr isfinite cbrt )
 add_library(cephes STATIC ${CEPHESSRCS})
+target_link_libraries(cephes project_warnings)
+
 
