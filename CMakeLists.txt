@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-project("xmgr")
+project("xmgr" LANGUAGES C)
 cmake_policy(SET CMP0115 OLD)
 cmake_policy(SET CMP0075 OLD)
 
@@ -8,6 +8,7 @@ if(NOT CMAKE_BUILD_TYPE)
     CACHE STRING "Build type: None Debug Release RelWithDebInfo MinSizeRel." FORCE)
 endif()
 
+set(CMAKE_C_STANDARD 99)
 set(CMAKE_MODULE_PATH cmake)
 
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
