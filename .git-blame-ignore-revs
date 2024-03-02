@@ -1,2 +1,8 @@
+# Run this command to always ignore formatting commits in `git blame`
+# git config blame.ignoreRevsFile .git-blame-ignore-revs
+
+# initial commit of raw xmgr
 2d1c0d5842b8ee9ae35f7898820380076af856e5
+# apply clang format
 1be8d785dbf226e6e5a5ac143757903bc6378dd5
+
