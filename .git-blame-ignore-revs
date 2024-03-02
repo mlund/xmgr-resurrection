@@ -1,5 +1,6 @@
 # Run this command to always ignore formatting commits in `git blame`
 # git config blame.ignoreRevsFile .git-blame-ignore-revs
+# See also: https://www.stefanjudis.com/today-i-learned/how-to-exclude-commits-from-git-blame/
 
 # initial commit of raw xmgr
 2d1c0d5842b8ee9ae35f7898820380076af856e5
